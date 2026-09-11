@@ -29,3 +29,19 @@
 - значение: `kibarik.github.io`
 
 После распространения DNS в настройках GitHub Pages можно включить принудительный HTTPS.
+
+## Docker
+
+Сайт не требует сборки: это обычные HTML, CSS, JavaScript и статические файлы.
+
+Контейнер запускает Nginx на порту `8080`:
+
+```bash
+docker build -t slides-catalog .
+docker run --rm -p 8080:8080 slides-catalog
+```
+
+Проверка после запуска:
+
+- `http://localhost:8080/`
+- `http://localhost:8080/po-workspace-bft-plugin/`
