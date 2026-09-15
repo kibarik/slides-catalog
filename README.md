@@ -8,7 +8,10 @@
 - `/<presentation-id>/` — отдельная презентация по стабильной прямой ссылке.
 - `/<presentation-id>/presentation.pdf` — PDF-версия, если она есть.
 
-Первая презентация опубликована под ID `po-workspace-bft-plugin`.
+Опубликованные презентации:
+
+- `po-workspace-bft-plugin` — БФТ под управлением руководителя
+- `sprint-under-manager` — Спринты под управлением руководителя
 
 ## Как добавить презентацию
 
@@ -109,3 +112,4 @@ docker run --rm -p 8080:8080 slides-catalog
 
 - `http://localhost:8080/`
 - `http://localhost:8080/po-workspace-bft-plugin/`
+- `http://localhost:8080/sprint-under-manager/`
