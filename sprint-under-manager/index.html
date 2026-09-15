@@ -71,6 +71,20 @@
     background: var(--blue); color: #fff; font-style: normal; font-size: 17px; }
   .site:hover i { background: var(--ink); }
 
+  /* слайд установки */
+  .install .eyebrow { font-family: "JetBrains Mono", monospace; letter-spacing: .1em; font-size: 15px; }
+  .install h1 { font-size: 78px; line-height: 1.02; }
+  .install .sub { font-size: 26px; max-width: 780px; margin-top: 30px; }
+  .repo {
+    /* align-self обязателен: слайд — flex-колонка, иначе подчёркивание
+       растягивается на всю ширину вместо длины текста */
+    display: inline-block; align-self: flex-start;
+    margin-top: 30px; font-size: 26px; font-weight: 700;
+    letter-spacing: -.02em; color: var(--blue); text-decoration: none;
+    border-bottom: 3px solid var(--blue); padding-bottom: 4px;
+  }
+  .repo:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
   .tag {
     display: inline-block; align-self: flex-start; background: var(--ink); color: var(--bg);
     font-size: 12px; letter-spacing: .07em; padding: 6px 11px; font-weight: 700; margin-bottom: 12px;
@@ -239,7 +253,15 @@
     </div>
   </section>
 
-  <!-- 6 · сценарий -->
+  <!-- 6 · установка -->
+  <section class="slide install" data-title="Установите poh-sprint-agents">
+    <div class="eyebrow">POH-SPRINT-AGENTS</div>
+    <h1>Установите<br><span class="accent">poh-sprint-agents</span></h1>
+    <p class="sub">Навык собирает состояние спринта из трекера и отдаёт одну страницу. Начните с установки.</p>
+    <a class="repo" href="https://github.com/po-helper-org/poh-sprint-agents" target="_blank" rel="noopener">github.com/po-helper-org/poh-sprint-agents ↗</a>
+  </section>
+
+  <!-- 7 · сценарий -->
   <section class="slide" data-title="Как проходит запуск">
     <div class="eyebrow">СЦЕНАРИЙ</div>
     <h2 class="sm">От команды до страницы</h2>
@@ -252,7 +274,7 @@
     </ol>
   </section>
 
-  <!-- 7 · результат: галерея -->
+  <!-- 8 · результат: галерея -->
   <section class="slide" data-title="Результат: страница отчёта">
     <div class="eyebrow">РЕЗУЛЬТАТ</div>
     <h2 class="sm" style="margin-bottom:18px">Страница отчёта</h2>
@@ -265,7 +287,7 @@
     </div>
   </section>
 
-  <!-- 8 · фокус -->
+  <!-- 9 · фокус -->
   <section class="slide" data-title="Что попадает в фокус">
     <div class="eyebrow">ФОКУС</div>
     <h2 class="sm">Что видно без запроса</h2>
@@ -280,7 +302,7 @@
     <p class="foot">Переходить в трекер за этими данными не нужно.</p>
   </section>
 
-  <!-- 9 · что меняется -->
+  <!-- 10 · что меняется -->
   <section class="slide" data-title="Что меняется на практике">
     <div class="eyebrow">ЧТО МЕНЯЕТСЯ</div>
     <h2 class="sm">На практике</h2>
@@ -293,7 +315,7 @@
     </ul>
   </section>
 
-  <!-- 10 · неделя к неделе -->
+  <!-- 11 · неделя к неделе -->
   <section class="slide" data-title="Комментарии переживают неделю">
     <div class="eyebrow">НЕДЕЛЯ К НЕДЕЛЕ</div>
     <h2 class="sm">Договорённости не теряются между статусами</h2>
@@ -304,7 +326,7 @@
     <p class="foot">Заметки пишутся прямо в отчёте и переносятся в следующий запуск.</p>
   </section>
 
-  <!-- 11 · демо -->
+  <!-- 12 · демо -->
   <section class="slide" data-title="Демо">
     <div class="eyebrow">ДЕМО</div>
     <h2 class="sm" style="margin-bottom:16px">Живая страница отчёта</h2>

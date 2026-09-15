@@ -12,7 +12,7 @@ const presentations = [
     title: "Спринты под управлением руководителя",
     description: "Как ИИ-агент собирает состояние спринта из трекера и превращает обход команд в пять минут разговора о блокаторах.",
     cover: "sprint-under-manager/cover.png",
-    slides: 11,
+    slides: 12,
     updated: "15 сентября 2026"
   }
 ];
