@@ -121,5 +121,7 @@ docker run --rm -p 8080:8080 slides-catalog
 - `/i/<short-name>/` — короткая ссылка для ручного ввода и QR-кода.
 - `/components/workshop-timer.js` — переиспользуемый таймер на 5, 10 или 15 минут.
 - `/components/workshop-poll.js` — визуальный прототип голосования. Пока хранит ответ только в браузере участника.
+- `/components/workshop-timer-sidebar.js` — независимая вкладка и сайдбар таймера для любой презентации.
+- `/components/workshop-poll-sidebar.js` — независимая вкладка и сайдбар статуса группы.
 
 Правила добавления новой инструкции описаны в `instructions/README.md`.
