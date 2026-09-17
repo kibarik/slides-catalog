@@ -8,11 +8,15 @@
 <script src="../components/workshop-timer-sidebar.js"></script>
 <script src="../components/workshop-poll-sidebar.js"></script>
 
-<workshop-timer-sidebar minutes="10"></workshop-timer-sidebar>
-<workshop-poll-sidebar guide="unique-step-id"></workshop-poll-sidebar>
+<div id="workshop-tools">
+  <workshop-timer-sidebar minutes="10"></workshop-timer-sidebar>
+  <workshop-poll-sidebar guide="unique-step-id"></workshop-poll-sidebar>
+</div>
 ```
 
 `minutes` задаёт начальное значение таймера: 5, 10 или 15 минут. Таймер продолжает работать после закрытия панели, а вкладка показывает оставшееся время и меняет цвет.
+
+Контейнер компонентов размещайте вне элемента, который масштабируется через CSS `transform`. Тогда вкладки с `position: fixed` останутся у физического правого края окна. Если у каждого слайда собственные настройки, при переключении переносите компоненты активного слайда в общий viewport-слой, как это сделано в `claude-desktop-zai-macos/index.html`.
 
 `guide` служит ключом локального состояния голосования. Вкладка показывает три счётчика: успех, вопрос, проблема. Раскрытая панель показывает крупные счётчики и локальный журнал событий.
 
