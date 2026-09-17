@@ -1,5 +1,13 @@
 const presentations = [
   {
+    id: "claude-desktop-zai-macos",
+    title: "Claude Desktop с Китайскими моделями",
+    description: "Практикум: Claude Code, GLM и пошаговый запуск в российских реалиях.",
+    cover: "claude-desktop-zai-macos/cover.png",
+    slides: 9,
+    updated: "17 сентября 2026"
+  },
+  {
     id: "po-workspace-bft-plugin",
     title: "БФТ под управлением руководителя",
     description: "Как AI-агент собирает бизнес-контекст и превращает его в требования для согласования.",
@@ -24,7 +32,7 @@ count.textContent = `${presentations.length} ${presentations.length === 1 ? "п�
 
 grid.innerHTML = presentations.map((deck) => `
   <a class="deck-card" href="${deck.id}/" aria-label="Открыть презентацию: ${deck.title}">
-    <div class="deck-cover"><img src="${deck.cover}" alt="" width="1280" height="720"></div>
+      <div class="deck-cover"><img src="${deck.cover}" alt="" width="1280" height="720"></div>
     <div class="deck-copy">
       <p class="deck-id">/${deck.id}</p>
       <h2 class="deck-title">${deck.title}</h2>

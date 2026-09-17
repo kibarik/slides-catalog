@@ -10,6 +10,7 @@
 
 Опубликованные презентации:
 
+- `claude-desktop-zai-macos` — Claude Desktop с Китайскими моделями
 - `po-workspace-bft-plugin` — БФТ под управлением руководителя
 - `sprint-under-manager` — Спринты под управлением руководителя
 
@@ -113,3 +114,12 @@ docker run --rm -p 8080:8080 slides-catalog
 - `http://localhost:8080/`
 - `http://localhost:8080/po-workspace-bft-plugin/`
 - `http://localhost:8080/sprint-under-manager/`
+
+## Инструкции и компоненты практикума
+
+- `/instructions/<slug>/` — подробная статичная инструкция для участника.
+- `/i/<short-name>/` — короткая ссылка для ручного ввода и QR-кода.
+- `/components/workshop-timer.js` — переиспользуемый таймер на 5, 10 или 15 минут.
+- `/components/workshop-poll.js` — визуальный прототип голосования. Пока хранит ответ только в браузере участника.
+
+Правила добавления новой инструкции описаны в `instructions/README.md`.

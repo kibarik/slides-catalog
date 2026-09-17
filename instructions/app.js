@@ -1,0 +1,9 @@
+const id=document.body.dataset.guide,guide=window.GUIDES[id],root=document.querySelector('#app');
+const all=Object.entries(window.GUIDES);
+function steps(items){return `<ol class="steps">${items.map(x=>`<li>${x.text}${x.code?`<code>${x.code}</code>`:''}</li>`).join('')}</ol>`}
+function render(platform){
+  const items=guide.platforms?guide.platforms[platform]:guide.steps;
+  root.innerHTML=`<div class="shell"><header class="top"><a class="brand" href="../">slides.aleksishmanov.ru/instructions</a><span class="step">${guide.number}</span></header><section class="hero"><div><h1>${guide.title}</h1><p>${guide.lead}</p></div><aside class="status"><strong>Отметьте результат</strong><p>Кнопки ниже сохраняют ваш ответ на этом устройстве. Общая статистика пока в прототипе.</p><div class="poll-wrap"><workshop-poll guide="${id}"></workshop-poll></div></aside></section>${guide.platforms?`<nav class="platforms" aria-label="Операционная система">${Object.keys(guide.platforms).map(x=>`<button data-platform="${x}" class="${x===platform?'active':''}">${x}</button>`).join('')}</nav>`:''}${guide.warning?`<div class="warning">${guide.warning}</div>`:''}<main class="content"><div>${steps(items)}</div><aside class="visual"><img src="${guide.image}" alt="${guide.imageAlt}"><p>${guide.imageAlt}. Снимок используется как ориентир, интерфейс сайта может измениться.</p></aside></main><footer class="sources"><strong>Проверить актуальные шаги:</strong>${guide.sources.map(url=>`<a href="${url}">${url}</a>`).join('')}</footer></div>`;
+  document.querySelectorAll('[data-platform]').forEach(b=>b.onclick=()=>{localStorage.setItem('guide-platform',b.dataset.platform);render(b.dataset.platform)});
+}
+if(!guide){root.innerHTML='<div class="shell"><h1>Инструкция не найдена</h1><a href="../">Вернуться к списку</a></div>'}else{render(guide.platforms?(localStorage.getItem('guide-platform')||'macOS'):'')}
