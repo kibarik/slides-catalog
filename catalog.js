@@ -22,6 +22,14 @@ const presentations = [
     cover: "sprint-under-manager/cover.png",
     slides: 12,
     updated: "15 сентября 2026"
+  },
+  {
+    id: "okr-quarter-planning",
+    title: "Планирование квартала под управлением руководителя",
+    description: "Как ИИ-агент собирает квартал из JIRA, таблиц, Google Docs и переписки в одну понятную форму и переносит согласованный план туда, куда требует руководство.",
+    cover: "okr-quarter-planning/cover.png",
+    slides: 12,
+    updated: "29 сентября 2026"
   }
 ];
 

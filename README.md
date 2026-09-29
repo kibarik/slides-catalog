@@ -12,6 +12,7 @@
 - `claude-desktop-zai-macos` — Claude Desktop с Китайскими моделями
 - `po-workspace-bft-plugin` — БФТ под управлением руководителя
 - `sprint-under-manager` — Спринты под управлением руководителя
+- `okr-quarter-planning` — Планирование квартала под управлением руководителя
 
 ## Как добавить презентацию
 
@@ -113,6 +114,7 @@ docker run --rm -p 8080:8080 slides-catalog
 - `http://localhost:8080/`
 - `http://localhost:8080/po-workspace-bft-plugin/`
 - `http://localhost:8080/sprint-under-manager/`
+- `http://localhost:8080/okr-quarter-planning/`
 
 ## Инструкции и компоненты практикума
 
