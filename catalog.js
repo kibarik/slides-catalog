@@ -28,8 +28,8 @@ const presentations = [
     title: "Планирование квартала под управлением руководителя",
     description: "Как ИИ-агент собирает квартал из JIRA, таблиц, Google Docs и переписки в одну понятную форму и переносит согласованный план туда, куда требует руководство.",
     cover: "okr-quarter-planning/cover.png",
-    slides: 18,
-    updated: "1 октября 2026"
+    slides: 13,
+    updated: "2 октября 2026"
   }
 ];
 

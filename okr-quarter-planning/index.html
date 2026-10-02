@@ -214,6 +214,26 @@
   table.tp td.fill { background: #f4f6ff; border-left: 1px dashed var(--blue); color: var(--blue); font-style: italic; }
   table.tp td.role { font-family: "JetBrains Mono", monospace; font-weight: 700; }
   #lb .row { display: none; }
+  /* Переработка: боль → решение. «Решает боль N» связывает этап с проблемой. */
+  .solves { display: inline-block; align-self: flex-start; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: .04em; color: var(--blue); border: 1px solid var(--blue); padding: 3px 8px; margin-top: 10px; }
+  .card .solves { margin-top: 14px; }
+  .col > .solves, .chat > .solves { margin: 0 0 4px; }
+  .foot.big { font-size: 20px; font-weight: 700; color: var(--ink); margin-top: 34px; }
+  .vision { margin-top: 34px; border-left: 4px solid var(--blue); padding: 6px 0 6px 20px; display: flex; flex-direction: column; gap: 10px; }
+  .vision p { font-size: 19px; line-height: 1.45; color: var(--muted); max-width: 980px; }
+  .vision b { color: var(--ink); }
+  .repo-sm { font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--blue); text-decoration: none; font-weight: 700; }
+  table.ba { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  table.ba th { text-align: left; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    padding: 10px 16px; border-bottom: 2px solid var(--ink); background: #f2f1ec; }
+  table.ba th:last-child { color: var(--blue); }
+  table.ba td { padding: 11px 16px; font-size: 16px; line-height: 1.35; border-bottom: 1px solid #deddd6; vertical-align: top; color: var(--muted); }
+  table.ba td:first-child { font-weight: 800; color: var(--ink); white-space: nowrap; width: 150px; }
+  table.ba td:last-child { color: var(--ink); }
+  .install ol.steps.start { margin: 26px 0 30px; gap: 10px; }
+  .install ol.steps.start b { font-family: "JetBrains Mono", monospace; font-size: 20px; }
+  .install ol.steps.start span { font-size: 18px; }
   /* Демо грузится по требованию: пока страница не пришла — индикатор, а не пустая рамка. */
   .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center;
     justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace;
@@ -235,7 +255,7 @@
     <div class="cover-layout">
       <div>
         <h1>Планирование квартала<br><span class="accent">под управлением руководителя</span></h1>
-        <p class="sub">ИИ-агент собирает данные квартала из JIRA, таблиц, Google Docs и переписки, показывает их в одной понятной форме, а согласованный план переносит туда, куда попросит руководство.</p>
+        <p class="sub">Каждый квартал PO заново собирает одни и те же данные под новую форму. ИИ-агент собирает их один раз — и выгружает в любую форму, которую попросит руководство.</p>
         <p class="quote">Процесс планирования меняется каждый квартал.<br>Данные — нет.</p>
       </div>
       <div>
@@ -245,315 +265,224 @@
     </div>
   </section>
 
-  <!-- 2 · ситуация -->
-  <section class="slide" data-title="Как квартал планируют сейчас">
-    <div class="eyebrow">СИТУАЦИЯ</div>
-    <h2>Квартал — это три долгих круга</h2>
+  <!-- 2 · проблема -->
+  <section class="slide" data-title="Проблема">
+    <div class="eyebrow">ПРОБЛЕМА</div>
+    <h2>Каждый квартал план собирают с нуля</h2>
     <div class="split">
       <div class="a">
-        <div class="lbl">КАЖДЫЙ КВАРТАЛ</div>
-        <div class="t">Сбор → согласование →<br>представление</div>
-        <p>Данные лежат в JIRA, таблицах, Google Docs и чатах. Каждый круг правок — новая версия документа.</p>
+        <div class="lbl">КАК СЕЙЧАС</div>
+        <div class="t">Сбор → согласование →<br>перерисовка</div>
+        <p>Данные лежат в JIRA, таблицах, Google Docs и чатах. До первого обсуждения PO днями сводит их в один документ, а правки приходят в переписке.</p>
       </div>
       <div class="b">
-        <div class="lbl">ЗА ТРИ КВАРТАЛА</div>
-        <div class="t accent">Три разных процесса<br>«как мы планируем»</div>
-        <p>Требования к форме плана менялись каждый раз — и каждый раз сбор начинался заново.</p>
+        <div class="lbl">СЛЕДУЮЩИЙ КВАРТАЛ</div>
+        <div class="t accent">Новая форма —<br>и всё заново</div>
+        <p>Руководство меняет требования к плану, а собранное в прошлый раз не переиспользуется. Время уходит на перекладывание, а не на решения.</p>
       </div>
     </div>
   </section>
 
-  <!-- 3 · проблема -->
-  <section class="slide" data-title="Что съедает время">
-    <div class="eyebrow">ПРОБЛЕМА</div>
-    <h2 class="sm">Время уходит не на решения, а на перекладывание</h2>
+  <!-- 3 · корень проблемы -->
+  <section class="slide" data-title="Почему так происходит">
+    <div class="eyebrow">ПОЧЕМУ</div>
+    <h2 class="sm">Корень: данные живут внутри документа</h2>
     <div class="grid three">
-      <div class="card sm"><h3>Данные в четырёх местах</h3><p>Задачи в JIRA, цели в таблице, контекст в Google Docs, договорённости в чатах.</p></div>
-      <div class="card sm"><h3>Сбор — самая долгая часть</h3><p>До первого обсуждения PO неделю сводит всё в один документ.</p></div>
-      <div class="card sm"><h3>Согласование по кругу</h3><p>Замечания приходят в переписке, и каждая правка — новая версия файла.</p></div>
-      <div class="card sm"><h3>Презентация с нуля</h3><p>Согласованный план заново перерисовывают под формат руководства.</p></div>
-      <div class="card sm"><h3>Процесс меняется</h3><p>Новый квартал — новые требования к форме, и собранное не переиспользуется.</p></div>
-      <div class="card sm"><h3>Факт отдельно от плана</h3><p>Итоги прошлого квартала не становятся входом в новый.</p></div>
+      <div class="card"><div class="tag">БОЛЬ 1 · СБОР</div><h3>Данные в четырёх местах</h3><p>Задачи в JIRA, цели в таблице, контекст в Google Docs, договорённости в чатах. Свести их — самая долгая часть квартала.</p></div>
+      <div class="card"><div class="tag">БОЛЬ 2 · СОГЛАСОВАНИЕ</div><h3>Правки по кругу</h3><p>Замечания приходят в переписке, каждая правка — новая версия файла. Какая из них актуальная — уже непонятно.</p></div>
+      <div class="card"><div class="tag">БОЛЬ 3 · ПРЕДСТАВЛЕНИЕ</div><h3>Форма съедает данные</h3><p>План перерисовывают под формат руководства, исполнителей ищут в чатах, а итоги прошлого квартала не попадают в новый.</p></div>
+    </div>
+    <p class="foot big">Пока данные склеены с формой, новая форма означает новый сбор.</p>
+  </section>
+
+  <!-- 4 · видение po-helper-org -->
+  <section class="slide" data-title="Видение po-helper-org">
+    <div class="eyebrow">ВИДЕНИЕ · PO-HELPER-ORG</div>
+    <h2 class="sm">Отделить данные от формы</h2>
+    <div class="flow">
+      <div class="card"><div class="tag">ВХОД</div><h3>Слова и выгрузки</h3><p>Рассказ голосом или текстом, выгрузка JIRA, таблица, ссылка на документ, пересланная переписка. Формат и порядок — любые.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">ИИ-АГЕНТ</div><h3>Данные в одной структуре</h3><p>ИИ только раскладывает сказанное по полям. Чего не знает — помечает <span class="unc">[УТОЧНИТЬ]</span>, а не додумывает.</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><div class="tag blue">СКРИПТ</div><h3>Любая форма</h3><p>Страница, таблица, JIRA, документ — собираются из тех же данных по правилам, одинаково каждый раз.</p></div>
+    </div>
+    <div class="vision">
+      <p><b>po-helper-org</b> — открытые ИИ-агенты под роль PO на этом принципе. <b>poh-okr-agent</b> ведёт квартал: от факта прошлого до плана в нужной форме.</p>
+      <a class="repo-sm" href="https://github.com/po-helper-org" target="_blank" rel="noopener">github.com/po-helper-org ↗</a>
     </div>
   </section>
 
-  <!-- 4 · решение: три этапа -->
+  <!-- 5 · решение: три этапа -->
   <section class="slide" data-title="Три этапа">
     <div class="eyebrow">РЕШЕНИЕ</div>
     <h2 class="sm">Три этапа — одни и те же данные</h2>
     <div class="grid three">
-      <div class="card"><div class="tag">ЭТАП 1 · РЕТРО</div><h3>Факт прошлого квартала</h3><p>Агент собирает готовность каждого KR из JIRA и ваших слов. Итог — страница ФАКТ.</p></div>
-      <div class="card"><div class="tag">ЭТАП 2 · ПЛАНИРОВАНИЕ</div><h3>План нового квартала</h3><p>Рассказываете, что хотите в квартале, агент собирает цели и инициативы и отмечает, что берём в квартал. Итог — страница ПЛАН.</p></div>
-      <div class="card blue"><div class="tag blue">ЭТАП 3 · ПРЕОБРАЗОВАНИЕ</div><h3>TeamPlanner и любая форма</h3><p>Этапы, исполнители и сроки — на странице для техлидов. Дальше — в Sheets, JIRA или Docs по вашей форме.</p></div>
+      <div class="card"><div class="tag">ЭТАП 1 · РЕТРО</div><h3>Факт прошлого квартала</h3><p>Агент собирает готовность каждого KR из JIRA и ваших слов. Итог — страница ФАКТ.</p><p class="solves">Решает боль 1 — сбор</p></div>
+      <div class="card"><div class="tag">ЭТАП 2 · ПЛАНИРОВАНИЕ</div><h3>План нового квартала</h3><p>Вы рассказываете, что хотите в квартале; агент собирает цели и инициативы, правки — комментариями на странице. Итог — страница ПЛАН.</p><p class="solves">Решает боли 1 и 2</p></div>
+      <div class="card blue"><div class="tag blue">ЭТАП 3 · ПРЕОБРАЗОВАНИЕ</div><h3>Исполнители и любая форма</h3><p>Техлиды расписывают подзадачи и исполнителей на странице TeamPlanner, дальше — JIRA, Sheets или Docs.</p><p class="solves">Решает боль 3</p></div>
     </div>
-    <p class="foot">На каждом этапе ИИ только переводит слова и выгрузки в JSON. Страницу по JSON собирает скрипт — одинаково каждый раз.</p>
+    <p class="foot">KR — ключевой результат цели. PBV — вес инициативы для бизнеса.</p>
   </section>
 
-  <!-- 5 · установка -->
-  <section class="slide install" data-title="Установите poh-okr-agent">
-    <div class="eyebrow">POH-OKR-AGENT</div>
-    <h1>Установите<br><span class="accent">poh-okr-agent</span></h1>
-    <p class="sub">Агент под роль PO: ведёт квартал от факта прошлого до плана в нужной форме. Скажите ИИ-помощнику «Установи poh-okr-agent в этот репозиторий».</p>
-    <a class="repo" href="https://github.com/po-helper-org/poh-okr-agent" target="_blank" rel="noopener">github.com/po-helper-org/poh-okr-agent ↗</a>
-  </section>
-
-  <!-- 6 · ретро: процесс -->
-  <section class="slide" data-title="Этап 1. Ретро: процесс">
-    <div class="eyebrow">ЭТАП 1 · РЕТРО · ПРОЦЕСС</div>
-    <h2 class="sm">Данные — в любом виде, результат — всегда один</h2>
-    <div class="flow">
-      <div class="card"><div class="tag">ВХОД</div><h3>Что есть под рукой</h3><p>Выгрузка JIRA, таблица OKR, ссылка на Google Doc, пересланная переписка, голосовое. Формат и порядок — любые.</p></div>
-      <div class="arr">→</div>
-      <div class="card"><div class="tag">АГЕНТ</div><h3>Переводит в JSON</h3><p>Процент готовности KR, подзадачи со статусами, риски, что дальше. Неизвестное помечает <span class="unc">[УТОЧНИТЬ]</span>.</p></div>
-      <div class="arr">→</div>
-      <div class="card blue"><div class="tag blue">СКРИПТ</div><h3>Собирает страницу ФАКТ</h3><p>Исходы, шкалы, итог квартала считаются по правилам, а не моделью.</p></div>
-    </div>
-    <ol class="steps compact">
-      <li><div><b>/okr-retro</b> <span>— приложите что есть: агент сам разберёт источники</span></div></li>
-      <li><div><b>Первая итерация</b> <span>— страница по тому, что агент смог узнать сам</span></div></li>
-      <li><div><b>Доработка</b> <span>— диалог и комментарии на странице, пока не закрыты вопросы</span></div></li>
-    </ol>
-  </section>
-
-  <!-- 7 · ретро: первая итерация -->
-  <section class="slide" data-title="Этап 1. Ретро: первая итерация">
-    <div class="eyebrow">ЭТАП 1 · РЕТРО · ПЕРВАЯ ИТЕРАЦИЯ</div>
-    <h2 class="sm">Что ИИ знает сам — из JIRA и ваших вводных</h2>
+  <!-- 6 · ретро: первая итерация -->
+  <section class="slide" data-title="Этап 1. Ретро">
+    <div class="eyebrow">ЭТАП 1 · РЕТРО</div>
+    <h2 class="sm">Факт квартала — без ручного сведения</h2>
     <div class="duo">
       <div class="col">
-        <p class="lead"><b>Знает:</b> KR и их вес, подзадачи и их статусы, где заблокировано, что пришло после старта квартала.</p>
-        <p class="lead"><b>Не знает:</b> реальную готовность, причины, что делать дальше. Такие места помечены <span class="unc">[УТОЧНИТЬ у PO]</span> — агент не додумывает.</p>
-        <p class="lead"><b>Уже считает:</b> итог квартала по оценённым KR. Цифра уточнится вместе с ответами.</p>
+        <p class="solves">Решает боль 1 — сбор</p>
+        <p class="lead"><b>/okr-retro</b> — приложите что есть: выгрузку JIRA, таблицу OKR, ссылку на документ, голосовое.</p>
+        <p class="lead"><b>Агент заполняет известное:</b> KR и их вес, подзадачи и статусы, что заблокировано.</p>
+        <p class="lead"><b>Не додумывает:</b> готовность, причины и «что дальше» помечены <span class="unc">[УТОЧНИТЬ у PO]</span>.</p>
+        <p class="lead"><b>Итог квартала</b> считает скрипт по правилам — готовность, взвешенная по PBV.</p>
       </div>
       <div class="shot"><img src="/okr-quarter-planning/img/r1-draft.webp" data-full="/okr-quarter-planning/img/full/r1-draft.webp" width="1100" height="688" loading="lazy" decoding="async" alt="Первая итерация страницы ФАКТ"></div>
     </div>
   </section>
 
-  <!-- 8 · ретро: доработка -->
+  <!-- 7 · ретро: доработка и итог -->
   <section class="slide" data-title="Этап 1. Ретро: доработка">
     <div class="eyebrow">ЭТАП 1 · РЕТРО · ДОРАБОТКА</div>
-    <h2 class="sm">Правки — разговором или комментарием на странице</h2>
+    <h2 class="sm">Правки — разговором или комментарием в документе</h2>
     <div class="duo">
       <div class="chat">
+        <p class="solves">Решает боль 2 — согласование</p>
         <div class="msg po"><span class="who">PO</span>1.2 — 60 %. Наша часть готова, стенд партнёра так и не дали. Продолжаем в Q4.</div>
-        <div class="msg"><span class="who">АГЕНТ</span>Обновил 1.2: 60 %, частично. Добавил риск «партнёр сдвигает стенд», дальше — KR 1.1 в Q4. Осталось: 2.1 и 2.3.</div>
+        <div class="msg"><span class="who">АГЕНТ</span>Обновил 1.2: 60 %, добавил риск «партнёр сдвигает стенд», дальше — KR 1.1 в Q4. Осталось: 2.3.</div>
         <div class="msg po"><span class="who">PO</span>2.3 сняли 12.08 — приоритет ушёл на биллинг.</div>
         <div class="msg"><span class="who">АГЕНТ</span>Отметил 2.3 отменённым с причиной. Вопросов нет — можно принимать.</div>
       </div>
-      <div class="shot"><img src="/okr-quarter-planning/img/04-comments.webp" data-full="/okr-quarter-planning/img/full/04-comments.webp" width="1100" height="688" loading="lazy" decoding="async" alt="Комментарии для агента на странице ФАКТ"></div>
-    </div>
-    <p class="foot">Справа: правый клик по риску или «что дальше» — комментарий для агента. Кнопка «Скопировать для агента» отдаёт все комментарии одним сообщением.</p>
-  </section>
-
-  <!-- 9 · ретро: итог -->
-  <section class="slide" data-title="Этап 1. Ретро: итог">
-    <div class="eyebrow">ЭТАП 1 · РЕТРО · ИТОГ</div>
-    <h2 class="sm">Страница ФАКТ после всех правок</h2>
-    <div class="duo">
-      <ul class="list">
-        <li><span><b>Исход каждого KR</b> — закрыт, частично, не сделан, отменён</span></li>
-        <li><span><b>Итог квартала</b> — готовность, взвешенная по PBV</span></li>
-        <li><span><b>Шкала подзадач</b> — DONE, IN PROGRESS, BLOCKED, TODO</span></li>
-        <li><span><b>Карточка KR</b> — образ результата, roadmap, риски, что дальше</span></li>
-        <li><span><b>Фильтр</b> по исходам со счётчиками</span></li>
-        <li><span><b>Комментарии для агента</b> — правый клик или выделение зоны</span></li>
-      </ul>
       <div class="demo"><div class="demo-loader"><span class="spin"></span>Загружаем живое демо…</div>
         <button class="fs-btn" data-frame="factFrame">На весь экран</button>
         <iframe id="factFrame" title="Демо страницы ФАКТ" data-src="/okr-quarter-planning/demo/fact.html"></iframe>
       </div>
     </div>
-    <p class="foot">Живая страница: фильтр слева, клик по строке — карточка KR, правый клик — комментарий.</p>
+    <p class="foot">Живая страница: клик по строке — карточка KR, правый клик — комментарий для агента. Принятый ФАКТ становится входом в план.</p>
   </section>
 
-  <!-- 10 · планирование: процесс -->
-  <section class="slide" data-title="Этап 2. Планирование: процесс">
-    <div class="eyebrow">ЭТАП 2 · ПЛАНИРОВАНИЕ · ПРОЦЕСС</div>
-    <h2 class="sm">Рассказываете квартал — агент раскладывает его</h2>
-    <div class="flow">
-      <div class="card"><div class="tag">ВХОД</div><h3>Ретро и ваш рассказ</h3><p>Что переходит из прошлого квартала, рассказ голосом или текстом, документы и переписка с заказчиками.</p></div>
-      <div class="arr">→</div>
-      <div class="card"><div class="tag">АГЕНТ</div><h3>Цели и инициативы</h3><p>ASIS → TOBE, команды, PBV, образ результата. По каждой — берём в квартал или нет.</p></div>
-      <div class="arr">→</div>
-      <div class="card blue"><div class="tag blue">СКРИПТ</div><h3>Собирает страницу ПЛАН</h3><p>Сверка с ретро, шкала этапов, открытые вопросы — по правилам.</p></div>
-    </div>
-    <ol class="steps compact">
-      <li><div><b>/okr-scope</b> <span>— расскажите, что хотите увидеть в квартале; агент соберёт драфт</span></div></li>
-      <li><div><b>Доработка</b> <span>— тот же диалог и комментарии, что на ретро</span></div></li>
-      <li><div><b>/okr-stages</b> <span>— по желанию: условия, риски, зависимости и первые этапы в ПЛАН</span></div></li>
-    </ol>
-  </section>
-
-  <!-- 11 · планирование: первая итерация -->
-  <section class="slide" data-title="Этап 2. Планирование: первая итерация">
-    <div class="eyebrow">ЭТАП 2 · ПЛАНИРОВАНИЕ · ПЕРВАЯ ИТЕРАЦИЯ</div>
-    <h2 class="sm">Драфт плана из одного рассказа PO</h2>
+  <!-- 8 · планирование: драфт -->
+  <section class="slide" data-title="Этап 2. Планирование">
+    <div class="eyebrow">ЭТАП 2 · ПЛАНИРОВАНИЕ</div>
+    <h2 class="sm">План из одного рассказа PO</h2>
     <div class="duo">
       <div class="col">
-        <p class="lead"><b>Из ретро:</b> переходящие KR уже стоят в плане. Всё, что не взяли, нужно снять с причиной.</p>
-        <p class="lead"><b>Из рассказа:</b> цели, инициативы, команды, образ результата. Новые инициативы отмечены <b class="plus">+</b>.</p>
-        <p class="lead"><b>Не хватает:</b> PBV поиска, число участников семьи — подсвечено <span class="unc">[УТОЧНИТЬ]</span>. Где не решено, берём ли в квартал, — стоит «?», и это тоже вопрос PO.</p>
+        <p class="solves">Решает боли 1 и 2</p>
+        <p class="lead"><b>/okr-scope</b> — расскажите, что хотите увидеть в квартале, голосом или текстом.</p>
+        <p class="lead"><b>Из ретро:</b> переходящие KR уже в плане, всё снятое — с причиной.</p>
+        <p class="lead"><b>Из рассказа:</b> цели, инициативы, образ результата, PBV и тип — Run, Change или Disrupt.</p>
+        <p class="lead"><b>Не решено</b>, берём ли в квартал, — стоит «?». С открытыми вопросами план не принять.</p>
       </div>
       <div class="shot"><img src="/okr-quarter-planning/img/p1-draft.webp" data-full="/okr-quarter-planning/img/full/p1-draft.webp" width="1100" height="688" loading="lazy" decoding="async" alt="Первая итерация страницы ПЛАН"></div>
     </div>
   </section>
 
-  <!-- 12 · планирование: доработка -->
+  <!-- 9 · планирование: доработка и итог -->
   <section class="slide" data-title="Этап 2. Планирование: доработка">
     <div class="eyebrow">ЭТАП 2 · ПЛАНИРОВАНИЕ · ДОРАБОТКА</div>
-    <h2 class="sm">Уточнили, решили, что берём, — агент поправил</h2>
+    <h2 class="sm">Уточнили и решили — в том же документе</h2>
     <div class="duo">
       <div class="chat">
         <div class="msg po"><span class="who">PO</span>В семье до 4 участников. Поиск — PBV 6, это исследование. Рекомендации снимаем: нет ёмкости после биллинга.</div>
-        <div class="msg"><span class="who">АГЕНТ</span>Готово: 2.2 отменена с причиной, промокоды — в скоупе, но не в квартал. Вопросов нет.</div>
-        <div class="msg po"><span class="who">PO</span><i>выделяет условия и риски в карточке 1.2</i> — «Добавь зависимость от маркетинга: без макетов тарифа FE не стартует».</div>
+        <div class="msg"><span class="who">АГЕНТ</span>Готово: 2.2 отменена с причиной, промокоды остаются в плане, но не в этом квартале. Вопросов нет.</div>
+        <div class="msg po"><span class="who">PO</span><i>выделяет риски в карточке 1.2</i> — «Добавь зависимость от маркетинга: без макетов тарифа FE не стартует».</div>
       </div>
-      <div class="shot"><img src="/okr-quarter-planning/img/p2-comment.webp" data-full="/okr-quarter-planning/img/full/p2-comment.webp" width="1100" height="688" loading="lazy" decoding="async" alt="Комментарий к выделенной зоне карточки плана"></div>
-    </div>
-  </section>
-
-  <!-- 13 · планирование: итог + демо -->
-  <section class="slide" data-title="Этап 2. Планирование: итог">
-    <div class="eyebrow">ЭТАП 2 · ПЛАНИРОВАНИЕ · ИТОГ</div>
-    <h2 class="sm">Страница ПЛАН после всех правок</h2>
-    <div class="duo">
-      <ul class="list">
-        <li><span><b>ASIS → TOBE</b> и команды по каждой инициативе</span></li>
-        <li><span><b>Сверка с ретро</b> — всё переходящее в плане или снято с причиной</span></li>
-        <li><span><b>Берём в квартал</b> — да, нет или «?»: скоуп шире квартала</span></li>
-        <li><span><b>Тип инициативы</b> — Run, Change или Disrupt</span></li>
-        <li><span><b>Условия, риски, зависимости</b> и этапы — в карточке</span></li>
-        <li><span><b>Отменённое</b> остаётся зачёркнутым вместе с причиной</span></li>
-        <li><span><b>Открытые вопросы</b> одним списком — с ними план не принять</span></li>
-      </ul>
       <div class="demo"><div class="demo-loader"><span class="spin"></span>Загружаем живое демо…</div>
         <button class="fs-btn" data-frame="planFrame">На весь экран</button>
         <iframe id="planFrame" title="Демо страницы ПЛАН" data-src="/okr-quarter-planning/demo/plan.html"></iframe>
       </div>
     </div>
-    <p class="foot">Живая страница: фильтр по командам, клик по строке — карточка с этапами, выделение — комментарий.</p>
+    <p class="foot">Живая страница: клик по строке — карточка с этапами и рисками, выделение мышью — комментарий. Отменённое остаётся зачёркнутым вместе с причиной.</p>
   </section>
 
-  <!-- 14 · преобразование -->
-  <section class="slide" data-title="Этап 3. Преобразование">
-    <div class="eyebrow">ЭТАП 3 · ПРЕОБРАЗОВАНИЕ</div>
-    <h2 class="sm">Данные уже в JSON — нужны только форма и правила</h2>
-    <div class="flow tall">
-      <div class="col">
-        <div class="tag">ДАННЫЕ</div>
-<pre class="code">{ <span class="k">"id"</span>: "1.2",
-  <span class="k">"title"</span>: "Семейная подписка",
-  <span class="k">"teams"</span>: ["front", "back"],
-  <span class="k">"steps"</span>: [
-    { <span class="k">"role"</span>: "PO", "title": "Тарифы",
-      <span class="k">"who"</span>: "Иванова Анна" },
-    { <span class="k">"role"</span>: "BE", "title": "Покупка",
-      <span class="k">"who"</span>: "Кузнецов Артём" },
-    { <span class="k">"role"</span>: "DOPS", "title": "Мониторинг",
-      <span class="k">"who"</span>: "" }
-  ],
-  <span class="k">"details"</span>: "&lt;h3&gt;Образ действия&lt;/h3&gt;…" }</pre>
-      </div>
-      <div class="arr">+</div>
-      <div class="col">
-        <div class="tag">ФОРМА И ПРАВИЛА</div>
-        <div class="msg po wide">Заведи план в JIRA: KR — эпик, подзадачи — истории в нём.</div>
-        <div class="msg po wide">Сделай для руководства одну страницу в Google Docs: цель → инициативы → образ результата.</div>
-      </div>
-      <div class="arr">=</div>
-      <div class="col">
-        <div class="tag blue">РЕЗУЛЬТАТ</div>
-        <ul class="list sm">
-          <li><span><b>TeamPlanner</b> — страница для техлидов, /okr-teamplanner</span></li>
-          <li><span><b>Google Sheets</b> — «Копировать в Sheets», лист целиком</span></li>
-          <li><span><b>JIRA</b> — эпики и истории, /okr-jira</span></li>
-          <li><span><b>Google Docs</b> — документ для руководства</span></li>
-          <li><span><b>Любой шаблон</b> — xlsx, Confluence, презентация</span></li>
-        </ul>
-      </div>
-    </div>
-    <p class="foot">Сбор и согласование не повторяются: новая форма от руководства — это новая выгрузка из того же JSON. JIRA и Google Docs — через подключённые к агенту интеграции.</p>
-  </section>
-
-  <!-- 15 · teamplanner: демо -->
+  <!-- 10 · teamplanner -->
   <section class="slide" data-title="Этап 3. TeamPlanner">
     <div class="eyebrow">ЭТАП 3 · TEAMPLANNER</div>
-    <h2 class="sm">Кто, что и когда делает — на одной странице</h2>
+    <h2 class="sm">Исполнители — на странице, а не в переписке</h2>
     <div class="duo">
-      <ul class="list">
-        <li><span><b>Экран на цель</b> — KR строкой: эпик или enabler, тип, PBV, сумма дней; клик — подзадачи</span></li>
-        <li><span><b>Подзадача</b> — тип, название, оценка в днях, исполнитель; KR и подзадачи можно добавить и удалить</span></li>
-        <li><span><b>Тип</b> — полный цикл: PO · ADR · SA · BA · BE · FE · QA · DOPS · RM и EXT[роль] для смежной команды</span></li>
-        <li><span><b>PBV &lt; 5 и RESEARCH</b> — по умолчанию одна подзадача: [PO] Сбор БФТ-требований</span></li>
-        <li><span><b>Подсветка</b> — нет исполнителя или такой роли нет в команде</span></li>
-      </ul>
+      <div class="col">
+        <p class="solves">Решает боль 3 — представление</p>
+        <ul class="list">
+          <li><span><b>/okr-teamplanner</b> — каждый KR раскладывается на подзадачи полного цикла: PO, аналитика, разработка, тесты, выкатка</span></li>
+          <li><span><b>Техлиды правят сами:</b> тип, название, оценка в днях, исполнитель из состава команды</span></li>
+          <li><span><b>Подсветка</b> — где нет исполнителя или нужной роли в команде</span></li>
+          <li><span><b>Заметки агенту</b> — правым кликом; правки возвращаются файлом</span></li>
+        </ul>
+      </div>
       <div class="demo"><div class="demo-loader"><span class="spin"></span>Загружаем живое демо…</div>
         <button class="fs-btn" data-frame="tpFrame">На весь экран</button>
         <iframe id="tpFrame" title="Демо страницы TeamPlanner" data-src="/okr-quarter-planning/demo/teamplanner.html"></iframe>
       </div>
     </div>
-    <p class="foot">Живая страница: вкладки слева, клик по KR — подзадачи, правый клик — заметка агенту. Правки в демо остаются в этом браузере.</p>
+    <p class="foot">Живая страница: клик по KR — подзадачи, вкладки слева — цели и состав команды. Правки в демо остаются в этом браузере.</p>
   </section>
 
-  <!-- 16 · teamplanner: правки техлидов -->
-  <section class="slide" data-title="Этап 3. Правки техлидов">
-    <div class="eyebrow">ЭТАП 3 · ПРАВКИ ТЕХЛИДОВ</div>
-    <h2 class="sm">Техлиды правят сами — агент получает JSON и заметки</h2>
-    <div class="grid three pair">
-      <div class="col"><div class="shot"><img src="/okr-quarter-planning/img/t-team.webp" data-full="/okr-quarter-planning/img/full/t-team.webp" width="1100" height="688" loading="lazy" decoding="async" alt="Состав команды в левой панели TeamPlanner"></div>
-        <p class="lead"><b>Команда</b> — команда · тип · ФИО. Из этого состава выбирают исполнителей.</p></div>
-      <div class="col"><div class="shot"><img src="/okr-quarter-planning/img/t-more.webp" data-full="/okr-quarter-planning/img/full/t-more.webp" width="1100" height="688" loading="lazy" decoding="async" alt="Заметка «Детальнее» у KR"></div>
-        <p class="lead"><b>Детальнее</b> — образ действия, образ результата, границы и ожидания техлида.</p></div>
-      <div class="col"><div class="shot"><img src="/okr-quarter-planning/img/t-notes.webp" data-full="/okr-quarter-planning/img/full/t-notes.webp" width="1100" height="688" loading="lazy" decoding="async" alt="Заметки для агента в корзине TeamPlanner"></div>
-        <p class="lead"><b>Заметки</b> — правый клик по цели, KR или подзадаче; копятся в корзине в углу.</p></div>
-    </div>
-    <p class="foot">«Скачать JSON» и «Скопировать для агента» — агент правит план и пересобирает страницу. «Копировать в Sheets» — лист TeamPlanner целиком.</p>
-  </section>
-
-  <!-- 17 · перенос в JIRA -->
-  <section class="slide" data-title="Этап 3. Перенос в JIRA">
-    <div class="eyebrow">ЭТАП 3 · ПЕРЕНОС В JIRA</div>
-    <h2 class="sm">TeamPlanner → JIRA одной командой, после «да» PO</h2>
+  <!-- 11 · любая форма -->
+  <section class="slide" data-title="Этап 3. Любая форма">
+    <div class="eyebrow">ЭТАП 3 · ЛЮБАЯ ФОРМА</div>
+    <h2 class="sm">Новая форма — новая выгрузка, а не новый сбор</h2>
     <div class="flow tall">
       <div class="col">
-        <div class="tag">TEAMPLANNER</div>
-        <ul class="list sm">
-          <li><span><b>KR → эпик</b>: enabler — инициатива, закрывается БФТ; бессрочный — ACTIVITY, поддержка</span></li>
-          <li><span><b>Подзадача → история</b> в эпике: [РОЛЬ] название</span></li>
-          <li><span><b>Оценка в днях</b>, образ результата и действия — в описание</span></li>
-        </ul>
+        <div class="tag">ДАННЫЕ</div>
+<pre class="code">{ <span class="k">"id"</span>: "1.2",
+  <span class="k">"title"</span>: "Семейная подписка",
+  <span class="k">"steps"</span>: [
+    { <span class="k">"role"</span>: "PO", "title": "Тарифы",
+      <span class="k">"who"</span>: "Иванова Анна",
+      <span class="k">"days"</span>: 3 },
+    { <span class="k">"role"</span>: "BE", "title": "Покупка",
+      <span class="k">"who"</span>: "Кузнецов Артём",
+      <span class="k">"days"</span>: 10 }
+  ] }</pre>
       </div>
-      <div class="arr">→</div>
+      <div class="arr">+</div>
       <div class="col">
-        <div class="tag">ПОДТВЕРЖДЕНИЕ</div>
-        <div class="msg"><span class="who">АГЕНТ</span>TeamPlanner для переноса: эпиков 4 (enabler 3, бессрочных 1), историй 16. Проект VIT. Мешает: ничего. Переносим?</div>
-        <div class="msg po"><span class="who">PO</span>Да, переносим.</div>
+        <div class="tag">ПРОСЬБА РУКОВОДСТВА</div>
+        <div class="msg po wide">Заведи план в JIRA: KR — эпик, подзадачи — истории в нём.</div>
+        <div class="msg po wide">Сделай одну страницу в Google Docs: цель → инициативы → образ результата.</div>
       </div>
-      <div class="arr">→</div>
+      <div class="arr">=</div>
       <div class="col">
-        <div class="tag blue">JIRA</div>
+        <div class="tag blue">РЕЗУЛЬТАТ</div>
         <ul class="list sm">
-          <li><span><b>Эпики и истории</b> через Atlassian MCP, метки OKR-2026Q4, KR-1.1, PBV</span></li>
-          <li><span><b>Ключи VIT-123</b> пишутся обратно в TeamPlanner — повторный запуск без дублей</span></li>
-          <li><span><b>Нет доступа</b> — CSV для импорта в JIRA</span></li>
+          <li><span><b>JIRA</b> — /okr-jira: эпики и истории только после «да» PO; ключи задач пишутся обратно, повтор без дублей</span></li>
+          <li><span><b>Google Sheets</b> — лист TeamPlanner одной кнопкой</span></li>
+          <li><span><b>Google Docs</b> — документ для руководства</span></li>
+          <li><span><b>Любой шаблон</b> — xlsx, Confluence, презентация</span></li>
         </ul>
       </div>
     </div>
-    <p class="foot">Без явного «да» PO агент не создаёт ни одной задачи и никогда не меняет существующие задачи JIRA.</p>
+    <p class="foot">Сбор и согласование не повторяются. JIRA и Google Docs — через интеграции, подключённые к агенту; существующие задачи агент не меняет.</p>
   </section>
 
-  <!-- 18 · что меняется -->
-  <section class="slide" data-title="Что меняется на практике">
+  <!-- 12 · было → стало -->
+  <section class="slide" data-title="Было и стало">
     <div class="eyebrow">ЧТО МЕНЯЕТСЯ</div>
-    <h2 class="sm">На практике</h2>
-    <ul class="wins">
-      <li><span>Данные <b>собираются один раз</b> — из JIRA, таблиц, документов и переписки</span></li>
-      <li><span>Согласование идёт <b>в одном документе</b>, правки — комментариями в нём</span></li>
-      <li><span>Техлиды расписывают исполнителей <b>прямо на странице</b>, а не в переписке</span></li>
-      <li><span>Факт прошлого квартала <b>становится входом</b> в план нового</span></li>
-      <li><span>Новые требования к процессу — это <b>новая выгрузка</b>, а не новый сбор</span></li>
-      <li><span>Документ нельзя принять, пока <b>открытые вопросы не закрыты</b></span></li>
-    </ul>
+    <h2 class="sm">Было → стало</h2>
+    <table class="ba">
+      <thead><tr><th></th><th>Было</th><th>Стало</th></tr></thead>
+      <tbody>
+        <tr><td>Сбор</td><td>PO днями сводит данные из четырёх мест</td><td>Агент собирает из того, что под рукой; PO отвечает только на <span class="unc">[УТОЧНИТЬ]</span></td></tr>
+        <tr><td>Согласование</td><td>Правки в переписке, версии файлов</td><td>Один документ, комментарии прямо на странице</td></tr>
+        <tr><td>Исполнители</td><td>Ищут в чатах</td><td>Техлиды выбирают на странице TeamPlanner</td></tr>
+        <tr><td>Новая форма</td><td>Сбор заново</td><td>Новая выгрузка из тех же данных</td></tr>
+        <tr><td>Факт → план</td><td>Итоги прошлого квартала отдельно</td><td>Принятый ФАКТ — вход в новый план</td></tr>
+        <tr><td>Принятие</td><td>Открытые вопросы теряются</td><td>План не принять, пока вопросы не закрыты</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 13 · как начать -->
+  <section class="slide install" data-title="Как начать">
+    <div class="eyebrow">КАК НАЧАТЬ</div>
+    <h1>Установите<br><span class="accent">poh-okr-agent</span></h1>
+    <p class="sub">Скажите ИИ-помощнику: «Установи poh-okr-agent в этот репозиторий». Дальше — четыре команды:</p>
+    <ol class="steps start">
+      <li><div><b>/okr-retro</b> <span>— факт прошлого квартала</span></div></li>
+      <li><div><b>/okr-scope</b> <span>— план нового квартала</span></div></li>
+      <li><div><b>/okr-teamplanner</b> <span>— подзадачи и исполнители</span></div></li>
+      <li><div><b>/okr-jira</b> <span>— перенос в JIRA</span></div></li>
+    </ol>
+    <a class="repo" href="https://github.com/po-helper-org/poh-okr-agent" target="_blank" rel="noopener">github.com/po-helper-org/poh-okr-agent ↗</a>
   </section>
 
 </div>
