@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Планирование квартала под управлением руководителя</title>
+<title>Планирование квартала за час разговора с ИИ</title>
 
 <!-- Превью ссылки. Краулеры не выполняют JS, поэтому блок статический.
      Живёт в шаблоне, а не дописывается руками: иначе теряется при пересборке. -->
-<meta name="description" content="Как ИИ-агент собирает квартал из JIRA, таблиц, Google Docs и переписки в одну понятную форму и переносит согласованный план туда, куда требует руководство.">
+<meta name="description" content="Квартал — огромный и ресурсоёмкий сбор и аналитика данных. Как пройти весь путь — итоги прошлого квартала, планы на следующий, декомпозиция с техлидами — за час голосового разговора с ИИ-помощником.">
 <link rel="canonical" href="https://slides.aleksishmanov.ru/okr-quarter-planning/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Каталог презентаций · Алексей Ишманов">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://slides.aleksishmanov.ru/okr-quarter-planning/">
-<meta property="og:title" content="Планирование квартала под управлением руководителя">
-<meta property="og:description" content="Как ИИ-агент собирает квартал из JIRA, таблиц, Google Docs и переписки в одну понятную форму и переносит согласованный план туда, куда требует руководство.">
+<meta property="og:title" content="Планирование квартала за час разговора с ИИ">
+<meta property="og:description" content="Квартал — огромный и ресурсоёмкий сбор и аналитика данных. Как пройти весь путь — итоги прошлого квартала, планы на следующий, декомпозиция с техлидами — за час голосового разговора с ИИ-помощником.">
 <meta property="og:image" content="https://slides.aleksishmanov.ru/okr-quarter-planning/cover.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
-<meta property="og:image:alt" content="Первый слайд презентации «Планирование квартала под управлением руководителя»">
+<meta property="og:image:alt" content="Первый слайд презентации «Планирование квартала за час разговора с ИИ»">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Планирование квартала под управлением руководителя">
-<meta name="twitter:description" content="Как ИИ-агент собирает квартал из JIRA, таблиц, Google Docs и переписки в одну понятную форму и переносит согласованный план туда, куда требует руководство.">
+<meta name="twitter:title" content="Планирование квартала за час разговора с ИИ">
+<meta name="twitter:description" content="Квартал — огромный и ресурсоёмкий сбор и аналитика данных. Как пройти весь путь — итоги прошлого квартала, планы на следующий, декомпозиция с техлидами — за час голосового разговора с ИИ-помощником.">
 <meta name="twitter:image" content="https://slides.aleksishmanov.ru/okr-quarter-planning/cover.png">
-<meta name="twitter:image:alt" content="Первый слайд презентации «Планирование квартала под управлением руководителя»">
+<meta name="twitter:image:alt" content="Первый слайд презентации «Планирование квартала за час разговора с ИИ»">
 <style>
   :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --paper:#fff; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -251,12 +251,12 @@
 <div id="stage">
 
   <!-- 1 · титул -->
-  <section class="slide on" data-title="Планирование квартала под управлением руководителя">
+  <section class="slide on" data-title="Планирование квартала за час разговора с ИИ">
     <div class="cover-layout">
       <div>
-        <h1>Планирование квартала<br><span class="accent">под управлением руководителя</span></h1>
-        <p class="sub">Каждый квартал PO заново собирает одни и те же данные под новую форму. ИИ-агент собирает их один раз — и выгружает в любую форму, которую попросит руководство.</p>
-        <p class="quote">Процесс планирования меняется каждый квартал.<br>Данные — нет.</p>
+        <h1>Планирование квартала<br><span class="accent">за час разговора с ИИ</span></h1>
+        <p class="sub">Квартал — огромный и ресурсоёмкий процесс сбора и аналитики данных. Я свёл его к часу голосового разговора с ИИ-помощником: итоги прошлого квартала, планы на следующий, декомпозиция с техлидами.</p>
+        <p class="quote">Не собирать данные, а рассказать квартал.<br>Голосом, за час.</p>
       </div>
       <div>
         <img class="cover-photo" id="coverPhoto" alt="Автор">
@@ -268,17 +268,17 @@
   <!-- 2 · проблема -->
   <section class="slide" data-title="Проблема">
     <div class="eyebrow">ПРОБЛЕМА</div>
-    <h2>Каждый квартал план собирают с нуля</h2>
+    <h2>Квартал — это огромная работа с данными</h2>
     <div class="split">
       <div class="a">
         <div class="lbl">КАК СЕЙЧАС</div>
-        <div class="t">Сбор → согласование →<br>перерисовка</div>
-        <p>Данные лежат в JIRA, таблицах, Google Docs и чатах. До первого обсуждения PO днями сводит их в один документ, а правки приходят в переписке.</p>
+        <div class="t">Сбор и аналитика<br>на каждом шаге</div>
+        <p>Итоги прошлого квартала, планы на следующий, декомпозиция с техлидами — каждый шаг требует свести данные из JIRA, таблиц, документов и чатов, разобрать и оформить. А в следующем квартале форма плана другая — и всё заново.</p>
       </div>
       <div class="b">
-        <div class="lbl">СЛЕДУЮЩИЙ КВАРТАЛ</div>
-        <div class="t accent">Новая форма —<br>и всё заново</div>
-        <p>Руководство меняет требования к плану, а собранное в прошлый раз не переиспользуется. Время уходит на перекладывание, а не на решения.</p>
+        <div class="lbl">КАК МОЖНО</div>
+        <div class="t accent">Час голосом<br>с ИИ-помощником</div>
+        <p>Тот же полный путь — в разговоре. Вы рассказываете, агент раскладывает сказанное по местам, спрашивает, чего не хватает, и собирает страницы для согласования и техлидов.</p>
       </div>
     </div>
   </section>
@@ -461,6 +461,7 @@
     <table class="ba">
       <thead><tr><th></th><th>Было</th><th>Стало</th></tr></thead>
       <tbody>
+        <tr><td>Весь путь</td><td>Ресурсоёмкий сбор и аналитика данных</td><td>Около часа голосового разговора с ИИ-помощником</td></tr>
         <tr><td>Сбор</td><td>PO днями сводит данные из четырёх мест</td><td>Агент собирает из того, что под рукой; PO отвечает только на <span class="unc">[УТОЧНИТЬ]</span></td></tr>
         <tr><td>Согласование</td><td>Правки в переписке, версии файлов</td><td>Один документ, комментарии прямо на странице</td></tr>
         <tr><td>Исполнители</td><td>Ищут в чатах</td><td>Техлиды выбирают на странице TeamPlanner</td></tr>

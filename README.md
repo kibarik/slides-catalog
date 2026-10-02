@@ -12,7 +12,7 @@
 - `claude-desktop-zai-macos` — Claude Desktop с Китайскими моделями
 - `po-workspace-bft-plugin` — БФТ под управлением руководителя
 - `sprint-under-manager` — Спринты под управлением руководителя
-- `okr-quarter-planning` — Планирование квартала под управлением руководителя
+- `okr-quarter-planning` — Планирование квартала за час разговора с ИИ
 
 ## Как добавить презентацию
 
