@@ -15,6 +15,7 @@
 - `okr-quarter-planning` — Планирование квартала за час разговора с ИИ
 - `po-news-feed` — Лента вместо 100500 чатов
 - `sprint-business-report` — Бизнес-отчёт спринта: ценность от целей квартала
+- `po-morning-brief` — Утренняя планёрка с ИИ-агентом
 
 ## Обязательно: телефон и скорость
 
@@ -136,6 +137,7 @@ docker run --rm -p 8080:8080 slides-catalog
 - `http://localhost:8080/sprint-under-manager/`
 - `http://localhost:8080/okr-quarter-planning/`
 - `http://localhost:8080/po-news-feed/`
+- `http://localhost:8080/po-morning-brief/`
 
 ## Инструкции и компоненты практикума
 

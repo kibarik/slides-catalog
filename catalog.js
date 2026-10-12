@@ -46,6 +46,14 @@ const presentations = [
     cover: "sprint-business-report/cover.png",
     slides: 16,
     updated: "14 октября 2026"
+  },
+  {
+    id: "po-morning-brief",
+    title: "Утренняя планёрка с ИИ-агентом",
+    description: "Как ИИ-агент держит фокус PO и весь контекст для решений: разовая настройка, одна команда — и полная утренняя сводка по задачам, встречам, договорённостям, рискам и командам. С живым примером моего отчёта.",
+    cover: "po-morning-brief/cover.png",
+    slides: 13,
+    updated: "12 октября 2026"
   }
 ];
 
