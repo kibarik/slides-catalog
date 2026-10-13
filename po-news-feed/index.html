@@ -338,6 +338,54 @@
   .ar-ai h3 { color: var(--blue); } .ar-ai p { font-size: 16px; color: var(--ink); }
   .slide:nth-child(9) { justify-content: center; }
   .pi { gap: 10px; } .pi .pm { padding: 10px 14px; }
+  /* v4 */
+  .slide:nth-child(9), .slide:nth-child(11) { justify-content: center; }
+  .dimmed { filter: brightness(.45); pointer-events: none; }
+  .drawerwrap { position: relative; }
+  .drawerwrap .cols3 { position: absolute; inset: 0; box-shadow: none; border: 0; }
+  .drawer { position: absolute; right: 0; top: 0; bottom: 0; width: 47%; background: #17181a; border-left: 1px solid #3a3d44; box-shadow: -14px 0 30px rgba(0,0,0,.5); display: flex; flex-direction: column; }
+  .drawer .th-head { padding: 12px 18px 10px; border-bottom: 1px solid #2c2e33; margin: 0; }
+  .th-scroll { flex: 1; overflow-y: auto; padding: 8px 16px; scrollbar-width: thin; scrollbar-color: #4a4d55 transparent; }
+  .th-scroll .tp { padding: 9px 0; } .th-scroll .tp.s::before { bottom: 0; top: -14px; }
+  .th-compose { border-top: 1px solid #2c2e33; padding: 12px 16px; background: #1b1c1f; display: flex; flex-direction: column; gap: 10px; }
+  .composer.sm4 { min-height: 56px; padding: 10px 12px; font-size: 15px; }
+  /* агент */
+  .agent { display: grid; grid-template-columns: 230px 1fr; }
+  .ag-side { padding: 16px 16px; border-right: 1px solid #2c2e33; background: #17181a; display: flex; flex-direction: column; gap: 8px; } .ag-side > b { font-size: 16px; }
+  .mcp { display: flex; align-items: center; gap: 10px; background: #1f2a23; border: 1px solid #2f5d3f; border-radius: 8px; padding: 9px 11px; margin-top: 4px; } .mcp i { width: 9px; height: 9px; border-radius: 50%; background: #4ade80; flex: none; } .mcp b { display: block; font-size: 14px; } .mcp span { font-size: 12px; color: #8fb59a; }
+  .ag-chat { padding: 14px 20px; display: flex; flex-direction: column; gap: 9px; overflow: hidden; }
+  .tool { display: grid; grid-template-columns: 250px 1fr auto; gap: 12px; align-items: center; background: #202226; border: 1px solid #33363c; border-left: 3px solid #4ade80; border-radius: 6px; padding: 8px 12px; font-size: 13.5px; }
+  .tool .tn { font-weight: 700; color: #cfd3ff; } .tool code { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: #9a9ca3; } .tool .tr { color: #4ade80; font-weight: 700; font-size: 13px; }
+  .agent .pm { font-size: 15.5px; } .agent .ai3 { max-width: 100%; }
+  /* iPhone */
+  .phones { display: grid; grid-template-columns: 250px 250px 1fr; gap: 26px; align-items: center; flex: 1; min-height: 0; }
+  .phone { position: relative; width: 250px; height: 480px; border: 8px solid #111; border-radius: 38px; overflow: hidden; box-shadow: 6px 6px 0 var(--blue); background: #fff; }
+  .notch { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 84px; height: 20px; background: #111; border-radius: 0 0 14px 14px; z-index: 3; }
+  .phone.lock { background: linear-gradient(160deg, #1e2b5c, #4a2f6e 60%, #7a3b5a); color: #fff; padding: 36px 12px 12px; }
+  .lt { font-size: 56px; font-weight: 300; text-align: center; letter-spacing: -.03em; } .ld { text-align: center; font-size: 14px; opacity: .85; margin-bottom: 18px; }
+  .ntf { background: rgba(255,255,255,.2); backdrop-filter: blur(6px); border-radius: 16px; padding: 9px 12px; margin-bottom: 8px; font-size: 12.5px; } .ntf .nh { display: flex; justify-content: space-between; opacity: .8; font-size: 11px; margin-bottom: 3px; } .ntf p { margin: 1px 0 0; line-height: 1.3; }
+  .phone.chatp { background: #dbe5ec; display: flex; flex-direction: column; }
+  .ch-top { background: #f6f6f7; padding: 30px 12px 8px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #d5d7da; font-size: 15px; } .ch-top span { color: #2a7be4; font-size: 22px; } .ch-top u { width: 26px; height: 26px; border-radius: 50%; background: #2a7be4; color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+  .ch-body { flex: 1; padding: 10px 8px; display: flex; flex-direction: column; gap: 7px; overflow: hidden; }
+  .bb { max-width: 86%; padding: 6px 9px 4px; border-radius: 14px; font-size: 12.5px; line-height: 1.3; position: relative; color: #111; }
+  .bb em { display: block; text-align: right; font-style: normal; font-size: 10px; color: #8a8f95; margin-top: 2px; }
+  .bb.in { background: #fff; align-self: flex-start; border-bottom-left-radius: 4px; } .bb.out { background: #e1ffc7; align-self: flex-end; border-bottom-right-radius: 4px; } .bb.out em { color: #5fa85a; }
+  .bb b { display: block; font-size: 12px; } .n1 { color: #c2410c; } .n2 { color: #7c3aed; } .n3 { color: #0e7490; }
+  .hlm { background: #d8302a; color: #fff; border-radius: 8px; padding: 0 6px; font-weight: 700; } .bb u { color: #2a7be4; text-decoration: none; font-size: 12px; }
+  .ch-in { background: #f6f6f7; border-top: 1px solid #d5d7da; padding: 8px 10px 14px; display: flex; gap: 8px; align-items: center; color: #8a8f95; font-size: 13px; } .ch-in div { flex: 1; background: #fff; border: 1px solid #d5d7da; border-radius: 16px; padding: 5px 10px; }
+  .ph-txt { align-self: center; }
+  .list.sm5 li { font-size: 16.5px; color: var(--ink); } ul.list.sm5 { gap: 14px; }
+  .srcs3 { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; } .srcs3 span { padding: 6px 12px; border-radius: 16px; font-size: 13.5px; font-weight: 700; }
+  .ok2 { background: #dcf5e3; color: #17753a; border: 1px solid #8fd1a4; } .soon { background: #eceae3; color: #8a8a82; border: 1px dashed #bdbab0; } .note2 { font-size: 13px; color: #666; margin-top: 8px; }
+  /* архитектура */
+  .ups { display: grid; grid-template-columns: 1fr 34px 1.2fr 34px 1.3fr; margin-top: 10px; } .ups span { grid-column: 3 / 6; text-align: right; padding-right: 60px; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; color: var(--blue); } 
+  .ar-ai { margin-top: 8px; margin-left: 0; }
+  /* ссылки */
+  .lk-main { margin-bottom: 14px; } .lk-main .lk { border-color: var(--blue); box-shadow: 5px 5px 0 var(--blue); } .lk-main .lk b { font-size: 17px; }
+  .links { grid-template-columns: 1fr 1fr 1fr; gap: 12px; } .lk { padding: 11px 14px; } .lk b { font-size: 13px; } .lk span { font-size: 13.5px; }
+  .priv { margin-top: 18px; border: 1px dashed #8a8a82; padding: 12px 16px; font-size: 14.5px; line-height: 1.5; color: var(--ink); } .priv code { font-family: "JetBrains Mono", monospace; font-size: .92em; background: #e6e5de; padding: 1px 5px; }
+.card.ar-ai h3 { font-size: 22px; } .card.ar-ai p { font-size: 17px; color: var(--ink); }
+  .lk-main .lk span { font-size: 15.5px; } .links .lk span { font-size: 14.5px; } .priv { font-size: 15.5px; }
 </style>
 </head>
 <body>
@@ -376,42 +424,52 @@
   <!-- 3 · главная -->
   <section class="slide" data-title="Главная: три колонки">
     <div class="tl"><span class="tag blue">01 · ГЛАВНАЯ</span><h2 class="demo-title">Три колонки: <span class="accent">подписки, упоминания, остальное</span></h2></div>
-    <div class="dk cols3">
+    <div class="dk cols3 ">
       <div class="col3"><div class="ch">Подписки</div>
-        <div class="c"><div class="av g1">ПШ</div><div class="cb"><div class="cn"><b>Продуктовый штаб</b> <i>@product_hq</i><em>7м</em></div><p class="hl">имейте ввиду</p><p class="sm">Василий Романов · 13.10 13:01</p><div class="img"><u></u><u></u><u></u><u></u></div></div></div>
-        <div class="c"><div class="av g2">РЛ</div><div class="cb"><div class="cn"><b>Релизы</b> <i>@releases</i><em>20м</em></div><p class="hl">@Егор подскажи, сможешь чекнуть сегодня?</p><p class="sm">Анна Ковалёва · 13.10 12:49</p><p class="mt">💬 1 в обсуждении · Егор Мартынов</p></div></div>
-        <div class="c"><div class="av g3">КП</div><div class="cb"><div class="cn"><b>Команда платежей</b> <i>@payments</i><em>42м</em></div><p class="hl">Статья по запуску автотестов <a>wiki/pages/viewpa…</a></p><p class="sm">Сергей Орлов · 13.10 11:57</p></div></div>
+        <div class="c"><div class="av g1">ШЗ</div><div class="cb"><div class="cn"><b>Штаб запуска</b> <i>@launch_hq</i><em>7м</em></div><p class="hl">имейте в виду</p><p class="sm">Лидия Сомова · 13.10 13:01</p><div class="img"><u></u><u></u><u></u><u></u></div></div></div>
+        <div class="c"><div class="av g2">РЛ</div><div class="cb"><div class="cn"><b>Релизы</b> <i>@releases</i><em>20м</em></div><p class="hl">@Тимофей подскажи, сможешь проверить сегодня?</p><p class="sm">Дарья Лисина · 13.10 12:49</p><p class="mt">💬 1 в обсуждении · Тимофей Рыжов</p></div></div>
+        <div class="c"><div class="av g3">ПК</div><div class="cb"><div class="cn"><b>Платёжная команда</b> <i>@pay_team</i><em>42м</em></div><p class="hl">Статья по запуску автотестов <a>wiki/pages/viewpa…</a></p><p class="sm">Артур Власов · 13.10 11:57</p></div></div>
       </div>
       <div class="col3"><div class="ch">Упоминания</div>
         <div class="tabs2"><b class="on">Все</b><b>Личные</b><span>☐ Только подписчики</span></div>
-        <div class="c"><div class="av g4">ИС</div><div class="cb"><div class="cn"><b>Игорь Седов</b> <i>@igor_sedov</i><em>20ч</em></div><span class="badge">ОБСУЖДЕНИЕ 2/X</span><p><mark>@вы</mark> мы сами теги ставим? или кому-то отправляем?</p><p class="sm">12.10 17:06</p></div></div>
-        <div class="c"><div class="av g5">М</div><div class="cb"><div class="cn"><b>Маркетинг × Партнёр</b><em>12 окт.</em></div><p class="hl">📎 Правила акции_08.10.docx</p><p><mark>@вы</mark> проверь, пожалуйста, что там всё ок описано</p><p class="mt">💬 1 в обсуждении · Мария Орлова</p></div></div>
+        <div class="c"><div class="av g4">АВ</div><div class="cb"><div class="cn"><b>Артур Власов</b> <i>@artur_vlasov</i><em>20ч</em></div><span class="badge">ОБСУЖДЕНИЕ 2/X</span><p><mark>@вы</mark> мы сами теги ставим? или кому-то отправляем?</p><p class="sm">12.10 17:06</p></div></div>
+        <div class="c"><div class="av g5">ПБ</div><div class="cb"><div class="cn"><b>Партнёры × Бренд</b><em>12 окт.</em></div><p class="hl">📎 Условия_акции.docx</p><p><mark>@вы</mark> проверь, пожалуйста, что всё описано верно</p><p class="mt">💬 1 в обсуждении · Ника Орехова</p></div></div>
         <div class="c"><div class="av g6">Д</div><div class="cb"><div class="cn"><b>Дейли команды</b> <i>@daily_bot</i><em>12 окт.</em></div><p class="hl">Сделано за вчера:</p><p class="sm">• Закрыто 6 задач по эпику «Оплата»<br>• 2 в работе, 1 без исполнителя — <mark>@вы</mark></p></div></div>
       </div>
       <div class="col3"><div class="ch">Остальные чаты</div>
-        <div class="c"><div class="av g1">ПП</div><div class="cb"><div class="cn"><b>Команда продукта</b> <i>@product_team</i><em>11м</em></div><p class="hl"><a>PRJ-20998</a> Протестировать доработку по сокращению номера билета</p><p class="sm">Роман Фокин · 13.10 12:55</p><p class="mt">💬 1 в обсуждении</p></div></div>
-        <div class="c"><div class="av g3">МП</div><div class="cb"><div class="cn"><b>Маркетинг + Продукт</b><em>1ч</em></div><p class="hl">Подскажите, кто ведёт подарочные карты?</p><p class="sm">Анна Сабадаж · 13.10 11:27</p><p class="mt">💬 2 в обсуждении</p></div></div>
-        <div class="c"><div class="av g2">АН</div><div class="cb"><div class="cn"><b>Аналитика</b><em>2ч</em></div><p class="hl">Выгрузка по конверсии готова</p><p class="sm">Павел Греков · 13.10 10:40</p></div></div>
+        <div class="c"><div class="av g1">КП</div><div class="cb"><div class="cn"><b>Команда продукта</b> <i>@product_team</i><em>11м</em></div><p class="hl"><a>PRJ-20998</a> Проверить доработку по сокращению номера заказа</p><p class="sm">Марк Ельцов · 13.10 12:55</p><p class="mt">💬 1 в обсуждении</p></div></div>
+        <div class="c"><div class="av g3">КИ</div><div class="cb"><div class="cn"><b>Контент и бренд</b><em>1ч</em></div><p class="hl">Подскажите, кто ведёт подарочные карты?</p><p class="sm">Ника Орехова · 13.10 11:27</p><p class="mt">💬 2 в обсуждении</p></div></div>
+        <div class="c"><div class="av g2">АН</div><div class="cb"><div class="cn"><b>Аналитика</b> <i>@analytics</i><em>2ч</em></div><p class="hl">Выгрузка по конверсии готова</p><p class="sm">Кирилл Бочаров · 13.10 10:40</p></div></div>
       </div>
     </div>
   </section>
 
   <!-- 4 · тред -->
   <section class="slide" data-title="Обсуждение треда">
-    <div class="tl"><span class="tag blue">02 · ТРЕД</span><h2 class="demo-title">Тема читается целиком. <span class="accent">Ответ — прямо тут</span></h2></div>
-    <div class="dk thread">
-      <div class="th-main">
-        <div class="th-head"><b>Пост</b><span>✕</span></div>
-        <div class="tp"><div class="av g1">ПШ</div><div class="tb"><div class="cn"><b>Продуктовый штаб</b> <i>@product_hq</i><em>12 окт.</em></div><p class="hl">Ребята привет.</p><p>Кто знает, когда Вова выходит из отпуска? Нужно открыть форму на 1 квартал — уже пишут коллеги. @Анастасия ты можешь открыть форму?</p><p class="mt">💬 3 в обсуждении · Анастасия, Вова</p></div></div>
-        <div class="tp s"><div class="av g4">АЯ</div><div class="tb"><div class="cn"><b>Анастасия Яковлева</b> <i>@anastasia</i><em>12 окт.</em></div><p>завтра выходит. постараемся до конца недели открыть</p><p class="mt">🔥 1 · 12.10 12:32</p></div></div>
-        <div class="tp s"><div class="av g4">АЯ</div><div class="tb"><div class="cn"><b>Анастасия Яковлева</b><em>1ч</em></div><p>@Вова FYI</p></div></div>
-        <div class="tp s"><div class="av g5">ВА</div><div class="tb"><div class="cn"><b>Вова Антипов</b> <i>@vova</i></div><p class="big">Форму откроем до конца этой недели. Что за паника?)</p><p class="mt">👍 1 · 13.10 11:39</p></div></div>
+    <div class="tl"><span class="tag blue">02 · ТРЕД</span><h2 class="demo-title">Тема открывается сбоку. <span class="accent">Лента остаётся на месте</span></h2></div>
+    <div class="dk drawerwrap">
+      <div class="dk cols3 dimmed">
+      <div class="col3"><div class="ch">Подписки</div>
+        <div class="c"><div class="av g1">ШЗ</div><div class="cb"><div class="cn"><b>Штаб запуска</b> <i>@launch_hq</i><em>7м</em></div><p class="hl">имейте в виду</p><p class="sm">Лидия Сомова · 13.10 13:01</p><div class="img"><u></u><u></u><u></u><u></u></div></div></div>
+        <div class="c"><div class="av g2">РЛ</div><div class="cb"><div class="cn"><b>Релизы</b> <i>@releases</i><em>20м</em></div><p class="hl">@Тимофей подскажи, сможешь проверить сегодня?</p><p class="sm">Дарья Лисина · 13.10 12:49</p><p class="mt">💬 1 в обсуждении · Тимофей Рыжов</p></div></div>
+        <div class="c"><div class="av g3">ПК</div><div class="cb"><div class="cn"><b>Платёжная команда</b> <i>@pay_team</i><em>42м</em></div><p class="hl">Статья по запуску автотестов <a>wiki/pages/viewpa…</a></p><p class="sm">Артур Власов · 13.10 11:57</p></div></div>
       </div>
-      <div class="th-side">
-        <div class="lbl2">ВАШ ОТВЕТ</div>
-        <div class="composer"><span class="typed2">Спасибо, ждём до пятницы. Дайте знать, когда откроете.</span><i class="caret"></i></div>
-        <div class="send"><b>Ответить</b><span class="okk">✓ доставлено в исходный чат</span></div>
-        <ul class="hints"><li>Ответ уходит в источник — в чат или письмом-черновиком</li><li>❤️ на посте = реакция в исходном чате</li></ul>
+      <div class="col3"><div class="ch">Упоминания</div>
+        <div class="tabs2"><b class="on">Все</b><b>Личные</b><span>☐ Только подписчики</span></div>
+        <div class="c"><div class="av g4">АВ</div><div class="cb"><div class="cn"><b>Артур Власов</b> <i>@artur_vlasov</i><em>20ч</em></div><span class="badge">ОБСУЖДЕНИЕ 2/X</span><p><mark>@вы</mark> мы сами теги ставим? или кому-то отправляем?</p><p class="sm">12.10 17:06</p></div></div>
+        <div class="c"><div class="av g5">ПБ</div><div class="cb"><div class="cn"><b>Партнёры × Бренд</b><em>12 окт.</em></div><p class="hl">📎 Условия_акции.docx</p><p><mark>@вы</mark> проверь, пожалуйста, что всё описано верно</p><p class="mt">💬 1 в обсуждении · Ника Орехова</p></div></div>
+        <div class="c"><div class="av g6">Д</div><div class="cb"><div class="cn"><b>Дейли команды</b> <i>@daily_bot</i><em>12 окт.</em></div><p class="hl">Сделано за вчера:</p><p class="sm">• Закрыто 6 задач по эпику «Оплата»<br>• 2 в работе, 1 без исполнителя — <mark>@вы</mark></p></div></div>
+      </div>
+      <div class="col3"><div class="ch">Остальные чаты</div>
+        <div class="c"><div class="av g1">КП</div><div class="cb"><div class="cn"><b>Команда продукта</b> <i>@product_team</i><em>11м</em></div><p class="hl"><a>PRJ-20998</a> Проверить доработку по сокращению номера заказа</p><p class="sm">Марк Ельцов · 13.10 12:55</p><p class="mt">💬 1 в обсуждении</p></div></div>
+        <div class="c"><div class="av g3">КИ</div><div class="cb"><div class="cn"><b>Контент и бренд</b><em>1ч</em></div><p class="hl">Подскажите, кто ведёт подарочные карты?</p><p class="sm">Ника Орехова · 13.10 11:27</p><p class="mt">💬 2 в обсуждении</p></div></div>
+        <div class="c"><div class="av g2">АН</div><div class="cb"><div class="cn"><b>Аналитика</b> <i>@analytics</i><em>2ч</em></div><p class="hl">Выгрузка по конверсии готова</p><p class="sm">Кирилл Бочаров · 13.10 10:40</p></div></div>
+      </div>
+    </div>
+      <div class="drawer">
+        <div class="th-head"><b>Пост</b><span>✕</span></div>
+        <div class="th-scroll" id="thScroll"><div class="tp"><div class="av g1">ШЗ</div><div class="tb"><div class="cn"><b>Штаб запуска</b> <i>@launch_hq</i><em>12 окт.</em></div><p>Всем привет. Кто знает, когда Лидия вернётся из отпуска? Нужно открыть форму сбора идей на квартал, коллеги уже спрашивают. @Елена ты можешь открыть форму?</p><p class="mt">💬 6 в обсуждении · Елена, Лидия, Артур</p></div></div><div class="tp s"><div class="av g4">ЕМ</div><div class="tb"><div class="cn"><b>Елена Мирова</b> <i>@elena_mirova</i><em>12 окт.</em></div><p>Лидия завтра выходит. Постараемся открыть до конца недели.</p><p class="mt">🔥 1 · 12.10 12:32</p></div></div><div class="tp s"><div class="av g4">ЕМ</div><div class="tb"><div class="cn"><b>Елена Мирова</b><em>1ч</em></div><p>@Лидия FYI</p></div></div><div class="tp s"><div class="av g5">ЛС</div><div class="tb"><div class="cn"><b>Лидия Сомова</b> <i>@lidia_somova</i><em>1ч</em></div><p class="big">Форму откроем до конца недели. Пока коллеги могут сохранить идеи в заметки: у нас меняется процесс, нужно время его настроить.</p><p class="mt">👍 1 · 13.10 11:39</p></div></div><div class="tp s"><div class="av g2">АВ</div><div class="tb"><div class="cn"><b>Артур Власов</b> <i>@artur_vlasov</i><em>50м</em></div><p>Нужна ли отдельная форма для техдолга?</p></div></div><div class="tp s"><div class="av g5">ЛС</div><div class="tb"><div class="cn"><b>Лидия Сомова</b><em>45м</em></div><p>Да, отдельным разделом. Шаблон пришлю завтра.</p></div></div><div class="tp s"><div class="av g4">ЕМ</div><div class="tb"><div class="cn"><b>Елена Мирова</b><em>30м</em></div><p>Тогда подготовлю шаблон к четвергу и покажу на синке.</p><p class="mt">🔥 2</p></div></div><div class="tp s"><div class="av g6">ДЛ</div><div class="tb"><div class="cn"><b>Дарья Лисина</b> <i>@darya_lisina</i><em>12м</em></div><p>Подключусь на синке, у меня есть вопросы по приоритетам.</p></div></div></div>
+        <div class="th-compose"><div class="composer sm4"><span class="typed2">Спасибо, ждём до пятницы.</span><i class="caret"></i></div><div class="send"><b>Ответить</b><span class="okk">✓ доставлено в чат</span></div></div>
       </div>
     </div>
   </section>
@@ -425,7 +483,7 @@
       <div class="chips2"><b class="on">Все <i>548</i></b><b>Оригинальные <i>350</i></b><b>Ответы <i>19</i></b><b>Продвижения <i>179</i></b></div>
       <div class="avrow"><div class="a"><div class="av g1">ПШ</div><em>59</em></div><div class="a"><div class="av g2">РЛ</div><em>57</em></div><div class="a"><div class="av g3">КП</div><em>52</em></div><div class="a"><div class="av g4">ПП</div><em>39</em></div><div class="a"><div class="av g5">АН</div><em>38</em></div><div class="a"><div class="av g6">ИН</div><em>34</em></div><div class="a"><div class="av g1">МП</div><em>33</em></div><div class="a"><div class="av g2">ТД</div><em>32</em></div></div>
       <div class="srt"><span>СОРТИРОВКА</span><b class="on">Дата ↑</b><b>Ответы</b><b>Нравится</b><b>Плотность</b></div>
-      <div class="rows"><div class="r"><div class="av g3 xs">КП</div><b>Команда платежей</b><p>по ревью: ссылка на MR, нужно мнение до вечера</p><em>6 окт.</em></div><div class="r"><div class="av g2 xs">РЛ</div><b>Релизы</b><p>выкатили PRJ-20635 — ошибка при оплате картой</p><em>6 окт.</em></div><div class="r"><div class="av g4 xs">ПП</div><b>Команда продукта</b><p>Согласовали окно релиза: четверг после 20:00</p><em>7 окт.</em></div><div class="r"><div class="av g5 xs">АН</div><b>Аналитика</b><p>Выгрузка по конверсии готова, цифры в треде</p><em>7 окт.</em></div><div class="r"><div class="av g1 xs">МП</div><b>Маркетинг + Продукт</b><p>Кто ведёт подарочные карты? Нужен ответ до пятницы</p><em>8 окт.</em></div><div class="r"><div class="av g2 xs">ПШ</div><b>Продуктовый штаб</b><p>Форма инициатив откроется до конца недели</p><em>12 окт.</em></div></div>
+      <div class="rows"><div class="r"><div class="av g3 xs">ПК</div><b>Платёжная команда</b><p>по ревью: ссылка на MR, нужно мнение до вечера</p><em>6 окт.</em></div><div class="r"><div class="av g2 xs">РЛ</div><b>Релизы</b><p>выкатили PRJ-20635 — ошибка при оплате картой</p><em>6 окт.</em></div><div class="r"><div class="av g4 xs">КП</div><b>Команда продукта</b><p>согласовали окно релиза: четверг после 20:00</p><em>7 окт.</em></div><div class="r"><div class="av g5 xs">АН</div><b>Аналитика</b><p>выгрузка по конверсии готова, цифры в треде</p><em>7 окт.</em></div><div class="r"><div class="av g1 xs">КИ</div><b>Контент и бренд</b><p>кто ведёт подарочные карты? нужен ответ до пятницы</p><em>8 окт.</em></div><div class="r"><div class="av g2 xs">ШЗ</div><b>Штаб запуска</b><p>форма сбора идей откроется до конца недели</p><em>12 окт.</em></div></div>
     </div>
   </section>
 
@@ -435,55 +493,66 @@
     <div class="dk retro">
       <div class="rt-top"><b>Catch-up · мои люди</b><span>7 дней</span></div>
       <div class="chips2"><b>Все <i>548</i></b><b>Оригинальные</b><b class="on">Ответы <i>19</i></b></div>
-      <div class="avrow people"><div class="a"><div class="av g4">ИС</div><em>7</em><u>Техлид</u></div><div class="a"><div class="av g5">МО</div><em>5</em><u>PO</u></div><div class="a"><div class="av g2">ПГ</div><em>4</em><u>PM</u></div><div class="a"><div class="av g1">ОН</div><em>2</em><u>Техлид</u></div><div class="a"><div class="av g6">ВР</div><em>1</em><u>PO</u></div></div>
-      <div class="rows big"><div class="r"><div class="av g4 xs">ИС</div><b>Игорь Седов</b><span class="chat">Релизы</span><p>не принципиально, 12.10 17:22</p><em>19ч</em></div>
-        <div class="r"><div class="av g5 xs">МО</div><b>Мария Орлова</b><span class="chat">Маркетинг</span><p>оставь разовую на 1 час, 06.10 12:53</p><em>6 окт.</em></div>
-        <div class="r"><div class="av g2 xs">ПГ</div><b>Павел Греков</b><span class="chat">Платежи</span><p>да, создай пожалуйста 👀 1 · 06.10 14:05</p><em>6 окт.</em></div>
-        <div class="r"><div class="av g1 xs">ОН</div><b>Олег Нестеров</b><span class="chat">Аналитика</span><p>по анализу всё идёт по плану, 06.10 12:55</p><em>6 окт.</em></div>
-        <div class="r"><div class="av g4 xs">ИС</div><b>Игорь Седов</b><span class="chat">Релизы</span><p>мне отправляйте задачи, 12.10 17:13</p><em>20ч</em></div><div class="r"><div class="av g5 xs">МО</div><b>Мария Орлова</b><span class="chat">Продукт</span><p>беру на себя коммуникацию с бизнесом, 07.10 10:20</p><em>7 окт.</em></div><div class="r"><div class="av g2 xs">ПГ</div><b>Павел Греков</b><span class="chat">Релизы</span><p>риск по срокам вижу, обсудим на синке 👍 2</p><em>8 окт.</em></div><div class="r"><div class="av g6 xs">ВР</div><b>Василий Романов</b><span class="chat">Штаб</span><p>имейте ввиду: меняем форму сбора инициатив</p><em>12 окт.</em></div></div>
+      <div class="avrow people"><div class="a"><div class="av g4">АВ</div><em>7</em><u>Техлид</u></div><div class="a"><div class="av g5">ЛС</div><em>5</em><u>PO</u></div><div class="a"><div class="av g2">КБ</div><em>4</em><u>PM</u></div><div class="a"><div class="av g1">ТР</div><em>2</em><u>Техлид</u></div><div class="a"><div class="av g6">ДЛ</div><em>1</em><u>PO</u></div></div>
+      <div class="rows big"><div class="r"><div class="av g4 xs">АВ</div><b>Артур Власов</b><span class="chat">Релизы</span><p>не принципиально, давайте в следующем спринте</p><em>19ч</em></div><div class="r"><div class="av g5 xs">ЛС</div><b>Лидия Сомова</b><span class="chat">Бренд</span><p>оставь разовую встречу на 1 час</p><em>6 окт.</em></div><div class="r"><div class="av g2 xs">КБ</div><b>Кирилл Бочаров</b><span class="chat">Платежи</span><p>да, создай, пожалуйста 👀 1</p><em>6 окт.</em></div><div class="r"><div class="av g1 xs">ТР</div><b>Тимофей Рыжов</b><span class="chat">Аналитика</span><p>по анализу всё идёт по плану</p><em>6 окт.</em></div><div class="r"><div class="av g4 xs">АВ</div><b>Артур Власов</b><span class="chat">Релизы</span><p>присылайте задачи мне, стенд готов</p><em>20ч</em></div><div class="r"><div class="av g6 xs">ДЛ</div><b>Дарья Лисина</b><span class="chat">Продукт</span><p>беру коммуникацию с бизнесом на себя</p><em>7 окт.</em></div><div class="r"><div class="av g2 xs">КБ</div><b>Кирилл Бочаров</b><span class="chat">Релизы</span><p>риск по срокам вижу, обсудим на синке 👍 2</p><em>8 окт.</em></div></div>
     </div>
   </section>
 
   <!-- 7 · ИИ-анализ -->
-  <section class="slide" data-title="ИИ-анализ">
-    <div class="tl"><span class="tag blue">05 · ИИ-АНАЛИЗ</span><h2 class="demo-title">Агент читает ленту <span class="accent">и выделяет ключевое</span></h2></div>
-    <div class="dk pi">
-      <div class="pi-bar"><b>pi</b><span>агент · доступ к ленте только на чтение</span></div>
-      <div class="pm me3">Прочитай ленту за неделю. Выдели для меня ключевое и скажи, как это влияет на цели квартала.</div>
-      <div class="pm ai3"><div class="step">▸ читаю ленту: 548 постов, 8 каналов<br>▸ связываю с целями квартала</div>
-        <h4>Ключевое за неделю</h4>
-        <ul><li><b>Сдвиг релиза 4.2</b> → задевает KR по срокам</li><li><b>Новый риск</b> по внешней интеграции в эпике «Оплата»</li><li><b>Форма инициатив</b> откроется до пятницы — нужен ваш приоритет</li></ul>
-        <h4>Требует вашего решения</h4>
-        <ul><li>2 вопроса без ответа от техлидов (Релизы, Платежи)</li></ul>
+  <section class="slide" data-title="ИИ-агент через MCP">
+    <div class="tl"><span class="tag blue">05 · ИИ-АГЕНТ + MCP</span><h2 class="demo-title">Агент ходит в ленту <span class="accent">через MCP — только на чтение</span></h2></div>
+    <div class="dk agent">
+      <div class="ag-side">
+        <div class="lbl2">АГЕНТ</div><b>Hermes · digest</b>
+        <div class="lbl2" style="margin-top:14px">ПОДКЛЮЧЁННЫЕ MCP</div>
+        <div class="mcp"><i></i><div><b>mastodon</b><span>read-only · лента</span></div></div>
+        <div class="mcp"><i></i><div><b>matrix</b><span>read-only · упоминания</span></div></div>
       </div>
-      <div class="pm me3 sm3">Разверни про интеграцию.</div>
-      <div class="pm ai3"><h4>Интеграция · откуда риск</h4><ul><li>Партнёр сдвинул тестовое окно на 2 недели (чат «Платежи»)</li><li>Техлид оценил запас в 1 неделю — риск KR по срокам</li><li>Предлагаю: зафиксировать план Б и спросить партнёра в треде</li></ul></div>
+      <div class="ag-chat">
+        <div class="pm me3">Что важного произошло за неделю и как это влияет на цели квартала?</div>
+        <div class="tool"><span class="tn">🔧 mastodon · get_home_timeline</span><code>{ "since": "7d", "limit": 200 }</code><span class="tr">✓ 548 постов</span></div>
+        <div class="tool"><span class="tn">🔧 matrix · read_room</span><code>{ "room": "📰 Лента", "since": "24h" }</code><span class="tr">✓ 9 упоминаний</span></div>
+        <div class="pm ai3"><h4>Ключевое за неделю</h4><ul><li><b>Сдвиг релиза 4.2</b> — задевает KR по срокам</li><li><b>Риск по интеграции</b> в эпике «Оплата»</li><li><b>2 вопроса</b> от техлидов ждут вашего ответа</li></ul></div>
+        <div class="pm me3 sm3">Разверни про интеграцию.</div>
+        <div class="tool"><span class="tn">🔧 mastodon · search</span><code>{ "q": "интеграция", "since": "7d" }</code><span class="tr">✓ 12 постов</span></div>
+        <div class="pm ai3"><h4>Интеграция · откуда риск</h4><ul><li>Партнёр сдвинул тестовое окно на 2 недели («Платёжная команда»)</li><li>Запас по оценке техлида — 1 неделя, KR по срокам под угрозой</li></ul></div>
+      </div>
     </div>
   </section>
 
   <!-- 8 · уведомления -->
-  <section class="slide" data-title="Уведомления и мгновенный ответ">
-    <div class="tl"><span class="tag blue">06 · УПОМИНАНИЯ</span><h2 class="demo-title">Меня позвали — <span class="accent">пуш и ответ за секунды</span></h2></div>
-    <div class="dk lt el">
-      <div class="el-main">
-        <div class="el-head"><b>📰 Лента</b><span>уведомления с пушем на телефон</span></div>
-        <div class="em"><div class="av g6 xs">✉</div><div class="eb"><b>Почта</b> · Партнёр<p><mark>@вы</mark>, проверьте, пожалуйста, договор до пятницы.</p><u>✉ открыть письмо</u> <u>📰 открыть в ленте</u></div></div>
-        <div class="em"><div class="av g4 xs">ИС</div><div class="eb"><b>Игорь Седов</b> · Релизы · в обсуждении<p><mark>@вы</mark>, надо продумать, как проверять и можно привлечь.</p><u>📰 открыть в ленте</u></div></div>
-        <div class="em"><div class="av g5 xs">ТГ</div><div class="eb"><b>Telegram</b> · Анна Сабадаж<p>@вы, подскажите, кто ведёт подарочные карты?</p><u>📰 открыть в ленте</u></div></div>
-        <div class="em me4"><div class="av gm xs">Я</div><div class="eb"><b>Вы</b> · ответ в треде<p>Веду я, расскажу после дейли.</p><span class="okk">✓ доставлено</span></div></div>
-        <div class="el-in">Ответить в треде…</div>
+  <section class="slide" data-title="Уведомления как в мессенджере">
+    <div class="tl"><span class="tag blue">06 · УПОМИНАНИЯ</span><h2 class="demo-title">Обычный чат, как Telegram на iPhone: <span class="accent">пуш → ответ</span></h2></div>
+    <div class="phones">
+      <div class="phone lock"><i class="notch"></i>
+        <div class="lt">9:41</div><div class="ld">понедельник, 13 октября</div>
+        <div class="ntf"><div class="nh"><b>📰 Лента</b><span>сейчас</span></div><b>Артур Власов</b><p>@вы надо продумать, как проверять и можно ли привлечь</p></div>
+        <div class="ntf"><div class="nh"><b>✉ Почта</b><span>2 мин</span></div><b>Партнёр</b><p>@вы проверьте договор до пятницы</p></div>
+        <div class="ntf"><div class="nh"><b>Telegram</b><span>5 мин</span></div><b>Ника Орехова</b><p>@вы подскажите, кто ведёт подарочные карты?</p></div>
       </div>
-      <div class="el-side">
-        <div class="lbl2">ИСТОЧНИКИ УПОМИНАНИЙ</div>
-        <div class="srcs2"><span class="ok2">✉ Почта</span><span class="ok2">Telegram</span><span class="ok2">Корп. мессенджер</span><span class="soon">Jira</span><span class="soon">Confluence</span><span class="soon">Git</span></div>
-        <p class="note2">Зелёные — уже работают. Серые — следующие коннекторы.</p>
+      <div class="phone chatp"><i class="notch"></i>
+        <div class="ch-top"><span>‹</span><b>📰 Лента</b><u>Ш</u></div>
+        <div class="ch-body">
+          <div class="bb in"><b class="n1">Артур Власов</b><span class="hlm">@вы</span> надо продумать, как проверять и можно ли привлечь<em>13:02</em></div>
+          <div class="bb in"><b class="n2">Почта · Партнёр</b><span class="hlm">@вы</span> проверьте договор до пятницы<br><u>✉ открыть письмо</u><em>13:04</em></div>
+          <div class="bb out">Беру договор, проверю до вечера<em>13:05 ✓✓</em></div>
+          <div class="bb in"><b class="n3">Ника Орехова</b><span class="hlm">@вы</span> кто ведёт подарочные карты?<em>13:06</em></div>
+          <div class="bb out">Веду я, расскажу после дейли<em>13:07 ✓✓</em></div>
+        </div>
+        <div class="ch-in"><span>📎</span><div>Сообщение</div><span>🎤</span></div>
+      </div>
+      <div class="ph-txt">
+        <ul class="list sm5"><li><span><b>Привычный интерфейс.</b> Пуш на экране блокировки, чат, ответ в один тап.</span></li><li><span><b>Ответ уходит в источник:</b> в чат или черновиком письма.</span></li><li><span><b>Контекст в треде</b> — «открыть в ленте».</span></li></ul>
+        <div class="lbl2" style="margin-top:14px;color:#51514b">ИСТОЧНИКИ</div>
+        <div class="srcs3"><span class="ok2">✉ Почта</span><span class="ok2">Telegram</span><span class="ok2">Корп. мессенджер</span><span class="soon">Jira</span><span class="soon">Confluence</span><span class="soon">Git</span></div>
+        <p class="note2">Зелёные работают. Серые — следующие коннекторы.</p>
       </div>
     </div>
   </section>
 
   <!-- 9 · архитектура -->
   <section class="slide" data-title="Архитектура">
-    <div class="tl"><span class="tag blue">АРХИТЕКТУРА</span><h2 class="demo-title">Как собрать себе так же: <span class="accent">4 открытых кирпича</span></h2></div>
+    <div class="tl"><span class="tag blue">АРХИТЕКТУРА</span><h2 class="demo-title">Как собрать себе так же: <span class="accent">открытые кирпичи</span></h2></div>
     <div class="arch">
       <div class="ar-src card sm"><h3>Источники</h3><p>Telegram · корп. мессенджер · почта · Jira · Confluence · Git</p></div>
       <div class="arr">→</div>
@@ -491,10 +560,11 @@
       <div class="arr">→</div>
       <div class="ar-out">
         <div class="card sm"><h3>Лента</h3><p><b>Mastodon-сервер</b> (GoToSocial или Mastodon) + клиент <b>Phanpy</b>.</p></div>
-        <div class="card sm"><h3>Уведомления</h3><p><b>Matrix</b> (Synapse) + <b>Element</b>: пуши, упоминания, ответ в один тап.</p></div>
+        <div class="card sm"><h3>Чат с пушами</h3><p><b>Matrix</b> (Synapse) + <b>Element</b>: упоминания, ответ в один тап.</p></div>
       </div>
     </div>
-    <div class="ar-ai card sm"><h3>ИИ-агенты</h3><p><b>Hermes</b> + MCP читают API ленты (только чтение): дайджесты и «как это влияет на цели».</p></div>
+    <div class="ups"><span>↑ читают Mastodon-сервер и Matrix · MCP, только чтение</span></div>
+    <div class="ar-ai card sm"><h3>ИИ-агенты · Hermes</h3><p>Читают данные из Mastodon-сервера и Matrix: дайджесты, «что важно», «как это влияет на цели».</p></div>
   </section>
 
   <!-- 10 · гайд агенты -->
@@ -513,17 +583,9 @@
   <!-- 11 · ссылки -->
   <section class="slide" data-title="Готовые наработки">
     <div class="tl"><span class="tag blue">ССЫЛКИ</span><h2 class="demo-title">Что можно <span class="accent">взять готовым</span></h2></div>
-    <div class="links">
-      <a class="lk" href="https://github.com/po-helper-org/poh-feed-poc" target="_blank" rel="noopener"><b>po-helper-org/poh-feed-poc</b><span>Моя лента: GoToSocial + Phanpy + compose. Старт с нуля.</span></a>
-      <a class="lk" href="https://github.com/po-helper-org/dsh-communication-plugin" target="_blank" rel="noopener"><b>po-helper-org/dsh-communication-plugin</b><span>Единый Inbox: Telegram, почта, чаты, скоринг.</span></a>
-      <a class="lk" href="https://github.com/cheeaun/phanpy" target="_blank" rel="noopener"><b>cheeaun/phanpy</b><span>Клиент ленты (Mastodon API), в стиле Threads.</span></a>
-      <a class="lk" href="https://codeberg.org/superseriousbusiness/gotosocial" target="_blank" rel="noopener"><b>superseriousbusiness/gotosocial</b><span>Лёгкий Mastodon-совместимый сервер.</span></a>
-      <a class="lk" href="https://github.com/element-hq/synapse" target="_blank" rel="noopener"><b>element-hq/synapse</b><span>Matrix-сервер для уведомлений и ответов.</span></a>
-      <a class="lk" href="https://github.com/element-hq/element-web" target="_blank" rel="noopener"><b>element-hq/element-web</b><span>Клиент Matrix: десктоп и телефон.</span></a>
-      <a class="lk" href="https://github.com/mautrix/telegram" target="_blank" rel="noopener"><b>mautrix/telegram</b><span>Мост Telegram → Matrix.</span></a>
-      <a class="lk" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener"><b>NousResearch/hermes-agent</b><span>ИИ-агенты с профилями, MCP и расписанием.</span></a>
-    </div>
-    <p class="foot">Сборщик под корпоративные источники — приватный. PoC и плагин Inbox — открытые отправные точки.</p>
+    <div class="lk-main"><a class="lk" href="https://github.com/po-helper-org/poh-feed-poc" target="_blank" rel="noopener"><b>po-helper-org/poh-feed-poc</b><span>Мой публичный PoC ленты: GoToSocial + Phanpy, Telegram → лента, метки. Начать можно с docs/playbook-telegram-to-feed.md</span></a></div>
+    <div class="links"><a class="lk" href="https://github.com/cheeaun/phanpy" target="_blank" rel="noopener"><b>cheeaun/phanpy</b><span>Клиент ленты (Mastodon API), в стиле Threads</span></a><a class="lk" href="https://codeberg.org/superseriousbusiness/gotosocial" target="_blank" rel="noopener"><b>superseriousbusiness/gotosocial</b><span>Лёгкий Mastodon-совместимый сервер</span></a><a class="lk" href="https://github.com/element-hq/synapse" target="_blank" rel="noopener"><b>element-hq/synapse</b><span>Matrix-сервер для чата с пушами</span></a><a class="lk" href="https://github.com/element-hq/element-web" target="_blank" rel="noopener"><b>element-hq/element-web</b><span>Клиент Matrix: десктоп и телефон</span></a><a class="lk" href="https://github.com/mautrix/telegram" target="_blank" rel="noopener"><b>mautrix/telegram</b><span>Мост Telegram → Matrix</span></a><a class="lk" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener"><b>NousResearch/hermes-agent</b><span>ИИ-агенты: профили, MCP, расписание</span></a></div>
+    <div class="priv"><b>🔒 Рабочая лента собрана из приватных репозиториев po-helper-org:</b> <code>comunager-hub</code> (мосты и сборщик), <code>poh-widget-news</code> (виджет «Лента» в Element), <code>poh-widget-telegram-connector</code>, <code>poh-hermes-bridge</code> (мост к агентам). В открытом доступе пока только PoC.</div>
   </section>
 
 </div>
@@ -550,6 +612,14 @@
       html += '<i style="height:' + Math.round(v) + '%"></i>';
     }
     h.innerHTML = html;
+  })();
+  /* демо: диалог в сайдбаре сам листается вверх и вниз */
+  (function () {
+    var el = document.getElementById('thScroll'), down = true;
+    setInterval(function () {
+      if (!slides[cur] || slides[cur].getAttribute('data-title') !== 'Обсуждение треда') return;
+      el.scrollTo({ top: down ? el.scrollHeight : 0, behavior: 'smooth' }); down = !down;
+    }, 2600);
   })();
   function show(i, push) {
     cur = Math.max(0, Math.min(slides.length - 1, i));
