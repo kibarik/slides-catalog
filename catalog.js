@@ -12,7 +12,7 @@ const presentations = [
     title: "БФТ под управлением руководителя",
     description: "Как AI-агент собирает бизнес-контекст и превращает его в требования для согласования.",
     cover: "po-workspace-bft-plugin/cover.png",
-    slides: 12,
+    slides: 13,
     updated: "11 сентября 2026"
   },
   {
