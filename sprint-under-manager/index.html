@@ -64,6 +64,42 @@
   .big { font-size: 200px; line-height: .9; letter-spacing: -.06em; font-weight: 800; color: var(--blue); }
   .big small { font-size: 72px; letter-spacing: -.03em; margin-left: 12px; }
   .big + .line { font-size: 28px; color: var(--ink); margin-top: 30px; line-height: 1.35; }
+  /* слайд 2: факты + мой день */
+  .grow { display: grid; grid-template-columns: 380px minmax(0,1fr); gap: 48px; align-items: start; flex: 1; min-height: 0; }
+  .facts p { display: grid; grid-template-columns: 70px 150px 1fr; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+  .facts s { font-size: 40px; font-weight: 800; color: #9a9890; text-decoration-thickness: 3px; }
+  .facts b { font-size: 76px; line-height: 1; font-weight: 800; letter-spacing: -.05em; color: var(--blue); }
+  .facts span { font-size: 22px; color: var(--muted); }
+  .facts .line { display: block; font-size: 22px; color: var(--ink); margin-top: 22px; line-height: 1.4; }
+  .days { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .day { position: relative; }
+  .dh { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 700; letter-spacing: .08em; margin-bottom: 8px; text-transform: uppercase; }
+  .dg { position: relative; height: 300px; border: 1px solid var(--ink); background: #fff; box-shadow: 5px 5px 0 var(--ink); }
+  .dg > i { position: absolute; left: 6px; font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 10px; color: #9a9890; transform: translateY(-50%); }
+  .dg > i:first-child { transform: none; top: 2px !important; }
+  .ev { position: absolute; left: 48px; right: 8px; border-radius: 4px; padding: 2px 8px; overflow: hidden; display: flex; align-items: center; }
+  .ev b { font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .ev.m { background: #dfe3ff; color: var(--blue); border-left: 3px solid var(--blue); }
+  .ev.f { background: #e3f3e7; color: #17753a; border-left: 3px solid #1c8a3a; }
+  .ev.b { background: #fdf0d5; color: #8a5a00; border-left: 3px solid #d29b1f; }
+  .ev.r { background: #fde2e1; color: #b3261e; border-left: 3px solid #d8302a; }
+  .day:last-child .dg { box-shadow: 5px 5px 0 var(--blue); border-color: var(--blue); }
+  .ovr { margin-top: 10px; background: #d8302a; color: #fff; font-size: 14px; font-weight: 700; padding: 7px 10px; display: inline-block; }
+  .dnote { position: absolute; right: 0; bottom: -26px; margin: 0; }
+  /* слайд 3: мини-схемы в карточках */
+  .cards.vis .card { display: flex; flex-direction: column; }
+  .viz { height: 120px; margin-bottom: 20px; border-bottom: 1px dashed var(--line); position: relative; }
+  .tl { position: absolute; left: 0; right: 0; top: 70px; height: 2px; }
+  .tl u { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--ink); }
+  .pin { position: absolute; top: -40px; font-style: normal; font-size: 13px; font-weight: 700; padding: 3px 8px; transform: translateX(-50%); }
+  .pin::after { content: ""; position: absolute; left: 50%; top: 100%; height: 18px; border-left: 2px dashed currentColor; }
+  .pin.a { left: 18%; color: #9a9890; border: 1px dashed #9a9890; } .pin.b { left: 50%; color: #c76b00; border: 1px dashed #c76b00; } .pin.c { left: 82%; color: #fff; background: #d8302a; } .pin.c::after { border-left-style: solid; border-color: #d8302a; }
+  .wait { display: flex; flex-direction: column; gap: 9px; padding-top: 8px; }
+  .wait span { display: block; height: 24px; background: #fdf0d5; color: #8a5a00; font-size: 12px; font-weight: 700; padding: 4px 8px; white-space: nowrap; }
+  .wait span.red { background: #d8302a; color: #fff; }
+  .said { display: inline-block; background: var(--ink); color: #fff; font-size: 15px; padding: 8px 12px; border-radius: 12px 12px 12px 2px; }
+  .board { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 16px; }
+  .board i { height: 34px; background: #dfe3ff; border-radius: 3px; } .board i.st { background: #d8302a; }
   /* карточки */
   .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
   .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 26px 26px 28px; background: var(--bg); }
@@ -208,6 +244,8 @@
     .ring { max-width: 340px; margin: 0 auto; }
     .proc { display: none; } .proclist { display: flex; flex-direction: column; gap: 14px; }
     .glist .glive { margin-top: 10px; }
+    .grow, .days { grid-template-columns: 1fr; gap: 24px; } .facts b { font-size: 56px; } .facts p { grid-template-columns: 50px 110px 1fr; }
+    .dnote { position: static; } .viz { height: 110px; }
   }
 </style>
 </head>
@@ -232,22 +270,25 @@
 
   <!-- 2 · ситуация -->
   <section class="slide" data-title="Нагрузка выросла вдвое">
-    <h2>Нагрузка выросла <span class="accent">вдвое</span></h2>
-    <div class="nums">
-      <div class="num was"><b>10</b><span>человек · 2 команды · 1 стрим</span></div>
-      <div class="arr">→</div>
-      <div class="num now"><b>20+</b><span>человек · 4 команды · 3 стрима</span></div>
+    <h2>Команд стало вдвое больше —<br><span class="accent">а день остался прежним</span></h2>
+    <div class="grow">
+      <div class="facts">
+        <p><s>10</s><b>20+</b><span>человек</span></p>
+        <p><s>2</s><b>4</b><span>команды</span></p>
+        <p><s>1</s><b>3</b><span>стрима</span></p>
+        <p class="line">Раньше я успевал на каждое дейли. Теперь лично — уже нет.</p>
+      </div>
+      <div class="days"><div class="day"><div class="dh">Было</div><div class="dg"><i style="top:0px">9:00</i><i style="top:60px">11:00</i><i style="top:120px">13:00</i><i style="top:180px">15:00</i><i style="top:240px">17:00</i><div class="ev m" style="top:30px;height:12px"><b>Дейли A</b></div><div class="ev m" style="top:45px;height:12px"><b>Дейли B</b></div><div class="ev f" style="top:75px;height:57px"><b>Бэклог и требования</b></div><div class="ev b" style="top:165px;height:27px"><b>Бизнес</b></div><div class="ev f" style="top:210px;height:72px"><b>Свои задачи</b></div></div></div><div class="day"><div class="dh">Стало</div><div class="dg"><i style="top:0px">9:00</i><i style="top:60px">11:00</i><i style="top:120px">13:00</i><i style="top:180px">15:00</i><i style="top:240px">17:00</i><div class="ev m" style="top:15px;height:12px"><b>Дейли A</b></div><div class="ev m" style="top:30px;height:12px"><b>Дейли B</b></div><div class="ev m" style="top:45px;height:12px"><b>Дейли C</b></div><div class="ev m" style="top:60px;height:12px"><b>Дейли D</b></div><div class="ev m" style="top:75px;height:27px"><b>Синк стрима 1</b></div><div class="ev m" style="top:105px;height:27px"><b>Синк стрима 2</b></div><div class="ev m" style="top:135px;height:27px"><b>Синк стрима 3</b></div><div class="ev b" style="top:165px;height:27px"><b>Бизнес</b></div><div class="ev r" style="top:195px;height:42px"><b>Статусы: обход</b></div><div class="ev f" style="top:240px;height:57px"><b>Бэклог и требования</b></div></div><div class="ovr">+2 ч — свои задачи вечером</div></div><p class="note dnote">Мой день — иллюстрация</p></div>
     </div>
-    <p class="line" style="margin-top:44px">На все дейли лично больше не хватает дня.</p>
   </section>
 
   <!-- 3 · проблема -->
   <section class="slide" data-title="Что ломается без личного присутствия">
-    <h2>Без личного присутствия<br><span class="accent">картина расползается</span></h2>
-    <div class="cards">
-      <div class="card"><h3>Сроки демо съезжают</h3><p>Про коммитмент забывают.</p></div>
-      <div class="card"><h3>Блокаторы стоят дольше</h3><p>Смежную команду некому продавить.</p></div>
-      <div class="card"><h3>Картина — пересказом</h3><p>Проверять долго и дорого.</p></div>
+    <h2>Без меня на дейли<br><span class="accent">картина расползалась</span></h2>
+    <div class="cards vis">
+      <div class="card"><div class="viz"><div class="tl"><i class="pin a">демо</i><i class="pin b">демо</i><i class="pin c">демо</i><u></u></div></div><h3>Сроки демо съезжают</h3><p>Про коммитмент забывают — никто не спорит.</p></div>
+      <div class="card"><div class="viz"><div class="wait"><span style="width:20%">1 день</span><span style="width:55%">3 дня</span><span class="red" style="width:92%">5 дней</span></div></div><h3>Блокаторы стоят дольше</h3><p>Смежную команду некому продавить вовремя.</p></div>
+      <div class="card"><div class="viz"><div class="said">Всё по плану 👍</div><div class="board"><i></i><i></i><i class="st"></i><i class="st"></i><i class="st"></i><i></i></div></div><h3>Картина — пересказом</h3><p>А на доске — застрявшие задачи.</p></div>
     </div>
   </section>
 
