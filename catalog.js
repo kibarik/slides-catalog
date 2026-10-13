@@ -38,13 +38,27 @@ const presentations = [
     cover: "po-news-feed/cover.png",
     slides: 11,
     updated: "13 октября 2026"
+  },
+  {
+    id: "sprint-business-report",
+    title: "Бизнес-отчёт спринта: ценность от целей квартала",
+    description: "Какую бизнес-ценность команда создала за спринт в контексте целей квартала — и как чистота отчёта наводит порядок в JIRA разговором с ИИ-агентом.",
+    cover: "sprint-business-report/cover.png",
+    slides: 12,
+    updated: "13 октября 2026"
   }
 ];
 
 const grid = document.querySelector("#catalog-grid");
 const count = document.querySelector("#deck-count");
 
-count.textContent = `${presentations.length} ${presentations.length === 1 ? "презентация" : "презентации"}`;
+const plural = (n) => {
+  const d = n % 10, dd = n % 100;
+  if (d === 1 && dd !== 11) return "презентация";
+  if (d >= 2 && d <= 4 && (dd < 12 || dd > 14)) return "презентации";
+  return "презентаций";
+};
+count.textContent = `${presentations.length} ${plural(presentations.length)}`;
 
 grid.innerHTML = presentations.map((deck) => `
   <a class="deck-card" href="${deck.id}/" aria-label="Открыть презентацию: ${deck.title}">
