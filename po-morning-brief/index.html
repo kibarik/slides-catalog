@@ -35,7 +35,8 @@
   }
   .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
 
-  #stage { position: relative; width: 1280px; height: 720px; transform-origin: center center; }
+  /* flex: none — иначе в окне уже 1280 px flex-body сжимает стейдж, и вёрстка ломается до масштабирования */
+  #stage { position: relative; width: 1280px; height: 720px; flex: none; transform-origin: center center; }
   .slide {
     position: absolute; inset: 0; padding: 64px 72px; display: none;
     flex-direction: column; justify-content: center; background: var(--bg); overflow: hidden;
@@ -63,7 +64,7 @@
     text-decoration: none; color: var(--ink); overflow: hidden;
   }
   .site span {
-    font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700;
+    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 17px; font-weight: 700;
     letter-spacing: -.01em; padding: 13px 16px; align-self: center;
   }
   .site i { display: flex; align-items: center; justify-content: center; width: 46px;
@@ -71,7 +72,7 @@
   .site:hover i { background: var(--ink); }
 
   /* слайд установки */
-  .install .eyebrow { font-family: "JetBrains Mono", monospace; letter-spacing: .1em; font-size: 15px; }
+  .install .eyebrow { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; letter-spacing: .1em; font-size: 15px; }
   .install h1 { font-size: 78px; line-height: 1.02; }
   .install .sub { font-size: 26px; max-width: 780px; margin-top: 30px; }
   .repo {
@@ -108,7 +109,7 @@
 
   ol.steps { list-style: none; counter-reset: n; display: flex; flex-direction: column; gap: 15px; }
   ol.steps li { counter-increment: n; display: grid; grid-template-columns: 36px 1fr; gap: 16px; align-items: baseline; }
-  ol.steps li::before { content: counter(n); font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--blue); font-weight: 700; }
+  ol.steps li::before { content: counter(n); font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 14px; color: var(--blue); font-weight: 700; }
   ol.steps b { font-size: 22px; letter-spacing: -.02em; }
   ol.steps span { font-size: 16px; color: var(--muted); }
 
@@ -132,7 +133,7 @@
   .gal-img { flex: 1; min-height: 0; background: #f7f6f2; cursor: zoom-in; }
   .gal-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
   .gal-cap { border-top: 1px solid var(--ink); padding: 11px 16px; display: flex; gap: 12px; align-items: baseline; }
-  .gal-cap .st { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--blue); font-weight: 700; }
+  .gal-cap .st { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; color: var(--blue); font-weight: 700; }
   .gal-cap b { font-size: 17px; }
   .gal-cap span { font-size: 14px; color: var(--muted); }
   .thumbs { display: flex; flex-direction: column; gap: 8px; }
@@ -140,7 +141,7 @@
   .thumbs button img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
   .thumbs button.on { border: 2px solid var(--blue); }
   .thumbs i { position: absolute; left: 0; top: 0; background: var(--ink); color: #fff; font-style: normal;
-    font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 2px 5px; }
+    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 10px; padding: 2px 5px; }
   .thumbs button.on i { background: var(--blue); }
 
   .demo { flex: 1; min-height: 0; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--paper); position: relative; }
@@ -156,7 +157,7 @@
   #lb .ov-top { color: #fff; }
   #dfs .ov-top { background: var(--ink); color: #fff; }
   .ov-top b { font-size: 15px; }
-  .ov-top .pos { font-family: "JetBrains Mono", monospace; font-size: 12px; opacity: .75; }
+  .ov-top .pos { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; opacity: .75; }
   .ov-x { background: none; border: 1px solid currentColor; color: inherit; font: inherit; font-size: 12px; padding: 5px 11px; cursor: pointer; }
   #lb .body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 0 22px; }
   #lb img { max-width: 100%; max-height: 100%; object-fit: contain; }
@@ -170,7 +171,7 @@
     background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
   #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
   #nav button:hover { color: var(--blue); }
-  #nav .p { font-family: "JetBrains Mono", monospace; font-size: 12px; min-width: 46px; text-align: center; }
+  #nav .p { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; min-width: 46px; text-align: center; }
   #bar { position: fixed; left: 0; top: 0; height: 3px; background: var(--blue); z-index: 41; transition: width .18s; }
 
   /* общие блоки колод */
@@ -178,7 +179,7 @@
   .col { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
   .lead { font-size: 17px; line-height: 1.45; color: var(--muted); }
   .lead b { color: var(--ink); }
-  .unc { font-family: "JetBrains Mono", monospace; font-size: .82em; background: #fff3c4; border: 1px solid #d8c070; padding: 0 4px; color: var(--ink); white-space: nowrap; }
+  .unc { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: .82em; background: #fff3c4; border: 1px solid #d8c070; padding: 0 4px; color: var(--ink); white-space: nowrap; }
   .plus { color: #1c8a3a; }
   .shot { align-self: start; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; overflow: hidden; cursor: zoom-in; min-height: 0; }
   .shot img { width: 100%; height: auto; display: block; }
@@ -208,13 +209,13 @@
   .pair .lead { font-size: 15px; }
   .tp-wrap { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; overflow: hidden; }
   table.tp { border-collapse: collapse; width: 100%; font-size: 12.5px; line-height: 1.35; }
-  table.tp th { text-align: left; font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; background: #f2f1ec; padding: 8px 9px; border-bottom: 2px solid var(--ink); }
+  table.tp th { text-align: left; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; background: #f2f1ec; padding: 8px 9px; border-bottom: 2px solid var(--ink); }
   table.tp td { padding: 7px 9px; border-bottom: 1px solid #deddd6; vertical-align: top; }
   table.tp td.fill { background: #f4f6ff; border-left: 1px dashed var(--blue); color: var(--blue); font-style: italic; }
-  table.tp td.role { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+  table.tp td.role { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-weight: 700; }
   #lb .row { display: none; }
   /* Переработка: боль → решение. «Решает боль N» связывает этап с проблемой. */
-  .solves { display: inline-block; align-self: flex-start; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700;
+  .solves { display: inline-block; align-self: flex-start; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 700;
     letter-spacing: .04em; color: var(--blue); border: 1px solid var(--blue); padding: 3px 8px; margin-top: 10px; }
   .card .solves { margin-top: 14px; }
   .col > .solves, .chat > .solves { margin: 0 0 4px; }
@@ -222,20 +223,20 @@
   .vision { margin-top: 34px; border-left: 4px solid var(--blue); padding: 6px 0 6px 20px; display: flex; flex-direction: column; gap: 10px; }
   .vision p { font-size: 19px; line-height: 1.45; color: var(--muted); max-width: 980px; }
   .vision b { color: var(--ink); }
-  .repo-sm { font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--blue); text-decoration: none; font-weight: 700; }
+  .repo-sm { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 14px; color: var(--blue); text-decoration: none; font-weight: 700; }
   table.ba { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
-  table.ba th { text-align: left; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  table.ba th { text-align: left; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
     padding: 10px 16px; border-bottom: 2px solid var(--ink); background: #f2f1ec; }
   table.ba th:last-child { color: var(--blue); }
   table.ba td { padding: 11px 16px; font-size: 16px; line-height: 1.35; border-bottom: 1px solid #deddd6; vertical-align: top; color: var(--muted); }
   table.ba td:first-child { font-weight: 800; color: var(--ink); white-space: nowrap; width: 150px; }
   table.ba td:last-child { color: var(--ink); }
   .install ol.steps.start { margin: 26px 0 30px; gap: 10px; }
-  .install ol.steps.start b { font-family: "JetBrains Mono", monospace; font-size: 20px; }
+  .install ol.steps.start b { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 20px; }
   .install ol.steps.start span { font-size: 18px; }
   /* Демо грузится по требованию: пока страница не пришла — индикатор, а не пустая рамка. */
   .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center;
-    justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace;
+    justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
     font-size: 13px; color: var(--muted); transition: opacity .25s; }
   .demo-loader.done { opacity: 0; pointer-events: none; }
   .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue, #2b3cff); border-radius: 50%;
@@ -246,7 +247,7 @@
 
   /* общие блоки колод */
   .srcs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 26px; }
-  .srcs span { border: 1px solid var(--ink); background: var(--paper); padding: 7px 14px; font-family: "JetBrains Mono", monospace; font-size: 15px; font-weight: 700; box-shadow: 3px 3px 0 var(--ink); }
+  .srcs span { border: 1px solid var(--ink); background: var(--paper); padding: 7px 14px; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; box-shadow: 3px 3px 0 var(--ink); }
 
   /* po-morning-brief */
   /* слайд — flex-колонка по центру: без явной высоты галерея растёт по картинке и вылезает за слайд */
@@ -260,6 +261,44 @@
   .slide.tight { padding-top: 30px; padding-bottom: 30px; }
   .duo .col .code { margin-top: 4px; }
   .install .sub { max-width: 860px; }
+
+  /* Телефон и узкий портрет: без масштабирования, слайды идут лентой в одну колонку. */
+  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
+    html, body { height: auto; overflow: auto; display: block; background: var(--bg); }
+    #stage { width: auto; height: auto; transform: none !important; }
+    .slide { position: relative; inset: auto; display: flex !important; padding: 34px 18px 38px; border-bottom: 1px solid #c9c8c2; }
+    .slide.tight { padding: 34px 18px 38px; }
+    #nav, #bar { display: none; }
+    h1 { font-size: 40px; }
+    h2, h2.sm { font-size: 29px; margin-bottom: 18px; }
+    .install h1 { font-size: 42px; }
+    .sub, .install .sub { font-size: 18px; margin-top: 16px; }
+    .quote { font-size: 20px; }
+    .foot.big { font-size: 17px; margin-top: 20px; }
+    .cover-layout { grid-template-columns: 1fr; gap: 24px; }
+    .cover-photo { width: 150px; height: 150px; }
+    .site { max-width: 260px; }
+    .grid.three, .grid.two, .duo, .split { grid-template-columns: 1fr; }
+    .duo { gap: 22px; }
+    .split > div + div { border-left: 0; border-top: 1px solid var(--ink); }
+    .split .t { font-size: 27px; }
+    .flow { grid-template-columns: 1fr; gap: 0; }
+    .flow .arr { height: 34px; transform: rotate(90deg); }
+    .srcs span { font-size: 13px; padding: 5px 9px; }
+    ul.wins li { font-size: 17px; }
+    table.ba td, table.ba th { padding: 8px 8px; font-size: 14px; }
+    table.ba td:first-child { white-space: normal; width: auto; }
+    .msg { max-width: 100%; }
+    .code { font-size: 12px; white-space: pre-wrap; }
+    .gal { grid-template-columns: 1fr; height: auto; }
+    .gal-img { aspect-ratio: 16 / 9; flex: none; }
+    .gal-cap { flex-wrap: wrap; }
+    .thumbs { flex-direction: row; overflow-x: auto; }
+    .thumbs button { flex: 0 0 74px; height: 44px; }
+    .demo { flex: none; height: 78vh; }
+    .duo .demo iframe { width: 100%; height: 100%; transform: none; }
+    .fs-btn { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -521,7 +560,9 @@
     }, 300);
   });
   var cur = 0;
+  var narrow = window.matchMedia('(max-width: 700px), (orientation: portrait) and (max-width: 900px)');
   function fit() {
+    if (narrow.matches) { document.getElementById('stage').style.transform = 'none'; slides.forEach(loadDemos); return; }
     var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
     document.getElementById('stage').style.transform = 'scale(' + s + ')';
   }
