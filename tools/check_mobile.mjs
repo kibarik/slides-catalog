@@ -28,7 +28,7 @@ async function measure(browser, deck, phone) {
   const kbFirst = Math.round(bytes / 1024);
   const res = await page.evaluate(() => {
     const iw = innerWidth, over = new Set();
-    const scrollable = (e) => { for (let p = e; p; p = p.parentElement) { const o = getComputedStyle(p).overflowX; if (o === 'auto' || o === 'scroll') return true; } return false; };
+    const scrollable = (e) => { for (let p = e; p && p !== document.body && p !== document.documentElement; p = p.parentElement) { const o = getComputedStyle(p).overflowX; if (o === 'auto' || o === 'scroll') return true; } return false; };
     document.querySelectorAll('body *').forEach((e) => {
       const r = e.getBoundingClientRect();
       if (r.width > 0 && r.height > 0 && r.right > iw + 2 && !scrollable(e.parentElement)) over.add(e.tagName.toLowerCase() + (e.className && typeof e.className === 'string' ? '.' + e.className.split(' ')[0] : ''));
