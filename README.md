@@ -13,6 +13,7 @@
 - `po-workspace-bft-plugin` — БФТ под управлением руководителя
 - `sprint-under-manager` — Спринты под управлением руководителя
 - `okr-quarter-planning` — Планирование квартала за час разговора с ИИ
+- `po-news-feed` — Лента вместо 100500 чатов
 
 ## Как добавить презентацию
 
@@ -115,6 +116,7 @@ docker run --rm -p 8080:8080 slides-catalog
 - `http://localhost:8080/po-workspace-bft-plugin/`
 - `http://localhost:8080/sprint-under-manager/`
 - `http://localhost:8080/okr-quarter-planning/`
+- `http://localhost:8080/po-news-feed/`
 
 ## Инструкции и компоненты практикума
 
