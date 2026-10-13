@@ -1,0 +1,29 @@
+name: Проверка презентаций
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  decks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Вес и разметка (без браузера)
+        run: python3 tools/check_decks.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Playwright
+        run: |
+          npm i --no-save --no-package-lock playwright@1.47.2
+          npx playwright install --with-deps chromium
+      - name: Телефон 390×844 и вес первой загрузки
+        run: |
+          python3 -m http.server 8080 >/dev/null 2>&1 &
+          sleep 1
+          BASE=http://localhost:8080 node tools/check_mobile.mjs

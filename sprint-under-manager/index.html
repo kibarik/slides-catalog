@@ -7,7 +7,7 @@
 
 <!-- Превью ссылки. Краулеры не выполняют JS, поэтому блок статический.
      Живёт в шаблоне, а не дописывается руками: иначе теряется при пересборке. -->
-<meta name="description" content="Сбор спринта по расписанию, отчёт PO и бизнес-колода для комитета в мессенджере, ИИ-агент вносит правки в трекер после ✅. Живые демо и C4-архитектура.">
+<meta name="description" content="Как руководителю держать спринты четырёх команд без обхода: отчёт PO приходит сам каждое утро, «Факт спринта» — для комитета, ИИ-агент вносит правки после ✅.">
 <link rel="canonical" href="https://slides.aleksishmanov.ru/sprint-under-manager/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="article">
@@ -15,7 +15,7 @@
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://slides.aleksishmanov.ru/sprint-under-manager/">
 <meta property="og:title" content="Спринты под управлением руководителя">
-<meta property="og:description" content="Сбор спринта по расписанию, отчёт PO и бизнес-колода для комитета в мессенджере, ИИ-агент вносит правки в трекер после ✅. Живые демо и C4-архитектура.">
+<meta property="og:description" content="Как руководителю держать спринты четырёх команд без обхода: отчёт PO приходит сам каждое утро, «Факт спринта» — для комитета, ИИ-агент вносит правки после ✅.">
 <meta property="og:image" content="https://slides.aleksishmanov.ru/sprint-under-manager/cover.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1280">
@@ -23,388 +23,160 @@
 <meta property="og:image:alt" content="Первый слайд презентации «Спринты под управлением руководителя»">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Спринты под управлением руководителя">
-<meta name="twitter:description" content="Сбор спринта по расписанию, отчёт PO и бизнес-колода для комитета в мессенджере, ИИ-агент вносит правки в трекер после ✅. Живые демо и C4-архитектура.">
+<meta name="twitter:description" content="Как руководителю держать спринты четырёх команд без обхода: отчёт PO приходит сам каждое утро, «Факт спринта» — для комитета, ИИ-агент вносит правки после ✅.">
 <meta name="twitter:image" content="https://slides.aleksishmanov.ru/sprint-under-manager/cover.png">
 <meta name="twitter:image:alt" content="Первый слайд презентации «Спринты под управлением руководителя»">
 <style>
-  :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --paper:#fff; }
+  :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --line:#c9c8c2; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; background: #d9d8d3; }
-  body {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    color: var(--ink); display: flex; align-items: center; justify-content: center; overflow: hidden;
-  }
+  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
-
   #stage { position: relative; width: 1280px; height: 720px; flex: none; transform-origin: center center; }
-  .slide {
-    position: absolute; inset: 0; padding: 64px 72px; display: none;
-    flex-direction: column; justify-content: center; background: var(--bg); overflow: hidden;
-  }
+  .slide { position: absolute; inset: 0; padding: 84px 72px 64px; display: none; flex-direction: column; justify-content: flex-start; background: var(--bg); overflow: hidden; }
   .slide.on { display: flex; }
-
-  .eyebrow { font-size: 14px; color: var(--blue); margin-bottom: 24px; font-weight: 700; letter-spacing: .06em; }
-  h1 { font-size: 66px; line-height: 1.04; letter-spacing: -.04em; font-weight: 800; }
-  h2 { font-size: 46px; line-height: 1.08; letter-spacing: -.035em; font-weight: 800; margin-bottom: 26px; }
-  h2.sm { font-size: 40px; margin-bottom: 22px; }
+  .slide.center { justify-content: center; padding-top: 64px; }
   .accent { color: var(--blue); }
-  .sub { font-size: 23px; line-height: 1.42; max-width: 900px; margin-top: 24px; }
-  .quote {
-    border-left: 5px solid var(--blue); padding: 4px 0 4px 22px;
-    font-size: 26px; line-height: 1.34; font-weight: 700; margin-top: 28px; max-width: 760px;
-  }
-  .foot { font-size: 13px; line-height: 1.5; color: var(--muted); margin-top: 20px; }
-
+  h1 { font-size: 72px; line-height: 1.02; letter-spacing: -.045em; font-weight: 800; }
+  h1 .nw { white-space: nowrap; }
+  .cover h1 { font-size: 62px; }
+  h2 { font-size: 54px; line-height: 1.06; letter-spacing: -.04em; font-weight: 800; margin-bottom: 36px; }
+  .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 26px; }
+  .lead { font-size: 24px; line-height: 1.4; margin-top: 26px; max-width: 760px; }
+  .quote { border-left: 5px solid var(--blue); padding: 4px 0 4px 22px; font-size: 26px; line-height: 1.34; font-weight: 700; margin-top: 30px; }
+  .line { font-size: 22px; line-height: 1.4; color: var(--muted); }
+  .note { font-size: 13px; color: var(--muted); margin-top: 14px; }
   /* титул */
-  .cover-layout { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 52px; align-items: center; }
-  .cover-photo { width: 300px; height: 300px; object-fit: cover; border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); display: block; }
-  .site {
-    display: flex; align-items: stretch; justify-content: space-between; margin-top: 22px;
-    border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--bg);
-    text-decoration: none; color: var(--ink); overflow: hidden;
-  }
-  .site span {
-    font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700;
-    letter-spacing: -.01em; padding: 13px 16px; align-self: center;
-  }
-  .site i { display: flex; align-items: center; justify-content: center; width: 46px;
-    background: var(--blue); color: #fff; font-style: normal; font-size: 17px; }
-  .site:hover i { background: var(--ink); }
-
-  /* слайд установки */
-  .install .eyebrow { font-family: "JetBrains Mono", monospace; letter-spacing: .1em; font-size: 15px; }
-  .install h1 { font-size: 78px; line-height: 1.02; }
-  .install .sub { font-size: 26px; max-width: 780px; margin-top: 30px; }
-  .repo {
-    /* align-self обязателен: слайд — flex-колонка, иначе подчёркивание
-       растягивается на всю ширину вместо длины текста */
-    display: inline-block; align-self: flex-start;
-    margin-top: 30px; font-size: 26px; font-weight: 700;
-    letter-spacing: -.02em; color: var(--blue); text-decoration: none;
-    border-bottom: 3px solid var(--blue); padding-bottom: 4px;
-  }
-  .repo:hover { color: var(--ink); border-bottom-color: var(--ink); }
-
-  .tag {
-    display: inline-block; align-self: flex-start; background: var(--ink); color: var(--bg);
-    font-size: 12px; letter-spacing: .07em; padding: 6px 11px; font-weight: 700; margin-bottom: 12px;
-  }
-  .tag.blue { background: var(--blue); }
-
-  .card { border: 1px solid var(--ink); padding: 20px 22px; box-shadow: 6px 6px 0 var(--ink); background: var(--paper); }
-  .card h3 { font-size: 20px; line-height: 1.2; letter-spacing: -.02em; margin-bottom: 8px; }
-  .card p { font-size: 15px; line-height: 1.42; color: var(--muted); }
+  .cover { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 56px; align-items: center; }
+  .photo { width: 300px; height: 300px; object-fit: cover; border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); display: block; }
+  .site { display: flex; justify-content: space-between; margin-top: 22px; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); text-decoration: none; color: var(--ink); }
+  .site span { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700; padding: 13px 16px; }
+  .site i { display: flex; align-items: center; justify-content: center; width: 46px; background: var(--blue); color: #fff; font-style: normal; }
+  /* числа */
+  .nums { display: flex; align-items: flex-end; gap: 56px; margin-top: 10px; }
+  .num b { display: block; font-size: 168px; line-height: .9; letter-spacing: -.06em; font-weight: 800; }
+  .num.was b { color: #9a9890; }
+  .num.now b { color: var(--blue); }
+  .num span { display: block; font-size: 22px; color: var(--muted); margin-top: 16px; }
+  .nums .arr { font-size: 64px; color: var(--blue); font-weight: 800; padding-bottom: 60px; }
+  .big { font-size: 200px; line-height: .9; letter-spacing: -.06em; font-weight: 800; color: var(--blue); }
+  .big small { font-size: 72px; letter-spacing: -.03em; margin-left: 12px; }
+  .big + .line { font-size: 28px; color: var(--ink); margin-top: 30px; line-height: 1.35; }
+  /* карточки */
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+  .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 26px 26px 28px; background: var(--bg); }
   .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
-  .card.blue h3 { color: var(--blue); }
-  .card.sm h3 { font-size: 18px; }
-  .card.sm p { font-size: 14px; }
-
-  .grid { display: grid; gap: 20px; }
-  .two { grid-template-columns: 1fr 1fr; }
-  .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .lean { grid-template-columns: 1fr 1.2fr; align-items: center; gap: 48px; }
-
-  .num { font-size: 92px; font-weight: 800; letter-spacing: -.045em; line-height: .9; }
-  .num small { display: block; font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--muted); margin-top: 12px; line-height: 1.4; }
-
-  ol.steps { list-style: none; counter-reset: n; display: flex; flex-direction: column; gap: 15px; }
-  ol.steps li { counter-increment: n; display: grid; grid-template-columns: 36px 1fr; gap: 16px; align-items: baseline; }
-  ol.steps li::before { content: counter(n); font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--blue); font-weight: 700; }
-  ol.steps b { font-size: 22px; letter-spacing: -.02em; }
-  ol.steps span { font-size: 16px; color: var(--muted); }
-
-  ul.wins { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-  ul.wins li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; align-items: baseline; font-size: 21px; line-height: 1.32; }
-  ul.wins li::before { content: "→"; color: var(--blue); font-weight: 700; }
-  ul.wins b { font-weight: 800; }
-
-  .split { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--paper); }
-  .split > div { padding: 26px 28px; }
-  .split > div + div { border-left: 1px solid var(--ink); }
-  .split .lbl { font-size: 12px; font-weight: 700; letter-spacing: .07em; margin-bottom: 12px; }
-  .split .a .lbl { color: var(--muted); }
-  .split .b .lbl { color: var(--blue); }
-  .split p { font-size: 18px; line-height: 1.4; color: var(--muted); }
-  .split .t { font-size: 36px; font-weight: 800; letter-spacing: -.03em; line-height: 1.08; margin-bottom: 10px; }
-
+  .card h3 { font-size: 26px; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 12px; }
+  .card p { font-size: 19px; line-height: 1.4; color: var(--muted); }
+  .steps { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: stretch; }
+  .steps > .arr { display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: var(--blue); }
+  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 18px; }
+  .card.blue .tag { background: var(--blue); }
+  .card .k { display: block; font-size: 58px; line-height: 1; letter-spacing: -.045em; font-weight: 800; margin-bottom: 14px; }
+  .card .k.t { font-size: 40px; }
+  .card.blue .k { color: var(--blue); }
+  ul.rows { list-style: none; display: flex; flex-direction: column; gap: 26px; margin-top: 10px; }
+  ul.rows li { font-size: 32px; line-height: 1.25; letter-spacing: -.02em; display: grid; grid-template-columns: 44px 1fr; }
+  ul.rows li::before { content: "→"; color: var(--blue); font-weight: 800; }
   /* галерея */
-  .gal { display: grid; grid-template-columns: 1fr 176px; gap: 20px; flex: 1; min-height: 0; }
-  .gal-main { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--paper); display: flex; flex-direction: column; overflow: hidden; }
-  .gal-img { flex: 1; min-height: 0; background: #f7f6f2; cursor: zoom-in; }
-  .gal-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-  .gal-cap { border-top: 1px solid var(--ink); padding: 11px 16px; display: flex; gap: 12px; align-items: baseline; }
-  .gal-cap .st { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--blue); font-weight: 700; }
-  .gal-cap b { font-size: 17px; }
-  .gal-cap span { font-size: 14px; color: var(--muted); }
-  .thumbs { display: flex; flex-direction: column; gap: 8px; }
-  .thumbs button { border: 1px solid #c9c8c2; background: var(--paper); padding: 0; cursor: pointer; flex: 1; min-height: 0; overflow: hidden; position: relative; }
-  .thumbs button img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .thumbs button.on { border: 2px solid var(--blue); }
-  .thumbs i { position: absolute; left: 0; top: 0; background: var(--ink); color: #fff; font-style: normal;
-    font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 2px 5px; }
-  .thumbs button.on i { background: var(--blue); }
-
-  .demo { flex: 1; min-height: 0; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: var(--paper); position: relative; }
-  .demo iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .fs-btn { position: absolute; right: 14px; top: 14px; z-index: 3; font: inherit; font-size: 13px;
-    font-weight: 700; padding: 8px 14px; cursor: pointer; background: var(--blue); color: #fff; border: none; }
-
-  #lb, #dfs { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: column; }
-  #lb.on, #dfs.on { display: flex; }
-  #lb { background: rgba(10,10,10,.95); }
-  #dfs { background: #fff; }
-  .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 13px 20px; }
-  #lb .ov-top { color: #fff; }
-  #dfs .ov-top { background: var(--ink); color: #fff; }
-  .ov-top b { font-size: 15px; }
-  .ov-top .pos { font-family: "JetBrains Mono", monospace; font-size: 12px; opacity: .75; }
-  .ov-x { background: none; border: 1px solid currentColor; color: inherit; font: inherit; font-size: 12px; padding: 5px 11px; cursor: pointer; }
-  #lb .body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 0 22px; }
-  #lb img { max-width: 100%; max-height: 100%; object-fit: contain; }
-  #lb .row { display: flex; gap: 8px; padding: 14px; justify-content: center; }
-  #lb .row button { width: 82px; height: 48px; border: 1px solid #555; background: none; padding: 0; cursor: pointer; overflow: hidden; }
-  #lb .row button img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-  #lb .row button.on { border-color: #fff; }
-  #dfs iframe { flex: 1; border: 0; }
-
-  #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px;
-    background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
+  .gal { display: grid; grid-template-columns: minmax(0,1fr) 236px; gap: 26px; flex: 1; min-height: 0; }
+  .gmain { position: relative; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; cursor: zoom-in; display: flex; flex-direction: column; }
+  .gmain .gimg { flex: 1; min-height: 0; }
+  .gmain img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+  .gcap { background: var(--ink); color: #fff; padding: 12px 18px; display: flex; gap: 14px; align-items: baseline; }
+  .gcap span { font-family: "JetBrains Mono", monospace; font-size: 13px; color: #9fb0ff; }
+  .gcap b { font-size: 19px; } .gcap em { font-style: normal; font-size: 17px; opacity: .85; }
+  .glist { display: flex; flex-direction: column; gap: 4px; }
+  .glist button { font: inherit; text-align: left; background: none; border: 1px solid transparent; padding: 9px 12px; cursor: pointer; display: flex; gap: 12px; align-items: baseline; font-size: 18px; color: var(--muted); }
+  .glist button i { font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  .glist button.on { border-color: var(--blue); color: var(--ink); font-weight: 700; box-shadow: 4px 4px 0 var(--blue); background: #fff; }
+  .glist button.on i { color: var(--blue); }
+  /* демо */
+  .demo { position: relative; flex: 1; min-height: 0; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; margin-top: 18px; }
+  .demo iframe { width: 142.86%; height: 142.86%; transform: scale(.7); transform-origin: 0 0; border: 0; display: block; }
+  .fs-btn { position: absolute; right: 16px; bottom: 16px; z-index: 3; font: inherit; font-size: 15px; font-weight: 700; padding: 10px 16px; cursor: pointer; background: var(--blue); color: #fff; border: none; }
+  .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); transition: opacity .25s; }
+  .demo-loader.done { opacity: 0; pointer-events: none; }
+  .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* чат агента */
+  .agentrow { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 40px; align-items: end; }
+  .chatw { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; }
+  .cw-h { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #e3e1da; }
+  .cw-h b { font-size: 18px; } .cw-h span { font-size: 14px; background: #f0f3f7; padding: 4px 12px; border-radius: 14px; }
+  .cw-b { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; font-size: 17px; line-height: 1.4; }
+  .cw-m { align-self: flex-end; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 12px 12px 2px 12px; max-width: 86%; }
+  .cw-card { border: 1px solid #d5d3cc; border-radius: 10px; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .cw-card > b { font-size: 15px; }
+  .cw-card label { display: flex; gap: 10px; align-items: baseline; font-size: 16px; }
+  .ck { display: inline-flex; width: 18px; height: 18px; flex: none; border: 1.5px solid #9a9890; border-radius: 4px; font-style: normal; font-size: 12px; align-items: center; justify-content: center; }
+  .ck.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .cw-btns { display: flex; gap: 10px; margin-top: 4px; }
+  .cw-btns u { text-decoration: none; background: var(--blue); color: #fff; padding: 7px 14px; border-radius: 6px; font-weight: 700; font-size: 14px; }
+  .cw-btns s { text-decoration: none; background: #f0f3f7; padding: 7px 14px; border-radius: 6px; font-size: 14px; }
+  .cw-s { font-family: "JetBrains Mono", monospace; font-size: 13px; color: #1c8a3a; line-height: 1.6; } .cw-s b { color: var(--ink); }
+  .agentrow .line { font-size: 24px; color: var(--ink); line-height: 1.35; padding-bottom: 8px; }
+  /* hero «Факт спринта» */
+  .fact { display: grid; grid-template-columns: 500px minmax(0,1fr); gap: 40px; align-items: center; height: 100%; }
+  .fact h1 { font-size: 104px; line-height: .96; }
+  .fan { position: relative; height: 430px; }
+  .fan img { position: absolute; width: 560px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border: 1px solid var(--ink); background: #fff; }
+  .fan .f1 { right: 0; top: 0; box-shadow: 6px 6px 0 var(--ink); }
+  .fan .f2 { right: 30px; top: 30px; box-shadow: 6px 6px 0 var(--ink); }
+  .fan .f3 { right: 60px; top: 60px; box-shadow: 10px 10px 0 var(--blue); }
+  /* C4 */
+  .c4 { width: 100%; height: auto; display: block; margin-top: -4px; }
+  .c4list { display: none; }
+  /* финал */
+  .final { display: grid; grid-template-columns: minmax(0,1fr) 430px; gap: 50px; align-items: center; height: 100%; }
+  .final h1 { font-size: 88px; }
+  .repo { display: inline-block; margin-top: 34px; font-size: 24px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 3px solid var(--blue); padding-bottom: 4px; }
+  .term { background: var(--ink); color: #e9e8e2; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 21px; line-height: 2; padding: 26px 30px; box-shadow: 8px 8px 0 var(--blue); }
+  .term i { font-style: normal; color: #9fb0ff; }
+  .term span { color: #7d7c76; font-size: 15px; display: block; line-height: 1.4; margin-bottom: 10px; }
+  /* навигация и оверлеи */
+  #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px; background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
   #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
-  #nav button:hover { color: var(--blue); }
   #nav .p { font-family: "JetBrains Mono", monospace; font-size: 12px; min-width: 46px; text-align: center; }
   #bar { position: fixed; left: 0; top: 0; height: 3px; background: var(--blue); z-index: 41; transition: width .18s; }
-  /* --- обновление 2026-10 --- */
-  .flow { display: grid; grid-template-columns: 1fr 34px 1fr 34px 1fr; align-items: stretch; margin-top: 6px; }
-  .flow .arr { display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: var(--blue); }
-  .flow .card p, .newg .card p { font-size: 15.5px; line-height: 1.42; color: var(--muted); }
-  .flow .tag { margin-bottom: 10px; }
-  .newg .n { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--blue); font-weight: 700; margin-bottom: 8px; }
-  .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); } .card.blue h3 { color: var(--blue); }
-  ul.list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
-  ul.list li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: baseline; font-size: 17px; line-height: 1.38; color: var(--muted); }
-  ul.list li::before { content: "→"; color: var(--blue); font-weight: 700; } ul.list b { color: var(--ink); }
-  ol.steps.compact { gap: 9px; margin-top: 12px; } ol.steps.compact b { font-family: "JetBrains Mono", monospace; font-size: 17px; } ol.steps.compact span { font-size: 14.5px; }
-  .repo { margin-top: 26px; }
-  /* галерея */
-  .gal2 { display: grid; grid-template-columns: 1fr 190px; gap: 18px; flex: 1; min-height: 0; }
-  .gmain { position: relative; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; cursor: zoom-in; }
-  .gmain img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
-  .gcap { position: absolute; left: 0; right: 0; bottom: 0; background: var(--ink); color: #fff; padding: 9px 16px; display: flex; gap: 12px; align-items: baseline; }
-  .gcap span { font-family: "JetBrains Mono", monospace; font-size: 12px; color: #9fb0ff; } .gcap b { font-size: 16px; } .gcap em { font-style: normal; font-size: 13.5px; opacity: .8; }
-  .gthumbs { display: flex; flex-direction: column; gap: 7px; min-height: 0; }
-  .gthumbs button { position: relative; flex: 1 1 0; min-height: 0; border: 1px solid #c9c8c2; background: #fff; padding: 0; cursor: pointer; overflow: hidden; }
-  .gthumbs button img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-  .gthumbs button i { position: absolute; left: 0; top: 0; z-index: 1; background: var(--ink); color: #fff; font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 2px 5px; }
-  .gthumbs button.on { border: 2px solid var(--blue); } .gthumbs button.on i { background: var(--blue); }
-  /* демо */
-  .duo2 { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 30px; flex: 1; min-height: 0; }
-  .dleft { align-self: center; }
-  .duo2 .demo { box-shadow: 6px 6px 0 var(--blue); overflow: hidden; }
-  .duo2 .demo iframe { width: 142.86%; height: 142.86%; transform: scale(.7); transform-origin: 0 0; }
-  .fs-btn { top: auto; bottom: 14px; }
-  .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); transition: opacity .25s; }
-  .demo-loader.done { opacity: 0; pointer-events: none; }
-  .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  #dfs .dfs-body { position: relative; flex: 1; display: flex; } #dfs .dfs-body iframe { flex: 1; }
-  #dfs .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
-  /* чат агента */
-  .chatw { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; display: flex; flex-direction: column; overflow: hidden; }
-  .cw-h { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; border-bottom: 1px solid #e3e1da; } .cw-h b { font-size: 16px; } .cw-h span { font-size: 13px; background: #f0f3f7; padding: 4px 10px; border-radius: 14px; }
-  .cw-b { padding: 14px 18px; display: flex; flex-direction: column; gap: 11px; font-size: 15px; line-height: 1.4; }
-  .cw-n { font-size: 13px; color: var(--muted); background: #f7f6f2; padding: 6px 10px; border-radius: 6px; align-self: flex-start; }
-  .cw-m.me { align-self: flex-end; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 12px 12px 2px 12px; max-width: 86%; }
-  .cw-card { border: 1px solid #d5d3cc; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; } .cw-card > b { font-size: 14px; }
-  .cw-card label { display: flex; gap: 10px; align-items: baseline; font-size: 14.5px; }
-  .ck { display: inline-flex; width: 18px; height: 18px; flex: none; border: 1.5px solid #9a9890; border-radius: 4px; font-style: normal; font-size: 12px; align-items: center; justify-content: center; } .ck.on { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .cw-btns { display: flex; gap: 10px; margin-top: 4px; } .cw-btns u { text-decoration: none; background: var(--blue); color: #fff; padding: 7px 14px; border-radius: 6px; font-weight: 700; font-size: 13.5px; } .cw-btns s { text-decoration: none; background: #f0f3f7; padding: 7px 14px; border-radius: 6px; font-size: 13.5px; }
-  .cw-s { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: #1c8a3a; line-height: 1.6; } .cw-s b { color: var(--ink); }
-  /* C4 */
-  .slide.archs { padding-top: 40px; padding-bottom: 40px; justify-content: flex-start; } h2.c4t { margin-bottom: 10px; }
-  .c4 { width: 100%; height: auto; display: block; }
-  .c4hint { display: none; font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .c4leg { display: flex; gap: 20px; align-items: center; margin-top: 6px; font-size: 13px; } .c4leg .lg { display: flex; align-items: center; gap: 7px; color: var(--muted); }
-  .c4leg i { width: 16px; height: 12px; border-radius: 3px; display: inline-block; } .lp { background: #080808; } .le { background: #dcdbd5; border: 1px solid #080808; } .lc { background: #2437ed; }
-  .lord { margin-left: auto; font-size: 13.5px; } .lord b { color: var(--blue); }
-  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
-    .newg, .grid.two { grid-template-columns: 1fr; }
-    .gal2 { grid-template-columns: 1fr; } .gmain { aspect-ratio: 16 / 10; } .gthumbs { flex-direction: row; overflow-x: auto; } .gthumbs button { flex: 0 0 78px; height: 50px; }
-    .gcap { position: static; flex-wrap: wrap; }
-    .duo2 { grid-template-columns: 1fr; gap: 18px; }
-    .duo2 .demo { flex: none; height: 120px; } .duo2 .demo iframe { display: none; }
-    .duo2 .demo .demo-loader { display: none; }
-    .fs-btn { display: block !important; left: 14px; right: 14px; top: 50% !important; bottom: auto; transform: translateY(-50%); padding: 14px; font-size: 15px; }
-    .cw-m.me { max-width: 100%; }
-    .c4wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; } .c4 { min-width: 860px; } .c4hint { display: block; }
-    .c4leg { flex-wrap: wrap; gap: 10px 16px; } .lord { margin-left: 0; }
-  }
-  /* --- обновление 2026-10 --- */
-  .flow { display: grid; grid-template-columns: 1fr 34px 1fr 34px 1fr; align-items: stretch; margin-top: 6px; }
-  .flow .arr { display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: var(--blue); }
-  .flow .card p, .newg .card p { font-size: 15.5px; line-height: 1.42; color: var(--muted); }
-  .flow .tag { margin-bottom: 10px; }
-  .newg .n { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--blue); font-weight: 700; margin-bottom: 8px; }
-  .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); } .card.blue h3 { color: var(--blue); }
-  ul.list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
-  ul.list li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: baseline; font-size: 17px; line-height: 1.38; color: var(--muted); }
-  ul.list li::before { content: "→"; color: var(--blue); font-weight: 700; } ul.list b { color: var(--ink); }
-  ol.steps.compact { gap: 9px; margin-top: 12px; } ol.steps.compact b { font-family: "JetBrains Mono", monospace; font-size: 17px; } ol.steps.compact span { font-size: 14.5px; }
-  .repo { margin-top: 26px; }
-  /* галерея */
-  .gal2 { display: grid; grid-template-columns: 1fr 190px; gap: 18px; flex: 1; min-height: 0; }
-  .gmain { position: relative; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; cursor: zoom-in; }
-  .gmain img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
-  .gcap { position: absolute; left: 0; right: 0; bottom: 0; background: var(--ink); color: #fff; padding: 9px 16px; display: flex; gap: 12px; align-items: baseline; }
-  .gcap span { font-family: "JetBrains Mono", monospace; font-size: 12px; color: #9fb0ff; } .gcap b { font-size: 16px; } .gcap em { font-style: normal; font-size: 13.5px; opacity: .8; }
-  .gthumbs { display: flex; flex-direction: column; gap: 7px; min-height: 0; }
-  .gthumbs button { position: relative; flex: 1 1 0; min-height: 0; border: 1px solid #c9c8c2; background: #fff; padding: 0; cursor: pointer; overflow: hidden; }
-  .gthumbs button img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-  .gthumbs button i { position: absolute; left: 0; top: 0; z-index: 1; background: var(--ink); color: #fff; font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 2px 5px; }
-  .gthumbs button.on { border: 2px solid var(--blue); } .gthumbs button.on i { background: var(--blue); }
-  /* демо */
-  .duo2 { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 30px; flex: 1; min-height: 0; }
-  .dleft { align-self: center; }
-  .duo2 .demo { box-shadow: 6px 6px 0 var(--blue); overflow: hidden; }
-  .duo2 .demo iframe { width: 142.86%; height: 142.86%; transform: scale(.7); transform-origin: 0 0; }
-  .fs-btn { top: auto; bottom: 14px; }
-  .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); transition: opacity .25s; }
-  .demo-loader.done { opacity: 0; pointer-events: none; }
-  .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  #dfs .dfs-body { position: relative; flex: 1; display: flex; } #dfs .dfs-body iframe { flex: 1; }
-  #dfs .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
-  /* чат агента */
-  .chatw { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; display: flex; flex-direction: column; overflow: hidden; }
-  .cw-h { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; border-bottom: 1px solid #e3e1da; } .cw-h b { font-size: 16px; } .cw-h span { font-size: 13px; background: #f0f3f7; padding: 4px 10px; border-radius: 14px; }
-  .cw-b { padding: 14px 18px; display: flex; flex-direction: column; gap: 11px; font-size: 15px; line-height: 1.4; }
-  .cw-n { font-size: 13px; color: var(--muted); background: #f7f6f2; padding: 6px 10px; border-radius: 6px; align-self: flex-start; }
-  .cw-m.me { align-self: flex-end; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 12px 12px 2px 12px; max-width: 86%; }
-  .cw-card { border: 1px solid #d5d3cc; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; } .cw-card > b { font-size: 14px; }
-  .cw-card label { display: flex; gap: 10px; align-items: baseline; font-size: 14.5px; }
-  .ck { display: inline-flex; width: 18px; height: 18px; flex: none; border: 1.5px solid #9a9890; border-radius: 4px; font-style: normal; font-size: 12px; align-items: center; justify-content: center; } .ck.on { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .cw-btns { display: flex; gap: 10px; margin-top: 4px; } .cw-btns u { text-decoration: none; background: var(--blue); color: #fff; padding: 7px 14px; border-radius: 6px; font-weight: 700; font-size: 13.5px; } .cw-btns s { text-decoration: none; background: #f0f3f7; padding: 7px 14px; border-radius: 6px; font-size: 13.5px; }
-  .cw-s { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: #1c8a3a; line-height: 1.6; } .cw-s b { color: var(--ink); }
-  /* C4 */
-  .slide.archs { padding-top: 40px; padding-bottom: 40px; justify-content: flex-start; } h2.c4t { margin-bottom: 10px; }
-  .c4 { width: 100%; height: auto; display: block; }
-  .c4hint { display: none; font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .c4leg { display: flex; gap: 20px; align-items: center; margin-top: 6px; font-size: 13px; } .c4leg .lg { display: flex; align-items: center; gap: 7px; color: var(--muted); }
-  .c4leg i { width: 16px; height: 12px; border-radius: 3px; display: inline-block; } .lp { background: #080808; } .le { background: #dcdbd5; border: 1px solid #080808; } .lc { background: #2437ed; }
-  .lord { margin-left: auto; font-size: 13.5px; } .lord b { color: var(--blue); }
-  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
-    .newg, .grid.two { grid-template-columns: 1fr; }
-    .gal2 { grid-template-columns: 1fr; } .gmain { aspect-ratio: 16 / 10; } .gthumbs { flex-direction: row; overflow-x: auto; } .gthumbs button { flex: 0 0 78px; height: 50px; }
-    .gcap { position: static; flex-wrap: wrap; }
-    .duo2 { grid-template-columns: 1fr; gap: 18px; }
-    .duo2 .demo { flex: none; height: 120px; } .duo2 .demo iframe { display: none; }
-    .duo2 .demo .demo-loader { display: none; }
-    .fs-btn { display: block !important; left: 14px; right: 14px; top: 50% !important; bottom: auto; transform: translateY(-50%); padding: 14px; font-size: 15px; }
-    .cw-m.me { max-width: 100%; }
-    .c4wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; } .c4 { min-width: 860px; } .c4hint { display: block; }
-    .c4leg { flex-wrap: wrap; gap: 10px 16px; } .lord { margin-left: 0; }
-  }
-  /* --- обновление 2026-10 --- */
-  .flow { display: grid; grid-template-columns: 1fr 34px 1fr 34px 1fr; align-items: stretch; margin-top: 6px; }
-  .flow .arr { display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: var(--blue); }
-  .flow .card p, .newg .card p { font-size: 15.5px; line-height: 1.42; color: var(--muted); }
-  .flow .tag { margin-bottom: 10px; }
-  .newg .n { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--blue); font-weight: 700; margin-bottom: 8px; }
-  .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); } .card.blue h3 { color: var(--blue); }
-  ul.list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
-  ul.list li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: baseline; font-size: 17px; line-height: 1.38; color: var(--muted); }
-  ul.list li::before { content: "→"; color: var(--blue); font-weight: 700; } ul.list b { color: var(--ink); }
-  ol.steps.compact { gap: 9px; margin-top: 12px; } ol.steps.compact b { font-family: "JetBrains Mono", monospace; font-size: 17px; } ol.steps.compact span { font-size: 14.5px; }
-  .repo { margin-top: 26px; }
-  /* галерея */
-  .gal2 { display: grid; grid-template-columns: 1fr 190px; gap: 18px; flex: 1; min-height: 0; }
-  .gmain { position: relative; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; cursor: zoom-in; }
-  .gmain img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
-  .gcap { position: absolute; left: 0; right: 0; bottom: 0; background: var(--ink); color: #fff; padding: 9px 16px; display: flex; gap: 12px; align-items: baseline; }
-  .gcap span { font-family: "JetBrains Mono", monospace; font-size: 12px; color: #9fb0ff; } .gcap b { font-size: 16px; } .gcap em { font-style: normal; font-size: 13.5px; opacity: .8; }
-  .gthumbs { display: flex; flex-direction: column; gap: 7px; min-height: 0; }
-  .gthumbs button { position: relative; flex: 1 1 0; min-height: 0; border: 1px solid #c9c8c2; background: #fff; padding: 0; cursor: pointer; overflow: hidden; }
-  .gthumbs button img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-  .gthumbs button i { position: absolute; left: 0; top: 0; z-index: 1; background: var(--ink); color: #fff; font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 2px 5px; }
-  .gthumbs button.on { border: 2px solid var(--blue); } .gthumbs button.on i { background: var(--blue); }
-  /* демо */
-  .duo2 { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 30px; flex: 1; min-height: 0; }
-  .dleft { align-self: center; }
-  .duo2 .demo { box-shadow: 6px 6px 0 var(--blue); overflow: hidden; }
-  .duo2 .demo iframe { width: 142.86%; height: 142.86%; transform: scale(.7); transform-origin: 0 0; }
-  .fs-btn { top: auto; bottom: 14px; }
-  .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); transition: opacity .25s; }
-  .demo-loader.done { opacity: 0; pointer-events: none; }
-  .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  #dfs .dfs-body { position: relative; flex: 1; display: flex; } #dfs .dfs-body iframe { flex: 1; }
-  #dfs .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
-  /* чат агента */
-  .chatw { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; display: flex; flex-direction: column; overflow: hidden; }
-  .cw-h { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; border-bottom: 1px solid #e3e1da; } .cw-h b { font-size: 16px; } .cw-h span { font-size: 13px; background: #f0f3f7; padding: 4px 10px; border-radius: 14px; }
-  .cw-b { padding: 14px 18px; display: flex; flex-direction: column; gap: 11px; font-size: 15px; line-height: 1.4; }
-  .cw-n { font-size: 13px; color: var(--muted); background: #f7f6f2; padding: 6px 10px; border-radius: 6px; align-self: flex-start; }
-  .cw-m.me { align-self: flex-end; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 12px 12px 2px 12px; max-width: 86%; }
-  .cw-card { border: 1px solid #d5d3cc; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; } .cw-card > b { font-size: 14px; }
-  .cw-card label { display: flex; gap: 10px; align-items: baseline; font-size: 14.5px; }
-  .ck { display: inline-flex; width: 18px; height: 18px; flex: none; border: 1.5px solid #9a9890; border-radius: 4px; font-style: normal; font-size: 12px; align-items: center; justify-content: center; } .ck.on { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .cw-btns { display: flex; gap: 10px; margin-top: 4px; } .cw-btns u { text-decoration: none; background: var(--blue); color: #fff; padding: 7px 14px; border-radius: 6px; font-weight: 700; font-size: 13.5px; } .cw-btns s { text-decoration: none; background: #f0f3f7; padding: 7px 14px; border-radius: 6px; font-size: 13.5px; }
-  .cw-s { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: #1c8a3a; line-height: 1.6; } .cw-s b { color: var(--ink); }
-  /* C4 */
-  .slide.archs { padding-top: 40px; padding-bottom: 40px; justify-content: flex-start; } h2.c4t { margin-bottom: 10px; }
-  .c4 { width: 100%; height: auto; display: block; }
-  .c4hint { display: none; font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .c4leg { display: flex; gap: 20px; align-items: center; margin-top: 6px; font-size: 13px; } .c4leg .lg { display: flex; align-items: center; gap: 7px; color: var(--muted); }
-  .c4leg i { width: 16px; height: 12px; border-radius: 3px; display: inline-block; } .lp { background: #080808; } .le { background: #dcdbd5; border: 1px solid #080808; } .lc { background: #2437ed; }
-  .lord { margin-left: auto; font-size: 13.5px; } .lord b { color: var(--blue); }
-  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
-    .newg, .grid.two { grid-template-columns: 1fr; }
-    .gal2 { grid-template-columns: 1fr; } .gmain { aspect-ratio: 16 / 10; } .gthumbs { flex-direction: row; overflow-x: auto; } .gthumbs button { flex: 0 0 78px; height: 50px; }
-    .gcap { position: static; flex-wrap: wrap; }
-    .duo2 { grid-template-columns: 1fr; gap: 18px; }
-    .duo2 .demo { flex: none; height: 120px; } .duo2 .demo iframe { display: none; }
-    .duo2 .demo .demo-loader { display: none; }
-    .fs-btn { display: block !important; left: 14px; right: 14px; top: 50% !important; bottom: auto; transform: translateY(-50%); padding: 14px; font-size: 15px; }
-    .cw-m.me { max-width: 100%; }
-    .c4wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; } .c4 { min-width: 860px; } .c4hint { display: block; }
-    .c4leg { flex-wrap: wrap; gap: 10px 16px; } .lord { margin-left: 0; }
-  }
-  /* Телефон и узкий портрет: без масштабирования, слайды идут лентой в одну колонку. */
+  #lb, #dfs { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: column; }
+  #lb.on, #dfs.on { display: flex; }
+  #lb { background: rgba(10,10,10,.95); } #dfs { background: #fff; }
+  .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
+  #lb .ov-top { color: #fff; } #dfs .ov-top { background: var(--ink); color: #fff; }
+  .ov-x { background: none; border: 1px solid currentColor; color: inherit; font: inherit; font-size: 12px; padding: 5px 11px; cursor: pointer; }
+  #lb .body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 0 22px 22px; }
+  #lb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .dfs-body { position: relative; flex: 1; display: flex; } .dfs-body iframe { flex: 1; border: 0; }
+
+  /* Телефон и узкий портрет: без масштаба, слайды идут лентой в одну колонку. */
   @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
     html, body { height: auto; overflow: auto; display: block; background: var(--bg); }
     #stage { width: auto; height: auto; transform: none !important; }
-    .slide { position: relative; inset: auto; display: flex !important; padding: 34px 18px 38px; border-bottom: 1px solid #c9c8c2; }
-    .slide.tight { padding: 34px 18px 38px; }
+    .slide { position: relative; inset: auto; display: flex !important; padding: 40px 18px 44px; border-bottom: 1px solid var(--line); }
+    .slide.center { padding-top: 40px; }
     #nav, #bar { display: none; }
-    h1 { font-size: 40px; }
-    h2, h2.sm { font-size: 29px; margin-bottom: 18px; }
-    .install h1 { font-size: 42px; }
-    .sub, .install .sub { font-size: 18px; margin-top: 16px; }
-    .quote { font-size: 20px; }
-    .foot.big { font-size: 17px; margin-top: 20px; }
-    .cover-layout { grid-template-columns: 1fr; gap: 24px; }
-    .cover-photo { width: 150px; height: 150px; }
-    .site { max-width: 260px; }
-    .grid.three, .grid.two, .duo, .split { grid-template-columns: 1fr; }
-    .duo { gap: 22px; }
-    .split > div + div { border-left: 0; border-top: 1px solid var(--ink); }
-    .split .t { font-size: 27px; }
-    .flow { grid-template-columns: 1fr; gap: 0; }
-    .flow .arr { height: 34px; transform: rotate(90deg); }
-    .flow.tall { grid-template-columns: 1fr; gap: 0; }
-    .srcs span { font-size: 13px; padding: 5px 9px; }
-    ul.wins li { font-size: 17px; }
-    table.ba td, table.ba th { padding: 8px 8px; font-size: 14px; }
-    table.ba td:first-child { white-space: normal; width: auto; }
-    .msg { max-width: 100%; }
-    .code { font-size: 12px; white-space: pre-wrap; }
-    .gal { grid-template-columns: 1fr; height: auto; }
-    .gal-img { aspect-ratio: 16 / 9; flex: none; }
-    .gal-cap { flex-wrap: wrap; }
-    .thumbs { flex-direction: row; overflow-x: auto; }
-    .thumbs button { flex: 0 0 74px; height: 44px; }
-    .demo { flex: none; height: 78vh; }
-    .duo .demo iframe { width: 100%; height: 100%; transform: none; }
-    .fs-btn { display: none; }
+    h1, .final h1, .cover h1 { font-size: 40px; } .fact h1 { font-size: 56px; }
+    h2 { font-size: 32px; margin-bottom: 22px; }
+    .lead { font-size: 18px; } .quote { font-size: 20px; } .line, .agentrow .line { font-size: 18px; }
+    h1 .nw { white-space: normal; }
+    .cover, .fact, .final, .agentrow { grid-template-columns: 1fr; gap: 26px; height: auto; }
+    .photo { width: 150px; height: 150px; } .site { max-width: 260px; }
+    .nums { gap: 18px; } .num b { font-size: 84px; } .num span { font-size: 15px; } .nums .arr { font-size: 36px; padding-bottom: 40px; }
+    .big { font-size: 110px; } .big small { font-size: 40px; } .big + .line { font-size: 20px; }
+    .cards { grid-template-columns: 1fr; gap: 18px; }
+    .steps { grid-template-columns: 1fr; } .steps > .arr { height: 34px; transform: rotate(90deg); }
+    .card .k { font-size: 44px; } .card h3 { font-size: 22px; } .card p { font-size: 17px; }
+    ul.rows li { font-size: 22px; grid-template-columns: 32px 1fr; } ul.rows { gap: 16px; }
+    .gal { grid-template-columns: 1fr; } .gmain .gimg { aspect-ratio: 16 / 10; flex: none; }
+    .glist { flex-direction: row; overflow-x: auto; gap: 6px; } .glist button { flex: none; font-size: 15px; padding: 7px 10px; white-space: nowrap; }
+    .gcap { flex-wrap: wrap; } .gcap em { font-size: 15px; }
+    .demo { flex: none; height: 110px; } .demo iframe, .demo .demo-loader { display: none; }
+    .fs-btn { left: 16px; right: 16px; top: 50%; bottom: auto; transform: translateY(-50%); padding: 14px; }
+    .cw-b { font-size: 15px; } .cw-m { max-width: 100%; }
+    .fan { height: auto; } .fan img { position: static; width: 100%; } .fan .f1, .fan .f2 { display: none; }
+    .c4 { display: none; } .c4list { display: flex; flex-direction: column; gap: 14px; }
+    .term { font-size: 16px; padding: 20px; }
   }
 </style>
 </head>
@@ -412,215 +184,170 @@
 <div id="bar"></div>
 <div id="stage">
 
-    <!-- 1 · титул -->
-  <section class="slide on" data-title="Спринты под управлением руководителя">
-    <div class="cover-layout">
+  <!-- 1 · титул -->
+  <section class="slide center on" data-title="Спринты под управлением руководителя">
+    <div class="cover">
       <div>
-        <h1>Спринты под управлением<br><span class="accent">руководителя</span></h1>
-        <p class="sub">Данные спринта собирает скрипт каждое утро. Отчёт ждёт в мессенджере и на телефоне. Разговор с техлидом — только о блокаторах.</p>
+        <h1><span class="nw">Спринты под управлением</span><br><span class="accent">руководителя</span></h1>
+        <p class="lead">Отчёт о спринте приходит сам — каждое утро.</p>
         <p class="quote">Четыре команды не обойти лично.<br>Их можно обойти по одной странице.</p>
       </div>
       <div>
-        <img class="cover-photo" id="coverPhoto" alt="Автор">
+        <img class="photo" id="coverPhoto" alt="Автор">
         <a class="site" href="https://aleksishmanov.ru/" target="_blank" rel="noopener"><span>aleksishmanov.ru</span><i>↗</i></a>
       </div>
     </div>
   </section>
 
-    <!-- 2 · ситуация -->
+  <!-- 2 · ситуация -->
   <section class="slide" data-title="Нагрузка выросла вдвое">
-    <div class="eyebrow">СИТУАЦИЯ</div>
-    <h2>Увеличилась нагрузка вдвое</h2>
-    <div class="split">
-      <div class="a">
-        <div class="lbl">БЫЛО</div>
-        <div class="t">1 стрим<br>2 команды · 10 человек</div>
-        <p>Дейли каждой команды помещались в график.</p>
-      </div>
-      <div class="b">
-        <div class="lbl">СТАЛО</div>
-        <div class="t accent">3 стрима<br>4 команды · 20+ человек</div>
-        <p>Личное присутствие на дейли перестало помещаться в день.</p>
-      </div>
+    <h2>Нагрузка выросла <span class="accent">вдвое</span></h2>
+    <div class="nums">
+      <div class="num was"><b>10</b><span>человек · 2 команды · 1 стрим</span></div>
+      <div class="arr">→</div>
+      <div class="num now"><b>20+</b><span>человек · 4 команды · 3 стрима</span></div>
     </div>
+    <p class="line" style="margin-top:44px">На все дейли лично больше не хватает дня.</p>
   </section>
 
-    <!-- 3 · проблема -->
+  <!-- 3 · проблема -->
   <section class="slide" data-title="Что ломается без личного присутствия">
-    <div class="eyebrow">ПРОБЛЕМА</div>
-    <h2 class="sm">Без личного присутствия картина расползается</h2>
-    <div class="grid three">
-      <div class="card sm"><h3>Съезжают сроки демо</h3><p>Коммитмент не оспаривают — про него забывают.</p></div>
-      <div class="card sm"><h3>Блокаторы стоят дольше</h3><p>Некому продавить смежную команду вовремя.</p></div>
-      <div class="card sm"><h3>Проседает коммуникация</h3><p>DevOps, релизы, параллельные команды остаются без стыковки.</p></div>
-      <div class="card sm"><h3>Опора только на техлидов</h3><p>Картина приходит пересказом. Проверять долго и дорого.</p></div>
-      <div class="card sm"><h3>Растёт число историй в контроле</h3><p>Держать их в голове по четырём командам невозможно.</p></div>
-      <div class="card sm"><h3>Разрыв с квартальными целями</h3><p>Локальные оптимизации вытесняют цели квартала.</p></div>
+    <h2>Без личного присутствия<br><span class="accent">картина расползается</span></h2>
+    <div class="cards">
+      <div class="card"><h3>Сроки демо съезжают</h3><p>Про коммитмент забывают.</p></div>
+      <div class="card"><h3>Блокаторы стоят дольше</h3><p>Смежную команду некому продавить.</p></div>
+      <div class="card"><h3>Картина — пересказом</h3><p>Проверять долго и дорого.</p></div>
     </div>
   </section>
 
-    <!-- 4 · что не нравится -->
-  <section class="slide" data-title="Что не нравится в текущем подходе">
-    <div class="eyebrow">ЧТО НЕ НРАВИТСЯ</div>
-    <h2 class="sm">Цена еженедельной сборки статуса</h2>
-    <div class="grid lean">
-      <div>
-        <div class="num">45<small>минут на обход команд: собрать статусы, вспомнить прошлые договорённости, найти застрявшее</small></div>
-      </div>
-      <div class="grid" style="gap:14px">
-        <div class="card"><h3>Ручная сборка по трекеру</h3><p>Доски, фильтры, выгрузки. По каждой команде отдельно.</p></div>
-        <div class="card"><h3>Техлиды отвлекаются на пересказ</h3><p>Время уходит на проговаривание статусов вместо работы.</p></div>
-        <div class="card"><h3>Метрики и проседающие задачи не видны</h3><p>Что именно тормозит — выясняется уже по факту срыва.</p></div>
-      </div>
-    </div>
+  <!-- 4 · цена -->
+  <section class="slide center" data-title="Цена еженедельной сборки статуса">
+    <div class="big">45<small>минут</small></div>
+    <p class="line">каждую неделю на обход команд —<br>и картина всё равно пересказом</p>
   </section>
 
-  <!-- решение -->
+  <!-- 5 · решение -->
   <section class="slide" data-title="Решение">
-    <div class="eyebrow">РЕШЕНИЕ</div>
-    <h2>Состояние спринта приходит<br>до разговора, а не во время</h2>
-    <div class="flow">
-      <div class="card"><div class="tag">СБОРЩИК</div><h3>Каждое утро сам</h3><p>Скрипт без ИИ читает трекер по всем командам в 08:30 и по кнопке. Цифры не придумываются.</p></div>
+    <h2>Статус приходит<br><span class="accent">до разговора</span></h2>
+    <div class="steps">
+      <div class="card"><div class="tag">СБОРЩИК</div><span class="k">08:30</span><p>сам читает трекер, без ИИ</p></div>
       <div class="arr">→</div>
-      <div class="card blue"><div class="tag blue">ОТЧЁТ</div><h3>Там, где вы и так есть</h3><p>Виджет в мессенджере и на телефоне: эпики, риски, метрики, комментарии. Для комитета — бизнес-колода.</p></div>
+      <div class="card blue"><div class="tag">ОТЧЁТ</div><span class="k">1 экран</span><p>в мессенджере и на телефоне</p></div>
       <div class="arr">→</div>
-      <div class="card"><div class="tag">РАЗГОВОР</div><h3>5 минут вместо 30</h3><p>Сверка фактов. Правки в трекер вносит ИИ-агент по вашим заметкам — после вашего ✅.</p></div>
+      <div class="card"><div class="tag">РАЗГОВОР</div><span class="k">5 мин</span><p>только о блокаторах</p></div>
     </div>
   </section>
 
-  <!-- что нового -->
-  <section class="slide" data-title="Что нового">
-    <div class="eyebrow">ЧТО НОВОГО С СЕНТЯБРЯ</div>
-    <h2 class="sm">Из страницы по запросу — в рабочий контур</h2>
-    <div class="grid three newg">
-      <div class="card"><div class="n">01</div><h3>Сбор по расписанию</h3><p>Пн–пт 08:30 и кнопка «Актуализировать». Скрипт, а не агент: проверка данных по 14 правилам.</p></div>
-      <div class="card"><div class="n">02</div><h3>Отчёт в мессенджере</h3><p>Виджет в комнате и на телефоне. Свежесть данных и ошибки сбора видны на команде.</p></div>
-      <div class="card"><div class="n">03</div><h3>«Весь эпик» и метрики</h3><p>Сгорание эпика с прогнозом, производительность за 3 спринта, диаграммы управления.</p></div>
-      <div class="card"><div class="n">04</div><h3>Инсайды ИИ</h3><p>Динамика команды, на что смотреть, рекомендации — отдельно от данных.</p></div>
-      <div class="card"><div class="n">05</div><h3>Бизнес-колода</h3><p>«ФАКТ | спринт» для комитета: цели и KR, итоги, участники, планы, риски, PDF.</p></div>
-      <div class="card blue"><div class="n">06</div><h3>ИИ-агент и техлиды</h3><p>Заметки → план правок → ✅ → трекер. Техлиды видят отчёты по своей ссылке.</p></div>
-    </div>
-  </section>
-
-  <!-- отчёт PO: галерея -->
+  <!-- 6 · отчёт PO -->
   <section class="slide" data-title="Отчёт PO">
-    <div class="eyebrow">ОТЧЁТ PO · ЭКРАНЫ</div>
-    <h2 class="sm" style="margin-bottom:16px">Что видно без запроса</h2>
-    <div class="gal2">
-      <div class="gmain" id="g2Img"><img id="g2Pic" src="img/01-epics.webp" alt="Главная"><div class="gcap"><span id="g2N">01 / 08</span><b id="g2T">Главная</b><em id="g2D">эпики одной строкой: приоритет, статусы задач, «Статус»</em></div></div>
-      <div class="gthumbs" id="g2Thumbs"><button data-src="img/01-epics.webp" data-t="Главная" data-d="эпики одной строкой: приоритет, статусы задач, «Статус»" class="on"><img src="img/01-epics.webp" alt="" loading="lazy"><i>01</i></button><button data-src="img/02-epic-panel.webp" data-t="Эпик" data-d="истории и подзадачи, возраст статуса"><img src="img/02-epic-panel.webp" alt="" loading="lazy"><i>02</i></button><button data-src="img/03-whole-epic.webp" data-t="Весь эпик" data-d="сгорание по неделям, прогноз и итог против плана"><img src="img/03-whole-epic.webp" alt="" loading="lazy"><i>03</i></button><button data-src="img/04-leadtime.webp" data-t="Сводка за 3 спринта" data-d="burndown, запланировано / сделано, диаграмма управления"><img src="img/04-leadtime.webp" alt="" loading="lazy"><i>04</i></button><button data-src="img/05-logs.webp" data-t="Logs" data-d="кто что менял за спринт, с фильтрами"><img src="img/05-logs.webp" alt="" loading="lazy"><i>05</i></button><button data-src="img/06-insights.webp" data-t="Инсайды ИИ" data-d="динамика, на что обратить внимание, рекомендации"><img src="img/06-insights.webp" alt="" loading="lazy"><i>06</i></button><button data-src="img/07-comments.webp" data-t="Комментарии" data-d="корзина заметок, одна на отчёт и колоду"><img src="img/07-comments.webp" alt="" loading="lazy"><i>07</i></button><button data-src="img/08-mobile.webp" data-t="Телефон" data-d="тот же отчёт на iPhone"><img src="img/08-mobile.webp" alt="" loading="lazy"><i>08</i></button></div>
+    <h2>Отчёт PO: <span class="accent">8 экранов</span></h2>
+    <div class="gal">
+      <div class="gmain" id="gMain"><div class="gimg"><img id="gPic" src="img/01-epics.webp" alt="Эпики"></div><div class="gcap"><span id="gN">01 / 08</span><b id="gT">Эпики</b><em id="gD">Строка — эпик, а не задача</em></div></div>
+      <div class="glist" id="gList"><button data-src="img/01-epics.webp" data-t="Эпики" data-d="Строка — эпик, а не задача" class=on><i>01</i>Эпики</button><button data-src="img/02-epic-panel.webp" data-t="Эпик" data-d="Зона риска и возраст статуса"><i>02</i>Эпик</button><button data-src="img/03-whole-epic.webp" data-t="Весь эпик" data-d="Сгорание и расчётная дата"><i>03</i>Весь эпик</button><button data-src="img/04-leadtime.webp" data-t="Сводка" data-d="Производительность за 3 спринта"><i>04</i>Сводка</button><button data-src="img/05-logs.webp" data-t="Logs" data-d="Кто что менял за спринт"><i>05</i>Logs</button><button data-src="img/06-insights.webp" data-t="Инсайды ИИ" data-d="Выводы — отдельно от данных"><i>06</i>Инсайды ИИ</button><button data-src="img/07-comments.webp" data-t="Заметки" data-d="Не теряются между неделями"><i>07</i>Заметки</button><button data-src="img/08-mobile.webp" data-t="Телефон" data-d="Тот же отчёт на iPhone"><i>08</i>Телефон</button><p class="note">Демо-данные: вымышленные команды.</p></div>
     </div>
-    <p class="foot">Демо-данные: вымышленные команды и участники.</p>
   </section>
 
-  <!-- Демо отчёта -->
+  <!-- 7 · демо отчёта -->
   <section class="slide" data-title="Демо отчёта">
-    <div class="eyebrow">ДЕМО · ОТЧЁТ PO</div>
-    <h2 class="sm" style="margin-bottom:16px">Живой отчёт — можно кликать</h2>
-    <div class="duo2">
-      <div class="dleft"><ul class="list"><li><span><b>Команды</b> — переключатель сверху.</span></li><li><span><b>«Статус»</b> у эпика — истории, подзадачи, «Весь эпик».</span></li><li><span><b>Lead Time</b> — сводка за 3 спринта.</span></li><li><span><b>«!»</b> — инсайды ИИ.</span></li><li><span><b>Комментарии</b> — заметка к эпику.</span></li></ul></div>
-      <div class="demo"><div class="demo-loader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfr" title="Живой отчёт — можно кликать" data-src="demo/report.html" loading="lazy"></iframe><button class="fs-btn" data-frame="dfr">На весь экран</button></div>
-    </div>
+    <h2>Живой отчёт — <span class="accent">можно кликать</span></h2>
+    <p class="line">Команды, «Статус», «!», «Комментарии».</p>
+    <div class="demo"><div class="demo-loader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfr" title="Живой отчёт PO" data-src="demo/report.html"></iframe><button class="fs-btn" data-frame="dfr">На весь экран</button></div>
   </section>
 
-  <!-- Бизнес-колода -->
-  <section class="slide" data-title="Бизнес-колода">
-    <div class="eyebrow">ДЕМО · ДЛЯ КОМИТЕТА</div>
-    <h2 class="sm" style="margin-bottom:16px">«ФАКТ | спринт» — из тех же данных</h2>
-    <div class="duo2">
-      <div class="dleft"><ul class="list"><li><span><b>Титул</b> — карточки команд: закрыто, в блоке, не закрыто.</span></li><li><span><b>OBJ / KR</b> — итог спринта по целям квартала.</span></li><li><span><b>Операционка</b> — производительность, сгорание, cycle time.</span></li><li><span><b>Участники, планы, риски.</b></span></li><li><span><b>«Для техлидов»</b> и <b>PDF</b> — в шапке.</span></li></ul><p class="foot">Тексты к целям пишет агент, цифры — только из данных.</p></div>
-      <div class="demo"><div class="demo-loader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfb" title="«ФАКТ | спринт» — из тех же данных" data-src="demo/business.html" loading="lazy"></iframe><button class="fs-btn" data-frame="dfb">На весь экран</button></div>
-    </div>
-  </section>
-
-  <!-- ИИ-агент -->
-  <section class="slide" data-title="ИИ-агент в отчёте">
-    <div class="eyebrow">ИИ-АГЕНТ В ОТЧЁТЕ</div>
-    <h2 class="sm" style="margin-bottom:16px">Заметки → план → ✅ → трекер</h2>
-    <div class="duo2">
-      <div class="dleft"><ul class="list"><li><span><b>Колонка справа</b> в отчёте и колоде.</span></li><li><span><b>Агент предлагает</b> правки из белого списка: задача, комментарий, статус, исполнитель, связь.</span></li><li><span><b>Пишет в трекер только сервис</b> — после ваших галочек.</span></li><li><span><b>Отчёт пересобирается сам</b> на свежих данных.</span></li></ul></div>
+  <!-- 8 · ИИ-агент -->
+  <section class="slide" data-title="Заметки и ИИ-агент">
+    <h2>Заметки → план → ✅ → <span class="accent">трекер</span></h2>
+    <div class="agentrow">
       <div class="chatw">
         <div class="cw-h"><b>ИИ-агент отчёта</b><span>Команда: Платформа ▾</span></div>
         <div class="cw-b">
-          <div class="cw-n">📝 замечаний: 2 — возьму в работу</div>
-          <div class="cw-m me">Разбери замечания: заведи задачу на синхронизацию стендов и запиши решение в эпик.</div>
+          <div class="cw-m">Разбери заметки: заведи задачу на синхронизацию стендов и запиши решение в эпик.</div>
           <div class="cw-card"><b>Предлагаю изменить в Jira:</b>
             <label><i class="ck on">✓</i>Создать задачу «Синхронизировать два стенда» в INIT-101</label>
             <label><i class="ck on">✓</i>Комментарий в INIT-101: «Решение — к четвергу»</label>
             <label><i class="ck">&nbsp;</i>Исполнитель INIT-132 → Участник В</label>
             <div class="cw-btns"><u>Применить отмеченные (2)</u><s>Отклонить</s></div>
           </div>
-          <div class="cw-s">✓ INIT-140 создана · ✓ комментарий добавлен<br>↻ актуализирую отчёт… <b>Отчёт обновлён — 08:47</b></div>
+          <div class="cw-s">✓ INIT-140 создана · ✓ комментарий добавлен · <b>отчёт обновлён</b></div>
         </div>
+      </div>
+      <p class="line">В трекер пишет только сервис — после ваших ✅.</p>
+    </div>
+  </section>
+
+  <!-- 9 · на практике -->
+  <section class="slide" data-title="На практике">
+    <h2>На <span class="accent">практике</span></h2>
+    <ul class="rows">
+      <li><span>Обход трекера <b>не нужен</b></span></li>
+      <li><span>Где и кто застрял — <b>видно сразу</b></span></li>
+      <li><span>Созвон с техлидами — <b>только о блокаторах</b></span></li>
+    </ul>
+  </section>
+
+  <!-- 10 · hero «Факт спринта» -->
+  <section class="slide center" data-title="Факт спринта">
+    <div class="fact">
+      <div>
+        <div class="label">ДЛЯ КОМИТЕТА</div>
+        <h1>Факт<br><span class="accent">спринта</span></h1>
+        <p class="lead">Бизнес-колода из тех же данных. Цифры — из трекера, тексты к целям — агент.</p>
+      </div>
+      <div class="fan">
+        <img class="f1" src="img/biz-3.webp" alt="" loading="lazy">
+        <img class="f2" src="img/biz-1.webp" alt="" loading="lazy">
+        <img class="f3" src="img/biz-2.webp" alt="Колода «ФАКТ | спринт»" loading="lazy">
       </div>
     </div>
   </section>
 
-  <!-- фокус -->
-  <section class="slide" data-title="Что попадает в фокус">
-    <div class="eyebrow">ФОКУС</div>
-    <h2 class="sm">Что видно без запроса</h2>
-    <div class="grid three">
-      <div class="card"><h3>Акцент на бизнесе</h3><p>Строка отчёта — эпик, а не техническая задача. Приоритет виден сразу.</p></div>
-      <div class="card"><h3>Истории в зоне риска</h3><p>Идут дольше медианы и ещё не закрыты.</p></div>
-      <div class="card"><h3>Застрявшие подзадачи</h3><p>Возраст статуса виден по каждой.</p></div>
-      <div class="card"><h3>Весь эпик</h3><p>Сгорание по неделям и расчётная дата против плановой.</p></div>
-      <div class="card"><h3>Производительность</h3><p>Запланировано / сделано за 3 спринта и диаграммы управления.</p></div>
-      <div class="card blue"><h3>Инсайды ИИ</h3><p>Выводы и рекомендации — отдельно и с пометкой «не данные».</p></div>
+  <!-- 11 · итог в целях -->
+  <section class="slide" data-title="Итог в целях квартала">
+    <h2>Итог спринта —<br><span class="accent">в целях квартала</span></h2>
+    <div class="steps">
+      <div class="card"><div class="tag">ЦЕЛИ</div><span class="k t">OBJ и KR</span><p>цели квартала и состав команд</p></div>
+      <div class="arr">+</div>
+      <div class="card"><div class="tag">ФАКТ</div><span class="k t">из сборщика</span><p>закрыто, в блоке, не закрыто</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><div class="tag">ТЕКСТ</div><span class="k t">пишет агент</span><p>цифры — только из данных</p></div>
     </div>
   </section>
 
-  <!-- комментарии -->
-  <section class="slide" data-title="Комментарии переживают неделю">
-    <div class="eyebrow">НЕДЕЛЯ К НЕДЕЛЕ</div>
-    <h2 class="sm">Договорённости не теряются между статусами</h2>
-    <div class="split">
-      <div class="a"><div class="lbl">БЕЗ ЭТОГО</div><div class="t">Прошлые решения живут в переписке</div><p>На каждом статусе разбор заново.</p></div>
-      <div class="b"><div class="lbl">СЕЙЧАС</div><div class="t accent">Корзина заметок<br>у эпика</div><p>Одна на отчёт и колоду, не пропадает между запусками. Отправить в чат команды — или ИИ-агенту, чтобы внёс правки в трекер.</p></div>
+  <!-- 12 · демо колоды -->
+  <section class="slide" data-title="Демо колоды">
+    <h2>«ФАКТ | спринт» — <span class="accent">живое демо</span></h2>
+    <p class="line">Цели и KR, производительность, участники, планы, риски, PDF.</p>
+    <div class="demo"><div class="demo-loader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfb" title="Колода «ФАКТ | спринт»" data-src="demo/business.html"></iframe><button class="fs-btn" data-frame="dfb">На весь экран</button></div>
+  </section>
+
+  <!-- 13 · архитектура -->
+  <section class="slide" data-title="Архитектура">
+    <h2>Архитектура: <span class="accent">сбор у себя за 4 шага</span></h2>
+    <svg class="c4" viewBox="0 0 1136 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="C4: регулярный сбор спринтов у себя"><defs><marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#080808"/></marker><marker id="as" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M10 0 L0 5 L10 10 z" fill="#080808"/></marker></defs><rect x="222" y="34" width="884" height="372" rx="10" fill="none" stroke="#080808" stroke-width="1.5" stroke-dasharray="8 6"/><text x="1090" y="56" font-size="13" font-weight="800" fill="#080808" text-anchor="end" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">ВАШ СЕРВЕР</text><rect x="0" y="74" width="176" height="104" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="88.0" y="110" font-size="19" font-weight="800" fill="#080808" text-anchor="middle">Jira</text><text x="88.0" y="136" font-size="14" font-weight="400" fill="#080808" text-anchor="middle">доски, спринты,</text><text x="88.0" y="154" font-size="14" font-weight="400" fill="#080808" text-anchor="middle">задачи</text><rect x="0" y="268" width="176" height="104" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="88.0" y="304" font-size="19" font-weight="800" fill="#080808" text-anchor="middle">Confluence</text><text x="88.0" y="330" font-size="14" font-weight="400" fill="#080808" text-anchor="middle">цели квартала,</text><text x="88.0" y="348" font-size="14" font-weight="400" fill="#080808" text-anchor="middle">состав команд</text><rect x="258" y="74" width="230" height="104" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="373.0" y="110" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Сборщик</text><text x="373.0" y="136" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">по таймеру 08:30</text><text x="373.0" y="154" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">и по кнопке, без ИИ</text><circle cx="486" cy="76" r="15" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="486" y="82" font-size="16" font-weight="800" fill="#080808" text-anchor="middle">①</text><rect x="568" y="74" width="230" height="104" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="683.0" y="110" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Отчёт PO</text><text x="683.0" y="136" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">эпики, риски,</text><text x="683.0" y="154" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">метрики, заметки</text><circle cx="796" cy="76" r="15" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="796" y="82" font-size="16" font-weight="800" fill="#080808" text-anchor="middle">②</text><rect x="568" y="268" width="230" height="104" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="683.0" y="304" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Факт спринта</text><text x="683.0" y="330" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">итог по целям —</text><text x="683.0" y="348" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">для комитета</text><circle cx="796" cy="270" r="15" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="796" y="276" font-size="16" font-weight="800" fill="#080808" text-anchor="middle">③</text><rect x="860" y="74" width="222" height="104" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="971.0" y="110" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">ИИ-агент</text><text x="971.0" y="136" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">план правок</text><text x="971.0" y="154" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">по заметкам</text><circle cx="1080" cy="76" r="15" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="1080" y="82" font-size="16" font-weight="800" fill="#080808" text-anchor="middle">④</text><rect x="860" y="268" width="222" height="104" rx="6" fill="#080808" stroke="#080808" stroke-width="0"/><text x="971.0" y="304" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Мессенджер</text><text x="971.0" y="330" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">PO, техлиды, комитет —</text><text x="971.0" y="348" font-size="14" font-weight="400" fill="#fff" text-anchor="middle">в комнатах и на телефоне</text><path d="M258 126 H176" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)"/><rect x="188" y="101" width="58" height="20" fill="#efeee8"/><text x="217" y="116" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">читает</text><path d="M488 126 H568" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)"/><rect x="499" y="101" width="58" height="20" fill="#efeee8"/><text x="528" y="116" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">данные</text><path d="M373 178 V300 H568" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)"/><rect x="441" y="277" width="58" height="20" fill="#efeee8"/><text x="470" y="292" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">данные</text><path d="M176 342 H568" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)"/><rect x="448" y="319" width="44" height="20" fill="#efeee8"/><text x="470" y="334" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">цели</text><path d="M860 126 H798" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)" marker-start="url(#as)"/><rect x="811" y="101" width="36" height="20" fill="#efeee8"/><text x="829" y="116" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">чат</text><path d="M971 74 V18 H88 V74" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)"/><rect x="407" y="7" width="243" height="20" fill="#efeee8"/><text x="529" y="22" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">пишет в Jira — после ✅ человека</text><path d="M798 320 H860" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)"/><path d="M760 178 L860 280" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ae)"/></svg>
+    <div class="c4list"><div class="card"><h3>① Сборщик</h3><p>Читает Jira по таймеру 08:30 и по кнопке. Без ИИ.</p></div><div class="card blue"><h3>② Отчёт PO</h3><p>Эпики, риски, метрики, заметки — в мессенджере.</p></div><div class="card"><h3>③ Факт спринта</h3><p>Итог по целям квартала из Confluence — для комитета.</p></div><div class="card"><h3>④ ИИ-агент</h3><p>План правок по заметкам. В Jira пишет сервис после ✅.</p></div></div>
+  </section>
+
+  <!-- 14 · запуск -->
+  <section class="slide center" data-title="Запустить у себя">
+    <div class="final">
+      <div>
+        <div class="label">POH-SPRINT-AGENTS</div>
+        <h1>Запустить<br><span class="accent">у себя</span></h1>
+        <p class="lead">За вечер — локально. Дальше — тот же сборщик по расписанию на сервере.</p>
+        <a class="repo" href="https://github.com/po-helper-org/poh-sprint-agents" target="_blank" rel="noopener">github.com/po-helper-org/poh-sprint-agents ↗</a>
+      </div>
+      <div class="term"><span># Claude Code, в папке проекта</span><i>/</i>sprint-setup<br><i>/</i>collector-new<br><i>/</i>collector-validate<br><i>/</i>actual-sprint</div>
     </div>
   </section>
-
-    <!-- 10 · что меняется -->
-  <section class="slide" data-title="Что меняется на практике">
-    <div class="eyebrow">ЧТО МЕНЯЕТСЯ</div>
-    <h2 class="sm">На практике</h2>
-    <ul class="wins">
-      <li><span>Ручной обход трекера по каждому исполнителю <b>не нужен</b></span></li>
-      <li><span>Видно точечно: <b>где и кто застрял</b> — статус и риск берутся адресно</span></li>
-      <li><span>Созвон с техлидами <b>перестаёт быть способом собрать картину</b></span></li>
-      <li><span>Ритуалы не нужны: работает <b>то, что уже есть в трекере</b></span></li>
-      <li><span>Видно, <b>какие задачи не актуализированы</b> — и доску можно поправить сразу</span></li>
-    </ul>
-  </section>
-
-  <!-- архитектура -->
-  <section class="slide archs" data-title="Архитектура">
-    <div class="eyebrow">АРХИТЕКТУРА · C4</div>
-    <h2 class="sm c4t">Регулярный сбор у себя: <span class="accent">4 шага</span></h2>
-    <div class="c4wrap"><svg class="c4" viewBox="0 0 1136 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="C4: контейнеры регулярного сбора спринтов"><defs><marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#080808"/></marker><marker id="as" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M10 0 L0 5 L10 10 z" fill="#080808"/></marker></defs><rect x="232" y="14" width="694" height="446" rx="10" fill="none" stroke="#080808" stroke-width="1.5" stroke-dasharray="8 6"/><text x="912" y="38.0" font-size="11.5" font-weight="800" fill="#080808" text-anchor="end" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">ВАШ СЕРВЕР ИЛИ КОМПЬЮТЕР</text><rect x="0" y="48" width="190" height="80" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="95.0" y="70.0" font-size="14.5" font-weight="800" fill="#080808" text-anchor="middle">Jira</text><text x="95.0" y="86.0" font-size="10.5" font-weight="500" fill="#555" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[внешняя система · REST]</text><text x="95.0" y="103.0" font-size="11.5" font-weight="400" fill="#080808" text-anchor="middle">доски, спринты, эпики,</text><text x="95.0" y="117.0" font-size="11.5" font-weight="400" fill="#080808" text-anchor="middle">истории, переходы</text><rect x="0" y="196" width="190" height="80" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="95.0" y="218.0" font-size="14.5" font-weight="800" fill="#080808" text-anchor="middle">Confluence · OKR</text><text x="95.0" y="234.0" font-size="10.5" font-weight="500" fill="#555" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[внешняя система]</text><text x="95.0" y="251.0" font-size="11.5" font-weight="400" fill="#080808" text-anchor="middle">цели квартала</text><text x="95.0" y="265.0" font-size="11.5" font-weight="400" fill="#080808" text-anchor="middle">и состав команд</text><rect x="0" y="344" width="190" height="80" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="95.0" y="366.0" font-size="14.5" font-weight="800" fill="#080808" text-anchor="middle">LLM</text><text x="95.0" y="382.0" font-size="10.5" font-weight="500" fill="#555" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[GLM, Claude и др.]</text><text x="95.0" y="399.0" font-size="11.5" font-weight="400" fill="#080808" text-anchor="middle">только для агента —</text><text x="95.0" y="413.0" font-size="11.5" font-weight="400" fill="#080808" text-anchor="middle">сбор идёт без модели</text><rect x="258" y="52" width="160" height="82" rx="6" fill="#2437ed" stroke="#2437ed" stroke-width="1.5"/><text x="338.0" y="74.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">Таймер</text><text x="338.0" y="90.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[systemd / cron]</text><text x="338.0" y="107.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">пн–пт 08:30</text><text x="338.0" y="121.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">+ «Актуализировать»</text><circle cx="414" cy="56" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="414" y="61" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">①</text><rect x="470" y="48" width="190" height="90" rx="6" fill="#2437ed" stroke="#2437ed" stroke-width="1.5"/><text x="565.0" y="70.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">Сборщик</text><text x="565.0" y="86.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[Python · без LLM]</text><text x="565.0" y="103.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">читает Jira по команде,</text><text x="565.0" y="117.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">проверка согласованности</text><circle cx="656" cy="52" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="656" y="57" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">①</text><path d="M712 54 a95.0 10 0 0 0 190 0 v78 a95.0 10 0 0 1 -190 0 z" fill="#3b4fff"/><path d="M712 54 a95.0 10 0 0 1 190 0 a95.0 10 0 0 1 -190 0 z" fill="#5b6cff"/><text x="807.0" y="78.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">Данные спринта</text><text x="807.0" y="94.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[JSON + HTML]</text><text x="807.0" y="111.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">по файлу на команду</text><circle cx="898" cy="48" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="898" y="53" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">①</text><path d="M258 206 a80.0 10 0 0 0 160 0 v64 a80.0 10 0 0 1 -160 0 z" fill="#3b4fff"/><path d="M258 206 a80.0 10 0 0 1 160 0 a80.0 10 0 0 1 -160 0 z" fill="#5b6cff"/><text x="338.0" y="230.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">Кэш целей</text><text x="338.0" y="246.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[JSON]</text><text x="338.0" y="263.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">OBJ, KR, состав —</text><text x="338.0" y="277.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">от PO-агента</text><circle cx="414" cy="200" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="414" y="205" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">③</text><rect x="470" y="192" width="190" height="92" rx="6" fill="#2437ed" stroke="#2437ed" stroke-width="1.5"/><text x="565.0" y="214.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">Бизнес-колода</text><text x="565.0" y="230.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[веб · /business/]</text><text x="565.0" y="247.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">«ФАКТ | спринт»</text><text x="565.0" y="261.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">для комитета, PDF</text><circle cx="656" cy="196" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="656" y="201" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">③</text><rect x="712" y="192" width="190" height="92" rx="6" fill="#2437ed" stroke="#2437ed" stroke-width="1.5"/><text x="807.0" y="214.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">Отчёт PO</text><text x="807.0" y="230.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[веб · /sprints/]</text><text x="807.0" y="247.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">эпики, риски, метрики,</text><text x="807.0" y="261.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">комментарии</text><circle cx="898" cy="196" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="898" y="201" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">②</text><rect x="258" y="340" width="160" height="86" rx="6" fill="#2437ed" stroke="#2437ed" stroke-width="1.5"/><text x="338.0" y="362.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">ИИ-агент</text><text x="338.0" y="378.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[Hermes / любой]</text><text x="338.0" y="395.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">заметки → план</text><text x="338.0" y="409.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">правок в Jira</text><circle cx="414" cy="344" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="414" y="349" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">④</text><rect x="470" y="340" width="190" height="86" rx="6" fill="#2437ed" stroke="#2437ed" stroke-width="1.5"/><text x="565.0" y="362.0" font-size="14.5" font-weight="800" fill="#fff" text-anchor="middle">Запись в Jira</text><text x="565.0" y="378.0" font-size="10.5" font-weight="500" fill="#cdd3ff" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">[шлюз · белый список]</text><text x="565.0" y="395.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">только после ✅</text><text x="565.0" y="409.0" font-size="11.5" font-weight="400" fill="#fff" text-anchor="middle">человека, затем пересбор</text><circle cx="656" cy="344" r="12" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="656" y="349" font-size="14" font-weight="800" text-anchor="middle" fill="#080808">④</text><rect x="986" y="60" width="150" height="74" rx="6" fill="#080808"/><circle cx="1012" cy="88" r="10" fill="#fff"/><path d="M994 120 q18 -26 36 0z" fill="#fff"/><text x="1082" y="90.0" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">PO</text><text x="1082" y="108.0" font-size="10.5" font-weight="400" fill="#bbb" text-anchor="middle">отчёт, колода,</text><text x="1082" y="121.0" font-size="10.5" font-weight="400" fill="#bbb" text-anchor="middle">агент</text><rect x="986" y="198" width="150" height="74" rx="6" fill="#080808"/><circle cx="1012" cy="226" r="10" fill="#fff"/><path d="M994 258 q18 -26 36 0z" fill="#fff"/><text x="1082" y="228.0" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">Техлид</text><text x="1082" y="246.0" font-size="10.5" font-weight="400" fill="#bbb" text-anchor="middle">оба отчёта</text><text x="1082" y="259.0" font-size="10.5" font-weight="400" fill="#bbb" text-anchor="middle">без 2FA</text><rect x="986" y="336" width="150" height="74" rx="6" fill="#080808"/><circle cx="1012" cy="364" r="10" fill="#fff"/><path d="M994 396 q18 -26 36 0z" fill="#fff"/><text x="1082" y="366.0" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">Комитет</text><text x="1082" y="384.0" font-size="10.5" font-weight="400" fill="#bbb" text-anchor="middle">бизнес-колода</text><text x="1082" y="397.0" font-size="10.5" font-weight="400" fill="#bbb" text-anchor="middle">и PDF</text><path d="M418 93 L470 93" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><path d="M565 48 V28 H95 V48" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><rect x="284.7" y="17.5" width="90.6" height="19" fill="#efeee8"/><text x="330" y="29.5" font-size="10.5" font-weight="600" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">читает (REST)</text><path d="M660 93 L712 93" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><path d="M807 142 L807 192" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><rect x="814.4" y="156.5" width="47.2" height="19" fill="#efeee8"/><text x="838" y="168.5" font-size="10.5" font-weight="600" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">читает</text><path d="M750 142 C 700 165, 650 170, 620 192" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><path d="M190 236 L258 236" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><rect x="206.6" y="211.5" width="34.8" height="19" fill="#efeee8"/><text x="224" y="223.5" font-size="10.5" font-weight="600" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">цели</text><path d="M418 238 L470 238" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><path d="M712 270 C 640 300, 470 305, 418 360" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><rect x="517.8" y="291.5" width="84.4" height="19" fill="#efeee8"/><text x="560" y="303.5" font-size="10.5" font-weight="600" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">чат в отчёте</text><path d="M190 384 L258 384" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><rect x="203.5" y="359.5" width="41.0" height="19" fill="#efeee8"/><text x="224" y="371.5" font-size="10.5" font-weight="600" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">ответ</text><path d="M418 383 L470 383" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><rect x="426.6" y="358.5" width="34.8" height="19" fill="#efeee8"/><text x="444" y="370.5" font-size="10.5" font-weight="600" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">план</text><path d="M565 426 V448 H212 V100 H190" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><rect x="337.8" y="437.5" width="84.4" height="19" fill="#efeee8"/><text x="380" y="449.5" font-size="10.5" font-weight="600" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">пишет (REST)</text><path d="M986 97 C 950 97, 940 220, 902 225" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><path d="M986 235 L902 245" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/><path d="M986 373 H640 V284" fill="none" stroke="#080808" stroke-width="1.6" marker-end="url(#ae)"/></svg></div><p class="c4hint">← схему можно листать вбок →</p>
-    <div class="c4leg"><span class="lg"><i class="lp"></i>Человек</span><span class="lg"><i class="le"></i>Внешняя система</span><span class="lg"><i class="lc"></i>Контейнер</span><span class="lord"><b>Порядок:</b> ① сбор по расписанию → ② отчёт PO → ③ цели и колода → ④ агент и запись</span></div>
-  </section>
-
-  <!-- запуск -->
-  <section class="slide" data-title="Как запустить у себя">
-    <div class="eyebrow">POH-SPRINT-AGENTS</div>
-    <h2 class="sm">Как запустить у себя</h2>
-    <div class="grid two">
-      <div class="card"><div class="tag">ЛОКАЛЬНО · ЗА ВЕЧЕР</div><h3>Claude Code + навыки</h3><ol class="steps compact"><li><div><b>/sprint-setup</b> <span>— команды, доски, трекер</span></div></li><li><div><b>/collector-new</b> <span>— сборщик под вашу доску</span></div></li><li><div><b>/collector-validate</b> <span>— сверка с трекером, фиксация</span></div></li><li><div><b>/actual-sprint</b> <span>— отчёт PO одной страницей</span></div></li></ol></div>
-      <div class="card blue"><div class="tag blue">РЕГУЛЯРНО · НА СЕРВЕРЕ</div><h3>Тот же сборщик по расписанию</h3><ol class="steps compact"><li><div><b>Таймер 08:30</b> <span>— сборщик на каждую команду</span></div></li><li><div><b>Отчёт и колода</b> <span>— как веб-виджеты в мессенджере</span></div></li><li><div><b>/sprint-business</b> <span>— тексты к целям для комитета</span></div></li><li><div><b>ИИ-агент + шлюз записи</b> <span>— правки в трекер после ✅</span></div></li></ol></div>
-    </div>
-    <a class="repo" href="https://github.com/po-helper-org/poh-sprint-agents" target="_blank" rel="noopener">github.com/po-helper-org/poh-sprint-agents ↗</a>
-  </section>
-
 </div>
 
 <div id="lb">
-  <div class="ov-top"><b id="lbTitle"></b><span class="pos" id="lbPos"></span><button class="ov-x" id="lbX">Esc</button></div>
+  <div class="ov-top"><b id="lbTitle"></b><button class="ov-x" id="lbX">Esc</button></div>
   <div class="body"><img id="lbImg" alt=""></div>
 </div>
 <div id="dfs">
   <div class="ov-top"><b id="dfsTitle"></b><button class="ov-x" id="dfsX">Esc</button></div>
-  <div class="dfs-body"><div class="demo-loader" id="dfsLoader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfsFrame" title="Демо, полный экран"></iframe></div>
+  <div class="dfs-body"><div class="demo-loader" id="dfsLoader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfsFrame" title="Демо на весь экран"></iframe></div>
 </div>
 <div id="nav">
   <button id="prev" title="Назад">‹</button><span class="p mono" id="pos"></span><button id="next" title="Вперёд">›</button>
@@ -630,21 +357,22 @@
   var PHOTO = "/okr-quarter-planning/img/photo.webp";
   var slides = [].slice.call(document.querySelectorAll('.slide'));
   var cur = 0;
-  /* Живые демо: iframe получает src, когда открыт его слайд или предыдущий. */
+  var narrow = window.matchMedia('(max-width: 700px), (orientation: portrait) and (max-width: 900px)');
+  /* Живые демо: iframe получает src, когда открыт его слайд или предыдущий; на телефоне — только по кнопке. */
   function loaded(f) { try { return f.contentWindow.location.href !== 'about:blank'; } catch (e) { return true; } }
   function loadDemos(slide) {
-    if (!slide) return;
+    if (!slide || narrow.matches) return;
     slide.querySelectorAll('iframe[data-src]:not([src])').forEach(function (f) {
       var l = f.parentNode.querySelector('.demo-loader');
       f.onload = function () { if (l && loaded(f)) l.classList.add('done'); };
       f.src = f.getAttribute('data-src');
     });
   }
-  /* Снимки ленивые: текущий слайд и два следующих сразу, остальные — в фоне после загрузки. */
+  /* Снимки ленивые; после загрузки страницы догружаются в фоне, чтобы листание шло без пауз. */
   window.addEventListener('load', function () {
     setTimeout(function () { document.querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; }); }, 300);
+    if (narrow.matches && cur > 0) slides[cur].scrollIntoView();
   });
-  var narrow = window.matchMedia('(max-width: 700px), (orientation: portrait) and (max-width: 900px)');
   function fit() {
     if (narrow.matches) { document.getElementById('stage').style.transform = 'none'; return; }
     var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
@@ -654,7 +382,7 @@
   function show(i, push) {
     cur = Math.max(0, Math.min(slides.length - 1, i));
     slides.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
-    if (!narrow.matches) { loadDemos(slides[cur]); loadDemos(slides[cur + 1]); }
+    loadDemos(slides[cur]); loadDemos(slides[cur + 1]);
     document.getElementById('pos').textContent = (cur + 1) + ' / ' + slides.length;
     document.getElementById('bar').style.width = ((cur + 1) / slides.length * 100) + '%';
     if (push !== false) history.replaceState(null, '', '#slide=' + (cur + 1));
@@ -664,22 +392,22 @@
   document.getElementById('next').onclick = function () { show(cur + 1); };
   document.getElementById('coverPhoto').src = PHOTO;
 
-  /* Галерея отчёта: миниатюры меняют большой снимок, клик по снимку — на весь экран. */
-  var g2 = [].slice.call(document.querySelectorAll('#g2Thumbs button'));
-  function pick(k) {
-    g2.forEach(function (b, j) { b.classList.toggle('on', j === k); });
-    var b = g2[k];
-    document.getElementById('g2Pic').src = b.getAttribute('data-src');
-    document.getElementById('g2Pic').alt = b.getAttribute('data-t');
-    document.getElementById('g2Pic').style.objectFit = /mobile/.test(b.getAttribute('data-src')) ? 'contain' : '';
-    document.getElementById('g2N').textContent = ('0' + (k + 1)).slice(-2) + ' / ' + ('0' + g2.length).slice(-2);
-    document.getElementById('g2T').textContent = b.getAttribute('data-t');
-    document.getElementById('g2D').textContent = b.getAttribute('data-d');
-  }
-  g2.forEach(function (b, k) { b.onclick = function () { pick(k); }; });
+  /* Отчёт PO: пункт справа меняет снимок, клик по снимку — на весь экран. */
+  var gb = [].slice.call(document.querySelectorAll('#gList button'));
+  gb.forEach(function (b, k) {
+    b.onclick = function () {
+      gb.forEach(function (x) { x.classList.toggle('on', x === b); });
+      var pic = document.getElementById('gPic');
+      pic.src = b.getAttribute('data-src'); pic.alt = b.getAttribute('data-t');
+      pic.style.objectFit = /mobile/.test(pic.src) ? 'contain' : '';
+      document.getElementById('gN').textContent = ('0' + (k + 1)).slice(-2) + ' / ' + ('0' + gb.length).slice(-2);
+      document.getElementById('gT').textContent = b.getAttribute('data-t');
+      document.getElementById('gD').textContent = b.getAttribute('data-d');
+    };
+  });
   var lb = document.getElementById('lb');
-  document.getElementById('g2Img').onclick = function () {
-    var im = document.getElementById('g2Pic');
+  document.getElementById('gMain').onclick = function () {
+    var im = document.getElementById('gPic');
     document.getElementById('lbImg').src = im.src;
     document.getElementById('lbTitle').textContent = im.alt;
     lb.classList.add('on');
@@ -688,7 +416,6 @@
   document.getElementById('lbX').onclick = closeLb;
   lb.addEventListener('click', function (e) { if (e.target === lb || e.target.className === 'body') closeLb(); });
 
-  /* На телефоне демо не встраиваем: кнопка открывает его на весь экран. */
   var dfs = document.getElementById('dfs');
   document.querySelectorAll('.fs-btn').forEach(function (b) {
     b.onclick = function () {
@@ -714,9 +441,8 @@
   });
   function fromHash() { var m = location.hash.match(/slide=(\d+)/); return m ? parseInt(m[1], 10) - 1 : 0; }
   window.addEventListener('hashchange', function () { show(fromHash(), false); });
-  show(fromHash(), false);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.addEventListener('load', function () { if (narrow.matches && cur > 0) slides[cur].scrollIntoView(); });
+  show(fromHash(), false);
 </script>
 </body>
 </html>

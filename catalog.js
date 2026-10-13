@@ -18,9 +18,9 @@ const presentations = [
   {
     id: "sprint-under-manager",
     title: "Спринты под управлением руководителя",
-    description: "Сбор спринта по расписанию, отчёт PO и бизнес-колода для комитета в мессенджере, ИИ-агент вносит правки в трекер после ✅. Живые демо и C4-архитектура.",
+    description: "Как руководителю держать спринты четырёх команд без обхода: отчёт PO приходит сам каждое утро, «Факт спринта» — для комитета, ИИ-агент вносит правки после ✅.",
     cover: "sprint-under-manager/cover.png",
-    slides: 15,
+    slides: 14,
     updated: "13 октября 2026"
   },
   {
@@ -48,7 +48,7 @@ count.textContent = `${presentations.length} ${presentations.length === 1 ? "п�
 
 grid.innerHTML = presentations.map((deck) => `
   <a class="deck-card" href="${deck.id}/" aria-label="Открыть презентацию: ${deck.title}">
-      <div class="deck-cover"><img src="${deck.cover}" alt="" width="1280" height="720"></div>
+      <div class="deck-cover"><img src="${deck.cover}" alt="" width="1280" height="720" loading="lazy" decoding="async"></div>
     <div class="deck-copy">
       <p class="deck-id">/${deck.id}</p>
       <h2 class="deck-title">${deck.title}</h2>
