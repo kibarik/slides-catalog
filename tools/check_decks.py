@@ -70,7 +70,7 @@ def check(deck, catalog):
 
     # Картинки: ленивые, кроме обложки/фото первого слайда; без src у iframe.
     imgs = re.findall(r'<img\b[^>]*>', s)
-    eager = [i for i in imgs if 'loading="lazy"' not in i and 'coverPhoto' not in i and 'cover-photo' not in i and 'data:' not in i]
+    eager = [i for i in imgs if ' src=' in i and 'loading="lazy"' not in i and 'coverPhoto' not in i and 'cover-photo' not in i and 'data:' not in i]
     if len(eager) > 2:
         warns.append(f'{len(eager)} <img> без loading="lazy"')
     if re.search(r'<iframe\b(?![^>]*data-src)[^>]*\ssrc="(?!about:)', s):
