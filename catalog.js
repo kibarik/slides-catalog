@@ -30,6 +30,14 @@ const presentations = [
     cover: "okr-quarter-planning/cover.png",
     slides: 14,
     updated: "7 октября 2026"
+  },
+  {
+    id: "po-news-feed",
+    title: "Лента вместо 100500 чатов",
+    description: "Как PO наблюдать за всем вокруг и не терять внимание: чаты, почта и трекеры в одной ленте, упоминания сразу и ИИ-агент, который сверяет происходящее с целями.",
+    cover: "po-news-feed/cover.png",
+    slides: 11,
+    updated: "13 октября 2026"
   }
 ];
 
