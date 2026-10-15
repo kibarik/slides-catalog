@@ -54,6 +54,14 @@ const presentations = [
     cover: "po-morning-brief/cover.png",
     slides: 13,
     updated: "12 октября 2026"
+  },
+  {
+    id: "sprint-blockers-report",
+    title: "Где и почему команда разработки была заблокирована",
+    description: "Отчёт по блокерам за квартал для руководителя: ИИ-агент разбирает историю JIRA, скрипт считает дни ожидания — видно, кого ждали, где стояли задачи и что держит сейчас.",
+    cover: "sprint-blockers-report/cover.png",
+    slides: 12,
+    updated: "15 октября 2026"
   }
 ];
 
