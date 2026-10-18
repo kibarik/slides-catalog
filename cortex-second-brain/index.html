@@ -139,40 +139,42 @@
   .layer h3 { font-size: 24px; letter-spacing: -.02em; line-height: 1.2; }
   .layer.top { border-style: dashed; }
   .layer.opt { border-color: var(--blue); background: var(--pale); } .layer.opt .mono { color: var(--blue); }
+  a.layer { display: block; color: inherit; text-decoration: none; } a.layer:hover { box-shadow: 4px 4px 0 var(--blue); }
   .layer.core { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 6px 6px 0 var(--ink); padding: 26px 22px; }
   .layers .line { font-size: 26px; color: var(--ink); line-height: 1.35; }
-  /* AS IS / TO BE: один вопрос — два ответа */
-  .vs { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.25fr); gap: 28px; flex: 1; min-height: 0; }
-  .ans { border: 1px solid var(--ink); background: #fff; padding: 22px 26px 20px; display: flex; flex-direction: column; }
-  .ans.asis { border-color: #9a9890; background: #f7f6f2; }
-  .ans.tobe { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
-  .ans .who { display: inline-block; align-self: flex-start; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; padding: 5px 10px; margin-bottom: 16px; background: #9a9890; color: #fff; }
-  .ans.tobe .who { background: var(--blue); }
-  .ans .say { font-size: 23px; line-height: 1.38; }
-  .ans.asis .say { color: var(--muted); font-size: 26px; }
-  .ans .say b { color: var(--ink); }
-  .ans .rows2 { display: flex; flex-direction: column; font-size: 19px; line-height: 1.3; }
-  .ans .rows2 p { display: grid; grid-template-columns: 54px 1fr; gap: 12px; align-items: baseline; padding: 7px 0; border-top: 1px solid #e3e1da; }
-  .ans .rows2 p:first-child { border-top: none; padding-top: 0; }
-  .ans .rows2 p > b { font-size: 26px; letter-spacing: -.02em; text-align: center; }
-  .ans .rows2 p > b.lo { color: var(--red); } .ans .rows2 p > b.hi { color: var(--blue); }
-  .ans .rows2 small { color: var(--muted); font-size: 15px; }
-  .ans .rows2 .grp { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--blue); padding: 10px 0 2px; border: none; }
-  .ans .next { margin-top: 12px; font-size: 19px; font-weight: 700; color: var(--blue); }
-  .marks { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .marks span { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; padding: 5px 9px; }
-  .asis .marks span { background: #fde2e1; color: #b3261e; }
-  .tobe .marks span { background: var(--pale); color: var(--blue); }
-  /* итог AS IS / TO BE */
+  /* AS IS / TO BE — галерея как в sprint-under-manager: экран по центру, меню справа */
+  .gal { display: grid; grid-template-columns: minmax(0,1fr) 236px; gap: 26px; flex: 1; min-height: 0; }
+  .gmain { position: relative; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+  .scr { display: none; flex: 1; min-height: 0; flex-direction: column; }
+  .scr.on { display: flex; }
+  .gq { background: #f0efea; border-bottom: 1px solid #e3e1da; padding: 12px 20px; font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+  .gq small { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--muted); margin-right: 10px; }
+  .vs2 { display: grid; grid-template-columns: 1fr 1fr; flex: 1; min-height: 0; }
+  .side { padding: 16px 20px 14px; display: flex; flex-direction: column; min-height: 0; }
+  .side + .side { border-left: 1px solid #e3e1da; background: #f6f7ff; }
+  .side .who { align-self: flex-start; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; padding: 4px 9px; margin-bottom: 12px; background: #9a9890; color: #fff; }
+  .side + .side .who { background: var(--blue); }
+  .side q { font-size: 17px; line-height: 1.45; quotes: none; }
+  .side q b { color: var(--blue); }
+  .marks { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .marks span { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; padding: 4px 8px; }
+  .marks .y { background: #e3f3e7; color: #17753a; } .marks .n { background: #fde2e1; color: #b3261e; }
   table.score { width: 100%; border-collapse: collapse; }
-  table.score th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-align: left; padding: 0 0 12px; border-bottom: 2px solid var(--ink); color: var(--muted); }
+  table.score th { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-align: left; padding: 14px 20px 8px; border-bottom: 2px solid var(--ink); color: var(--muted); }
   table.score th.b { color: var(--blue); }
-  table.score td { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 26px; letter-spacing: -.02em; vertical-align: baseline; }
-  table.score td:first-child { font-weight: 700; width: 380px; }
-  table.score td.a { color: var(--muted); width: 330px; }
-  table.score td.b { color: var(--blue); font-weight: 700; }
-  table.score i { font-style: normal; font-weight: 800; display: inline-block; width: 36px; }
-  table.score td.a i { color: var(--red); }
+  table.score td { padding: 8px 20px; border-bottom: 1px solid #e3e1da; font-size: 18px; line-height: 1.3; }
+  table.score td:first-child { font-weight: 700; }
+  table.score td.b { color: var(--blue); font-weight: 800; }
+  table.score td.a { color: var(--muted); }
+  .gcap { background: var(--ink); color: #fff; padding: 11px 18px; display: flex; gap: 14px; align-items: baseline; }
+  .gcap span { font-family: "JetBrains Mono", monospace; font-size: 13px; color: #9fb0ff; }
+  .gcap b { font-size: 18px; } .gcap em { font-style: normal; font-size: 16px; opacity: .85; }
+  .glist { display: flex; flex-direction: column; gap: 4px; }
+  .glist button { font: inherit; text-align: left; background: none; border: 1px solid transparent; padding: 9px 12px; cursor: pointer; display: flex; gap: 12px; align-items: baseline; font-size: 18px; color: var(--muted); }
+  .glist button i { font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  .glist button.on { border-color: var(--blue); color: var(--ink); font-weight: 700; box-shadow: 4px 4px 0 var(--blue); background: #fff; }
+  .glist button.on i { color: var(--blue); }
+  .glist .glive { margin-top: auto; display: block; box-shadow: 4px 4px 0 var(--ink); font-size: 16px; font-weight: 700; background: var(--blue); color: #fff; padding: 12px 14px; text-decoration: none; }
   /* финал */
   .final { display: grid; grid-template-columns: minmax(0,1fr) 500px; gap: 50px; align-items: center; height: 100%; }
   .final h1 { font-size: 88px; }
@@ -218,9 +220,11 @@
     ul.rows li { font-size: 22px; grid-template-columns: 32px 1fr; } ul.rows { gap: 16px; }
     .layer h3 { font-size: 20px; }
     .repo { font-size: 17px; overflow-wrap: anywhere; }
-    .vs { grid-template-columns: 1fr; gap: 20px; } .ans { padding: 18px; } .ans .say, .ans.asis .say { font-size: 18px; } .ans .rows2 { font-size: 16px; } .ans .rows2 p { grid-template-columns: 40px 1fr; } .ans .rows2 p > b { font-size: 21px; } .ans .next { font-size: 16px; }
-    table.score thead { display: none; } table.score, table.score tbody, table.score tr, table.score td { display: block; width: 100% !important; }
-    table.score tr { border-bottom: 1px solid var(--line); padding: 10px 0; } table.score td { border: none; padding: 2px 0; font-size: 18px; } table.score i { width: 26px; }
+    .gal { grid-template-columns: 1fr; gap: 14px; } .glist { order: -1; flex-direction: row; overflow-x: auto; gap: 6px; padding-bottom: 6px; }
+    .glist button { flex: none; font-size: 15px; padding: 7px 10px; white-space: nowrap; } .glist .glive { flex: none; margin-top: 0; font-size: 15px; padding: 7px 10px; white-space: nowrap; }
+    .vs2 { grid-template-columns: 1fr; } .side + .side { border-left: 0; border-top: 1px solid #e3e1da; }
+    .gq { font-size: 17px; } .side q { font-size: 16px; } .gcap { flex-wrap: wrap; } .gcap em { font-size: 14px; }
+    table.score th, table.score td { padding: 7px 10px; font-size: 14px; }
   }
 </style>
 </head>
@@ -328,71 +332,41 @@
     </div>
   </section>
 
-  <section class="slide" data-title="AS IS / TO BE: срок">
-    <h2>«Успеваем к 1 декабря?»<br><span class="accent">Один вопрос — два ответа</span></h2>
-    <div class="vs">
-      <div class="ans asis"><span class="who">AS IS · ИИ БЕЗ ПАМЯТИ</span>
-        <p class="say">«Да, сроки реалистичные. Партнёр подтвердил готовность, команда настроена позитивно».</p>
-        <div class="marks"><span>✗ откуда — неизвестно</span><span>✗ слух как факт</span><span>✗ что делать — нет</span></div>
-      </div>
-      <div class="ans tobe"><span class="who">TO BE · ИИ С КОРТЕКСОМ</span>
-        <p class="say"><b>Дату давать рано.</b> Цель держится на трёх условиях:</p>
-        <div class="rows2" style="margin-top:12px">
-          <p><b class="hi">6</b><span>Площадка готова <small>· проверено 10.10</small></span></p>
-          <p><b class="hi">3</b><span>Тарифы согласованы <small>· письмо 09.10</small></span></p>
-          <p><b class="lo">2</b><span>Интеграция партнёра <small>· только со слов</small></span></p>
-        </div>
-        <p class="next">→ Запросить письмо партнёра до 25.10</p>
-        <div class="marks"><span>✓ источник</span><span>✓ уверенность</span><span>✓ следующий шаг</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide" data-title="AS IS / TO BE: неделя">
-    <h2>«Что важного за неделю?»<br><span class="accent">Важное отделено от шума</span></h2>
-    <div class="vs">
-      <div class="ans asis"><span class="who">AS IS · ИИ БЕЗ ПАМЯТИ</span>
-        <p class="say">«Партнёр успеет к 15-му, бюджет согласовали, релиз сдвигают на неделю, конверсия упала на 3%, клиент недоволен сроками, обсуждали вторую команду, договор подписан, тарифы могут поменять».</p>
-        <div class="marks"><span>✗ 8 пунктов на равных</span><span>✗ слухи вперемешку с фактами</span></div>
-      </div>
-      <div class="ans tobe"><span class="who">TO BE · ИИ С КОРТЕКСОМ</span>
-        <div class="rows2">
-          <span class="grp">ЦЕЛЬ «ДОСТАВКА К 1 ДЕКАБРЯ»</span>
-          <p><b class="hi">3</b><span>Релиз сдвинут на неделю <small>· письмо 15.10</small></span></p>
-          <p><b class="lo">2</b><span>Партнёр «успеет к 15-му» <small>· со слов</small></span></p>
-          <span class="grp">ЦЕЛЬ «КОНВЕРСИЯ +5%»</span>
-          <p><b class="hi">3</b><span>Конверсия −3% <small>· отчёт 16.10</small></span></p>
-        </div>
-        <p class="next">Остальные 5 — без связи с целями, отложены</p>
-        <div class="marks"><span>✓ по целям</span><span>✓ шум отложен</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide" data-title="AS IS / TO BE: бюджет">
-    <h2>«Бюджет на вторую команду есть?»<br><span class="accent">«Вроде» не становится «да»</span></h2>
-    <div class="vs">
-      <div class="ans asis"><span class="who">AS IS · ИИ БЕЗ ПАМЯТИ</span>
-        <p class="say">«Да, бюджет согласован. Можно начинать поиск второй команды».</p>
-        <div class="marks"><span>✗ «вроде» стало «да»</span><span>✗ решение — за вас</span></div>
-      </div>
-      <div class="ans tobe"><span class="who">TO BE · ИИ С КОРТЕКСОМ</span>
-        <p class="say"><b>Подтверждения нет.</b> «Бюджет вроде согласовали» — слова с созвона 12.10, уверенность <b style="color:var(--red)">2 из 9</b>. Письменного решения нет.</p>
-        <p class="next">→ Решает финансовый директор: нужно письмо с суммой</p>
-        <div class="marks"><span>✓ мнение помечено</span><span>✓ известно, у кого спросить</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide" data-title="AS IS / TO BE: итог">
-    <h2>Что меняется<br><span class="accent">в каждом ответе</span></h2>
-    <table class="score"><thead><tr><th>ВОПРОС К ОТВЕТУ</th><th>AS IS</th><th class="b">TO BE</th></tr></thead><tbody>
-      <tr><td>Откуда это известно?</td><td class="a"><i>✗</i>неизвестно</td><td class="b"><i>✓</i>источник и дата</td></tr>
-      <tr><td>Факт или мнение?</td><td class="a"><i>✗</i>всё звучит как факт</td><td class="b"><i>✓</i>уверенность 2–9</td></tr>
-      <tr><td>К какой цели?</td><td class="a"><i>✗</i>всё одинаково важно</td><td class="b"><i>✓</i>сгруппировано по OKR</td></tr>
-      <tr><td>Что делать дальше?</td><td class="a"><i>✗</i>не сказано</td><td class="b"><i>✓</i>шаг и владелец</td></tr>
-    </tbody></table>
-    <p class="note" style="margin-top:22px">Примеры вымышлены: одинаковые сообщения, разная память у помощника.</p>
+  <section class="slide" data-title="AS IS → TO BE">
+    <h2>AS IS → TO BE: <span class="accent">реальные ответы</span></h2>
+    <div class="gal"><div class="gmain">
+        <div class="scr on"><p class="gq"><small>ВОПРОС 1</small>Успеем запустить витрину к 15 ноября?</p><div class="vs2">
+          <div class="side"><span class="who">AS IS · ИИ + ЗАМЕТКИ</span><q>Нет, по имеющимся данным не успеваем. Смежная команда возвраты раньше декабря не обещает, а контракт по ним не подписан… Реалистичный вариант: запуск без возвратов (если это допустимо) или сдвиг срока.</q><div class="marks"><span class="y">✓ вывод верный</span><span class="n">✗ нет меры и порога</span></div></div>
+          <div class="side"><span class="who">TO BE · ИИ + КОРТЕКС</span><q>К 15 ноября дату давать нечем. Ставка «Запуск» стоит на <b>CP 2 при пороге 6</b>… Каталог — CP 2 и протух. Расчёты — CP 3, только письмо. Наружу уходит <b>дата проверки</b>, а не срок. Решение за вами: убить ставку, донасытить её… или перенести запуск.</q><div class="marks"><span class="y">✓ число и порог</span><span class="y">✓ три исхода решения</span></div></div>
+        </div></div>
+        <div class="scr"><p class="gq"><small>ВОПРОС 2</small>На чём держится цель и где слабое место?</p><div class="vs2">
+          <div class="side"><span class="who">AS IS · ИИ + ЗАМЕТКИ</span><q>Держится на трёх опорах: расчёты (финсистема), каталог (партнёр), возвраты (смежная команда). Слабое место — возвраты: срок декабрь, контракт не подписан. «Риски закрыты на кикоффе» — со слов, без проверки.</q><div class="marks"><span class="y">✓ звено названо</span><span class="n">✗ без чисел</span></div></div>
+          <div class="side"><span class="who">TO BE · ИИ + КОРТЕКС</span><q>Расчёты — <b>CP 3</b>, письмо. Каталог — заявлен CP 6, но протух, <b>эффективный CP 2</b>. Возвраты — <b>CP 2</b>. Слабое место — возвраты… По слабому звену цель <b>не выше CP 2</b>.</q><div class="marks"><span class="y">✓ ступень у каждой опоры</span><span class="y">✓ потолок цели</span></div></div>
+        </div></div>
+        <div class="scr"><p class="gq"><small>ВОПРОС 3</small>Что из того, что мы знаем, уже может быть неправдой?</p><div class="vs2">
+          <div class="side"><span class="who">AS IS · ИИ + ЗАМЕТКИ</span><q>«Каталог готов» — это слова партнёра и аналитика. Основа — прогон от 21 января, девять месяцев назад, на 50 карточках.</q><div class="marks"><span class="y">✓ давность замечена</span><span class="n">✗ не посчитано</span></div></div>
+          <div class="side"><span class="who">TO BE · ИИ + КОРТЕКС</span><q>Каталог: проверка от 21 января, срок годности 90 дней, <b>просрочен втрое</b>. «Каталог готов», «риски закрыты на кикоффе» — устные слова, а не артефакты.</q><div class="marks"><span class="y">✓ распад расчётом: 6 → 2</span></div></div>
+        </div></div>
+        <div class="scr"><p class="gq"><small>ВОПРОС 6</small>В чём мы переоценили себя в прошлом квартале?</p><div class="vs2">
+          <div class="side"><span class="who">AS IS · ИИ + ЗАМЕТКИ</span><q>Опирались на письма вместо проверки на реальной системе… держались на письмах с датой — и не доехали. Два обещания, проверенные до обещания, доехали.</q><div class="marks"><span class="y">✓ вывод верный</span></div></div>
+          <div class="side"><span class="who">TO BE · ИИ + КОРТЕКС</span><q><b>Ступень 3 переоценили: из 4 обещаний доехало 1.</b> Ступень 6 оправдалась: 2 из 2. Калибровка предлагает сдвинуть формулировку ступени 3 вниз. Решение за вами.</q><div class="marks"><span class="y">✓ правка шкалы</span><span class="n">✗ в 3 из 6 прогонов шкала прочитана с ошибкой</span></div></div>
+        </div></div>
+        <div class="scr"><p class="gq"><small>ШУМ · 129 ФАЙЛОВ</small>Что из того, что мы знаем, уже может быть неправдой?</p><div class="vs2">
+          <div class="side"><span class="who">AS IS · ИИ + ЗАМЕТКИ</span><q>«Возвраты к 1 ноября» (март) — смежная команда теперь говорит «не раньше декабря»… «Каталог проверили полностью» (чат 10.10, со слов коллеги) — в письме только 50 карточек.</q><div class="marks"><span class="y">✓ обе ловушки найдены, 3 из 3</span><span class="n">✗ 21–23 шага чтения</span></div></div>
+          <div class="side"><span class="who">TO BE · ИИ + КОРТЕКС</span><q>Каталог: проверка была 21.01, срок годности 90 дней, прошло <b>3× срок</b>. Узел CP 6 в файле, но <b>фактически CP 2</b>. «Риски закрыты» — устное утверждение.</q><div class="marks"><span class="y">✓ слух не стал фактом</span><span class="y">✓ 6–8 шагов</span><span class="n">✗ неразобранное не видит</span></div></div>
+        </div></div>
+        <div class="scr"><table class="score"><thead><tr><th>ОДНА МОДЕЛЬ · 3 ПРОГОНА НА УСЛОВИЕ</th><th>AS IS · ЗАМЕТКИ</th><th class="b">TO BE · КОРТЕКС</th></tr></thead><tbody>
+          <tr><td>Верно по существу</td><td class="a">100%</td><td class="b">100%</td></tr>
+          <tr><td>Названа мера уверенности</td><td class="a">6%</td><td class="b">78–83%</td></tr>
+          <tr><td>Порог и исходы в «успеем ли»</td><td class="a">0 из 6</td><td class="b">6 из 6</td></tr>
+          <tr><td>Устаревание числом</td><td class="a">0 из 6</td><td class="b">6 из 6</td></tr>
+          <tr><td>Следующий шаг назван</td><td class="a">28–47%</td><td class="b">61–64%</td></tr>
+          <tr><td>Ловушки в неразобранном замечены</td><td class="b" style="color:var(--ink)">3 из 3</td><td class="a">0 из 3</td></tr>
+          <tr><td>Чтение на шумном корпусе, тыс. токенов</td><td class="a">303–393</td><td class="b">240–280</td></tr>
+        </tbody></table></div>
+        <div class="gcap"><span class="gn">01 / 06</span><b class="gt">Срок</b><em class="gd">«Успеем к 15 ноября?» — вывод тот же, готовность к решению разная</em></div>
+      </div><div class="glist"><button data-t="Срок" data-d="«Успеем к 15 ноября?» — вывод тот же, готовность к решению разная" class=on><i>01</i>Срок</button><button data-t="Слабое звено" data-d="У Кортекса ступень у каждой опоры и потолок цели"><i>02</i>Слабое звено</button><button data-t="Устарело" data-d="«9 месяцев» замечают оба, посчитать может только Кортекс"><i>03</i>Устарело</button><button data-t="Прошлый квартал" data-d="Калибровка: правка шкалы — и новый тип ошибок"><i>04</i>Прошлый квартал</button><button data-t="Шум и ловушки" data-d="+120 посторонних заметок, старое «к 1 ноября» и слух"><i>05</i>Шум и ловушки</button><button data-t="Итог" data-d="Правы оба — Кортекс делает ответ решаемым"><i>06</i>Итог</button><a class="glive" href="research/">Читать исследование ↗</a></div></div>
+    <p class="note">Ответы одной модели из эксперимента: те же факты — папка заметок или Кортекс. Сокращены, смысл не изменён.</p>
   </section>
 
   <section class="slide" data-title="Как я пользуюсь">
@@ -423,7 +397,7 @@
     <div class="layers">
       <div class="stack">
         <div class="layer top"><span class="mono">ВАШИ ИИ-ПОМОЩНИКИ</span><h3>Сводки, отчёты, планы</h3></div>
-        <div class="layer opt"><span class="mono">POH-MEMORY-AGENT</span><h3>Ускоряет поиск, когда памяти очень много</h3></div>
+        <a class="layer opt" href="https://github.com/po-helper-org/poh-memory-engine" target="_blank" rel="noopener"><span class="mono">POH-MEMORY-ENGINE ↗</span><h3>Граф и векторный поиск, когда памяти очень много</h3></a>
         <div class="layer core"><span class="mono">POH-CORTEX · ЯДРО</span><h3>Правила и память в текстовых файлах</h3></div>
       </div>
       <p class="line">Начните с ядра — оно работает с первого дня. Ускорение понадобится, когда памяти станет много.</p>
@@ -489,6 +463,20 @@
   document.getElementById('next').onclick = function () { show(cur + 1); };
   var photo = document.getElementById('coverPhoto');
   if (photo && PHOTO) photo.src = PHOTO;
+  /* Галерея AS IS → TO BE: пункт справа переключает экран. */
+  document.querySelectorAll('.gal').forEach(function (gal) {
+    var gb = [].slice.call(gal.querySelectorAll('.glist button[data-t]'));
+    var sc = [].slice.call(gal.querySelectorAll('.scr'));
+    gb.forEach(function (b, k) {
+      b.onclick = function () {
+        gb.forEach(function (x) { x.classList.toggle('on', x === b); });
+        sc.forEach(function (x, j) { x.classList.toggle('on', j === k); });
+        gal.querySelector('.gn').textContent = ('0' + (k + 1)).slice(-2) + ' / ' + ('0' + gb.length).slice(-2);
+        gal.querySelector('.gt').textContent = b.getAttribute('data-t');
+        gal.querySelector('.gd').textContent = b.getAttribute('data-d');
+      };
+    });
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
     if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(cur - 1); }
