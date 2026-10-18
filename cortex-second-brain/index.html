@@ -42,7 +42,6 @@
   .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 26px; }
   .lead { font-size: 24px; line-height: 1.4; margin-top: 26px; max-width: 760px; }
   .quote { border-left: 5px solid var(--blue); padding: 4px 0 4px 22px; font-size: 26px; line-height: 1.34; font-weight: 700; margin-top: 30px; }
-  .line { font-size: 22px; line-height: 1.4; color: var(--muted); }
   .note { font-size: 13px; color: var(--muted); margin-top: 14px; line-height: 1.5; }
   .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 18px; }
   .card.blue .tag, .tag.blue { background: var(--blue); color: #fff; }
@@ -70,10 +69,7 @@
   .card p { font-size: 19px; line-height: 1.4; color: var(--muted); }
   .card .k { display: block; font-size: 58px; line-height: 1; letter-spacing: -.045em; font-weight: 800; margin-bottom: 14px; }
   .card.blue .k { color: var(--blue); }
-  .steps { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: stretch; }
-  .steps.four { grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr; }
-  .steps.four .card { padding: 22px 20px 24px; } .steps.four .card .k { font-size: 46px; } .steps.four .card p { font-size: 17px; }
-  .steps > .arr, .chain > .arr, .example > .arr { display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: var(--blue); }
+  .chain > .arr, .example > .arr { display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: var(--blue); }
   /* мини-схемы в карточках */
   .viz { height: 110px; margin-bottom: 20px; border-bottom: 1px dashed var(--line); display: flex; align-items: center; gap: 10px; }
   .viz .w { flex: 1; height: 74px; border: 1px solid var(--line); background: #fff; position: relative; }
@@ -127,16 +123,6 @@
   .goal .k { display: block; font-size: 64px; font-weight: 800; letter-spacing: -.045em; line-height: 1; color: var(--red); margin: 20px 0 10px; }
   .goal p { font-size: 19px; line-height: 1.4; color: var(--muted); }
   /* ядро и надстройки */
-  .layers { display: grid; grid-template-columns: 600px minmax(0,1fr); gap: 56px; align-items: center; }
-  .stack { display: flex; flex-direction: column; gap: 12px; }
-  .layer { border: 1px solid var(--ink); padding: 18px 22px; }
-  .layer .mono { font-size: 13px; font-weight: 700; letter-spacing: .06em; display: block; margin-bottom: 6px; }
-  .layer h3 { font-size: 24px; letter-spacing: -.02em; line-height: 1.2; }
-  .layer.top { border-style: dashed; }
-  .layer.opt { border-color: var(--blue); background: var(--pale); } .layer.opt .mono { color: var(--blue); }
-  a.layer { display: block; color: inherit; text-decoration: none; } a.layer:hover { box-shadow: 4px 4px 0 var(--blue); }
-  .layer.core { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 6px 6px 0 var(--ink); padding: 26px 22px; }
-  .layers .line { font-size: 26px; color: var(--ink); line-height: 1.35; }
   /* AS IS / TO BE — галерея как в sprint-under-manager: экран по центру, меню справа */
   .gal { display: grid; grid-template-columns: minmax(0,1fr) 236px; gap: 26px; flex: 1; min-height: 0; }
   .gmain { position: relative; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
@@ -207,6 +193,9 @@
   .roles2 ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .roles2 li { font-size: 21px; font-weight: 700; letter-spacing: -.01em; display: grid; grid-template-columns: 28px 1fr; }
   .roles2 li::before { content: "→"; color: var(--blue); }
+  /* схемы «Как это работает» */
+  .c4 { width: 100%; height: auto; display: block; }
+  .c4list { display: none; }
   /* финал */
   .final { display: grid; grid-template-columns: minmax(0,1fr) 500px; gap: 50px; align-items: center; height: 100%; }
   .final h1 { font-size: 88px; }
@@ -228,15 +217,14 @@
     #nav, #bar { display: none; }
     h1, .final h1 { font-size: 40px; } .hero h1 { font-size: 56px; }
     h2 { font-size: 32px; margin-bottom: 22px; }
-    .lead { font-size: 18px; } .quote { font-size: 20px; } .line, .layers .line { font-size: 18px; }
-    .cover, .final, .hero, .layers { grid-template-columns: 1fr; gap: 26px; height: auto; }
+    .lead { font-size: 18px; } .quote { font-size: 20px; }
+    .cover, .final, .hero { grid-template-columns: 1fr; gap: 26px; height: auto; }
     .photo { width: 150px; height: 150px; } .site { max-width: 260px; }
     .stream { grid-template-columns: 1fr 1fr; gap: 10px; } .msg { font-size: 15px; padding: 10px 12px; }
     .asks { flex-direction: column; gap: 6px; font-size: 22px; margin-top: 26px; }
     .said, .final .said { font-size: 18px; }
     .cards { grid-template-columns: 1fr; gap: 18px; }
-    .steps, .steps.four { grid-template-columns: 1fr; } .steps > .arr { height: 34px; transform: rotate(90deg); }
-    .card .k, .steps.four .card .k { font-size: 44px; } .card h3 { font-size: 22px; } .card p { font-size: 17px; }
+    .card h3 { font-size: 22px; } .card p { font-size: 17px; }
     .notes { height: auto; } .nt { position: static; width: auto; } .nt.n1, .nt.n2 { display: none; }
     .nt dl { grid-template-columns: 1fr; gap: 2px; } .nt dd { margin-bottom: 8px; }
     .ladder { grid-template-columns: 1fr; height: auto; gap: 6px; }
@@ -249,8 +237,8 @@
     .rec p { grid-template-columns: 1fr; gap: 4px; padding: 12px 16px; font-size: 18px; } .rec p b { font-size: 24px; }
     .dep { grid-template-columns: 50px minmax(0,1fr); font-size: 17px; padding: 12px 14px; } .dep b { font-size: 32px; }
     .goal h3 { font-size: 22px; } .goal .k { font-size: 48px; }
-    .layer h3 { font-size: 20px; }
     .repo { font-size: 17px; overflow-wrap: anywhere; }
+    .c4 { display: none; } .c4list { display: flex; flex-direction: column; gap: 14px; }
     .pic { padding: 16px; } .pic .ladder { height: auto; }
     .pic .chain, .pic .example { grid-template-columns: 1fr; } .pic .inbox { font-size: 18px; } .pic .rec p { font-size: 16px; } .pic .dep { font-size: 16px; }
     .cap { grid-template-columns: 1fr; gap: 6px; } .cap b { font-size: 16px; } .cells i { font-size: 12px; padding: 7px 0; }
@@ -380,17 +368,25 @@
       </div><div class="glist"><button data-t="Источник" data-d="Нет источника — нет записи" class=on><i>01</i>Источник</button><button data-t="Лестница" data-d="Уверенность — по самому сильному доказательству"><i>02</i>Лестница</button><button data-t="Потолки" data-d="Как бы уверенно ни звучало — выше потолка нельзя"><i>03</i>Потолки</button><button data-t="Распад" data-d="Старое знание теряет уверенность само"><i>04</i>Распад</button><button data-t="Слабое звено" data-d="Цель не прочнее самой слабой опоры"><i>05</i>Слабое звено</button><button data-t="Черновик" data-d="Фактом запись становится после вашего ✅"><i>06</i>Черновик</button><button data-t="Решаете вы" data-d="Агент считает и записывает — решения за человеком"><i>07</i>Решаете вы</button></div></div>
   </section>
 
-  <section class="slide" data-title="Как я пользуюсь">
-    <h2>Любой помощник<br><span class="accent">стартует с памяти</span></h2>
-    <div class="steps four">
-      <div class="card"><span class="tag">1 · ПОДКЛЮЧАЮ</span><span class="k">Память</span><p>всё, что уже известно</p></div>
-      <div class="arr">→</div>
-      <div class="card"><span class="tag">2 · ВЫДАЮ</span><span class="k">Правила</span><p>что считать фактом</p></div>
-      <div class="arr">→</div>
-      <div class="card"><span class="tag">3 · АГЕНТ</span><span class="k">Разбор</span><p>факт, мнение, цель</p></div>
-      <div class="arr">→</div>
-      <div class="card blue"><span class="tag">4 · Я</span><span class="k">✅</span><p>фактом — после моего «да»</p></div>
-    </div>
+  <section class="slide" data-title="Как это работает: Нексусы">
+    <p class="label">КАК ЭТО РАБОТАЕТ · 1 / 3</p>
+    <h2>Нексус — <span class="accent">профиль объекта</span></h2>
+    <svg class="c4" viewBox="-2 -2 1140 396" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Нексусы и связи узлов"><defs><marker id="nx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#080808"/></marker></defs><text x="0" y="16" font-size="13" font-weight="700" fill="#51514b" text-anchor="start" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">НЕКСУСЫ — ОБЪЕКТЫ УПРАВЛЕНИЯ</text><rect x="0" y="30" width="250" height="92" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="125.0" y="73.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Продукт</text><text x="125.0" y="95.0" font-size="14" fill="#fff" text-anchor="middle">идея, фичи, видение</text><rect x="266" y="30" width="250" height="92" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="391.0" y="73.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Потребитель</text><text x="391.0" y="95.0" font-size="14" fill="#fff" text-anchor="middle">сегменты, боли</text><rect x="0" y="138" width="250" height="92" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="125.0" y="181.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Рынок</text><text x="125.0" y="203.0" font-size="14" fill="#fff" text-anchor="middle">тренды, конкуренты</text><rect x="266" y="138" width="250" height="92" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="391.0" y="181.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Рост</text><text x="391.0" y="203.0" font-size="14" fill="#fff" text-anchor="middle">каналы, монетизация</text><rect x="0" y="246" width="168" height="74" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="84.0" y="280.0" font-size="17" font-weight="800" fill="#080808" text-anchor="middle">Оргструктура</text><text x="84.0" y="302.0" font-size="13" fill="#080808" text-anchor="middle">кто за что отвечает</text><rect x="174" y="246" width="168" height="74" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="258.0" y="280.0" font-size="17" font-weight="800" fill="#080808" text-anchor="middle">Правила игры</text><text x="258.0" y="302.0" font-size="13" fill="#080808" text-anchor="middle">принципы, границы</text><rect x="348" y="246" width="168" height="74" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="432.0" y="280.0" font-size="17" font-weight="800" fill="#080808" text-anchor="middle">Портфель</text><text x="432.0" y="302.0" font-size="13" fill="#080808" text-anchor="middle">продукты и юниты</text><rect x="0" y="336" width="516" height="54" rx="6" fill="none" stroke="#080808" stroke-width="1.5" stroke-dasharray="6 5"/><text x="258" y="368" font-size="13" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">+ свой: IT-ландшафт, зависимости, процессы</text><text x="600" y="16" font-size="13" font-weight="700" fill="#51514b" text-anchor="start" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">ВНУТРИ — УЗЛЫ И СВЯЗИ</text><rect x="600" y="30" width="210" height="58" rx="6" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="705.0" y="66.0" font-size="18" font-weight="800" fill="#080808" text-anchor="middle">Сегмент</text><rect x="926" y="30" width="210" height="58" rx="6" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="1031.0" y="66.0" font-size="18" font-weight="800" fill="#080808" text-anchor="middle">Потребность</text><rect x="600" y="152" width="210" height="58" rx="6" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="705.0" y="188.0" font-size="18" font-weight="800" fill="#080808" text-anchor="middle">Фича</text><rect x="926" y="152" width="210" height="58" rx="6" fill="#fff" stroke="#080808" stroke-width="1.5"/><text x="1031.0" y="188.0" font-size="18" font-weight="800" fill="#080808" text-anchor="middle">Ценность</text><rect x="600" y="274" width="210" height="58" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="705.0" y="310.0" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">Ключевой результат</text><rect x="926" y="274" width="210" height="58" rx="6" fill="#080808" stroke="#080808" stroke-width="0"/><text x="1031.0" y="310.0" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">Цель квартала</text><path d="M810 59 H926" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#nx)"/><rect x="822.0" y="39" width="92" height="20" fill="#efeee8"/><text x="868" y="54" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">нуждается</text><path d="M1031 152 V88" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#nx)"/><rect x="985.0" y="111" width="92" height="20" fill="#efeee8"/><text x="1031" y="126" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">закрывает</text><path d="M810 181 H926" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#nx)"/><rect x="822.0" y="161" width="92" height="20" fill="#efeee8"/><text x="868" y="176" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">реализует</text><path d="M705 210 V274" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#nx)"/><rect x="666.0" y="233" width="78" height="20" fill="#efeee8"/><text x="705" y="248" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">двигает</text><path d="M810 303 H926" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#nx)"/><rect x="833.0" y="283" width="70" height="20" fill="#efeee8"/><text x="868" y="298" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">служит</text><rect x="600" y="350" width="536" height="40" rx="6" fill="#dfe3ff" stroke="#2437ed" stroke-width="1.5"/><text x="868" y="375" font-size="13" font-weight="700" fill="#2437ed" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">узел = .md-файл · источник · ступень · владелец · срок</text></svg>
+    <div class="c4list"><div class="card blue"><h3>Нексусы</h3><p>Папка на каждый объект управления: продукт, потребитель, рынок, рост. Плюс общие: оргструктура, правила игры, портфель.</p></div><div class="card"><h3>Узлы и связи</h3><p>Узел — один .md-файл с источником, ступенью, владельцем и сроком. Связи — поля в файле: фича реализует ценность, двигает ключевой результат цели.</p></div></div>
+  </section>
+
+  <section class="slide" data-title="Как это работает: архитектура">
+    <p class="label">КАК ЭТО РАБОТАЕТ · 2 / 3</p>
+    <h2>Архитектура: <span class="accent">папка, правила, агенты</span></h2>
+    <svg class="c4" viewBox="-2 -2 1140 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Архитектура Кортекса"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#080808"/></marker></defs><rect x="300" y="24" width="836" height="370" rx="10" fill="none" stroke="#080808" stroke-width="1.5" stroke-dasharray="8 6"/><text x="1120" y="46" font-size="13" font-weight="700" fill="#080808" text-anchor="end" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">GROUND/ · ПАПКА В GIT</text><rect x="0" y="30" width="220" height="100" rx="6" fill="#080808" stroke="#080808" stroke-width="0"/><text x="110.0" y="68.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">Человек</text><text x="110.0" y="90.0" font-size="14" fill="#fff" text-anchor="middle">цель, приоритет,</text><text x="110.0" y="108.0" font-size="14" fill="#fff" text-anchor="middle">правила</text><rect x="0" y="164" width="220" height="100" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="110.0" y="202.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">ИИ-агент</text><text x="110.0" y="224.0" font-size="14" fill="#fff" text-anchor="middle">Claude Code</text><text x="110.0" y="242.0" font-size="14" fill="#fff" text-anchor="middle">или любой другой</text><rect x="0" y="298" width="220" height="92" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5"/><text x="110.0" y="341.0" font-size="19" font-weight="800" fill="#080808" text-anchor="middle">Боты-сборщики</text><text x="110.0" y="363.0" font-size="14" fill="#080808" text-anchor="middle">чаты, почта, созвоны</text><rect x="330" y="150" width="220" height="110" rx="6" fill="#fff" stroke="#2437ed" stroke-width="1.5"/><text x="440.0" y="193.0" font-size="19" font-weight="800" fill="#080808" text-anchor="middle">bin/cortex</text><text x="440.0" y="215.0" font-size="14" fill="#080808" text-anchor="middle">проверка, поиск,</text><text x="440.0" y="233.0" font-size="14" fill="#080808" text-anchor="middle">расчёт уверенности</text><a href="https://github.com/po-helper-org/poh-memory-engine" target="_blank" rel="noopener"><rect x="330" y="72" width="220" height="58" rx="6" fill="none" stroke="#51514b" stroke-width="1.3" stroke-dasharray="5 4"/><text x="440" y="96" font-size="12.5" font-weight="700" fill="#51514b" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">poh-memory-engine</text><text x="440" y="116" font-size="13" fill="#51514b" text-anchor="middle">граф и вектор — производные</text></a><rect x="600" y="66" width="510" height="54" rx="6" fill="#080808" stroke="#080808" stroke-width="0"/><text x="620" y="99.0" font-size="17" font-weight="800" fill="#fff" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">SCHEMA</text><text x="750" y="99.0" font-size="15" fill="#fff">правила: лестница, распад, зоны</text><rect x="600" y="130" width="510" height="54" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="620" y="163.0" font-size="17" font-weight="800" fill="#fff" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">NEXUS</text><text x="750" y="163.0" font-size="15" fill="#fff">знание: узлы с источником и ступенью</text><rect x="600" y="194" width="510" height="54" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="620" y="227.0" font-size="17" font-weight="800" fill="#fff" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">DECIDE</text><text x="750" y="227.0" font-size="15" fill="#fff">ставки, решения, доказательства</text><rect x="600" y="258" width="510" height="50" rx="6" fill="#dfe3ff" stroke="#080808" stroke-width="1.5"/><text x="620" y="289.0" font-size="17" font-weight="800" fill="#080808" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">PULSE</text><text x="750" y="289.0" font-size="15" fill="#080808">встречи и дни</text><rect x="600" y="318" width="510" height="56" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5" stroke-dasharray="6 5"/><text x="620" y="352.0" font-size="17" font-weight="800" fill="#080808" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">_intake</text><text x="750" y="352.0" font-size="15" fill="#080808">неразобранный поток</text><path d="M220 48 H600 V66" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ar)"/><rect x="295.0" y="28" width="230" height="20" fill="#efeee8"/><text x="410" y="43" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">правила — только человек</text><path d="M220 214 H330" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ar)"/><rect x="237.0" y="194" width="76" height="20" fill="#efeee8"/><text x="275" y="209" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">команды</text><path d="M550 186 H576 V157 H600" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ar)"/><path d="M550 222 H600" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ar)"/><text x="440" y="284" font-size="12.5" font-weight="700" fill="#2437ed" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">черновики → после ✅ факт</text><path d="M220 346 H600" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#ar)"/><rect x="335.0" y="326" width="150" height="20" fill="#efeee8"/><text x="410" y="341" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">только в очередь</text></svg>
+    <div class="c4list"><div class="card blue"><h3>Папка в git</h3><p>SCHEMA — правила, NEXUS — знание, DECIDE — ставки и решения, PULSE — встречи, _intake — неразобранный поток.</p></div><div class="card"><h3>Кто куда пишет</h3><p>Правила — только человек. ИИ-агент через bin/cortex пишет черновики в NEXUS и DECIDE — фактом они становятся после ✅. Боты-сборщики — только в очередь.</p></div><div class="card"><h3>Ускорение</h3><p><a href="https://github.com/po-helper-org/poh-memory-engine" target="_blank" rel="noopener">poh-memory-engine</a> строит граф и вектор поверх папки, когда памяти очень много. Это производное: пересобирается из файлов.</p></div></div>
+  </section>
+
+  <section class="slide" data-title="Как это работает: поток знаний">
+    <p class="label">КАК ЭТО РАБОТАЕТ · 3 / 3</p>
+    <h2>Поток знаний: <span class="accent">только вперёд</span></h2>
+    <svg class="c4" viewBox="-2 -2 1140 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Поток знаний в Кортексе"><defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#080808"/></marker></defs><text x="0" y="18" font-size="13" font-weight="700" fill="#51514b" text-anchor="start" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">ВХОДЯЩЕЕ → ЗНАНИЕ → ОБЕЩАНИЕ · ОБРАТНО — НИКОГДА</text><rect x="0" y="40" width="196" height="130" rx="6" fill="#dcdbd5" stroke="#080808" stroke-width="1.5" stroke-dasharray="6 5"/><text x="16" y="62" font-size="11.5" font-weight="700" fill="#080808" font-family="JetBrains Mono, ui-monospace, Menlo, monospace" opacity=".8">1 · _INTAKE</text><text x="98.0" y="101.0" font-size="21" font-weight="800" fill="#080808" text-anchor="middle">Входящие</text><text x="98.0" y="123.0" font-size="14" fill="#080808" text-anchor="middle">чаты, почта,</text><text x="98.0" y="141.0" font-size="14" fill="#080808" text-anchor="middle">созвоны</text><rect x="235" y="40" width="196" height="130" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="251" y="62" font-size="11.5" font-weight="700" fill="#fff" font-family="JetBrains Mono, ui-monospace, Menlo, monospace" opacity=".8">2 · АГЕНТ</text><text x="333.0" y="101.0" font-size="21" font-weight="800" fill="#fff" text-anchor="middle">Разбор</text><text x="333.0" y="123.0" font-size="14" fill="#fff" text-anchor="middle">источник, ступень,</text><text x="333.0" y="141.0" font-size="14" fill="#fff" text-anchor="middle">факт или мнение</text><rect x="470" y="40" width="196" height="130" rx="6" fill="#fff" stroke="#2437ed" stroke-width="1.5"/><text x="486" y="62" font-size="11.5" font-weight="700" fill="#080808" font-family="JetBrains Mono, ui-monospace, Menlo, monospace" opacity=".8">3 · ЧЕЛОВЕК</text><text x="568.0" y="101.0" font-size="21" font-weight="800" fill="#080808" text-anchor="middle">Приёмка ✅</text><text x="568.0" y="123.0" font-size="14" fill="#080808" text-anchor="middle">вы: да</text><text x="568.0" y="141.0" font-size="14" fill="#080808" text-anchor="middle">или нет</text><rect x="705" y="40" width="196" height="130" rx="6" fill="#2437ed" stroke="#080808" stroke-width="0"/><text x="721" y="62" font-size="11.5" font-weight="700" fill="#fff" font-family="JetBrains Mono, ui-monospace, Menlo, monospace" opacity=".8">4 · NEXUS</text><text x="803.0" y="101.0" font-size="21" font-weight="800" fill="#fff" text-anchor="middle">Память</text><text x="803.0" y="123.0" font-size="14" fill="#fff" text-anchor="middle">Нексусы со сроком</text><text x="803.0" y="141.0" font-size="14" fill="#fff" text-anchor="middle">годности</text><rect x="940" y="40" width="196" height="130" rx="6" fill="#080808" stroke="#080808" stroke-width="0"/><text x="956" y="62" font-size="11.5" font-weight="700" fill="#fff" font-family="JetBrains Mono, ui-monospace, Menlo, monospace" opacity=".8">5 · DECIDE</text><text x="1038.0" y="101.0" font-size="21" font-weight="800" fill="#fff" text-anchor="middle">Ставки</text><text x="1038.0" y="123.0" font-size="14" fill="#fff" text-anchor="middle">обещания квартала</text><text x="1038.0" y="141.0" font-size="14" fill="#fff" text-anchor="middle">с порогом и датой</text><path d="M196 105.0 H235" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#fl)"/><path d="M431 105.0 H470" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#fl)"/><path d="M666 105.0 H705" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#fl)"/><path d="M901 105.0 H940" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#fl)"/><path d="M765 170 V230 H841 V170" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#fl)"/><rect x="653.0" y="237" width="300" height="20" fill="#efeee8"/><text x="803" y="252" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">срок вышел → проверить или понизить</text><path d="M1038 170 V300 H333 V170" fill="none" stroke="#080808" stroke-width="1.8" marker-end="url(#fl)"/><rect x="540.5" y="290" width="290" height="20" fill="#efeee8"/><text x="685.5" y="305" font-size="12.5" font-weight="700" fill="#080808" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">итоги квартала → калибровка шкалы</text><rect x="0" y="330" width="1136" height="44" rx="6" fill="#dfe3ff" stroke="#2437ed" stroke-width="1.5"/><text x="568" y="357" font-size="13" font-weight="700" fill="#2437ed" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, Menlo, monospace">Слух не становится фактом в обход приёмки · каждая ставка — к цели квартала</text></svg>
+    <div class="c4list"><div class="card blue"><h3>Входящие → разбор</h3><p>Чаты, почта и созвоны попадают в очередь. Агент разбирает: источник, ступень, факт или мнение.</p></div><div class="card"><h3>Приёмка → память → ставки</h3><p>Вы принимаете черновик — он становится знанием в Нексусе и опорой ставок квартала.</p></div><div class="card"><h3>Две петли</h3><p>Срок годности вышел — узел перепроверяют или понижают. Итоги квартала — калибровка шкалы, решает человек.</p></div></div>
   </section>
 
   <section class="slide" data-title="AS IS → TO BE">
@@ -430,36 +426,12 @@
     <p class="note">Ответы одной модели из эксперимента: те же факты — папка заметок или Кортекс. Сокращены, смысл не изменён.</p>
   </section>
 
-  <section class="slide" data-title="Ядро и надстройки">
-    <h2>Сначала порядок,<br><span class="accent">потом скорость</span></h2>
-    <div class="layers">
-      <div class="stack">
-        <div class="layer top"><span class="mono">ВАШИ ИИ-ПОМОЩНИКИ</span><h3>Сводки, отчёты, планы</h3></div>
-        <a class="layer opt" href="https://github.com/po-helper-org/poh-memory-engine" target="_blank" rel="noopener"><span class="mono">POH-MEMORY-ENGINE ↗</span><h3>Граф и векторный поиск, когда памяти очень много</h3></a>
-        <div class="layer core"><span class="mono">POH-CORTEX · ЯДРО</span><h3>Правила и память в текстовых файлах</h3></div>
-      </div>
-      <p class="line">Начните с ядра — оно работает с первого дня. Ускорение понадобится, когда памяти станет много.</p>
-    </div>
-  </section>
-
-  <section class="slide" data-title="За один вечер">
-    <h2>Завести себе<br><span class="accent">за один вечер</span></h2>
-    <div class="steps">
-      <div class="card"><span class="tag">1 · СКАЧАТЬ</span><span class="k">1 мин</span><p>шаблон poh-cortex с GitHub</p></div>
-      <div class="arr">→</div>
-      <div class="card"><span class="tag">2 · НАСТРОИТЬ</span><span class="k">1 час</span><p>агент спрашивает — вы отвечаете</p></div>
-      <div class="arr">→</div>
-      <div class="card blue"><span class="tag">3 · НАПОЛНИТЬ</span><span class="k">По теме</span><p>клиенты, продукт, команда — по одной</p></div>
-    </div>
-    <p class="line" style="margin-top:40px">Первый квартал: только 3–7 главных обещаний и то, на чём вы уже ошибались.</p>
-  </section>
-
   <section class="slide center" data-title="Запустить у себя">
     <div class="final">
       <div>
         <p class="label">POH-CORTEX</p>
         <h1>Запустить<br><span class="accent">у себя</span></h1>
-        <p class="lead">Откройте папку в ИИ-агенте и скажите две фразы.</p>
+        <p class="lead">Скачать шаблон — минута, настройка разговором с агентом — час. Дальше — по одной теме за раз.</p>
         <a class="repo" href="https://github.com/po-helper-org/poh-cortex" target="_blank" rel="noopener">github.com/po-helper-org/poh-cortex ↗</a>
         <p class="note">Шаблон открытый — свою память держите в приватной копии. Методология — PAF, Тихомиров С., CC BY-SA 4.0; адаптация — Ишманов А.</p>
       </div>
