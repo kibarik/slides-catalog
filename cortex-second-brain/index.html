@@ -141,6 +141,38 @@
   .layer.opt { border-color: var(--blue); background: var(--pale); } .layer.opt .mono { color: var(--blue); }
   .layer.core { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 6px 6px 0 var(--ink); padding: 26px 22px; }
   .layers .line { font-size: 26px; color: var(--ink); line-height: 1.35; }
+  /* AS IS / TO BE: один вопрос — два ответа */
+  .vs { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.25fr); gap: 28px; flex: 1; min-height: 0; }
+  .ans { border: 1px solid var(--ink); background: #fff; padding: 22px 26px 20px; display: flex; flex-direction: column; }
+  .ans.asis { border-color: #9a9890; background: #f7f6f2; }
+  .ans.tobe { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
+  .ans .who { display: inline-block; align-self: flex-start; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; padding: 5px 10px; margin-bottom: 16px; background: #9a9890; color: #fff; }
+  .ans.tobe .who { background: var(--blue); }
+  .ans .say { font-size: 23px; line-height: 1.38; }
+  .ans.asis .say { color: var(--muted); font-size: 26px; }
+  .ans .say b { color: var(--ink); }
+  .ans .rows2 { display: flex; flex-direction: column; font-size: 19px; line-height: 1.3; }
+  .ans .rows2 p { display: grid; grid-template-columns: 54px 1fr; gap: 12px; align-items: baseline; padding: 7px 0; border-top: 1px solid #e3e1da; }
+  .ans .rows2 p:first-child { border-top: none; padding-top: 0; }
+  .ans .rows2 p > b { font-size: 26px; letter-spacing: -.02em; text-align: center; }
+  .ans .rows2 p > b.lo { color: var(--red); } .ans .rows2 p > b.hi { color: var(--blue); }
+  .ans .rows2 small { color: var(--muted); font-size: 15px; }
+  .ans .rows2 .grp { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--blue); padding: 10px 0 2px; border: none; }
+  .ans .next { margin-top: 12px; font-size: 19px; font-weight: 700; color: var(--blue); }
+  .marks { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .marks span { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; padding: 5px 9px; }
+  .asis .marks span { background: #fde2e1; color: #b3261e; }
+  .tobe .marks span { background: var(--pale); color: var(--blue); }
+  /* итог AS IS / TO BE */
+  table.score { width: 100%; border-collapse: collapse; }
+  table.score th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-align: left; padding: 0 0 12px; border-bottom: 2px solid var(--ink); color: var(--muted); }
+  table.score th.b { color: var(--blue); }
+  table.score td { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 26px; letter-spacing: -.02em; vertical-align: baseline; }
+  table.score td:first-child { font-weight: 700; width: 380px; }
+  table.score td.a { color: var(--muted); width: 330px; }
+  table.score td.b { color: var(--blue); font-weight: 700; }
+  table.score i { font-style: normal; font-weight: 800; display: inline-block; width: 36px; }
+  table.score td.a i { color: var(--red); }
   /* финал */
   .final { display: grid; grid-template-columns: minmax(0,1fr) 500px; gap: 50px; align-items: center; height: 100%; }
   .final h1 { font-size: 88px; }
@@ -186,6 +218,9 @@
     ul.rows li { font-size: 22px; grid-template-columns: 32px 1fr; } ul.rows { gap: 16px; }
     .layer h3 { font-size: 20px; }
     .repo { font-size: 17px; overflow-wrap: anywhere; }
+    .vs { grid-template-columns: 1fr; gap: 20px; } .ans { padding: 18px; } .ans .say, .ans.asis .say { font-size: 18px; } .ans .rows2 { font-size: 16px; } .ans .rows2 p { grid-template-columns: 40px 1fr; } .ans .rows2 p > b { font-size: 21px; } .ans .next { font-size: 16px; }
+    table.score thead { display: none; } table.score, table.score tbody, table.score tr, table.score td { display: block; width: 100% !important; }
+    table.score tr { border-bottom: 1px solid var(--line); padding: 10px 0; } table.score td { border: none; padding: 2px 0; font-size: 18px; } table.score i { width: 26px; }
   }
 </style>
 </head>
@@ -293,6 +328,73 @@
     </div>
   </section>
 
+  <section class="slide" data-title="AS IS / TO BE: срок">
+    <h2>«Успеваем к 1 декабря?»<br><span class="accent">Один вопрос — два ответа</span></h2>
+    <div class="vs">
+      <div class="ans asis"><span class="who">AS IS · ИИ БЕЗ ПАМЯТИ</span>
+        <p class="say">«Да, сроки реалистичные. Партнёр подтвердил готовность, команда настроена позитивно».</p>
+        <div class="marks"><span>✗ откуда — неизвестно</span><span>✗ слух как факт</span><span>✗ что делать — нет</span></div>
+      </div>
+      <div class="ans tobe"><span class="who">TO BE · ИИ С КОРТЕКСОМ</span>
+        <p class="say"><b>Дату давать рано.</b> Цель держится на трёх условиях:</p>
+        <div class="rows2" style="margin-top:12px">
+          <p><b class="hi">6</b><span>Площадка готова <small>· проверено 10.10</small></span></p>
+          <p><b class="hi">3</b><span>Тарифы согласованы <small>· письмо 09.10</small></span></p>
+          <p><b class="lo">2</b><span>Интеграция партнёра <small>· только со слов</small></span></p>
+        </div>
+        <p class="next">→ Запросить письмо партнёра до 25.10</p>
+        <div class="marks"><span>✓ источник</span><span>✓ уверенность</span><span>✓ следующий шаг</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="AS IS / TO BE: неделя">
+    <h2>«Что важного за неделю?»<br><span class="accent">Важное отделено от шума</span></h2>
+    <div class="vs">
+      <div class="ans asis"><span class="who">AS IS · ИИ БЕЗ ПАМЯТИ</span>
+        <p class="say">«Партнёр успеет к 15-му, бюджет согласовали, релиз сдвигают на неделю, конверсия упала на 3%, клиент недоволен сроками, обсуждали вторую команду, договор подписан, тарифы могут поменять».</p>
+        <div class="marks"><span>✗ 8 пунктов на равных</span><span>✗ слухи вперемешку с фактами</span></div>
+      </div>
+      <div class="ans tobe"><span class="who">TO BE · ИИ С КОРТЕКСОМ</span>
+        <div class="rows2">
+          <span class="grp">ЦЕЛЬ «ДОСТАВКА К 1 ДЕКАБРЯ»</span>
+          <p><b class="hi">3</b><span>Релиз сдвинут на неделю <small>· письмо 15.10</small></span></p>
+          <p><b class="lo">2</b><span>Партнёр «успеет к 15-му» <small>· со слов</small></span></p>
+          <span class="grp">ЦЕЛЬ «КОНВЕРСИЯ +5%»</span>
+          <p><b class="hi">3</b><span>Конверсия −3% <small>· отчёт 16.10</small></span></p>
+        </div>
+        <p class="next">Остальные 5 — без связи с целями, отложены</p>
+        <div class="marks"><span>✓ по целям</span><span>✓ шум отложен</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="AS IS / TO BE: бюджет">
+    <h2>«Бюджет на вторую команду есть?»<br><span class="accent">«Вроде» не становится «да»</span></h2>
+    <div class="vs">
+      <div class="ans asis"><span class="who">AS IS · ИИ БЕЗ ПАМЯТИ</span>
+        <p class="say">«Да, бюджет согласован. Можно начинать поиск второй команды».</p>
+        <div class="marks"><span>✗ «вроде» стало «да»</span><span>✗ решение — за вас</span></div>
+      </div>
+      <div class="ans tobe"><span class="who">TO BE · ИИ С КОРТЕКСОМ</span>
+        <p class="say"><b>Подтверждения нет.</b> «Бюджет вроде согласовали» — слова с созвона 12.10, уверенность <b style="color:var(--red)">2 из 9</b>. Письменного решения нет.</p>
+        <p class="next">→ Решает финансовый директор: нужно письмо с суммой</p>
+        <div class="marks"><span>✓ мнение помечено</span><span>✓ известно, у кого спросить</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="AS IS / TO BE: итог">
+    <h2>Что меняется<br><span class="accent">в каждом ответе</span></h2>
+    <table class="score"><thead><tr><th>ВОПРОС К ОТВЕТУ</th><th>AS IS</th><th class="b">TO BE</th></tr></thead><tbody>
+      <tr><td>Откуда это известно?</td><td class="a"><i>✗</i>неизвестно</td><td class="b"><i>✓</i>источник и дата</td></tr>
+      <tr><td>Факт или мнение?</td><td class="a"><i>✗</i>всё звучит как факт</td><td class="b"><i>✓</i>уверенность 2–9</td></tr>
+      <tr><td>К какой цели?</td><td class="a"><i>✗</i>всё одинаково важно</td><td class="b"><i>✓</i>сгруппировано по OKR</td></tr>
+      <tr><td>Что делать дальше?</td><td class="a"><i>✗</i>не сказано</td><td class="b"><i>✓</i>шаг и владелец</td></tr>
+    </tbody></table>
+    <p class="note" style="margin-top:22px">Примеры вымышлены: одинаковые сообщения, разная память у помощника.</p>
+  </section>
+
   <section class="slide" data-title="Как я пользуюсь">
     <h2>Любой помощник<br><span class="accent">стартует с памяти</span></h2>
     <div class="steps four">
@@ -313,16 +415,6 @@
       <li><span>Нет источника — <b>нет записи</b></span></li>
       <li><span>Не знает — <b>оставляет пусто</b>, а не выдумывает</span></li>
       <li><span>Цели, приоритеты и сроки <b>решаете вы</b></span></li>
-    </ul>
-  </section>
-
-  <section class="slide" data-title="На практике">
-    <h2>Что меняется<br><span class="accent">на практике</span></h2>
-    <ul class="rows">
-      <li><span>«Успеем к сроку?» — <b>один ответ и слабое звено</b></span></li>
-      <li><span>«Откуда это?» — <b>источник у каждой записи</b></span></li>
-      <li><span>«Что устарело?» — <b>видно само</b>, без ревизии</span></li>
-      <li><span>«Кому писать?» — <b>у каждой темы есть владелец</b></span></li>
     </ul>
   </section>
 
