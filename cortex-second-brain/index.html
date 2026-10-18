@@ -107,7 +107,6 @@
   .groups { display: grid; grid-template-columns: 2fr 3fr 3fr; gap: 10px; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; }
   .groups span { border-top: 3px solid var(--muted); padding-top: 6px; color: var(--muted); }
   .groups span.ok { border-color: var(--blue); color: var(--blue); }
-  .ladder-rule { margin-top: 26px; font-size: 22px; } .ladder-rule b { color: var(--ink); }
   /* фраза → запись */
   .example { display: grid; grid-template-columns: 380px 60px minmax(0,1fr); align-items: center; }
   .inbox { background: var(--ink); color: #fff; padding: 22px 24px; border-radius: 16px 16px 16px 2px; font-size: 28px; line-height: 1.3; font-weight: 600; }
@@ -127,10 +126,6 @@
   .goal h3 { font-size: 28px; line-height: 1.15; letter-spacing: -.02em; }
   .goal .k { display: block; font-size: 64px; font-weight: 800; letter-spacing: -.045em; line-height: 1; color: var(--red); margin: 20px 0 10px; }
   .goal p { font-size: 19px; line-height: 1.4; color: var(--muted); }
-  /* списки */
-  ul.rows { list-style: none; display: flex; flex-direction: column; gap: 26px; margin-top: 10px; }
-  ul.rows li { font-size: 32px; line-height: 1.25; letter-spacing: -.02em; display: grid; grid-template-columns: 44px 1fr; }
-  ul.rows li::before { content: "→"; color: var(--blue); font-weight: 800; }
   /* ядро и надстройки */
   .layers { display: grid; grid-template-columns: 600px minmax(0,1fr); gap: 56px; align-items: center; }
   .stack { display: flex; flex-direction: column; gap: 12px; }
@@ -175,6 +170,43 @@
   .glist button.on { border-color: var(--blue); color: var(--ink); font-weight: 700; box-shadow: 4px 4px 0 var(--blue); background: #fff; }
   .glist button.on i { color: var(--blue); }
   .glist .glive { margin-top: auto; display: block; box-shadow: 4px 4px 0 var(--ink); font-size: 16px; font-weight: 700; background: var(--blue); color: #fff; padding: 12px 14px; text-decoration: none; }
+  /* галерея правил: картинка вместо текста */
+  .pic { justify-content: center; padding: 26px 30px; gap: 18px; }
+  .pic .example { grid-template-columns: 290px 50px minmax(0,1fr); }
+  .pic .inbox { font-size: 22px; } .pic .rec p { font-size: 19px; padding: 10px 20px; } .pic .rec p b { font-size: 26px; }
+  .stamp { align-self: flex-start; background: #fde2e1; color: #b3261e; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; padding: 7px 11px; }
+  .pic .ladder { height: 252px; } .pic .step b { font-size: 30px; } .pic .step span { font-size: 14px; }
+  .caps { display: flex; flex-direction: column; gap: 16px; }
+  .cap { display: grid; grid-template-columns: 250px minmax(0,1fr) 120px; gap: 18px; align-items: center; }
+  .cap b { font-size: 19px; line-height: 1.25; }
+  .cap > span { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 700; color: var(--red); }
+  .cap:last-child > span { color: var(--blue); }
+  .cells { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+  .cells i { font-style: normal; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 700; padding: 9px 0; }
+  .cells i.f { background: var(--blue); color: #fff; }
+  .cells i.x { color: #b9b7b0; background: repeating-linear-gradient(135deg, #f0efea 0 6px, #e3e1da 6px 12px); }
+  .decay { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; align-items: end; height: 270px; }
+  .dc { display: flex; flex-direction: column; gap: 6px; }
+  .dc .bar { height: calc(var(--v) * 34px); background: var(--blue); color: #fff; display: flex; align-items: flex-start; padding: 10px 14px; }
+  .dc .bar b { font-size: 34px; line-height: 1; letter-spacing: -.03em; }
+  .dc.lo .bar { background: var(--red); }
+  .dc span { font-size: 18px; font-weight: 700; } .dc small { font-size: 14px; color: var(--muted); }
+  .dnote { font-size: 15px; color: var(--muted); }
+  .pic .chain { grid-template-columns: minmax(0,1fr) 50px 320px; }
+  .pic .dep { font-size: 19px; padding: 12px 16px; } .pic .goal .k { font-size: 52px; margin: 14px 0 8px; }
+  .flow3 { display: grid; grid-template-columns: 1fr 180px 1fr; align-items: center; gap: 10px; }
+  .fc { border: 1px solid var(--ink); background: #fff; padding: 20px 22px; }
+  .fc h3 { font-size: 22px; letter-spacing: -.02em; line-height: 1.2; margin-bottom: 6px; } .fc p { font-size: 16px; color: var(--muted); }
+  .fc.draft { border-style: dashed; background: #f7f6f2; }
+  .fc.fact { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
+  .ok3 { text-align: center; } .ok3 b { display: block; font-size: 48px; line-height: 1.1; } .ok3 span { font-size: 15px; color: var(--muted); }
+  .roles2 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); background: #fff; }
+  .roles2 > div { padding: 20px 24px; } .roles2 > div + div { border-left: 1px solid var(--ink); background: #f6f7ff; }
+  .roles2 .lbl { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; margin-bottom: 12px; }
+  .roles2 > div + div .lbl { color: var(--blue); }
+  .roles2 ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .roles2 li { font-size: 21px; font-weight: 700; letter-spacing: -.01em; display: grid; grid-template-columns: 28px 1fr; }
+  .roles2 li::before { content: "→"; color: var(--blue); }
   /* финал */
   .final { display: grid; grid-template-columns: minmax(0,1fr) 500px; gap: 50px; align-items: center; height: 100%; }
   .final h1 { font-size: 88px; }
@@ -210,16 +242,20 @@
     .ladder { grid-template-columns: 1fr; height: auto; gap: 6px; }
     .step { height: auto !important; display: flex; align-items: baseline; gap: 12px; padding: 10px 12px; }
     .step b { font-size: 24px; margin: 0; min-width: 24px; } .step span { font-size: 16px; }
-    .groups { display: none; } .ladder-rule { font-size: 18px; }
+    .groups { display: none; }
     .example, .chain { grid-template-columns: 1fr; }
     .example > .arr, .chain > .arr { height: 44px; transform: rotate(90deg); }
     .inbox { font-size: 20px; }
     .rec p { grid-template-columns: 1fr; gap: 4px; padding: 12px 16px; font-size: 18px; } .rec p b { font-size: 24px; }
     .dep { grid-template-columns: 50px minmax(0,1fr); font-size: 17px; padding: 12px 14px; } .dep b { font-size: 32px; }
     .goal h3 { font-size: 22px; } .goal .k { font-size: 48px; }
-    ul.rows li { font-size: 22px; grid-template-columns: 32px 1fr; } ul.rows { gap: 16px; }
     .layer h3 { font-size: 20px; }
     .repo { font-size: 17px; overflow-wrap: anywhere; }
+    .pic { padding: 16px; } .pic .ladder { height: auto; }
+    .pic .chain, .pic .example { grid-template-columns: 1fr; } .pic .inbox { font-size: 18px; } .pic .rec p { font-size: 16px; } .pic .dep { font-size: 16px; }
+    .cap { grid-template-columns: 1fr; gap: 6px; } .cap b { font-size: 16px; } .cells i { font-size: 12px; padding: 7px 0; }
+    .decay { height: auto; gap: 8px; } .dc .bar { height: calc(var(--v) * 20px); padding: 6px 8px; } .dc .bar b { font-size: 22px; } .dc span { font-size: 13px; } .dc small { font-size: 11px; }
+    .flow3 { grid-template-columns: 1fr; } .roles2 { grid-template-columns: 1fr; } .roles2 > div + div { border-left: 0; border-top: 1px solid var(--ink); } .roles2 li { font-size: 17px; }
     .gal { grid-template-columns: 1fr; gap: 14px; } .glist { order: -1; flex-direction: row; overflow-x: auto; gap: 6px; padding-bottom: 6px; }
     .glist button { flex: none; font-size: 15px; padding: 7px 10px; white-space: nowrap; } .glist .glive { flex: none; margin-top: 0; font-size: 15px; padding: 7px 10px; white-space: nowrap; }
     .vs2 { grid-template-columns: 1fr; } .side + .side { border-left: 0; border-top: 1px solid #e3e1da; }
@@ -280,55 +316,80 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Три правила">
-    <h2>Три правила<br><span class="accent">вместо догадок</span></h2>
-    <div class="cards">
-      <div class="card"><span class="tag">ИСТОЧНИК</span><span class="k">Ссылка</span><p>Нет источника — нет записи.</p></div>
-      <div class="card"><span class="tag">УВЕРЕННОСТЬ</span><span class="k">2 → 9</span><p>Растёт только с доказательством.</p></div>
-      <div class="card blue"><span class="tag">ЦЕЛИ</span><span class="k">OKR</span><p>Каждая новость — к своей цели.</p></div>
-    </div>
+  <section class="slide" data-title="Правила памяти">
+    <h2>Правила памяти: <span class="accent">7 принципов</span></h2>
+    <div class="gal"><div class="gmain">
+        <div class="scr pic on">
+          <div class="example">
+            <div class="inbox"><small>ЧАТ КОМАНДЫ · 14.10</small>«Партнёр сказал, что интеграция будет к 15 ноября»</div>
+            <div class="arr">→</div>
+            <div class="rec">
+              <p><i>ИСТОЧНИК</i><span>созвон, пересказ в чате</span></p>
+              <p><i>УВЕРЕННОСТЬ</i><span><b>2 из 9</b></span></p>
+              <p><i>ЦЕЛЬ</i><span>Запуск доставки к 1 декабря</span></p>
+              <p><i>ПОВЫСИТ</i><span>письмо партнёра с датой</span></p>
+            </div>
+          </div>
+          <p class="stamp">✗ Без источника запись не создаётся — даже если звучит правдоподобно</p>
+        </div>
+        <div class="scr pic">
+          <div class="ladder">
+            <div class="step op" style="height:70px"><b>2</b><span>Сказали</span></div>
+            <div class="step op" style="height:96px"><b>3</b><span>Написали с датой</span></div>
+            <div class="step ok" style="height:122px"><b>4</b><span>Показали на демо</span></div>
+            <div class="step ok" style="height:148px"><b>5</b><span>Проверили на тесте</span></div>
+            <div class="step ok" style="height:174px"><b>6</b><span>Проверили вживую</span></div>
+            <div class="step run" style="height:200px"><b>7</b><span>Работает на малом объёме</span></div>
+            <div class="step run" style="height:226px"><b>8</b><span>Работает под нагрузкой</span></div>
+            <div class="step run" style="height:252px"><b>9</b><span>Работает всегда</span></div>
+          </div>
+          <div class="groups"><span>МНЕНИЕ</span><span class="ok">ПРОВЕРЕНО</span><span class="ok">РАБОТАЕТ</span></div>
+        </div>
+        <div class="scr pic">
+          <div class="caps"><div class="cap"><b>Сказали на созвоне или в чате</b><div class="cells"><i class="f">2</i><i class="f">3</i><i class="x">4</i><i class="x">5</i><i class="x">6</i><i class="x">7</i><i class="x">8</i><i class="x">9</i></div><span>не выше 3</span></div><div class="cap"><b>Пересказали чужие слова</b><div class="cells"><i class="f">2</i><i class="x">3</i><i class="x">4</i><i class="x">5</i><i class="x">6</i><i class="x">7</i><i class="x">8</i><i class="x">9</i></div><span>не выше 2</span></div><div class="cap"><b>Два источника спорят</b><div class="cells"><i class="f">2</i><i class="f">3</i><i class="f">4</i><i class="x">5</i><i class="x">6</i><i class="x">7</i><i class="x">8</i><i class="x">9</i></div><span>не выше 4</span></div><div class="cap"><b>Письмо, тикет, прогон</b><div class="cells"><i class="f">2</i><i class="f">3</i><i class="f">4</i><i class="f">5</i><i class="f">6</i><i class="f">7</i><i class="f">8</i><i class="f">9</i></div><span>без потолка</span></div></div>
+        </div>
+        <div class="scr pic">
+          <div class="decay"><div class="dc"><div class="bar" style="--v:6"><b>6</b></div><span>21 января</span><small>записали</small></div><div class="dc"><div class="bar" style="--v:6"><b>6</b></div><span>21 апреля</span><small>1 срок прошёл</small></div><div class="dc"><div class="bar" style="--v:4"><b>4</b></div><span>20 июля</span><small>2 срока</small></div><div class="dc lo"><div class="bar" style="--v:2"><b>2</b></div><span>18 октября</span><small>3 срока</small></div></div><p class="dnote">Проверка каталога · срок годности 90 дней · после него −2 ступени за каждый следующий срок</p>
+        </div>
+        <div class="scr pic">
+          <div class="chain">
+            <div class="deps">
+              <div class="dep"><b>6</b><span>Площадка для запуска готова</span></div>
+              <div class="dep"><b>3</b><span>Тарифы согласованы письмом</span></div>
+              <div class="dep weak"><b>2</b><span>Интеграция партнёра — со слов</span></div>
+            </div>
+            <div class="arr">→</div>
+            <div class="goal"><span class="tag blue">ЦЕЛЬ КВАРТАЛА</span><h3>Запуск доставки<br>к 1 декабря</h3><span class="k">2 из 9</span><p>Дату наверх давать рано.</p></div>
+          </div>
+        </div>
+        <div class="scr pic">
+          <div class="flow3">
+            <div class="fc draft"><span class="tag">ЧЕРНОВИК · АГЕНТ</span><h3>Интеграция партнёра к 15.11</h3><p>2 из 9 · созвон 14.10</p></div>
+            <div class="ok3"><b>✅</b><span>вы принимаете<br>или отклоняете</span></div>
+            <div class="fc fact"><span class="tag blue">ФАКТ · ПАМЯТЬ</span><h3>Интеграция партнёра к 15.11</h3><p>участвует в ответах</p></div>
+          </div>
+          <p class="dnote">Пока запись — черновик, агент не выдаёт её за факт</p>
+        </div>
+        <div class="scr pic">
+          <div class="roles2">
+            <div><p class="lbl">РЕШАЕТЕ ВЫ</p><ul><li>Цель квартала</li><li>Приоритет</li><li>Дата наружу</li><li>Правила и шкала</li></ul></div>
+            <div><p class="lbl">ДЕЛАЕТ АГЕНТ</p><ul><li>Спрашивает по одному</li><li>Пишет черновики с источником</li><li>Считает уверенность по вашей шкале</li><li>Говорит «не знаю», а не выдумывает</li></ul></div>
+          </div>
+        </div>
+        <div class="gcap"><span class="gn">01 / 07</span><b class="gt">Источник</b><em class="gd">Нет источника — нет записи</em></div>
+      </div><div class="glist"><button data-t="Источник" data-d="Нет источника — нет записи" class=on><i>01</i>Источник</button><button data-t="Лестница" data-d="Уверенность — по самому сильному доказательству"><i>02</i>Лестница</button><button data-t="Потолки" data-d="Как бы уверенно ни звучало — выше потолка нельзя"><i>03</i>Потолки</button><button data-t="Распад" data-d="Старое знание теряет уверенность само"><i>04</i>Распад</button><button data-t="Слабое звено" data-d="Цель не прочнее самой слабой опоры"><i>05</i>Слабое звено</button><button data-t="Черновик" data-d="Фактом запись становится после вашего ✅"><i>06</i>Черновик</button><button data-t="Решаете вы" data-d="Агент считает и записывает — решения за человеком"><i>07</i>Решаете вы</button></div></div>
   </section>
 
-  <section class="slide" data-title="Лестница доказательств">
-    <h2>Факт или мнение&nbsp;—<br><span class="accent">решает лестница</span></h2>
-    <div class="ladder">
-      <div class="step op" style="height:80px"><b>2</b><span>Сказали</span></div>
-      <div class="step op" style="height:110px"><b>3</b><span>Написали с датой</span></div>
-      <div class="step ok" style="height:140px"><b>4</b><span>Показали на демо</span></div>
-      <div class="step ok" style="height:170px"><b>5</b><span>Проверили на тесте</span></div>
-      <div class="step ok" style="height:200px"><b>6</b><span>Проверили вживую</span></div>
-      <div class="step run" style="height:230px"><b>7</b><span>Работает на малом объёме</span></div>
-      <div class="step run" style="height:260px"><b>8</b><span>Работает под нагрузкой</span></div>
-      <div class="step run" style="height:290px"><b>9</b><span>Работает всегда</span></div>
-    </div>
-    <div class="groups"><span>МНЕНИЕ</span><span class="ok">ПРОВЕРЕНО</span><span class="ok">РАБОТАЕТ</span></div>
-    <p class="line ladder-rule"><b>Сказали на созвоне</b> — не выше 3. <b>Пересказали</b> — не выше 2.</p>
-  </section>
-
-  <section class="slide" data-title="Фраза → запись">
-    <h2>Фраза с созвона&nbsp;—<br><span class="accent">запись в памяти</span></h2>
-    <div class="example">
-      <div class="inbox"><small>ЧАТ КОМАНДЫ · 14.10</small>«Партнёр сказал, что интеграция будет к 15 ноября»</div>
+  <section class="slide" data-title="Как я пользуюсь">
+    <h2>Любой помощник<br><span class="accent">стартует с памяти</span></h2>
+    <div class="steps four">
+      <div class="card"><span class="tag">1 · ПОДКЛЮЧАЮ</span><span class="k">Память</span><p>всё, что уже известно</p></div>
       <div class="arr">→</div>
-      <div class="rec">
-        <p><i>ИСТОЧНИК</i><span>созвон, пересказ в чате</span></p>
-        <p><i>УВЕРЕННОСТЬ</i><span><b>2 из 9</b></span></p>
-        <p><i>ЦЕЛЬ</i><span>Запуск доставки к 1 декабря</span></p>
-        <p><i>ПОВЫСИТ</i><span>письмо партнёра с датой</span></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide" data-title="Слабое звено">
-    <h2>Цель не прочнее<br><span class="accent">слабого звена</span></h2>
-    <div class="chain">
-      <div class="deps">
-        <div class="dep"><b>6</b><span>Площадка для запуска готова</span></div>
-        <div class="dep"><b>3</b><span>Тарифы согласованы письмом</span></div>
-        <div class="dep weak"><b>2</b><span>Интеграция партнёра — со слов</span></div>
-      </div>
+      <div class="card"><span class="tag">2 · ВЫДАЮ</span><span class="k">Правила</span><p>что считать фактом</p></div>
       <div class="arr">→</div>
-      <div class="goal"><span class="tag blue">ЦЕЛЬ КВАРТАЛА</span><h3>Запуск доставки<br>к 1 декабря</h3><span class="k">2 из 9</span><p>Дату наверх давать рано.<br>Нужно письмо партнёра.</p></div>
+      <div class="card"><span class="tag">3 · АГЕНТ</span><span class="k">Разбор</span><p>факт, мнение, цель</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><span class="tag">4 · Я</span><span class="k">✅</span><p>фактом — после моего «да»</p></div>
     </div>
   </section>
 
@@ -367,29 +428,6 @@
         <div class="gcap"><span class="gn">01 / 06</span><b class="gt">Срок</b><em class="gd">«Успеем к 15 ноября?» — вывод тот же, готовность к решению разная</em></div>
       </div><div class="glist"><button data-t="Срок" data-d="«Успеем к 15 ноября?» — вывод тот же, готовность к решению разная" class=on><i>01</i>Срок</button><button data-t="Слабое звено" data-d="У Кортекса ступень у каждой опоры и потолок цели"><i>02</i>Слабое звено</button><button data-t="Устарело" data-d="«9 месяцев» замечают оба, посчитать может только Кортекс"><i>03</i>Устарело</button><button data-t="Прошлый квартал" data-d="Калибровка: правка шкалы — и новый тип ошибок"><i>04</i>Прошлый квартал</button><button data-t="Шум и ловушки" data-d="+120 посторонних заметок, старое «к 1 ноября» и слух"><i>05</i>Шум и ловушки</button><button data-t="Итог" data-d="Правы оба — Кортекс делает ответ решаемым"><i>06</i>Итог</button><a class="glive" href="research/">Читать исследование ↗</a></div></div>
     <p class="note">Ответы одной модели из эксперимента: те же факты — папка заметок или Кортекс. Сокращены, смысл не изменён.</p>
-  </section>
-
-  <section class="slide" data-title="Как я пользуюсь">
-    <h2>Любой помощник<br><span class="accent">стартует с памяти</span></h2>
-    <div class="steps four">
-      <div class="card"><span class="tag">1 · ПОДКЛЮЧАЮ</span><span class="k">Память</span><p>всё, что уже известно</p></div>
-      <div class="arr">→</div>
-      <div class="card"><span class="tag">2 · ВЫДАЮ</span><span class="k">Правила</span><p>что считать фактом</p></div>
-      <div class="arr">→</div>
-      <div class="card"><span class="tag">3 · АГЕНТ</span><span class="k">Разбор</span><p>факт, мнение, цель</p></div>
-      <div class="arr">→</div>
-      <div class="card blue"><span class="tag">4 · Я</span><span class="k">✅</span><p>фактом — после моего «да»</p></div>
-    </div>
-  </section>
-
-  <section class="slide" data-title="Почему можно доверить">
-    <h2>Почему агенту можно<br><span class="accent">доверить память</span></h2>
-    <ul class="rows">
-      <li><span>Записи агента — <b>черновики до вашего «да»</b></span></li>
-      <li><span>Нет источника — <b>нет записи</b></span></li>
-      <li><span>Не знает — <b>оставляет пусто</b>, а не выдумывает</span></li>
-      <li><span>Цели, приоритеты и сроки <b>решаете вы</b></span></li>
-    </ul>
   </section>
 
   <section class="slide" data-title="Ядро и надстройки">
