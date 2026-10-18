@@ -62,6 +62,14 @@ const presentations = [
     cover: "sprint-blockers-report/cover.png",
     slides: 12,
     updated: "15 октября 2026"
+  },
+  {
+    id: "cortex-second-brain",
+    title: "Второй мозг руководителя",
+    description: "Как ИИ-помощнику разбирать большой поток информации: отделять факты от мнений, помнить договорённости и связывать каждую новость с целями квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.",
+    cover: "cortex-second-brain/cover.png",
+    slides: 12,
+    updated: "18 октября 2026"
   }
 ];
 
