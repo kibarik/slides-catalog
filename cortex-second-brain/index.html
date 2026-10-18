@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Второй мозг руководителя</title>
-<meta name="description" content="Как ИИ-помощнику разбирать большой поток информации: отделять факты от мнений, помнить договорённости и связывать каждую новость с целями квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.">
+<meta name="description" content="ИИ-помощник, который помнит договорённости, отличает факт от мнения и знает цели квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.">
 <link rel="canonical" href="https://slides.aleksishmanov.ru/cortex-second-brain/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="article">
@@ -12,7 +12,7 @@
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://slides.aleksishmanov.ru/cortex-second-brain/">
 <meta property="og:title" content="Второй мозг руководителя">
-<meta property="og:description" content="Как ИИ-помощнику разбирать большой поток информации: отделять факты от мнений, помнить договорённости и связывать каждую новость с целями квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.">
+<meta property="og:description" content="ИИ-помощник, который помнит договорённости, отличает факт от мнения и знает цели квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.">
 <meta property="og:image" content="https://slides.aleksishmanov.ru/cortex-second-brain/cover.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1280">
@@ -20,162 +20,133 @@
 <meta property="og:image:alt" content="Первый слайд презентации «Второй мозг руководителя»">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Второй мозг руководителя">
-<meta name="twitter:description" content="Как ИИ-помощнику разбирать большой поток информации: отделять факты от мнений, помнить договорённости и связывать каждую новость с целями квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.">
+<meta name="twitter:description" content="ИИ-помощник, который помнит договорённости, отличает факт от мнения и знает цели квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.">
 <meta name="twitter:image" content="https://slides.aleksishmanov.ru/cortex-second-brain/cover.png">
 <meta name="twitter:image:alt" content="Первый слайд презентации «Второй мозг руководителя»">
 <style>
-  /* Айдентика каталога (как sprint-blockers-report): бежевый фон, чёрный и синий,
-     моноширинные подписи, карточки с жёсткой тенью. Колода написана руками, без сборщика. */
+  /* Айдентика и подача — как sprint-under-manager: заголовок в две строки (чёрная + синяя),
+     одна мысль на слайд, ключевое слово крупно, подпись в одну строку. Колода написана руками. */
   :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --line:#c9c8c2; --red:#d8302a; --pale:#dfe3ff; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; background: #d9d8d3; }
   body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); overflow: hidden; }
   .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+  /* Стейдж закреплён в окне: центр и масштаб считает fit() по видимой области (без полосы прокрутки). */
   #stage { position: fixed; left: 0; top: 0; width: 1280px; height: 720px; flex: none; transform-origin: 0 0; }
-  .slide { position: absolute; inset: 0; padding: 72px 72px 56px; display: none; flex-direction: column; justify-content: flex-start; background: var(--bg); overflow: hidden; }
+  .slide { position: absolute; inset: 0; padding: 84px 72px 64px; display: none; flex-direction: column; justify-content: flex-start; background: var(--bg); overflow: hidden; }
   .slide.on { display: flex; }
   .slide.center { justify-content: center; padding-top: 64px; }
   .accent { color: var(--blue); }
   h1 { font-size: 72px; line-height: 1.02; letter-spacing: -.045em; font-weight: 800; }
-  h2 { font-size: 46px; line-height: 1.07; letter-spacing: -.04em; font-weight: 800; margin-bottom: 30px; }
-  .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 20px; text-transform: uppercase; }
+  h2 { font-size: 54px; line-height: 1.06; letter-spacing: -.04em; font-weight: 800; margin-bottom: 36px; }
+  .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 26px; }
   .lead { font-size: 24px; line-height: 1.4; margin-top: 26px; max-width: 760px; }
   .quote { border-left: 5px solid var(--blue); padding: 4px 0 4px 22px; font-size: 26px; line-height: 1.34; font-weight: 700; margin-top: 30px; }
-  .note { font-size: 15px; color: var(--muted); margin-top: auto; padding-top: 18px; line-height: 1.45; }
-  .slide > .note { padding-right: 150px; }  /* справа внизу — навигация */
-  .slide.center > .note { margin-top: 36px; padding-top: 0; }
-  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 14px; }
-  .tag.blue { background: var(--blue); color: #fff; }
-  .tag.red { background: var(--red); color: #fff; }
-
+  .line { font-size: 22px; line-height: 1.4; color: var(--muted); }
+  .note { font-size: 13px; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 18px; }
+  .card.blue .tag, .tag.blue { background: var(--blue); color: #fff; }
   /* титул */
   .cover { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 56px; align-items: center; }
   .photo { width: 300px; height: 300px; object-fit: cover; border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); display: block; }
   .site { display: flex; justify-content: space-between; margin-top: 22px; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); text-decoration: none; color: var(--ink); }
   .site span { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700; padding: 13px 16px; }
   .site i { display: flex; align-items: center; justify-content: center; width: 46px; background: var(--blue); color: #fff; font-style: normal; }
-  .kicker { font-family: "JetBrains Mono", monospace; font-size: 16px; font-weight: 700; letter-spacing: .06em; color: var(--muted); margin-bottom: 22px; }
-
+  /* поток входящих */
+  .stream { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+  .msg { border: 1px solid var(--ink); background: #fff; padding: 12px 14px; font-size: 18px; line-height: 1.3; }
+  .msg i { display: block; font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+  .asks { display: flex; gap: 38px; margin-top: 40px; font-size: 30px; font-weight: 800; letter-spacing: -.02em; color: var(--blue); }
   /* реплики */
-  .talk { display: flex; flex-direction: column; gap: 16px; max-width: 920px; }
-  .said { display: inline-block; align-self: flex-start; max-width: 760px; background: var(--ink); color: #fff; font-size: 23px; line-height: 1.35; padding: 12px 18px; border-radius: 14px 14px 14px 2px; }
+  .talk { display: flex; flex-direction: column; gap: 16px; max-width: 900px; }
+  .said { display: inline-block; align-self: flex-start; background: var(--ink); color: #fff; font-size: 26px; line-height: 1.3; padding: 12px 20px; border-radius: 14px 14px 14px 2px; }
   .said.r { align-self: flex-end; background: #fff; color: var(--ink); border: 1px solid var(--ink); border-radius: 14px 14px 2px 14px; }
   .said small { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; opacity: .7; margin-bottom: 4px; }
-
   /* карточки */
   .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
-  .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px 24px 24px; background: #fff; }
+  .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 26px 26px 28px; background: var(--bg); }
   .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
-  .card h3 { font-size: 25px; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 12px; }
-  .card.blue h3 { color: var(--blue); }
-  .card p { font-size: 18px; line-height: 1.42; color: var(--muted); }
-  .card .n { font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 14px; display: block; }
-
+  .card h3 { font-size: 26px; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 10px; }
+  .card p { font-size: 19px; line-height: 1.4; color: var(--muted); }
+  .card .k { display: block; font-size: 58px; line-height: 1; letter-spacing: -.045em; font-weight: 800; margin-bottom: 14px; }
+  .card.blue .k { color: var(--blue); }
+  .steps { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: stretch; }
+  .steps.four { grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr; }
+  .steps.four .card { padding: 22px 20px 24px; } .steps.four .card .k { font-size: 46px; } .steps.four .card p { font-size: 17px; }
+  .steps > .arr, .chain > .arr, .example > .arr { display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: var(--blue); }
+  /* мини-схемы в карточках */
+  .viz { height: 110px; margin-bottom: 20px; border-bottom: 1px dashed var(--line); display: flex; align-items: center; gap: 10px; }
+  .viz .w { flex: 1; height: 74px; border: 1px solid var(--line); background: #fff; position: relative; }
+  .viz .w::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 14px; background: #e3e1da; }
+  .viz .w::after { content: "?"; position: absolute; inset: 14px 0 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #b9b7b0; }
+  .viz .c { font-size: 15px; font-weight: 700; padding: 8px 10px; border-radius: 10px 10px 10px 2px; background: var(--ink); color: #fff; white-space: nowrap; }
+  .viz .c.doc { border-radius: 0; background: #fff; color: var(--ink); border: 1px solid var(--ink); }
+  .viz .eq { font-size: 34px; font-weight: 800; color: var(--red); }
+  .viz.urg { flex-wrap: wrap; align-content: center; gap: 6px; }
+  .viz.urg span { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; color: #fff; background: var(--red); padding: 4px 7px; }
+  /* разделитель «Кортекс» */
+  .hero { display: grid; grid-template-columns: 520px minmax(0,1fr); gap: 40px; align-items: center; height: 100%; }
+  .hero h1 { font-size: 100px; line-height: .96; }
+  .notes { position: relative; height: 400px; }
+  .nt { position: absolute; width: 480px; border: 1px solid var(--ink); background: #fff; padding: 20px 24px; }
+  .nt.n1 { right: 0; top: 0; box-shadow: 6px 6px 0 var(--ink); } .nt.n2 { right: 30px; top: 40px; box-shadow: 6px 6px 0 var(--ink); }
+  .nt.n3 { right: 60px; top: 80px; box-shadow: 10px 10px 0 var(--blue); }
+  .nt .f { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+  .nt h3 { font-size: 24px; letter-spacing: -.02em; margin: 8px 0 16px; }
+  .nt dl { display: grid; grid-template-columns: 130px 1fr; gap: 8px 12px; font-size: 17px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .nt dt { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); padding-top: 3px; }
+  .nt dd b { color: var(--blue); }
   /* лестница доказательств */
-  .ladder { display: grid; grid-template-columns: repeat(8, minmax(0,1fr)); gap: 10px; align-items: end; height: 300px; }
-  .step { border: 1px solid var(--ink); background: #fff; padding: 12px 12px 14px; display: flex; flex-direction: column; justify-content: flex-start; }
-  .step b { font-size: 34px; line-height: 1; letter-spacing: -.03em; display: block; margin-bottom: 8px; }
-  .step span { font-size: 14px; line-height: 1.3; }
+  .ladder { display: grid; grid-template-columns: repeat(8, minmax(0,1fr)); gap: 10px; align-items: end; height: 290px; }
+  .step { border: 1px solid var(--ink); background: #fff; padding: 12px 12px 14px; }
+  .step b { font-size: 36px; line-height: 1; letter-spacing: -.03em; display: block; margin-bottom: 8px; }
+  .step span { font-size: 15px; line-height: 1.25; display: block; }
   .step.op { background: #e3e1da; }
-  .step.ok { background: var(--pale); border-color: var(--blue); }
-  .step.ok b { color: var(--blue); }
+  .step.ok { background: var(--pale); border-color: var(--blue); } .step.ok b { color: var(--blue); }
   .step.run { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .groups { display: grid; grid-template-columns: 2fr 3fr 3fr; gap: 10px; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .groups { display: grid; grid-template-columns: 2fr 3fr 3fr; gap: 10px; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; }
   .groups span { border-top: 3px solid var(--muted); padding-top: 6px; color: var(--muted); }
   .groups span.ok { border-color: var(--blue); color: var(--blue); }
-  .rules { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-top: 26px; }
-  .rules p { font-size: 17px; line-height: 1.4; border-left: 4px solid var(--blue); padding-left: 14px; }
-  .rules b { font-weight: 800; }
-
-  /* пример записи */
-  .example { display: grid; grid-template-columns: 240px 36px minmax(0,1fr) 340px; gap: 0 0; align-items: center; }
-  .example > .arr, .chain > .arr { display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: var(--blue); }
-  .inbox { background: var(--ink); color: #fff; padding: 20px 22px; border-radius: 14px 14px 14px 2px; font-size: 22px; line-height: 1.35; }
-  .inbox small { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; opacity: .7; margin-bottom: 8px; }
-  .rec { border: 1px solid var(--blue); box-shadow: 6px 6px 0 var(--blue); background: #fff; padding: 16px 20px; margin-right: 26px; }
-  .rec dl { display: grid; grid-template-columns: 118px minmax(0,1fr); gap: 9px 12px; font-size: 17px; line-height: 1.32; }
-  .rec dt { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
-  .rec dd b { color: var(--blue); }
-  .term { background: var(--ink); color: #e9e8e2; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; line-height: 1.75; padding: 20px 22px; box-shadow: 8px 8px 0 var(--blue); white-space: pre-wrap; overflow-wrap: anywhere; }
-  .term i { font-style: normal; color: #9fb0ff; }
-  .example .term { font-size: 14px; padding: 18px 20px; }
-  .term em { font-style: normal; color: #8f8e88; }
-  .grow { display: grid; grid-template-columns: 200px repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 40px; align-items: stretch; }
-  .grow > span { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); align-self: center; line-height: 1.4; }
-  .grow div { border: 1px solid var(--blue); background: var(--pale); padding: 12px 16px; font-size: 17px; line-height: 1.3; }
-  .grow div b { color: var(--blue); font-size: 26px; letter-spacing: -.02em; margin-right: 8px; }
-
-  /* цель и слабое звено */
-  .chain { display: grid; grid-template-columns: minmax(0,1fr) 46px 420px; align-items: center; }
+  .ladder-rule { margin-top: 26px; font-size: 22px; } .ladder-rule b { color: var(--ink); }
+  /* фраза → запись */
+  .example { display: grid; grid-template-columns: 380px 60px minmax(0,1fr); align-items: center; }
+  .inbox { background: var(--ink); color: #fff; padding: 22px 24px; border-radius: 16px 16px 16px 2px; font-size: 28px; line-height: 1.3; font-weight: 600; }
+  .inbox small { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 400; letter-spacing: .06em; opacity: .7; margin-bottom: 10px; }
+  .rec { border: 1px solid var(--blue); box-shadow: 6px 6px 0 var(--blue); background: #fff; }
+  .rec p { display: grid; grid-template-columns: 170px 1fr; gap: 16px; align-items: baseline; padding: 14px 24px; font-size: 22px; line-height: 1.3; }
+  .rec p + p { border-top: 1px solid #e3e1da; }
+  .rec p i { font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--muted); }
+  .rec p b { color: var(--blue); font-size: 30px; letter-spacing: -.02em; }
+  /* слабое звено */
+  .chain { display: grid; grid-template-columns: minmax(0,1fr) 60px 420px; align-items: center; }
   .deps { display: flex; flex-direction: column; gap: 14px; }
-  .dep { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 16px; align-items: center; border: 1px solid var(--ink); background: #fff; padding: 12px 16px; }
-  .dep .cp { font-size: 40px; font-weight: 800; letter-spacing: -.03em; text-align: center; line-height: 1; }
-  .dep h3 { font-size: 20px; line-height: 1.2; letter-spacing: -.01em; }
-  .dep p { font-size: 15px; color: var(--muted); margin-top: 3px; line-height: 1.3; }
-  .dep.weak { border-color: var(--red); box-shadow: 6px 6px 0 var(--red); }
-  .dep.weak .cp { color: var(--red); }
-  .goal { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; padding: 20px 22px; }
-  .goal h3 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 14px; }
-  .verdict { border-top: 1px solid var(--line); padding-top: 14px; font-size: 17px; line-height: 1.4; }
-  .verdict b { display: block; font-size: 36px; letter-spacing: -.03em; color: var(--red); margin-bottom: 4px; }
-  .verdict p + p { margin-top: 8px; color: var(--muted); }
-
-  /* шаги */
-  .steps { display: grid; grid-template-columns: 1fr 34px 1fr 34px 1fr 34px 1fr; align-items: stretch; }
-  .steps > .arr { display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: var(--blue); }
-  .steps .card { padding: 18px 18px 20px; }
-  .steps .card h3 { font-size: 21px; margin-bottom: 8px; } .steps .card p { font-size: 16px; }
-  .roles { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); background: #fff; margin-top: 30px; }
-  .roles > div { padding: 18px 22px; }
-  .roles > div + div { border-left: 1px solid var(--ink); }
-  .roles .lbl { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .07em; margin-bottom: 8px; color: var(--muted); }
-  .roles > div + div .lbl { color: var(--blue); }
-  .roles p { font-size: 17px; line-height: 1.45; }
-
-  /* до и после */
-  table.cmp { width: 100%; border-collapse: collapse; font-size: 21px; }
-  table.cmp th { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0 16px 10px 0; border-bottom: 2px solid var(--ink); }
-  table.cmp th.b { color: var(--blue); }
-  table.cmp td { padding: 15px 16px 15px 0; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.3; }
-  table.cmp td:first-child { font-weight: 700; width: 320px; }
-  table.cmp td.a { color: var(--muted); width: 270px; }
-  table.cmp td.b { color: var(--blue); font-weight: 600; }
-
+  .dep { display: grid; grid-template-columns: 70px minmax(0,1fr); gap: 14px; align-items: center; border: 1px solid var(--ink); background: #fff; padding: 14px 18px; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+  .dep b { font-size: 44px; font-weight: 800; letter-spacing: -.03em; text-align: center; line-height: 1; }
+  .dep.weak { border-color: var(--red); box-shadow: 6px 6px 0 var(--red); } .dep.weak b { color: var(--red); }
+  .goal { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; padding: 24px 26px; }
+  .goal h3 { font-size: 28px; line-height: 1.15; letter-spacing: -.02em; }
+  .goal .k { display: block; font-size: 64px; font-weight: 800; letter-spacing: -.045em; line-height: 1; color: var(--red); margin: 20px 0 10px; }
+  .goal p { font-size: 19px; line-height: 1.4; color: var(--muted); }
+  /* списки */
+  ul.rows { list-style: none; display: flex; flex-direction: column; gap: 26px; margin-top: 10px; }
+  ul.rows li { font-size: 32px; line-height: 1.25; letter-spacing: -.02em; display: grid; grid-template-columns: 44px 1fr; }
+  ul.rows li::before { content: "→"; color: var(--blue); font-weight: 800; }
   /* ядро и надстройки */
-  .layers { display: grid; grid-template-columns: 560px minmax(0,1fr); gap: 56px; align-items: center; }
+  .layers { display: grid; grid-template-columns: 600px minmax(0,1fr); gap: 56px; align-items: center; }
   .stack { display: flex; flex-direction: column; gap: 12px; }
-  .layer { border: 1px solid var(--ink); padding: 16px 20px; background: #fff; }
-  .layer h3 { font-size: 22px; letter-spacing: -.02em; line-height: 1.2; }
-  .layer p { font-size: 15px; color: var(--muted); margin-top: 4px; line-height: 1.38; }
-  .layer.top { border-style: dashed; background: transparent; }
-  .layer.opt { border-color: var(--blue); background: var(--pale); }
-  .layer.core { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 6px 6px 0 var(--ink); padding: 22px 22px; }
-  .layer.core p { color: #dfe3ff; font-size: 16px; }
-  .layer .mono { font-size: 13px; font-weight: 700; letter-spacing: .05em; display: block; margin-bottom: 4px; }
-  ul.lim { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-  ul.lim li { font-size: 20px; line-height: 1.4; display: grid; grid-template-columns: 32px 1fr; }
-  ul.lim li::before { content: "→"; color: var(--blue); font-weight: 800; }
-  ul.lim b { font-weight: 800; }
-
-  /* инструкция */
-  .howto { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 44px; }
-  ol.do { list-style: none; display: flex; flex-direction: column; gap: 20px; }
-  ol.do li { display: grid; grid-template-columns: 52px minmax(0,1fr); gap: 14px; }
-  ol.do .k { font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; color: var(--blue); line-height: 1.05; }
-  ol.do h3 { font-size: 22px; letter-spacing: -.02em; line-height: 1.2; }
-  ol.do h3 small { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .04em; margin-left: 8px; }
-  ol.do p { font-size: 16px; color: var(--muted); line-height: 1.42; margin-top: 4px; }
-  .say { display: block; margin-top: 8px; background: #fff; border: 1px solid var(--ink); padding: 8px 12px; font-size: 16px; font-weight: 700; color: var(--ink); }
-  code { font-family: "JetBrains Mono", monospace; font-size: .88em; background: #08080810; padding: 1px 5px; }
-  .min { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; padding: 20px 22px; align-self: start; }
-  .min ul.lim { gap: 12px; } .min ul.lim li { font-size: 16px; grid-template-columns: 26px 1fr; }
-
+  .layer { border: 1px solid var(--ink); padding: 18px 22px; }
+  .layer .mono { font-size: 13px; font-weight: 700; letter-spacing: .06em; display: block; margin-bottom: 6px; }
+  .layer h3 { font-size: 24px; letter-spacing: -.02em; line-height: 1.2; }
+  .layer.top { border-style: dashed; }
+  .layer.opt { border-color: var(--blue); background: var(--pale); } .layer.opt .mono { color: var(--blue); }
+  .layer.core { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 6px 6px 0 var(--ink); padding: 26px 22px; }
+  .layers .line { font-size: 26px; color: var(--ink); line-height: 1.35; }
   /* финал */
-  .final { display: grid; grid-template-columns: minmax(0,1fr) 500px; gap: 48px; align-items: center; height: 100%; }
-  .final h1 { font-size: 60px; }
-  .repo { display: inline-block; margin-top: 30px; font-size: 22px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 3px solid var(--blue); padding-bottom: 4px; }
-  .credits { font-size: 13px; color: var(--muted); margin-top: 26px; line-height: 1.5; }
-
+  .final { display: grid; grid-template-columns: minmax(0,1fr) 500px; gap: 50px; align-items: center; height: 100%; }
+  .final h1 { font-size: 88px; }
+  .repo { display: inline-block; margin-top: 34px; font-size: 24px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 3px solid var(--blue); padding-bottom: 4px; }
+  .final .talk { gap: 18px; } .final .said { font-size: 22px; align-self: stretch; background: var(--blue); }
+  .final .note { margin-top: 30px; max-width: 520px; }
   /* навигация */
   #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px; background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
   #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
@@ -189,43 +160,31 @@
     .slide { position: relative; inset: auto; display: flex !important; padding: 40px 18px 44px; border-bottom: 1px solid var(--line); }
     .slide.center { padding-top: 40px; }
     #nav, #bar { display: none; }
-    .slide > .note { padding-right: 0; }
-    .note { margin-top: 20px; padding-top: 0; }
-    h1, .final h1 { font-size: 38px; } h2 { font-size: 30px; margin-bottom: 22px; }
-    .lead { font-size: 18px; } .quote { font-size: 20px; }
-    .cover, .final { grid-template-columns: 1fr; gap: 26px; height: auto; }
+    h1, .final h1 { font-size: 40px; } .hero h1 { font-size: 56px; }
+    h2 { font-size: 32px; margin-bottom: 22px; }
+    .lead { font-size: 18px; } .quote { font-size: 20px; } .line, .layers .line { font-size: 18px; }
+    .cover, .final, .hero, .layers { grid-template-columns: 1fr; gap: 26px; height: auto; }
     .photo { width: 150px; height: 150px; } .site { max-width: 260px; }
-    .said { font-size: 17px; }
-    .cards, .rules { grid-template-columns: 1fr; gap: 16px; }
-    .card h3 { font-size: 21px; } .card p { font-size: 16px; } .card .n { font-size: 30px; }
+    .stream { grid-template-columns: 1fr 1fr; gap: 10px; } .msg { font-size: 15px; padding: 10px 12px; }
+    .asks { flex-direction: column; gap: 6px; font-size: 22px; margin-top: 26px; }
+    .said, .final .said { font-size: 18px; }
+    .cards { grid-template-columns: 1fr; gap: 18px; }
+    .steps, .steps.four { grid-template-columns: 1fr; } .steps > .arr { height: 34px; transform: rotate(90deg); }
+    .card .k, .steps.four .card .k { font-size: 44px; } .card h3 { font-size: 22px; } .card p { font-size: 17px; }
+    .notes { height: auto; } .nt { position: static; width: auto; } .nt.n1, .nt.n2 { display: none; }
+    .nt dl { grid-template-columns: 1fr; gap: 2px; } .nt dd { margin-bottom: 8px; }
     .ladder { grid-template-columns: 1fr; height: auto; gap: 6px; }
-    .step { height: auto !important; flex-direction: row; align-items: baseline; gap: 12px; padding: 10px 12px; }
-    .step b { font-size: 24px; margin: 0; min-width: 22px; } .step span { font-size: 15px; }
-    .groups { display: none; }
-    .rules p { font-size: 16px; }
-    .example, .chain { grid-template-columns: 1fr; gap: 0; }
-    .example > .arr, .chain > .arr { height: 40px; transform: rotate(90deg); }
-    .inbox { font-size: 18px; }
-    .rec { margin: 0 0 26px; } .rec dl { grid-template-columns: 1fr; gap: 2px; } .rec dd { margin-bottom: 8px; }
-    .term { font-size: 13px; padding: 16px; }
-    .grow { grid-template-columns: 1fr; gap: 8px; margin-top: 30px; } .grow div { font-size: 16px; }
-    .dep { grid-template-columns: 48px minmax(0,1fr); } .dep .cp { font-size: 30px; } .dep h3 { font-size: 17px; }
-    .goal h3 { font-size: 21px; } .verdict b { font-size: 28px; }
-    .steps { grid-template-columns: 1fr; } .steps > .arr { height: 30px; transform: rotate(90deg); }
-    .roles { grid-template-columns: 1fr; } .roles > div + div { border-left: none; border-top: 1px solid var(--ink); }
-    .roles p { font-size: 16px; }
-    table.cmp thead { display: none; }
-    table.cmp, table.cmp tbody, table.cmp tr, table.cmp td { display: block; width: 100% !important; }
-    table.cmp tr { border-bottom: 1px solid var(--line); padding: 10px 0; }
-    table.cmp td { border: none; padding: 2px 0; font-size: 16px; }
-    table.cmp td.a::before { content: "Заметки: "; font-weight: 700; }
-    table.cmp td.b::before { content: "Кортекс: "; font-weight: 700; }
-    .layers, .howto { grid-template-columns: 1fr; gap: 28px; }
-    .layer h3 { font-size: 19px; }
-    ul.lim li { font-size: 17px; }
-    ol.do h3 { font-size: 19px; } ol.do h3 small { display: block; margin: 4px 0 0; }
-    ol.do li { grid-template-columns: 34px minmax(0,1fr); gap: 10px; } ol.do .k { font-size: 24px; }
-    .say { font-size: 15px; }
+    .step { height: auto !important; display: flex; align-items: baseline; gap: 12px; padding: 10px 12px; }
+    .step b { font-size: 24px; margin: 0; min-width: 24px; } .step span { font-size: 16px; }
+    .groups { display: none; } .ladder-rule { font-size: 18px; }
+    .example, .chain { grid-template-columns: 1fr; }
+    .example > .arr, .chain > .arr { height: 44px; transform: rotate(90deg); }
+    .inbox { font-size: 20px; }
+    .rec p { grid-template-columns: 1fr; gap: 4px; padding: 12px 16px; font-size: 18px; } .rec p b { font-size: 24px; }
+    .dep { grid-template-columns: 50px minmax(0,1fr); font-size: 17px; padding: 12px 14px; } .dep b { font-size: 32px; }
+    .goal h3 { font-size: 22px; } .goal .k { font-size: 48px; }
+    ul.rows li { font-size: 22px; grid-template-columns: 32px 1fr; } ul.rows { gap: 16px; }
+    .layer h3 { font-size: 20px; }
     .repo { font-size: 17px; overflow-wrap: anywhere; }
   }
 </style>
@@ -233,190 +192,177 @@
 <body>
 <div id="bar"></div>
 <div id="stage">
-  <section class="slide center on" data-title="Титул">
-    <div class="cover"><div><p class="kicker">ПАМЯТЬ ДЛЯ ИИ-ПОМОЩНИКА · POH-CORTEX</p><h1>Второй мозг<br><span class="accent">руководителя</span></h1><p class="lead">Как ИИ-помощнику разбирать большой поток информации: отделять факты от мнений, помнить договорённости и связывать каждую новость с целями квартала.</p><p class="quote">Помощник и так умный.<br>Ему не хватает памяти и правил.</p></div><div><img class="photo" id="coverPhoto" alt="Автор"><a class="site" href="https://aleksishmanov.ru/" target="_blank" rel="noopener"><span>aleksishmanov.ru</span><i>↗</i></a></div></div>
+  <section class="slide center on" data-title="Второй мозг руководителя">
+    <div class="cover"><div><h1>Второй мозг<br><span class="accent">руководителя</span></h1><p class="lead">ИИ-помощник, который помнит договорённости, отличает факт от мнения и знает цели квартала.</p><p class="quote">Помощник и так умный.<br>Ему не хватает памяти и правил.</p></div><div><img class="photo" id="coverPhoto" alt="Автор"><a class="site" href="https://aleksishmanov.ru/" target="_blank" rel="noopener"><span>aleksishmanov.ru</span><i>↗</i></a></div></div>
   </section>
 
-  <section class="slide" data-title="Ситуация">
-    <p class="label">Ситуация</p>
-    <h2>ИИ отвечает уверенно —<br><span class="accent">даже когда не знает</span></h2>
+  <section class="slide" data-title="Поток">
+    <h2>Информации всё больше&nbsp;—<br><span class="accent">а разбирать её некому</span></h2>
+    <div class="stream">
+      <p class="msg"><i>ЧАТ</i>«Партнёр успеет к 15-му»</p>
+      <p class="msg"><i>СОЗВОН</i>«Бюджет вроде согласовали»</p>
+      <p class="msg"><i>ПОЧТА</i>«Сдвигаем релиз на неделю»</p>
+      <p class="msg"><i>ОТЧЁТ</i>«Конверсия упала на 3%»</p>
+      <p class="msg"><i>ЧАТ</i>«Клиент недоволен сроками»</p>
+      <p class="msg"><i>ВСТРЕЧА</i>«Берём вторую команду?»</p>
+      <p class="msg"><i>ПОЧТА</i>«Договор подписан»</p>
+      <p class="msg"><i>ЧАТ</i>«Слышал, тарифы поменяют»</p>
+    </div>
+    <div class="asks"><span>Факт или мнение?</span><span>Важно или шум?</span><span>К какой цели?</span></div>
+  </section>
+
+  <section class="slide" data-title="ИИ отвечает уверенно">
+    <h2>ИИ отвечает уверенно&nbsp;—<br><span class="accent">даже когда не знает</span></h2>
     <div class="talk">
       <span class="said"><small>РУКОВОДИТЕЛЬ</small>Успеваем запустить доставку к 1 декабря?</span>
-      <span class="said r"><small>ИИ-ПОМОЩНИК</small>Да, сроки реалистичные: партнёр подтвердил готовность, команда настроена позитивно.</span>
+      <span class="said r"><small>ИИ-ПОМОЩНИК</small>Да, партнёр подтвердил готовность.</span>
       <span class="said"><small>РУКОВОДИТЕЛЬ</small>Кто подтвердил? Где это написано?</span>
-      <span class="said r"><small>ИИ-ПОМОЩНИК</small>В переписке команды упоминалось, что партнёр успевает…</span>
+      <span class="said r"><small>ИИ-ПОМОЩНИК</small>Кажется, в чате команды упоминалось…</span>
     </div>
-    <p class="note">Ответ звучит как факт, а держится на фразе с созвона, пересказанной в чате. Руководитель узнаёт об этом, когда дата уже ушла наверх.</p>
   </section>
 
-  <section class="slide center" data-title="Почему">
-    <p class="label">Почему так</p>
-    <h2>Помощник ошибается <span class="accent">не от глупости</span></h2>
+  <section class="slide" data-title="Почему ошибается">
+    <h2>Помощник ошибается<br><span class="accent">не от глупости</span></h2>
     <div class="cards">
-      <div class="card"><span class="n">01</span><h3>Забывает</h3><p>Каждый разговор — с чистого листа. Вчерашнюю договорённость приходится пересказывать заново, и каждый раз чуть по-другому.</p></div>
-      <div class="card"><span class="n">02</span><h3>Не отличает факт от мнения</h3><p>Слух в чате и письмо с подписью для него весят одинаково: и то и другое — просто текст.</p></div>
-      <div class="card"><span class="n">03</span><h3>Не знает, что важно</h3><p>Он не видит целей квартала, поэтому сто входящих сообщений для него одинаково срочные.</p></div>
+      <div class="card"><div class="viz"><span class="w"></span><span class="w"></span><span class="w"></span></div><h3>Забывает</h3><p>Каждый разговор — с чистого листа.</p></div>
+      <div class="card"><div class="viz"><span class="c">«слышал в чате»</span><span class="eq">=</span><span class="c doc">договор</span></div><h3>Путает факт и мнение</h3><p>Слух и документ для него равны.</p></div>
+      <div class="card"><div class="viz urg"><span>СРОЧНО</span><span>СРОЧНО</span><span>СРОЧНО</span><span>СРОЧНО</span><span>СРОЧНО</span><span>СРОЧНО</span><span>СРОЧНО</span><span>СРОЧНО</span><span>СРОЧНО</span></div><h3>Не знает целей</h3><p>Всё кажется одинаково важным.</p></div>
     </div>
-    <p class="note">Чем больше поток — чаты, встречи, письма, отчёты, — тем сильнее все три слабости. Хорошая модель их не лечит: ей нужен порядок, а не новые знания о мире.</p>
   </section>
 
-  <section class="slide" data-title="Решение">
-    <p class="label">Решение</p>
-    <h2>Кортекс — память,<br><span class="accent">по правилам которой работает ИИ</span></h2>
+  <section class="slide center" data-title="Кортекс">
+    <div class="hero">
+      <div><p class="label">РЕШЕНИЕ</p><h1>Кортекс&nbsp;—<br><span class="accent">память для ИИ</span></h1><p class="lead">Папка текстовых файлов и правила, по которым любой ИИ-помощник ведёт вашу память.</p></div>
+      <div class="notes">
+        <div class="nt n1"><span class="f">tarify.md</span><h3>Тарифы согласованы</h3></div>
+        <div class="nt n2"><span class="f">komanda-platforma.md</span><h3>Команда «Платформа»</h3></div>
+        <div class="nt n3"><span class="f">integraciya-partnera.md</span><h3>Интеграция партнёра к 15 ноября</h3><dl><dt>ИСТОЧНИК</dt><dd>созвон 14.10</dd><dt>УВЕРЕННОСТЬ</dt><dd><b>2 из 9</b> — со слов</dd><dt>ЦЕЛЬ</dt><dd>Запуск доставки к 1 декабря</dd></dl></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Три правила">
+    <h2>Три правила<br><span class="accent">вместо догадок</span></h2>
     <div class="cards">
-      <div class="card"><span class="tag">ИСТОЧНИК</span><h3>У каждого утверждения есть основание</h3><p>Письмо, протокол встречи, отчёт, тикет. Нет источника — в память не попадает, даже если звучит правдоподобно.</p></div>
-      <div class="card blue"><span class="tag blue">УВЕРЕННОСТЬ</span><h3>Измеряется, а не ощущается</h3><p>Ступень от «кто-то сказал» до «работает постоянно». Поднять её можно только новым доказательством, а не убедительной фразой.</p></div>
-      <div class="card"><span class="tag">ЦЕЛИ</span><h3>Всё привязано к OKR</h3><p>Каждая новость связана с целью квартала, на которую влияет. Сразу видно, что важно, а что шум.</p></div>
+      <div class="card"><span class="tag">ИСТОЧНИК</span><span class="k">Ссылка</span><p>Нет источника — нет записи.</p></div>
+      <div class="card"><span class="tag">УВЕРЕННОСТЬ</span><span class="k">2 → 9</span><p>Растёт только с доказательством.</p></div>
+      <div class="card blue"><span class="tag">ЦЕЛИ</span><span class="k">OKR</span><p>Каждая новость — к своей цели.</p></div>
     </div>
-    <p class="quote">Это не программа, а папка обычных текстовых файлов<br>и методология для агента. Ни базы, ни серверов.</p>
   </section>
 
-  <section class="slide" data-title="Факт или мнение">
-    <p class="label">Факт или мнение</p>
-    <h2>Лестница доказательств</h2>
+  <section class="slide" data-title="Лестница доказательств">
+    <h2>Факт или мнение&nbsp;—<br><span class="accent">решает лестница</span></h2>
     <div class="ladder">
-      <div class="step op" style="height:90px"><b>2</b><span>Кто-то сказал</span></div>
-      <div class="step op" style="height:120px"><b>3</b><span>Кто-то написал — с датой и подписью</span></div>
-      <div class="step ok" style="height:150px"><b>4</b><span>Показали на демо</span></div>
-      <div class="step ok" style="height:180px"><b>5</b><span>Проверили на тестовых данных</span></div>
-      <div class="step ok" style="height:210px"><b>6</b><span>Проверили на реальной системе или человеке</span></div>
-      <div class="step run" style="height:240px"><b>7</b><span>Прошло на небольшом реальном объёме</span></div>
-      <div class="step run" style="height:270px"><b>8</b><span>Прошло с деньгами или под нагрузкой</span></div>
-      <div class="step run" style="height:300px"><b>9</b><span>Работает постоянно</span></div>
+      <div class="step op" style="height:80px"><b>2</b><span>Сказали</span></div>
+      <div class="step op" style="height:110px"><b>3</b><span>Написали с датой</span></div>
+      <div class="step ok" style="height:140px"><b>4</b><span>Показали на демо</span></div>
+      <div class="step ok" style="height:170px"><b>5</b><span>Проверили на тесте</span></div>
+      <div class="step ok" style="height:200px"><b>6</b><span>Проверили вживую</span></div>
+      <div class="step run" style="height:230px"><b>7</b><span>Работает на малом объёме</span></div>
+      <div class="step run" style="height:260px"><b>8</b><span>Работает под нагрузкой</span></div>
+      <div class="step run" style="height:290px"><b>9</b><span>Работает всегда</span></div>
     </div>
-    <div class="groups"><span>мнение</span><span class="ok">проверено</span><span class="ok">работает</span></div>
-    <div class="rules">
-      <p><b>Сказано устно — не выше 3-й,</b> как бы уверенно это ни звучало.</p>
-      <p><b>Пересказ чужих слов — не выше 2-й.</b> Поднять ступень может только владелец.</p>
-      <p><b>Масштаб фиксируется:</b> «проверили на 50 клиентах» — это факт про 50, а не про всех.</p>
-    </div>
+    <div class="groups"><span>МНЕНИЕ</span><span class="ok">ПРОВЕРЕНО</span><span class="ok">РАБОТАЕТ</span></div>
+    <p class="line ladder-rule"><b>Сказали на созвоне</b> — не выше 3. <b>Пересказали</b> — не выше 2.</p>
   </section>
 
-  <section class="slide" data-title="Как выглядит запись">
-    <p class="label">Как это выглядит</p>
-    <h2>Фраза с созвона → <span class="accent">запись в памяти</span></h2>
+  <section class="slide" data-title="Фраза → запись">
+    <h2>Фраза с созвона&nbsp;—<br><span class="accent">запись в памяти</span></h2>
     <div class="example">
-      <div class="inbox"><small>ЧАТ КОМАНДЫ · 14.10</small>«Партнёр на созвоне сказал, что API отдадут к 15 ноября»</div>
+      <div class="inbox"><small>ЧАТ КОМАНДЫ · 14.10</small>«Партнёр сказал, что интеграция будет к 15 ноября»</div>
       <div class="arr">→</div>
-      <div class="rec"><dl>
-        <dt>Что</dt><dd>API партнёра готов к 15.11</dd>
-        <dt>Источник</dt><dd>созвон 14.10, пересказ в чате</dd>
-        <dt>Ступень</dt><dd><b>2 из 9</b> — сказано устно, со слов</dd>
-        <dt>Владелец</dt><dd>команда партнёра «Логистик»</dd>
-        <dt>Цель</dt><dd>«Запуск доставки к 1 декабря»</dd>
-        <dt>Поднимет</dt><dd>письмо партнёра с датой → <b>3</b></dd>
-      </dl></div>
-      <div class="term"><em># api-partnera.md — обычный текст</em>
-title: API партнёра к 15.11
-<i>cp:</i> 2
-<i>sources:</i> созвон 14.10, пересказ
-<i>owner:</i> команда «Логистик»
-<i>satisfies:</i> kr-dostavka-1-dekabrya
-<i>status:</i> draft</div>
+      <div class="rec">
+        <p><i>ИСТОЧНИК</i><span>созвон, пересказ в чате</span></p>
+        <p><i>УВЕРЕННОСТЬ</i><span><b>2 из 9</b></span></p>
+        <p><i>ЦЕЛЬ</i><span>Запуск доставки к 1 декабря</span></p>
+        <p><i>ПОВЫСИТ</i><span>письмо партнёра с датой</span></p>
+      </div>
     </div>
-    <div class="grow"><span>Ступень растёт только с доказательством</span><div><b>3</b>письмо партнёра с датой</div><div><b>4</b>показали API на демо</div><div><b>6</b>проверили на нашем стенде</div></div>
-    <p class="note">Агент записывает черновик — фактом он становится, когда вы его приняли. Файл открывается в любом редакторе: память не заперта в чужом сервисе. Партнёр и цель вымышлены.</p>
   </section>
 
-  <section class="slide" data-title="Связь с целями">
-    <p class="label">Связь с целями</p>
-    <h2>Цель не прочнее <span class="accent">самого слабого звена</span></h2>
+  <section class="slide" data-title="Слабое звено">
+    <h2>Цель не прочнее<br><span class="accent">слабого звена</span></h2>
     <div class="chain">
       <div class="deps">
-        <div class="dep"><span class="cp">6</span><div><h3>Окружение для запуска готово</h3><p>проверили на реальной системе</p></div></div>
-        <div class="dep"><span class="cp">3</span><div><h3>Тарифы согласованы</h3><p>письмо коммерческого директора с датой</p></div></div>
-        <div class="dep weak"><span class="cp">2</span><div><h3>API партнёра к 15 ноября</h3><p>сказали на созвоне, пересказ в чате</p></div></div>
+        <div class="dep"><b>6</b><span>Площадка для запуска готова</span></div>
+        <div class="dep"><b>3</b><span>Тарифы согласованы письмом</span></div>
+        <div class="dep weak"><b>2</b><span>Интеграция партнёра — со слов</span></div>
       </div>
       <div class="arr">→</div>
-      <div class="goal"><span class="tag blue">ЦЕЛЬ КВАРТАЛА</span><h3>Запуск доставки<br>к 1 декабря</h3>
-        <div class="verdict"><b>Уверенность: 2 из 9</b><p>Дату наверх давать рано: она держится на устной фразе.</p><p>Что поднимет: письмо партнёра с датой — запросить до 25.10.</p></div>
-      </div>
+      <div class="goal"><span class="tag blue">ЦЕЛЬ КВАРТАЛА</span><h3>Запуск доставки<br>к 1 декабря</h3><span class="k">2 из 9</span><p>Дату наверх давать рано.<br>Нужно письмо партнёра.</p></div>
     </div>
-    <p class="note">Вместо «вроде успеваем» — одна строка: что держит дату и какой документ её укрепит. Агент считает это сам по связям в памяти.</p>
   </section>
 
   <section class="slide" data-title="Как я пользуюсь">
-    <p class="label">Как я пользуюсь</p>
-    <h2>Любой помощник стартует<br><span class="accent">с подключения к памяти</span></h2>
-    <div class="steps">
-      <div class="card"><span class="tag">1 · ПОДКЛЮЧАЮ</span><h3>Память</h3><p>Даю агенту папку Кортекса: что уже известно о командах, целях и договорённостях.</p></div>
+    <h2>Любой помощник<br><span class="accent">стартует с памяти</span></h2>
+    <div class="steps four">
+      <div class="card"><span class="tag">1 · ПОДКЛЮЧАЮ</span><span class="k">Память</span><p>всё, что уже известно</p></div>
       <div class="arr">→</div>
-      <div class="card"><span class="tag">2 · ВЫДАЮ</span><h3>Правила</h3><p>Агент читает методологию: что считать фактом, какую ставить ступень, куда писать.</p></div>
+      <div class="card"><span class="tag">2 · ВЫДАЮ</span><span class="k">Правила</span><p>что считать фактом</p></div>
       <div class="arr">→</div>
-      <div class="card blue"><span class="tag blue">3 · АГЕНТ РАЗБИРАЕТ</span><h3>Поток</h3><p>Чаты, встречи, письма: важно или шум, факт или мнение, к какой цели.</p></div>
+      <div class="card"><span class="tag">3 · АГЕНТ</span><span class="k">Разбор</span><p>факт, мнение, цель</p></div>
       <div class="arr">→</div>
-      <div class="card"><span class="tag">4 · Я ПРИНИМАЮ</span><h3>Черновики</h3><p>Фактом запись становится только после моего «да».</p></div>
-    </div>
-    <div class="roles">
-      <div><p class="lbl">РЕШАЮ Я</p><p>Цель, приоритет, дату наружу и сами правила. Принимаю или отклоняю черновики. Говорю «не знаю», когда не знаю.</p></div>
-      <div><p class="lbl">ДЕЛАЕТ АГЕНТ</p><p>Задаёт вопросы по одному и записывает ответы. Считает уверенность по моей лестнице. Не выдаёт черновик за факт и оставляет пробел пустым, а не выдумывает.</p></div>
+      <div class="card blue"><span class="tag">4 · Я</span><span class="k">✅</span><p>фактом — после моего «да»</p></div>
     </div>
   </section>
 
-  <section class="slide" data-title="До и после">
-    <p class="label">Что меняется</p>
-    <h2>Те же факты — <span class="accent">другие ответы</span></h2>
-    <table class="cmp"><thead><tr><th>Вопрос руководителя</th><th>Папка заметок</th><th class="b">Кортекс</th></tr></thead><tbody>
-      <tr><td>Успеем к дате?</td><td class="a">три разных ответа</td><td class="b">один ответ, слабое звено и его ступень</td></tr>
-      <tr><td>На чём держится цель?</td><td class="a">связей не видно</td><td class="b">все зависимости и потолок обещания</td></tr>
-      <tr><td>Что уже неправда?</td><td class="a">не видно</td><td class="b">непроверенное знание само теряет уверенность: 6 → 2</td></tr>
-      <tr><td>Откуда это известно?</td><td class="a">источников нет</td><td class="b">источник у каждой записи</td></tr>
-      <tr><td>Кому писать?</td><td class="a">неизвестно</td><td class="b">владелец и стык с соседней командой</td></tr>
-      <tr><td>Где мы переоценили себя?</td><td class="a">не спросить</td><td class="b">видно по итогам квартала</td></tr>
-    </tbody></table>
-    <p class="note">Сравнительный тест из репозитория: два стенда с одинаковыми фактами — папка заметок и Кортекс — и шесть вопросов, которые руководители задают на самом деле. В заметках все факты есть, но текст нельзя посчитать.</p>
+  <section class="slide" data-title="Почему можно доверить">
+    <h2>Почему агенту можно<br><span class="accent">доверить память</span></h2>
+    <ul class="rows">
+      <li><span>Записи агента — <b>черновики до вашего «да»</b></span></li>
+      <li><span>Нет источника — <b>нет записи</b></span></li>
+      <li><span>Не знает — <b>оставляет пусто</b>, а не выдумывает</span></li>
+      <li><span>Цели, приоритеты и сроки <b>решаете вы</b></span></li>
+    </ul>
+  </section>
+
+  <section class="slide" data-title="На практике">
+    <h2>Что меняется<br><span class="accent">на практике</span></h2>
+    <ul class="rows">
+      <li><span>«Успеем к сроку?» — <b>один ответ и слабое звено</b></span></li>
+      <li><span>«Откуда это?» — <b>источник у каждой записи</b></span></li>
+      <li><span>«Что устарело?» — <b>видно само</b>, без ревизии</span></li>
+      <li><span>«Кому писать?» — <b>у каждой темы есть владелец</b></span></li>
+    </ul>
   </section>
 
   <section class="slide" data-title="Ядро и надстройки">
-    <p class="label">Ядро и надстройки</p>
-    <h2>Сначала порядок, <span class="accent">потом скорость</span></h2>
+    <h2>Сначала порядок,<br><span class="accent">потом скорость</span></h2>
     <div class="layers">
       <div class="stack">
-        <div class="layer top"><span class="mono">ВАШИ ИИ-ПОМОЩНИКИ</span><h3>Утренняя сводка, отчёт спринта, план квартала</h3><p>Любой агент берёт контекст из одной памяти, а не собирает его заново.</p></div>
-        <div class="layer opt"><span class="mono accent">POH-MEMORY-AGENT · ОПТИМИЗАЦИЯ</span><h3>Когда информации становится очень много</h3><p>Графовые связи, векторный поиск — агент тратит меньше контекста на сбор нужного.</p></div>
-        <div class="layer core"><span class="mono">POH-CORTEX · ЯДРО</span><h3>Методология и память в обычных .md файлах</h3><p>Источники, ступени уверенности, связь с целями. На этом стоит всё остальное.</p></div>
+        <div class="layer top"><span class="mono">ВАШИ ИИ-ПОМОЩНИКИ</span><h3>Сводки, отчёты, планы</h3></div>
+        <div class="layer opt"><span class="mono">POH-MEMORY-AGENT</span><h3>Ускоряет поиск, когда памяти очень много</h3></div>
+        <div class="layer core"><span class="mono">POH-CORTEX · ЯДРО</span><h3>Правила и память в текстовых файлах</h3></div>
       </div>
-      <ul class="lim">
-        <li><span><b>Ядро работает с первого дня:</b> папка, git и любой ИИ-агент. Ничего ставить не нужно.</span></li>
-        <li><span><b>Оптимизация нужна позже,</b> когда памяти много и агент тратит токены на её поиск.</span></li>
-        <li><span><b>Надстройка ускоряет поиск, но правила</b> — что факт, а что мнение — живут в ядре.</span></li>
-      </ul>
+      <p class="line">Начните с ядра — оно работает с первого дня. Ускорение понадобится, когда памяти станет много.</p>
     </div>
   </section>
 
-  <section class="slide" data-title="Инструкция">
-    <p class="label">Инструкция</p>
-    <h2>Как завести себе <span class="accent">за один вечер</span></h2>
-    <div class="howto">
-      <ol class="do">
-        <li><span class="k">1</span><div><h3>Скачать папку<small>1 МИНУТА</small></h3><p>Шаблон на GitHub: <code>poh-cortex</code> → «Code» → «Download ZIP» или <code>git clone</code>. Ставить ничего не нужно.</p></div></li>
-        <li><span class="k">2</span><div><h3>Настройка разговором<small>1–1,5 ЧАСА</small></h3><p>Откройте папку в ИИ-агенте, который умеет работать с файлами (например, Claude Code), и скажите:</p><span class="say">«Прочитай ONBOARDING.md и проведи меня по настройке Кортекса»</span><p>Агент спросит по одному: организация, кто принимает решения, чему у вас можно верить, какие обещания уходят наружу.</p></div></li>
-        <li><span class="k">3</span><div><h3>Наполнение<small>ПО РАЗДЕЛУ ЗА ПОДХОД</small></h3><span class="say">«Проведи онбординг: давай по одному Нексусу»</span><p>Нексус — раздел памяти об одном объекте: клиенты, продукт, команда.</p></div></li>
-      </ol>
-      <div class="min"><span class="tag blue">МИНИМУМ ПЕРВОГО КВАРТАЛА</span><ul class="lim">
-        <li><span>3–7 главных обещаний квартала — каждое с доказательствами</span></li>
-        <li><span>в памяти — только то, из-за незнания чего уже ошибались: смежники, внешние договорённости</span></li>
-        <li><span>5 минут в день: что устарело и что требует внимания</span></li>
-        <li><span>«не знаю» — нормальный ответ: пустое честнее выдуманного</span></li>
-        <li><span>свою память держите в приватном репозитории</span></li>
-      </ul></div>
+  <section class="slide" data-title="За один вечер">
+    <h2>Завести себе<br><span class="accent">за один вечер</span></h2>
+    <div class="steps">
+      <div class="card"><span class="tag">1 · СКАЧАТЬ</span><span class="k">1 мин</span><p>шаблон poh-cortex с GitHub</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">2 · НАСТРОИТЬ</span><span class="k">1 час</span><p>агент спрашивает — вы отвечаете</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><span class="tag">3 · НАПОЛНИТЬ</span><span class="k">По теме</span><p>клиенты, продукт, команда — по одной</p></div>
     </div>
+    <p class="line" style="margin-top:40px">Первый квартал: только 3–7 главных обещаний и то, на чём вы уже ошибались.</p>
   </section>
 
-  <section class="slide center" data-title="Как начать">
+  <section class="slide center" data-title="Запустить у себя">
     <div class="final">
       <div>
-        <h1>Решения на фактах,<br><span class="accent">а не на ощущениях</span></h1>
-        <p class="lead">poh-cortex — открытый шаблон: методология, проверка памяти и готовые навыки для агента. Контекст вашей организации остаётся у вас.</p>
+        <p class="label">POH-CORTEX</p>
+        <h1>Запустить<br><span class="accent">у себя</span></h1>
+        <p class="lead">Откройте папку в ИИ-агенте и скажите две фразы.</p>
         <a class="repo" href="https://github.com/po-helper-org/poh-cortex" target="_blank" rel="noopener">github.com/po-helper-org/poh-cortex ↗</a>
-        <p class="credits">Методология — PAF, productframework.ru, Тихомиров С., CC BY-SA 4.0. Корпоративная адаптация — Ишманов А. Шкала доказательств — Confidence Meter, Itamar Gilad.</p>
+        <p class="note">Шаблон открытый — свою память держите в приватной копии. Методология — PAF, Тихомиров С., CC BY-SA 4.0; адаптация — Ишманов А.</p>
       </div>
-      <div class="term"><em># 1. скачать шаблон: Code → Download ZIP</em>
-<em># 2. открыть папку в агенте и сказать</em>
-<i>&gt;</i> Прочитай ONBOARDING.md и проведи меня по настройке Кортекса
-<i>&gt;</i> Проведи онбординг: давай по одному Нексусу
-<em># 3. каждый день</em>
-<i>&gt;</i> Что в памяти требует внимания сегодня?</div>
+      <div class="talk">
+        <span class="said"><small>ВЫ · ОДИН РАЗ</small>Прочитай ONBOARDING.md и проведи меня по настройке Кортекса</span>
+        <span class="said"><small>ВЫ · ПО ТЕМЕ ЗА РАЗ</small>Проведи онбординг: давай по одному Нексусу</span>
+      </div>
     </div>
   </section>
 </div>
