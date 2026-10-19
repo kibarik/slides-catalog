@@ -4,7 +4,7 @@ const presentations = [
     title: "Утренний бриф PO: лента, команды, спринт и обещания",
     description: "Четыре части утра PO: лента всех чатов и утренний выпуск, PDF-отчёт по командам и мини-приложение «Дейли», отчёт по спринту для техлида и бизнеса, персональный ИИ-агент — Инбокс как точка контроля обещаний.",
     cover: "po-morning-brief/cover.png",
-    slides: 34,
+    slides: 41,
     updated: "19 октября 2026"
   },
   {
@@ -37,7 +37,7 @@ const presentations = [
     description: "Как руководителю держать спринты четырёх команд без обхода: отчёт PO приходит сам каждое утро, «Факт спринта» — для комитета, а замечания техлидов ИИ-агент сам переносит в Jira после ✅.",
     cover: "sprint-under-manager/cover.png",
     slides: 20,
-    updated: "15 октября 2026"
+    updated: "19 октября 2026"
   },
   {
     id: "okr-quarter-planning",
@@ -61,7 +61,7 @@ const presentations = [
     description: "Какую бизнес-ценность команда создала за спринт в контексте целей квартала — и как чистота отчёта наводит порядок в JIRA разговором с ИИ-агентом.",
     cover: "sprint-business-report/cover.png",
     slides: 16,
-    updated: "14 октября 2026"
+    updated: "19 октября 2026"
   },
   {
     id: "sprint-blockers-report",
