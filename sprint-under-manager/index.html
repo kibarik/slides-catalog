@@ -320,7 +320,7 @@
       <div class="arr">→</div>
       <div class="card"><div class="tag">РАЗГОВОР</div><span class="k">5 мин</span><p>только о блокаторах</p></div>
       <div class="arr">→</div>
-      <div class="card blue"><div class="tag">СИНХРОНИЗАЦИЯ</div><span class="k">ИИ</span><p>по комментариям сам обновляет трекер</p></div>
+      <div class="card blue"><div class="tag">СИНХРОНИЗАЦИЯ</div><span class="k">Агент</span><p>кнопка в отчёте: замечания → Jira после ✅</p></div>
     </div>
   </section>
 
@@ -347,7 +347,7 @@
       <div>
         <div class="label">ДЛЯ ТЕХЛИДОВ</div>
         <h1>Из отчёта<br><span class="accent">в Jira</span></h1>
-        <p class="lead">Техлид пишет в отчёте, как дела на самом деле. ИИ-агент сверяет с Jira, спрашивает неясное и сам вносит правки после ✅.</p>
+        <p class="lead">Новый модуль прямо в отчёте — кнопка «🤖 Агент». Техлид пишет замечание, агент сверяет с Jira, спрашивает неясное и сам вносит правки после ✅.</p>
       </div>
       <div class="fan"><img class="f1" src="img/agent-hero-edits.webp" alt="" loading="lazy"><img class="f2" src="img/agent-hero-plan.webp" alt="" loading="lazy"><img class="f3" src="img/agent-hero-questions.webp" alt="Чат ИИ-агента" loading="lazy"></div>
     </div>
@@ -356,7 +356,7 @@
   <!-- 9b · как это работает -->
   <section class="slide" data-title="Как работает синхронизация">
     <h2>Без переноса <span class="accent">руками</span></h2>
-    <p class="sub2">Раньше PO копировал промт в Claude Code. Теперь замечание само уходит агенту.</p>
+    <p class="sub2">Агент — колонка внутри отчёта и колоды. Claude Code и копирование промта больше не нужны.</p>
     <div class="steps four">
       <div class="card"><div class="tag">ЗАМЕЧАНИЕ</div><span class="k">1 строка</span><p>техлид пишет в отчёте, как сейчас</p></div>
       <div class="arr">→</div>
@@ -371,7 +371,7 @@
   <!-- 9c · чат агента -->
   <section class="slide" data-title="Чат ИИ-агента">
     <h2>Чат агента: <span class="accent">8 экранов</span></h2>
-    <div class="gal"><div class="gmain"><div class="gimg"><img class="gpic" src="img/agent-01-notes.webp" alt="Замечания" decoding="async" loading="lazy"></div><div class="gcap"><span class="gn">01 / 08</span><b class="gt">Замечания</b><em class="gd">Пишутся в отчёте, одной строкой</em></div></div><div class="glist"><button data-src="img/agent-01-notes.webp" data-t="Замечания" data-d="Пишутся в отчёте, одной строкой" class=on><i>01</i>Замечания</button><button data-src="img/agent-02-reconcile.webp" data-t="Сверка" data-d="Агент читает Jira — видно, что именно"><i>02</i>Сверка</button><button data-src="img/agent-03-questions.webp" data-t="Вопросы" data-d="1 из N, ★ рекомендую, свой ответ"><i>03</i>Вопросы</button><button data-src="img/agent-04-plan.webp" data-t="План" data-d="Галочки и сомнения второго агента"><i>04</i>План</button><button data-src="img/agent-05-edits.webp" data-t="Правки" data-d="Живой список: что делает сейчас"><i>05</i>Правки</button><button data-src="img/agent-06-done.webp" data-t="Готово" data-d="Итог, прошлые задачи — строкой"><i>06</i>Готово</button><button data-src="img/agent-07-details.webp" data-t="Подробнее" data-d="Ход, решения, ответы — по клику"><i>07</i>Подробнее</button><button data-src="img/agent-08-mobile.webp" data-t="Телефон" data-d="Ответить можно с iPhone"><i>08</i>Телефон</button></div></div>
+    <div class="gal"><div class="gmain"><div class="gimg"><img class="gpic" src="img/agent-01-notes.webp" alt="Замечания" decoding="async" loading="lazy"></div><div class="gcap"><span class="gn">01 / 08</span><b class="gt">Замечания</b><em class="gd">Пишутся в отчёте — справа колонка «Агент»</em></div></div><div class="glist"><button data-src="img/agent-01-notes.webp" data-t="Замечания" data-d="Пишутся в отчёте — справа колонка «Агент»" class=on><i>01</i>Замечания</button><button data-src="img/agent-02-reconcile.webp" data-t="Сверка" data-d="Агент читает Jira — видно, что именно"><i>02</i>Сверка</button><button data-src="img/agent-03-questions.webp" data-t="Вопросы" data-d="1 из N, ★ рекомендую, свой ответ"><i>03</i>Вопросы</button><button data-src="img/agent-04-plan.webp" data-t="План" data-d="Галочки и сомнения второго агента"><i>04</i>План</button><button data-src="img/agent-05-edits.webp" data-t="Правки" data-d="Живой список: что делает сейчас"><i>05</i>Правки</button><button data-src="img/agent-06-done.webp" data-t="Готово" data-d="Итог, прошлые задачи — строкой"><i>06</i>Готово</button><button data-src="img/agent-07-details.webp" data-t="Подробнее" data-d="Ход, решения, ответы — по клику"><i>07</i>Подробнее</button><button data-src="img/agent-08-mobile.webp" data-t="Телефон" data-d="Ответить можно с iPhone"><i>08</i>Телефон</button></div></div>
   </section>
 
   <!-- 9d · почему можно доверить -->
