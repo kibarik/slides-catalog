@@ -1,5 +1,21 @@
 const presentations = [
   {
+    id: "po-morning-brief",
+    title: "Утренний бриф PO: лента, команды, спринт и обещания",
+    description: "Четыре части утра PO: лента всех чатов и утренний выпуск, PDF-отчёт по командам и мини-приложение «Дейли», отчёт по спринту для техлида и бизнеса, персональный ИИ-агент — Инбокс как точка контроля обещаний.",
+    cover: "po-morning-brief/cover.png",
+    slides: 41,
+    updated: "19 октября 2026"
+  },
+  {
+    id: "sprint-daily-report",
+    title: "Отчёт спринта: что техлиду сделать сегодня",
+    description: "Две страницы PDF на команду каждое утро: успеваем ли к концу спринта, что держит команду и какие задачи сдвинуть сегодня — с номерами из Jira. Сам собирает данные, без ручной работы.",
+    cover: "sprint-daily-report/cover.png",
+    slides: 13,
+    updated: "19 октября 2026"
+  },
+  {
     id: "claude-desktop-zai-macos",
     title: "Claude Desktop с Китайскими моделями",
     description: "Практикум: Claude Code, GLM и пошаговый запуск в российских реалиях.",
@@ -21,7 +37,7 @@ const presentations = [
     description: "Как руководителю держать спринты четырёх команд без обхода: отчёт PO приходит сам каждое утро, «Факт спринта» — для комитета, а замечания техлидов ИИ-агент сам переносит в Jira после ✅.",
     cover: "sprint-under-manager/cover.png",
     slides: 20,
-    updated: "15 октября 2026"
+    updated: "19 октября 2026"
   },
   {
     id: "okr-quarter-planning",
@@ -45,15 +61,7 @@ const presentations = [
     description: "Какую бизнес-ценность команда создала за спринт в контексте целей квартала — и как чистота отчёта наводит порядок в JIRA разговором с ИИ-агентом.",
     cover: "sprint-business-report/cover.png",
     slides: 16,
-    updated: "14 октября 2026"
-  },
-  {
-    id: "po-morning-brief",
-    title: "Утренняя планёрка с ИИ-агентом",
-    description: "Как ИИ-агент держит фокус PO и весь контекст для решений: разовая настройка, одна команда — и полная утренняя сводка по задачам, встречам, договорённостям, рискам и командам. С живым примером моего отчёта.",
-    cover: "po-morning-brief/cover.png",
-    slides: 13,
-    updated: "12 октября 2026"
+    updated: "19 октября 2026"
   },
   {
     id: "sprint-blockers-report",
@@ -62,6 +70,14 @@ const presentations = [
     cover: "sprint-blockers-report/cover.png",
     slides: 12,
     updated: "15 октября 2026"
+  },
+  {
+    id: "cortex-second-brain",
+    title: "Второй мозг руководителя",
+    description: "ИИ-помощник, который помнит договорённости, отличает факт от мнения и знает цели квартала. Методология poh-cortex и инструкция, как завести такую память себе за вечер.",
+    cover: "cortex-second-brain/cover.png",
+    slides: 11,
+    updated: "18 октября 2026"
   }
 ];
 
