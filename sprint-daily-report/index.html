@@ -109,6 +109,8 @@
   .final h1 { font-size: 60px; }
   .term { background: var(--ink); color: #e9e8e2; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 16px; line-height: 1.9; padding: 24px 28px; box-shadow: 8px 8px 0 var(--blue); white-space: pre-wrap; }
   .term i { font-style: normal; color: #9fb0ff; }
+  .repo { display: inline-block; margin-top: 28px; font-size: 22px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 3px solid var(--blue); padding-bottom: 4px; }
+  .note .repo-s { color: var(--blue); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--blue); }
   /* навигация */
   #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px; background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
   #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
@@ -141,6 +143,7 @@
     .demo { flex: none; height: 110px; } .demo iframe, .demo .demo-loader { display: none; }
     .fs-btn { left: 16px; right: 16px; top: 50%; bottom: auto; transform: translateY(-50%); padding: 14px; }
     .term { font-size: 14px; padding: 18px; }
+    .repo { font-size: 17px; word-break: break-all; }
     ul.lim li { font-size: 16px; }
   }
 </style>
@@ -264,7 +267,7 @@
       <div class="arr">→</div>
       <div class="card"><span class="tag">4 · PDF</span><h3>К 8:40 в чате</h3><p>По будням файл на каждую команду и подпись: блоки по давности, движение за сутки.</p></div>
     </div>
-    <p class="note">Ни одной цифры не пишет ИИ: всё считает скрипт по данным Jira. Отчёт работает отдельно от остальной системы — достаточно токена Jira и номера доски.</p>
+    <p class="note">Ни одной цифры не пишет ИИ: всё считает скрипт по данным Jira. Отчёт работает отдельно от остальной системы — достаточно токена Jira и номера доски. Код — <a class="repo-s" href="https://github.com/po-helper-org/poh-sprint-report" target="_blank" rel="noopener" data-private-repo>poh-sprint-report 🔒</a></p>
   </section>
 
   <section class="slide" data-title="Почему цифрам верить">
@@ -283,6 +286,7 @@
       <div>
         <h1>Каждое утро —<br><span class="accent">план на сегодня</span></h1>
         <p class="lead">Python без сторонних пакетов и headless Chrome. Посмотреть отчёт можно сразу, на вымышленной команде; для своей — токен Jira и номер доски.</p>
+        <a class="repo" href="https://github.com/po-helper-org/poh-sprint-report" target="_blank" rel="noopener" data-private-repo>github.com/po-helper-org/poh-sprint-report 🔒</a>
       </div>
       <div class="term"><i>$</i> python3 -m sprint_report demo
 <i>#</i> своя команда: config.json — Jira и доска
@@ -366,5 +370,6 @@
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   show(fromHash(), false);
 </script>
+<script src="/components/private-repo.js" defer></script>
 </body>
 </html>
