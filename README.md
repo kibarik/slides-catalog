@@ -19,6 +19,7 @@
 - `sprint-blockers-report` — Где и почему команда разработки была заблокирована
 - `cortex-second-brain` — Второй мозг руководителя
 - `sprint-daily-report` — Отчёт спринта: что техлиду сделать сегодня
+- `service-blueprint-backlog` — Service Blueprint из БФТ: бэклог, который рисует карту
 
 ## Обязательно: телефон и скорость
 
