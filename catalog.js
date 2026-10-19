@@ -1,5 +1,13 @@
 const presentations = [
   {
+    id: "sprint-daily-report",
+    title: "Отчёт спринта: что техлиду сделать сегодня",
+    description: "Две страницы PDF на команду каждое утро: успеваем ли к концу спринта, что держит команду и какие задачи сдвинуть сегодня — с номерами из Jira. Сам собирает данные, без ручной работы.",
+    cover: "sprint-daily-report/cover.png",
+    slides: 13,
+    updated: "19 октября 2026"
+  },
+  {
     id: "claude-desktop-zai-macos",
     title: "Claude Desktop с Китайскими моделями",
     description: "Практикум: Claude Code, GLM и пошаговый запуск в российских реалиях.",

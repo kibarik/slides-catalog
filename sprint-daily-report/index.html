@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отчёт спринта: что техлиду сделать сегодня</title>
+<meta name="description" content="Две страницы PDF на команду каждое утро: успеваем ли к концу спринта, что держит команду и какие задачи сдвинуть сегодня — с номерами из Jira. Сам собирает данные, без ручной работы.">
+<link rel="canonical" href="https://slides.aleksishmanov.ru/sprint-daily-report/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Каталог презентаций · Алексей Ишманов">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://slides.aleksishmanov.ru/sprint-daily-report/">
+<meta property="og:title" content="Отчёт спринта: что техлиду сделать сегодня">
+<meta property="og:description" content="Две страницы PDF на команду каждое утро: успеваем ли к концу спринта, что держит команду и какие задачи сдвинуть сегодня — с номерами из Jira. Сам собирает данные, без ручной работы.">
+<meta property="og:image" content="https://slides.aleksishmanov.ru/sprint-daily-report/cover.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Первый слайд презентации «Отчёт спринта: что техлиду сделать сегодня»">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Отчёт спринта: что техлиду сделать сегодня">
+<meta name="twitter:description" content="Две страницы PDF на команду каждое утро: успеваем ли к концу спринта, что держит команду и какие задачи сдвинуть сегодня — с номерами из Jira. Сам собирает данные, без ручной работы.">
+<meta name="twitter:image" content="https://slides.aleksishmanov.ru/sprint-daily-report/cover.png">
+<meta name="twitter:image:alt" content="Первый слайд презентации «Отчёт спринта: что техлиду сделать сегодня»">
+<style>
+  /* Айдентика каталога (как sprint-blockers-report): бежевый фон, чёрный и синий, моноширинные подписи,
+     карточки с жёсткой тенью. Колода написана руками, без генератора: стили только здесь. */
+  :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --line:#c9c8c2; --red:#d8302a; --amber:#d29b1f; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #d9d8d3; }
+  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); overflow: hidden; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+  #stage { position: fixed; left: 0; top: 0; width: 1280px; height: 720px; flex: none; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; padding: 76px 72px 60px; display: none; flex-direction: column; justify-content: flex-start; background: var(--bg); overflow: hidden; }
+  .slide.on { display: flex; }
+  .slide.center { justify-content: center; padding-top: 64px; }
+  .accent { color: var(--blue); }
+  h1 { font-size: 66px; line-height: 1.03; letter-spacing: -.045em; font-weight: 800; }
+  h2 { font-size: 50px; line-height: 1.06; letter-spacing: -.04em; font-weight: 800; margin-bottom: 30px; }
+  .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 22px; text-transform: uppercase; }
+  .lead { font-size: 24px; line-height: 1.4; margin-top: 26px; max-width: 780px; }
+  .quote { border-left: 5px solid var(--blue); padding: 4px 0 4px 22px; font-size: 26px; line-height: 1.34; font-weight: 700; margin-top: 30px; }
+  .line { font-size: 21px; line-height: 1.4; color: var(--muted); }
+  .note { font-size: 14px; color: var(--muted); margin-top: 16px; line-height: 1.4; }
+  .slide > .note { padding-right: 150px; }  /* справа внизу — навигация */
+  /* титул */
+  .cover { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 56px; align-items: center; }
+  .photo { width: 300px; height: 300px; object-fit: cover; border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); display: block; }
+  .site { display: flex; justify-content: space-between; margin-top: 22px; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); text-decoration: none; color: var(--ink); }
+  .site span { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700; padding: 13px 16px; }
+  .site i { display: flex; align-items: center; justify-content: center; width: 46px; background: var(--blue); color: #fff; font-style: normal; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 16px; font-weight: 700; letter-spacing: .06em; color: var(--muted); margin-bottom: 22px; }
+  /* реплики */
+  .talk { display: flex; flex-direction: column; gap: 18px; margin-top: 8px; max-width: 900px; }
+  .said { display: inline-block; align-self: flex-start; background: var(--ink); color: #fff; font-size: 24px; padding: 12px 18px; border-radius: 14px 14px 14px 2px; }
+  .said.r { align-self: flex-end; background: #fff; color: var(--ink); border: 1px solid var(--ink); border-radius: 14px 14px 2px 14px; }
+  .said small { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; opacity: .7; margin-bottom: 4px; }
+  /* ответ */
+  .fact { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 56px; align-items: center; flex: 1; }
+  .big { font-size: 190px; line-height: .9; letter-spacing: -.06em; font-weight: 800; color: var(--blue); }
+  .big small { font-size: 60px; letter-spacing: -.03em; margin-left: 10px; }
+  .big + .line { font-size: 27px; color: var(--ink); margin-top: 26px; line-height: 1.35; }
+  .kpis { display: flex; flex-direction: column; gap: 18px; }
+  .kpi { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; padding: 16px 20px; }
+  .kpi.red { border-color: var(--red); box-shadow: 6px 6px 0 var(--red); }
+  .kpi b { display: block; font-size: 48px; line-height: 1; letter-spacing: -.04em; }
+  .kpi.red b { color: var(--red); }
+  .kpi span { display: block; font-size: 16px; color: var(--muted); margin-top: 6px; line-height: 1.3; }
+  /* снимки отчёта */
+  .shot { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; }
+  .shotbox { flex: 1; min-height: 0; display: flex; align-items: flex-start; }
+  .shotbox.tight { flex: none; }
+  .pages { display: grid; grid-template-columns: 330px 330px minmax(0,1fr); gap: 34px; flex: 1; min-height: 0; align-items: start; }
+  .pages figure { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+  .pages figure img { width: 100%; height: auto; max-height: 440px; object-fit: contain; object-position: top left; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; }
+  .pages figcaption { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  /* карточки и шаги */
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+  .cards.four { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; margin-top: 26px; }
+  .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px 24px 24px; background: var(--bg); }
+  .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
+  .card h3 { font-size: 24px; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 10px; }
+  .card p { font-size: 18px; line-height: 1.4; color: var(--muted); }
+  .cards.four .card { padding: 16px 18px 18px; }
+  .cards.four .card h3 { font-size: 19px; } .cards.four .card p { font-size: 15px; }
+  .steps { display: grid; grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr; align-items: stretch; }
+  .steps > .arr { display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: var(--blue); }
+  .steps .card { padding: 20px 18px; }
+  .steps .card h3 { font-size: 21px; } .steps .card p { font-size: 16px; }
+  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 14px; }
+  .card.blue .tag { background: var(--blue); }
+  .split { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; flex: 1; min-height: 0; align-items: start; }
+  ul.lim { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  ul.lim li { font-size: 19px; line-height: 1.4; display: grid; grid-template-columns: 34px 1fr; }
+  ul.lim li::before { content: "→"; color: var(--blue); font-weight: 800; }
+  ul.lim li b { display: block; }
+  ul.lim li span { color: var(--muted); font-size: 16px; }
+  /* демо */
+  .demo { position: relative; flex: 1; min-height: 0; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; margin-top: 6px; }
+  .demo iframe { width: 142.86%; height: 142.86%; transform: scale(.7); transform-origin: 0 0; border: 0; display: block; }
+  .fs-btn { position: absolute; right: 16px; bottom: 16px; z-index: 3; font: inherit; font-size: 15px; font-weight: 700; padding: 10px 16px; cursor: pointer; background: var(--blue); color: #fff; border: none; }
+  .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); transition: opacity .25s; }
+  .demo-loader.done { opacity: 0; pointer-events: none; }
+  .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* финал */
+  .final { display: grid; grid-template-columns: minmax(0,1fr) 590px; gap: 50px; align-items: center; height: 100%; }
+  .final h1 { font-size: 60px; }
+  .term { background: var(--ink); color: #e9e8e2; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 16px; line-height: 1.9; padding: 24px 28px; box-shadow: 8px 8px 0 var(--blue); white-space: pre-wrap; }
+  .term i { font-style: normal; color: #9fb0ff; }
+  /* навигация */
+  #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px; background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
+  #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
+  #nav .p { font-family: "JetBrains Mono", monospace; font-size: 12px; min-width: 46px; text-align: center; }
+  #bar { position: fixed; left: 0; top: 0; height: 3px; background: var(--blue); z-index: 41; transition: width .18s; }
+  #dfs { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: column; background: #fff; }
+  #dfs.on { display: flex; }
+  .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--ink); color: #fff; }
+  .ov-top b { font-size: 16px; } .ov-top button { font: inherit; font-size: 15px; background: none; border: 1px solid currentColor; color: inherit; padding: 6px 12px; cursor: pointer; }
+  .dfs-body { position: relative; flex: 1; } .dfs-body iframe { width: 100%; height: 100%; border: 0; }
+  /* Телефон: слайды лентой без масштаба. */
+  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
+    html, body { height: auto; overflow: auto; display: block; background: var(--bg); }
+    #stage { position: static; width: auto; height: auto; transform: none !important; }
+    .slide { position: relative; inset: auto; display: flex !important; padding: 40px 18px 44px; border-bottom: 1px solid var(--line); }
+    .slide.center { padding-top: 40px; }
+    #nav, #bar { display: none; }
+    .slide > .note { padding-right: 0; }
+    h1, .final h1 { font-size: 36px; } h2 { font-size: 30px; margin-bottom: 22px; }
+    .lead { font-size: 18px; } .quote { font-size: 20px; } .line { font-size: 17px; }
+    .cover, .fact, .final, .split { grid-template-columns: 1fr; gap: 26px; height: auto; }
+    .photo { width: 150px; height: 150px; } .site { max-width: 260px; }
+    .said { font-size: 18px; }
+    .big { font-size: 104px; } .big small { font-size: 34px; } .big + .line { font-size: 19px; }
+    .kpi b { font-size: 36px; }
+    .shotbox { flex: none; } .shot { width: 100%; max-height: none; }
+    .pages { grid-template-columns: 1fr; gap: 22px; } .pages figure img { max-height: none; }
+    .cards, .cards.four { grid-template-columns: 1fr; gap: 16px; }
+    .steps { grid-template-columns: 1fr; } .steps > .arr { height: 30px; transform: rotate(90deg); }
+    .demo { flex: none; height: 110px; } .demo iframe, .demo .demo-loader { display: none; }
+    .fs-btn { left: 16px; right: 16px; top: 50%; bottom: auto; transform: translateY(-50%); padding: 14px; }
+    .term { font-size: 14px; padding: 18px; }
+    ul.lim li { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+  <section class="slide center on" data-title="Титул">
+    <div class="cover"><div><p class="kicker">КОМАНДА · СПРИНТ · КАЖДОЕ УТРО</p><h1>Отчёт спринта:<br>что техлиду<br><span class="accent">сделать сегодня</span></h1><p class="lead">Две страницы PDF на команду к 8:40: успеваем ли к концу спринта, что держит команду и какие задачи сдвинуть — с номерами из Jira.</p><p class="quote">Burndown показывает, что отстаём.<br>Отчёт говорит, что с этим делать.</p></div><div><img class="photo" id="coverPhoto" alt="Автор"><a class="site" href="https://aleksishmanov.ru/" target="_blank" rel="noopener"><span>aleksishmanov.ru</span><i>↗</i></a></div></div>
+  </section>
+
+  <section class="slide" data-title="Ситуация">
+    <p class="label">Ситуация</p>
+    <h2>«Немного отстаём» —<br><span class="accent">не план на день</span></h2>
+    <div class="talk">
+      <span class="said"><small>РУКОВОДИТЕЛЬ</small>Успеваем к пятнице?</span>
+      <span class="said r"><small>ТЕХЛИД</small>Вроде да, burndown чуть ниже идеала.</span>
+      <span class="said"><small>РУКОВОДИТЕЛЬ</small>Насколько ниже и что делаем сегодня?</span>
+      <span class="said r"><small>ТЕХЛИД</small>Сейчас пролистаю доску, посмотрю карточки…</span>
+    </div>
+    <p class="note">График сгорания отвечает на вопрос «отстаём ли», но не говорит, какие задачи двигать. Чтобы это понять, техлид каждое утро листает доску, а разговор о снятии объёма случается в последний день спринта.</p>
+  </section>
+
+  <section class="slide" data-title="Ответ">
+    <p class="label">Ответ за 15 секунд</p>
+    <div class="fact">
+      <div>
+        <div class="big">41<small>%</small></div>
+        <p class="line">Столько объёма спринта команда «Альфа» закроет к 19.10 при текущем темпе. Не хватит ≈77 SP — и это видно <b>за четыре дня</b> до конца, а не в последний.</p>
+      </div>
+      <div class="kpis"><div class="kpi red"><b>4</b><span>задачи в блоке, дольше всех — 12 рабочих дней</span></div><div class="kpi"><b>6</b><span>задач в ревью и отладке — самый быстрый прирост к сгоранию</span></div><div class="kpi"><b>5</b><span>не начатых задач — кандидаты на перенос, разговор с PO сегодня</span></div></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Две страницы">
+    <p class="label">Что приходит утром</p>
+    <h2>Две страницы <span class="accent">на команду</span></h2>
+    <div class="pages">
+      <figure><img src="img/page1.webp" loading="lazy" width="760" height="1075" alt="Первая страница отчёта: пульс, сгорание и решения, сроки, эпики"><figcaption>Стр. 1 · что делать</figcaption></figure>
+      <figure><img src="img/page2.webp" loading="lazy" width="760" height="1075" alt="Вторая страница отчёта: команда, долгие задачи и доска"><figcaption>Стр. 2 · где стоит работа</figcaption></figure>
+      <ul class="lim">
+        <li><div><b>Пульс команды</b><span>прогноз, темп, загрузка, узкое место</span></div></li>
+        <li><div><b>Успеем к …?</b><span>сгорание и пять решений на сегодня</span></div></li>
+        <li><div><b>Сроки и обещания</b><span>кто, статус, отклонение в днях</span></div></li>
+        <li><div><b>Эпики в спринте</b><span>готово, за 2 недели, в блоке</span></div></li>
+        <li><div><b>Доска</b><span>что стоит дольше всего и у кого</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Пульс команды">
+    <p class="label">Сверху · пульс команды</p>
+    <h2>Четыре цифры, <span class="accent">которые двигает техлид</span></h2>
+    <div class="shotbox tight"><img class="shot" src="img/pulse.webp" loading="lazy" width="1130" height="180" alt="Пульс команды: прогноз спринта 41%, закрываем 1,6 задачи в день при нужных 10,5, в работе 16 задач на 8 человек, дольше всего ждут в блоке — 6,2 дня"></div>
+    <div class="cards four">
+      <div class="card"><h3>Прогноз спринта</h3><p>Ниже ~85% — идти к PO сейчас, а не в последний день.</p></div>
+      <div class="card"><h3>Закрываем в день</h3><p>Столбики против пунктира «нужно». Ускоряемся или нет — видно сразу.</p></div>
+      <div class="card"><h3>В работе одновременно</h3><p>Выше 1,5 задачи на человека — не брать новое, доделывать начатое.</p></div>
+      <div class="card blue"><h3>Где ждут дольше</h3><p>Худший этап красным — туда сегодня ставить людей.</p></div>
+    </div>
+    <p class="note">У каждой цифры — изменение со вчера: ▲ зелёным, если к лучшему. Цифры не повторяют то, что ниже на странице.</p>
+  </section>
+
+  <section class="slide" data-title="Решения на сегодня">
+    <p class="label">Успеем к 19.10? · решения</p>
+    <h2>Не «отстаём», а <span class="accent">номера задач</span></h2>
+    <div class="split">
+      <div class="shotbox"><img class="shot" src="img/plan.webp" loading="lazy" width="1130" height="437" alt="Сгорание спринта с прогнозом и пять решений техлида с номерами задач"></div>
+      <ul class="lim">
+        <li><div><b>Снять блоки</b><span>все задачи в блоке, самые долгие первыми</span></div></li>
+        <li><div><b>Провести ревью и отладку</b><span>почти готовое — сначала</span></div></li>
+        <li><div><b>Разморозить застой</b><span>больше 3 рабочих дней без смены статуса</span></div></li>
+        <li><div><b>Не успеваем — оповестить PO</b><span>не начатые, крупные первыми, на величину разрыва</span></div></li>
+        <li><div><b>Оценить и декомпозировать</b><span>без оценки и от 8 SP</span></div></li>
+      </ul>
+    </div>
+    <p class="note">Номер задачи — ссылка в Jira. Пунктир на графике — прогноз при текущем темпе, красная скобка — разрыв к концу спринта.</p>
+  </section>
+
+  <section class="slide" data-title="Сроки и обещания">
+    <p class="label">Сроки и обещания</p>
+    <h2>Что обещали — <span class="accent">и насколько сдвинулось</span></h2>
+    <div class="shotbox"><img class="shot" src="img/dates.webp" loading="lazy" width="1130" height="367" alt="Сроки эпиков и обещания команды: исполнитель, статус и отклонение от срока в днях"></div>
+    <p class="note">Эпики с целевой датой из Jira и обещания команды руководителю. У каждой строки — исполнитель, статус (доля готовых историй эпика или статус связанной задачи) и отклонение: −12 дн красным, «сегодня» — оранжевым.</p>
+  </section>
+
+  <section class="slide" data-title="Эпики в спринте">
+    <p class="label">Эпики в спринте</p>
+    <h2>Двигаются ли эпики — <span class="accent">без текста</span></h2>
+    <div class="shotbox"><img class="shot" src="img/epics.webp" loading="lazy" width="1130" height="341" alt="Карточки эпиков: процент готовности, полоса готово, закрыто за 2 недели, в работе, в блоке, квадраты историй спринта"></div>
+    <p class="note">Все эпики в работе, без «+ ещё». Полоса: синим — готово, зелёным — закрыто за 2 недели, голубым — в работе, красным — истории в блоке. Квадраты — истории этого спринта. Эпик без движения две недели помечен «стоит».</p>
+  </section>
+
+  <section class="slide" data-title="Доска">
+    <p class="label">Страница 2 · доска</p>
+    <h2>Где стоит работа <span class="accent">и у кого</span></h2>
+    <div class="shotbox"><img class="shot" src="img/board.webp" loading="lazy" width="1130" height="677" alt="Kanban-доска: в блоке, в работе, ревью, отладка, готово — с днями без движения и причиной блока"></div>
+    <p class="note">Колонки: в блоке (с причиной из последнего комментария), в работе, ревью, отладка, готово за день. Оранжевая кромка — застой больше 3 дней, красная — блок.</p>
+  </section>
+
+  <section class="slide" data-title="Живой отчёт">
+    <p class="label">Живой отчёт</p>
+    <h2>Отчёт <span class="accent">целиком</span></h2>
+    <div class="demo">
+      <div class="demo-loader"><div class="spin"></div>Загружаем отчёт…</div>
+      <iframe id="demoFrame" title="Отчёт спринта: вымышленная команда «Альфа»" data-src="demo/report.html"></iframe>
+      <button class="fs-btn" data-frame="demoFrame">На весь экран ↗</button>
+    </div>
+    <p class="note">Вымышленная команда «Альфа»: люди, задачи и эпики придуманы. Отчёт собран тем же кодом, что и для настоящих команд.</p>
+  </section>
+
+  <section class="slide" data-title="Как это собирается">
+    <p class="label">Как это собирается</p>
+    <h2>Скрипт, <span class="accent">а не ручная сводка</span></h2>
+    <div class="steps">
+      <div class="card"><span class="tag">1 · JIRA</span><h3>Только чтение</h3><p>Активный спринт доски, история статусов, комментарии, эпики и их объём. Токен — личный, запросы — только GET.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">2 · СНИМОК</span><h3>Один JSON</h3><p>Снимок команды на утро: из него отчёт пересчитывается без сети, и вчерашний можно сравнить.</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><span class="tag">3 · ЦИФРЫ</span><h3>Открытые формулы</h3><p>Прогноз, темп, дни в статусе, разрыв — по истории переходов, в рабочих днях.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">4 · PDF</span><h3>К 8:40 в чате</h3><p>По будням файл на каждую команду и подпись: блоки по давности, движение за сутки.</p></div>
+    </div>
+    <p class="note">Ни одной цифры не пишет ИИ: всё считает скрипт по данным Jira. Отчёт работает отдельно от остальной системы — достаточно токена Jira и номера доски.</p>
+  </section>
+
+  <section class="slide" data-title="Почему цифрам верить">
+    <p class="label">Почему цифрам можно верить</p>
+    <h2>Каждая цифра — <span class="accent">из истории Jira</span></h2>
+    <div class="cards">
+      <div class="card"><h3>Сгорание честное</h3><p>В SP по полю оценки, без подзадач; нет оценки — числом задач и с такой подписью. Объём меняется, когда задачи входят в спринт.</p></div>
+      <div class="card blue"><h3>Дни — рабочие</h3><p>От последней смены статуса. Переоткрытая задача снова считается незакрытой.</p></div>
+      <div class="card"><h3>Колонки — по правилам команды</h3><p>Статус «Ожидает релиза» у одной команды — ревью, у другой — отладка: это настройка, а не правка кода.</p></div>
+      <div class="card"><h3>Упрощения названы</h3><p>Прогноз линейный, оценка — текущая. Ограничения записаны рядом с формулами.</p></div>
+    </div>
+  </section>
+
+  <section class="slide center" data-title="Как начать">
+    <div class="final">
+      <div>
+        <h1>Каждое утро —<br><span class="accent">план на сегодня</span></h1>
+        <p class="lead">Python без сторонних пакетов и headless Chrome. Посмотреть отчёт можно сразу, на вымышленной команде; для своей — токен Jira и номер доски.</p>
+      </div>
+      <div class="term"><i>$</i> python3 -m sprint_report demo
+<i>#</i> своя команда: config.json — Jira и доска
+<i>$</i> python3 -m sprint_report run -c config.json
+<i>#</i> по будням в 8:40 — systemd-таймер
+<i>$</i> systemctl --user enable --now sprint-report.timer</div>
+    </div>
+  </section>
+</div>
+<div id="dfs">
+  <div class="ov-top"><b id="dfsTitle"></b><button id="dfsX">Закрыть ✕</button></div>
+  <div class="dfs-body"><div class="demo-loader" id="dfsLoader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfsFrame" title="Демо на весь экран"></iframe></div>
+</div>
+<div id="nav">
+  <button id="prev" title="Назад">‹</button><span class="p mono" id="pos"></span><button id="next" title="Вперёд">›</button>
+</div>
+<script>
+  var PHOTO = "/okr-quarter-planning/img/photo.webp";
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var cur = 0;
+  var narrow = window.matchMedia('(max-width: 700px), (orientation: portrait) and (max-width: 900px)');
+  function loaded(f) { try { return f.contentWindow.location.href !== 'about:blank'; } catch (e) { return true; } }
+  /* Живое демо: iframe получает src, когда открыт его слайд или предыдущий; на телефоне — только по кнопке. */
+  function loadDemos(slide) {
+    if (!slide || narrow.matches) return;
+    slide.querySelectorAll('iframe[data-src]:not([src])').forEach(function (f) {
+      var l = f.parentNode.querySelector('.demo-loader');
+      f.onload = function () { if (l && loaded(f)) l.classList.add('done'); };
+      f.src = f.getAttribute('data-src');
+    });
+  }
+  function fit() {
+    var st = document.getElementById('stage');
+    if (narrow.matches) { st.style.transform = 'none'; st.style.left = st.style.top = ''; return; }
+    var w = document.documentElement.clientWidth, h = document.documentElement.clientHeight;
+    var s = Math.min(w / 1280, h / 720);
+    st.style.left = Math.round((w - 1280 * s) / 2) + 'px';
+    st.style.top = Math.round((h - 720 * s) / 2) + 'px';
+    st.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+  function show(i, push) {
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
+    loadDemos(slides[cur]); loadDemos(slides[cur + 1]);
+    document.getElementById('pos').textContent = (cur + 1) + ' / ' + slides.length;
+    document.getElementById('bar').style.width = ((cur + 1) / slides.length * 100) + '%';
+    if (push !== false) history.replaceState(null, '', '#slide=' + (cur + 1));
+    else if (narrow.matches && cur > 0) slides[cur].scrollIntoView();
+  }
+  window.addEventListener('load', function () { if (narrow.matches && cur > 0) slides[cur].scrollIntoView(); });
+  document.getElementById('prev').onclick = function () { show(cur - 1); };
+  document.getElementById('next').onclick = function () { show(cur + 1); };
+  var photo = document.getElementById('coverPhoto');
+  if (photo && PHOTO) photo.src = PHOTO;
+  var dfs = document.getElementById('dfs');
+  document.querySelectorAll('.fs-btn').forEach(function (b) {
+    b.onclick = function (e) {
+      e.stopPropagation();
+      var f = document.getElementById(b.getAttribute('data-frame'));
+      document.getElementById('dfsTitle').textContent = f.title;
+      var dl = document.getElementById('dfsLoader'); dl.classList.remove('done');
+      var df = document.getElementById('dfsFrame');
+      df.onload = function () { if (loaded(df)) dl.classList.add('done'); };
+      df.src = f.getAttribute('data-src');
+      dfs.classList.add('on');
+    };
+  });
+  function closeDfs() { dfs.classList.remove('on'); document.getElementById('dfsFrame').removeAttribute('src'); }
+  document.getElementById('dfsX').onclick = closeDfs;
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && dfs.classList.contains('on')) return closeDfs();
+    if (dfs.classList.contains('on')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(cur - 1); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+  function fromHash() { var m = location.hash.match(/slide=(\d+)/); return m ? parseInt(m[1], 10) - 1 : 0; }
+  window.addEventListener('hashchange', function () { show(fromHash(), false); });
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  show(fromHash(), false);
+</script>
+</body>
+</html>
