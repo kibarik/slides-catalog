@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Service Blueprint из БФТ: бэклог, который рисует карту</title>
+<meta name="description" content="ИИ-агент раскладывает БФТ в проект Backlog.md — задачи команд, технические карточки, требования к экранам, — а скрипт собирает из него карту: что видят люди, что делает каждая команда и как это работает.">
+<link rel="canonical" href="https://slides.aleksishmanov.ru/service-blueprint-backlog/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Каталог презентаций · Алексей Ишманов">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://slides.aleksishmanov.ru/service-blueprint-backlog/">
+<meta property="og:title" content="Service Blueprint из БФТ: бэклог, который рисует карту">
+<meta property="og:description" content="ИИ-агент раскладывает БФТ в проект Backlog.md — задачи команд, технические карточки, требования к экранам, — а скрипт собирает из него карту: что видят люди, что делает каждая команда и как это работает.">
+<meta property="og:image" content="https://slides.aleksishmanov.ru/service-blueprint-backlog/cover.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Первый слайд презентации «Service Blueprint из БФТ: бэклог, который рисует карту»">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Service Blueprint из БФТ: бэклог, который рисует карту">
+<meta name="twitter:description" content="ИИ-агент раскладывает БФТ в проект Backlog.md — задачи команд, технические карточки, требования к экранам, — а скрипт собирает из него карту: что видят люди, что делает каждая команда и как это работает.">
+<meta name="twitter:image" content="https://slides.aleksishmanov.ru/service-blueprint-backlog/cover.png">
+<meta name="twitter:image:alt" content="Первый слайд презентации «Service Blueprint из БФТ: бэклог, который рисует карту»">
+<style>
+  /* Айдентика каталога: бежевый фон, чёрный и синий, моноширинные подписи, карточки с жёсткой тенью.
+     Колода написана руками, без генератора: стили только здесь. Пример в колоде вымышленный — DineClub. */
+  :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --line:#c9c8c2; --red:#d8302a; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #d9d8d3; }
+  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); overflow: hidden; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+  #stage { position: fixed; left: 0; top: 0; width: 1280px; height: 720px; flex: none; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; padding: 70px 72px 56px; display: none; flex-direction: column; justify-content: flex-start; background: var(--bg); overflow: hidden; }
+  .slide.on { display: flex; }
+  .slide.center { justify-content: center; padding-top: 64px; }
+  .accent { color: var(--blue); }
+  h1 { font-size: 62px; line-height: 1.04; letter-spacing: -.045em; font-weight: 800; }
+  h2 { font-size: 46px; line-height: 1.06; letter-spacing: -.04em; font-weight: 800; margin-bottom: 26px; }
+  .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 18px; text-transform: uppercase; }
+  .lead { font-size: 23px; line-height: 1.4; margin-top: 24px; max-width: 760px; }
+  .quote { border-left: 5px solid var(--blue); padding: 4px 0 4px 22px; font-size: 24px; line-height: 1.34; font-weight: 700; margin-top: 28px; }
+  .note { font-size: 14px; color: var(--muted); margin-top: 16px; line-height: 1.4; }
+  .slide > .note { padding-right: 150px; }
+  /* титул */
+  .cover { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 56px; align-items: center; }
+  .photo { width: 300px; height: 300px; object-fit: cover; border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); display: block; }
+  .site { display: flex; justify-content: space-between; margin-top: 22px; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); text-decoration: none; color: var(--ink); }
+  .site span { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700; padding: 13px 16px; }
+  .site i { display: flex; align-items: center; justify-content: center; width: 46px; background: var(--blue); color: #fff; font-style: normal; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 16px; font-weight: 700; letter-spacing: .06em; color: var(--muted); margin-bottom: 22px; }
+  /* реплики */
+  .talk { display: flex; flex-direction: column; gap: 16px; margin-top: 6px; max-width: 920px; }
+  .said { display: inline-block; align-self: flex-start; background: var(--ink); color: #fff; font-size: 23px; padding: 12px 18px; border-radius: 14px 14px 14px 2px; }
+  .said.r { align-self: flex-end; background: #fff; color: var(--ink); border: 1px solid var(--ink); border-radius: 14px 14px 2px 14px; }
+  .said small { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; opacity: .7; margin-bottom: 4px; }
+  /* снимки */
+  .shot { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; }
+  .shotbox { flex: 1; min-height: 0; display: flex; align-items: flex-start; }
+  .split { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 36px; flex: 1; min-height: 0; align-items: start; }
+  .panels { display: grid; grid-template-columns: 300px 300px minmax(0,1fr); gap: 34px; flex: 1; min-height: 0; align-items: start; }
+  .panels.one { grid-template-columns: 300px minmax(0,1fr); }
+  .panels figure { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+  .panels figure img { width: 100%; height: auto; max-height: 450px; object-fit: cover; object-position: top left; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; }
+  .panels figcaption { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  /* карточки и шаги */
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; margin-top: 8px; }
+  .cards.four { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; margin-top: 0; }
+  .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px 24px 24px; background: var(--bg); }
+  .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
+  .card h3 { font-size: 24px; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 10px; }
+  .card p { font-size: 18px; line-height: 1.4; color: var(--muted); }
+  .cards.four .card { padding: 14px 16px 16px; }
+  .cards.four .card h3 { font-size: 18px; margin-bottom: 6px; } .cards.four .card p { font-size: 14.5px; }
+  .steps { display: grid; grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr; align-items: stretch; }
+  .steps > .arr { display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: var(--blue); }
+  .steps .card { padding: 20px 18px; }
+  .steps .card h3 { font-size: 21px; } .steps .card p { font-size: 16px; }
+  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 14px; }
+  .card.blue .tag { background: var(--blue); }
+  ul.lim { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  ul.lim li { font-size: 19px; line-height: 1.4; display: grid; grid-template-columns: 34px 1fr; }
+  ul.lim li::before { content: "→"; color: var(--blue); font-weight: 800; }
+  ul.lim li b { display: block; }
+  ul.lim li span { color: var(--muted); font-size: 16px; }
+  /* демо */
+  .demo { position: relative; flex: 1; min-height: 0; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; margin-top: 6px; }
+  .demo iframe { width: 142.86%; height: 142.86%; transform: scale(.7); transform-origin: 0 0; border: 0; display: block; }
+  .fs-btn { position: absolute; right: 16px; bottom: 16px; z-index: 3; font: inherit; font-size: 15px; font-weight: 700; padding: 10px 16px; cursor: pointer; background: var(--blue); color: #fff; border: none; }
+  .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); transition: opacity .25s; }
+  .demo-loader.done { opacity: 0; pointer-events: none; }
+  .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* терминал и финал */
+  .term { background: var(--ink); color: #e9e8e2; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; line-height: 1.75; padding: 22px 26px; box-shadow: 8px 8px 0 var(--blue); white-space: pre-wrap; }
+  .term i { font-style: normal; color: #9fb0ff; }
+  .term b { color: #fff; }
+  .final { display: grid; grid-template-columns: minmax(0,1fr) 590px; gap: 50px; align-items: center; height: 100%; }
+  .final h1 { font-size: 56px; }
+  .repo { display: inline-block; margin-top: 24px; font-size: 20px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 3px solid var(--blue); padding-bottom: 4px; }
+  .repo + .repo { margin-left: 18px; }
+  /* навигация */
+  #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px; background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
+  #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
+  #nav .p { font-family: "JetBrains Mono", monospace; font-size: 12px; min-width: 46px; text-align: center; }
+  #bar { position: fixed; left: 0; top: 0; height: 3px; background: var(--blue); z-index: 41; transition: width .18s; }
+  #dfs { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: column; background: #fff; }
+  #dfs.on { display: flex; }
+  .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--ink); color: #fff; }
+  .ov-top b { font-size: 16px; } .ov-top button { font: inherit; font-size: 15px; background: none; border: 1px solid currentColor; color: inherit; padding: 6px 12px; cursor: pointer; }
+  .dfs-body { position: relative; flex: 1; } .dfs-body iframe { width: 100%; height: 100%; border: 0; }
+  /* Телефон: слайды лентой без масштаба. */
+  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
+    html, body { height: auto; overflow: auto; display: block; background: var(--bg); }
+    #stage { position: static; width: auto; height: auto; transform: none !important; }
+    .slide { position: relative; inset: auto; display: flex !important; padding: 40px 18px 44px; border-bottom: 1px solid var(--line); }
+    .slide.center { padding-top: 40px; }
+    #nav, #bar { display: none; }
+    .slide > .note { padding-right: 0; }
+    h1, .final h1 { font-size: 36px; } h2 { font-size: 30px; margin-bottom: 20px; }
+    .lead { font-size: 18px; } .quote { font-size: 20px; }
+    .cover, .final, .split, .panels, .panels.one { grid-template-columns: 1fr; gap: 24px; height: auto; }
+    .photo { width: 150px; height: 150px; } .site { max-width: 260px; }
+    .said { font-size: 18px; }
+    .shotbox { flex: none; } .shot { width: 100%; max-height: none; }
+    .panels figure img { max-height: none; }
+    .cards, .cards.four { grid-template-columns: 1fr; gap: 16px; }
+    .steps { grid-template-columns: 1fr; } .steps > .arr { height: 30px; transform: rotate(90deg); }
+    .demo { flex: none; height: 110px; } .demo iframe, .demo .demo-loader { display: none; }
+    .fs-btn { left: 16px; right: 16px; top: 50%; bottom: auto; transform: translateY(-50%); padding: 14px; }
+    .term { font-size: 13px; padding: 16px; }
+    .repo { font-size: 17px; word-break: break-all; display: block; } .repo + .repo { margin-left: 0; }
+    ul.lim li { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+  <section class="slide center on" data-title="Титул">
+    <div class="cover"><div><p class="kicker">БФТ · КОМАНДЫ · BACKLOG.MD</p><h1>Service Blueprint<br>из БФТ: <span class="accent">бэклог,<br>который рисует карту</span></h1><p class="lead">ИИ-агент раскладывает требования в проект Backlog.md. Скрипт собирает из него одну карту для всех команд.</p><p class="quote">БФТ отвечает «что требуется».<br>Карта — «кто, где и как это работает».</p></div><div><img class="photo" id="coverPhoto" alt="Автор"><a class="site" href="https://aleksishmanov.ru/" target="_blank" rel="noopener"><span>aleksishmanov.ru</span><i>↗</i></a></div></div>
+  </section>
+
+  <section class="slide" data-title="Ситуация">
+    <p class="label">Ситуация</p>
+    <h2>Инициатива режется на пять команд —<br><span class="accent">и каждая видит свой кусок</span></h2>
+    <div class="talk">
+      <span class="said"><small>РУКОВОДИТЕЛЬ</small>Кто делает блок скидки на странице после покупки?</span>
+      <span class="said r"><small>ТЕХЛИД TEAMA</small>Мы думали — витрина.</span>
+      <span class="said r"><small>ТЕХЛИД ВИТРИНЫ</small>У нас в задачах этого нет. А проверка билета чья?</span>
+      <span class="said"><small>РУКОВОДИТЕЛЬ</small>Всё есть в БФТ. Где-то на сороковой странице.</span>
+    </div>
+    <p class="note">БФТ — список требований по типам: ФТ, ИТ, НФТ. Общей картины в нём нет: что увидит человек на каждом шаге, кто за это отвечает и что происходит за кадром.</p>
+  </section>
+
+  <section class="slide" data-title="Ответ">
+    <p class="label">Ответ</p>
+    <h2>Одна карта — <span class="accent">три слоя на весь экран</span></h2>
+    <div class="cards">
+      <div class="card"><span class="tag">1 · ЧТО ВИДЯТ</span><h3>Путь человека</h3><p>Раскадровка: экраны каждого персонажа слева направо, по этапам.</p></div>
+      <div class="card"><span class="tag">2 · ЧТО ДЕЛАЕМ</span><h3>Бэклог команд</h3><p>Одна задача — один результат одной команды. Цвет — команда.</p></div>
+      <div class="card blue"><span class="tag">3 · КАК ЭТО РАБОТАЕТ</span><h3>Слой системной аналитики</h3><p>Технические карточки в четырёх рядах Service Blueprint.</p></div>
+    </div>
+    <p class="note">Колонки у всех слоёв общие — этапы пути. Переключатель открывает тот же этап на другом слое. Пример в колоде вымышленный: перезапуск акции DineClub «билет = скидка 10%».</p>
+  </section>
+
+  <section class="slide" data-title="Что видят">
+    <p class="label">Слой 1 · что видят</p>
+    <h2>Путь каждого — <span class="accent">экранами, слева направо</span></h2>
+    <div class="shotbox"><img class="shot" src="img/see.webp" loading="lazy" width="1240" height="741" alt="Раскадровка: гость и ресторан, экраны по этапам пути"></div>
+  </section>
+
+  <section class="slide" data-title="Что делаем">
+    <p class="label">Слой 2 · что делаем</p>
+    <h2>Бэклог по этапам — <span class="accent">видно, где чья работа</span></h2>
+    <div class="split">
+      <div class="shotbox"><img class="shot" src="img/do.webp" loading="lazy" width="1240" height="741" alt="Задачи команд по этапам пути, цвет — команда, метки блокеров и вопросов"></div>
+      <ul class="lim">
+        <li><div><b>Одна задача — один результат</b><span>до 80 знаков, без API и таблиц</span></div></li>
+        <li><div><b>Команда не определена?</b><span>«Команда?» красным и кандидаты — выбор за PO</span></div></li>
+        <li><div><b>Блокеры и вопросы</b><span>на задаче, а не в переписке</span></div></li>
+        <li><div><b>Фильтр по команде</b><span>подсвечивает её работу на всей карте</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Постановка">
+    <p class="label">Клик по задаче</p>
+    <h2>Постановка для техлида — <span class="accent">не «как», а «что и зачем»</span></h2>
+    <div class="panels">
+      <figure><img src="img/task.webp" loading="lazy" width="560" height="860" alt="Вкладка «Требования»: зачем, ASIS, GAP, TOBE, HowToDemo, чеклист приемки"><figcaption>Требования</figcaption></figure>
+      <figure><img src="img/exec.webp" loading="lazy" width="560" height="860" alt="Вкладка «Исполнение»: ссылки на JIRA и Confluence и заметка"><figcaption>Исполнение</figcaption></figure>
+      <ul class="lim">
+        <li><div><b>ASIS → GAP → TOBE</b><span>как сейчас, чего не хватает, каким станет</span></div></li>
+        <li><div><b>HowToDemo</b><span>сценарий проверки от лица пользователя</span></div></li>
+        <li><div><b>Чеклист приемки</b><span>критерии приемки задачи Backlog.md</span></div></li>
+        <li><div><b>Исполнение</b><span>JIRA, Confluence, заметка → одна команда <span class="mono">backlog task edit</span></span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Как это работает">
+    <p class="label">Слой 3 · как это работает</p>
+    <h2>Четыре ряда <span class="accent">Service Blueprint</span></h2>
+    <div class="split">
+      <div class="shotbox"><img class="shot" src="img/how.webp" loading="lazy" width="1240" height="741" alt="Технические карточки в рядах Employee Actions, Technology, Backstage, Support со стрелками связей"></div>
+      <div class="cards four">
+        <div class="card"><h3>Employee Actions</h3><p>Сотрудник на виду у гостя: официант со сканером. Бывает пустым.</p></div>
+        <div class="card"><h3>Technology</h3><p>Что видит гость: страница, письмо, уведомление.</p></div>
+        <div class="card blue"><h3>Backstage</h3><p>За линией видимости: каталог, проверка, триггеры.</p></div>
+        <div class="card"><h3>Support</h3><p>Общие ресурсы и внешние каналы.</p></div>
+      </div>
+    </div>
+    <p class="note">Ряд — слой, а не система и не команда. Стрелки строятся сами из ссылок между карточками.</p>
+  </section>
+
+  <section class="slide" data-title="Карточка">
+    <p class="label">Клик по карточке</p>
+    <h2>Карточка — техническая задача: <span class="accent">кто, зачем и как</span></h2>
+    <div class="split">
+      <div class="shotbox"><img class="shot" src="img/card.webp" loading="lazy" width="1240" height="741" alt="Карточка: UserStory, JobStory и начало процесса"></div>
+      <ul class="lim">
+        <li><div><b>UserStory</b><span>«Как официант, я хочу …, чтобы …»</span></div></li>
+        <li><div><b>JobStory</b><span>ситуации, которые карточка закрывает: «Когда …, хочу …, чтобы …»</span></div></li>
+        <li><div><b>Процесс</b><span>схемой BPMN по участникам</span></div></li>
+        <li><div><b>Параметры, HowToDemo, ссылки</b><span>вход и выход, как показать, куда смотреть</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="BPMN">
+    <p class="label">Процесс</p>
+    <h2>Агент пишет шаги списком — <span class="accent">скрипт рисует BPMN</span></h2>
+    <div class="split">
+      <div class="shotbox"><img class="shot" src="img/card2.webp" loading="lazy" width="1240" height="741" alt="Схема BPMN: дорожки гостя, официанта, сканера и TeamA, развилка «Билет валиден?»"></div>
+      <div class="term"><b>### Процесс</b>
+- Гость: Показывает билет
+- Официант: Сканирует штрихкод
+- Сканер: Отправляет на проверку
+- TeamA: Проверяет билет
+- <i>?</i> Билет валиден?
+  - да → Официант: «скидка 10%»
+  - нет → Официант: причина отказа</div>
+    </div>
+    <p class="note">Дорожка — участник, ромб — развилка, ветки сходятся в следующий шаг. Схему никто не рисует руками: поменял шаг — сборка перерисует.</p>
+  </section>
+
+  <section class="slide" data-title="Экраны">
+    <p class="label">Клик по кадру</p>
+    <h2>Требования к экрану — <span class="accent">стек заметок для дизайнера</span></h2>
+    <div class="panels one">
+      <figure><img src="img/screen.webp" loading="lazy" width="560" height="860" alt="Требования к экрану: картинки, вкладки Product, Design, Functions, стек заметок"><figcaption>Экран F3 · сканер</figcaption></figure>
+      <ul class="lim">
+        <li><div><b>Product</b><span>job stories: «Когда …, хочу …, чтобы …»</span></div></li>
+        <li><div><b>Design</b><span>где экран, что главное, куда дальше, ограничения</span></div></li>
+        <li><div><b>Functions</b><span>сценарии Дано / Когда / Тогда, включая отказы</span></div></li>
+        <li><div><b>Одна заметка — одно требование</b><span>с источником в БФТ; неизвестное — красной точкой</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Backlog.md">
+    <p class="label">Хранилище</p>
+    <h2>Все данные — <span class="accent">проект Backlog.md</span></h2>
+    <div class="split">
+      <div class="shotbox"><img class="shot" src="img/bl-board.webp" loading="lazy" width="1240" height="775" alt="Доска Backlog.md в браузере: 39 задач и 14 документов карты"></div>
+      <div class="term"><b>dineclub-restart-blueprint/</b>
+  backlog/
+    tasks/
+      <i>bp-16</i>   что делаем
+      <i>bp-16.1</i> как это работает
+    docs/
+      Карта · История
+      screens/ <i>F3 · …</i>
+  <i>backlog.py</i>   CLI Backlog.md
+  <i>blueprint.py</i> проверка и сборка
+  .blueprint/  скрипты и правила
+  CLAUDE.md · AGENTS.md · GEMINI.md</div>
+    </div>
+    <p class="note">Задача команды — задача Backlog.md, карточка — её подзадача, заметки экранов — документы. Агент ведёт всё встроенным <span class="mono">./backlog.py</span>, команда — на доске Backlog.md.</p>
+  </section>
+
+  <section class="slide" data-title="Mermaid">
+    <p class="label">Тот же файл — в Backlog.md</p>
+    <h2>Тот же процесс в Backlog.md — <span class="accent">схема mermaid</span></h2>
+    <div class="shotbox"><img class="shot" src="img/bl-card.webp" loading="lazy" width="1240" height="775" alt="Карточка в веб-интерфейсе Backlog.md: процесс списком и схема BPMN в mermaid"></div>
+  </section>
+
+  <section class="slide" data-title="Как собирается">
+    <p class="label">Как это собирается</p>
+    <h2>Агент пишет бэклог, <span class="accent">скрипт рисует карту</span></h2>
+    <div class="steps">
+      <div class="card"><span class="tag">1 · ИСТОРИЯ</span><h3>Согласована с PO</h3><p>Персонажи, этапы и экраны из БФТ. Пробелы — вопросами PO.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">2 · БЭКЛОГ</span><h3>Агент через CLI</h3><p>Задачи, карточки с историями и процессом, заметки экранов, метки.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">3 · ПРОВЕРКА</span><h3>Линтер</h3><p>Каждое ФТ, ИТ, НФТ на карте, нет технических слов, ссылки живые.</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><span class="tag">4 · СБОРКА</span><h3>Без ИИ</h3><p>BPMN из процесса, страница карты и автономный zip.</p></div>
+    </div>
+    <p class="note">Ни одной картинки ИИ не рисует: схемы и страница детерминированы — тот же бэклог даёт тот же файл байт в байт.</p>
+  </section>
+
+  <section class="slide" data-title="Замечания">
+    <p class="label">Правки</p>
+    <h2>Правой кнопкой — замечание, <span class="accent">в меню — промпт агенту</span></h2>
+    <div class="split">
+      <div class="shotbox"><img class="shot" src="img/cmpop.webp" loading="lazy" width="1240" height="741" alt="Замечание к карточке правой кнопкой мыши прямо на карте"></div>
+      <ul class="lim">
+        <li><div><b>Любая секция</b><span>кадр, этап, задача, карточка, заметка</span></div></li>
+        <li><div><b>Промпт с файлами</b><span>что править и в каком файле бэклога</span></div></li>
+        <li><div><b>Круг закрывается сам</b><span>пересобранная карта закрывает учтённые замечания</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Автономная папка">
+    <p class="label">Автономный проект</p>
+    <h2>Папку можно отдать <span class="accent">любому харнессу</span></h2>
+    <div class="split">
+      <div class="cards four">
+        <div class="card blue"><h3>CLI внутри</h3><p><span class="mono">./backlog.py</span> — Backlog.md на Python, тот же формат файлов.</p></div>
+        <div class="card"><h3>Сборка внутри</h3><p><span class="mono">./blueprint.py build</span> — карта и архив.</p></div>
+        <div class="card"><h3>Правила внутри</h3><p>Стандарт карты, экранов и истории — в <span class="mono">.blueprint/rules</span>.</p></div>
+        <div class="card"><h3>Инструкции агенту</h3><p>CLAUDE.md, AGENTS.md, GEMINI.md — что где лежит и как работать.</p></div>
+      </div>
+      <ul class="lim">
+        <li><div><b>Ничего не ставить</b><span>нужен только python3</span></div></li>
+        <li><div><b>Без навыка и репозитория</b><span>всё, что нужно агенту, — в папке</span></div></li>
+        <li><div><b>Совместим с Backlog.md</b><span>npm-пакет читает те же файлы: доска и браузер</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Живая карта">
+    <p class="label">Живая карта</p>
+    <h2>Карта <span class="accent">целиком</span></h2>
+    <div class="demo">
+      <div class="demo-loader"><div class="spin"></div>Загружаем карту…</div>
+      <iframe id="demoFrame" title="Карта инициативы: вымышленная акция DineClub" data-src="demo/map.html"></iframe>
+      <button class="fs-btn" data-frame="demoFrame">На весь экран ↗</button>
+    </div>
+    <p class="note">Вымышленная инициатива: компании, команды и задачи придуманы. Карта собрана тем же скриптом, что и для настоящих БФТ, — одним файлом, без интернета.</p>
+  </section>
+
+  <section class="slide center" data-title="Как начать">
+    <div class="final">
+      <div>
+        <h1>Бэклог живёт дальше —<br><span class="accent">карта пересобирается</span></h1>
+        <p class="lead">Архив — автономная папка: распаковал, отдал агенту — он ведёт бэклог и пересобирает карту сам.</p>
+        <a class="repo" href="https://github.com/po-helper-org/poh-bft-writer/tree/main/skills/bft-blueprint" target="_blank" rel="noopener">навык bft-blueprint ↗</a><a class="repo" href="dineclub-restart-blueprint.zip" download>пример проекта .zip</a>
+      </div>
+      <div class="term"><i>#</i> карта из согласованной истории
+<i>$</i> /bft-blueprint &lt;epic&gt; --map
+<i>#</i> распакованный проект — любому агенту
+<i>$</i> ./backlog.py instructions overview
+<i>$</i> ./backlog.py task list --plain
+<i>$</i> ./blueprint.py build</div>
+    </div>
+  </section>
+</div>
+<div id="dfs">
+  <div class="ov-top"><b id="dfsTitle"></b><button id="dfsX">Закрыть ✕</button></div>
+  <div class="dfs-body"><div class="demo-loader" id="dfsLoader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfsFrame" title="Демо на весь экран"></iframe></div>
+</div>
+<div id="nav">
+  <button id="prev" title="Назад">‹</button><span class="p mono" id="pos"></span><button id="next" title="Вперёд">›</button>
+</div>
+<script>
+  var PHOTO = "/okr-quarter-planning/img/photo.webp";
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var cur = 0;
+  var narrow = window.matchMedia('(max-width: 700px), (orientation: portrait) and (max-width: 900px)');
+  function loaded(f) { try { return f.contentWindow.location.href !== 'about:blank'; } catch (e) { return true; } }
+  /* Живое демо: iframe получает src, когда открыт его слайд или предыдущий; на телефоне — только по кнопке. */
+  function loadDemos(slide) {
+    if (!slide || narrow.matches) return;
+    slide.querySelectorAll('iframe[data-src]:not([src])').forEach(function (f) {
+      var l = f.parentNode.querySelector('.demo-loader');
+      f.onload = function () { if (l && loaded(f)) l.classList.add('done'); };
+      f.src = f.getAttribute('data-src');
+    });
+  }
+  function fit() {
+    var st = document.getElementById('stage');
+    if (narrow.matches) { st.style.transform = 'none'; st.style.left = st.style.top = ''; return; }
+    var w = document.documentElement.clientWidth, h = document.documentElement.clientHeight;
+    var s = Math.min(w / 1280, h / 720);
+    st.style.left = Math.round((w - 1280 * s) / 2) + 'px';
+    st.style.top = Math.round((h - 720 * s) / 2) + 'px';
+    st.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+  function show(i, push) {
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
+    loadDemos(slides[cur]); loadDemos(slides[cur + 1]);
+    document.getElementById('pos').textContent = (cur + 1) + ' / ' + slides.length;
+    document.getElementById('bar').style.width = ((cur + 1) / slides.length * 100) + '%';
+    if (push !== false) history.replaceState(null, '', '#slide=' + (cur + 1));
+    else if (narrow.matches && cur > 0) slides[cur].scrollIntoView();
+  }
+  window.addEventListener('load', function () { if (narrow.matches && cur > 0) slides[cur].scrollIntoView(); });
+  document.getElementById('prev').onclick = function () { show(cur - 1); };
+  document.getElementById('next').onclick = function () { show(cur + 1); };
+  var photo = document.getElementById('coverPhoto');
+  if (photo && PHOTO) photo.src = PHOTO;
+  var dfs = document.getElementById('dfs');
+  document.querySelectorAll('.fs-btn').forEach(function (b) {
+    b.onclick = function (e) {
+      e.stopPropagation();
+      var f = document.getElementById(b.getAttribute('data-frame'));
+      document.getElementById('dfsTitle').textContent = f.title;
+      var dl = document.getElementById('dfsLoader'); dl.classList.remove('done');
+      var df = document.getElementById('dfsFrame');
+      df.onload = function () { if (loaded(df)) dl.classList.add('done'); };
+      df.src = f.getAttribute('data-src');
+      dfs.classList.add('on');
+    };
+  });
+  function closeDfs() { dfs.classList.remove('on'); document.getElementById('dfsFrame').removeAttribute('src'); }
+  document.getElementById('dfsX').onclick = closeDfs;
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && dfs.classList.contains('on')) return closeDfs();
+    if (dfs.classList.contains('on')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(cur - 1); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+  function fromHash() { var m = location.hash.match(/slide=(\d+)/); return m ? parseInt(m[1], 10) - 1 : 0; }
+  window.addEventListener('hashchange', function () { show(fromHash(), false); });
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  show(fromHash(), false);
+</script>
+</body>
+</html>
