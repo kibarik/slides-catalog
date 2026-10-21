@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новостная газета продакта: утренний выпуск по вашим целям</title>
+
+<!-- Превью ссылки. Краулеры не выполняют JS, поэтому блок статический. -->
+<meta name="description" content="Утром приходит газета: полная сводка изменений вокруг продакта с учётом целей квартала и специфики команды. Что уже работает в ленте — выпуск, ИИ-редакция, оценки — и следующий шаг: персональный профиль продакта.">
+<link rel="canonical" href="https://slides.aleksishmanov.ru/po-news-gazette/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Каталог презентаций · Алексей Ишманов">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://slides.aleksishmanov.ru/po-news-gazette/">
+<meta property="og:title" content="Новостная газета продакта: утренний выпуск по вашим целям">
+<meta property="og:description" content="Утром приходит газета: полная сводка изменений вокруг продакта с учётом целей квартала и специфики команды. Что уже работает в ленте — выпуск, ИИ-редакция, оценки — и следующий шаг: персональный профиль продакта.">
+<meta property="og:image" content="https://slides.aleksishmanov.ru/po-news-gazette/cover.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Первый слайд презентации «Новостная газета продакта»">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Новостная газета продакта: утренний выпуск по вашим целям">
+<meta name="twitter:description" content="Утром приходит газета: полная сводка изменений вокруг продакта с учётом целей квартала и специфики команды. Что уже работает в ленте — выпуск, ИИ-редакция, оценки — и следующий шаг: персональный профиль продакта.">
+<meta name="twitter:image" content="https://slides.aleksishmanov.ru/po-news-gazette/cover.png">
+<meta name="twitter:image:alt" content="Первый слайд презентации «Новостная газета продакта»">
+<style>
+  :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --line:#c9c8c2; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #d9d8d3; }
+  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); overflow: hidden; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+  /* Стейдж закреплён в окне: центр и масштаб считает fit() по видимой области (без полосы прокрутки). */
+  #stage { position: fixed; left: 0; top: 0; width: 1280px; height: 720px; flex: none; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; padding: 84px 72px 64px; display: none; flex-direction: column; justify-content: flex-start; background: var(--bg); overflow: hidden; }
+  .slide.on { display: flex; }
+  .slide.center { justify-content: center; padding-top: 64px; }
+  /* метка раздела над каждым слайдом */
+  .slide[data-sec]::before { content: attr(data-sec); position: absolute; left: 72px; top: 38px; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; color: var(--blue); }
+  .accent { color: var(--blue); }
+  h1 { font-size: 72px; line-height: 1.02; letter-spacing: -.045em; font-weight: 800; }
+  h1 .nw { white-space: nowrap; }
+  .cover h1 { font-size: 62px; }
+  h2 { font-size: 54px; line-height: 1.06; letter-spacing: -.04em; font-weight: 800; margin-bottom: 36px; }
+  .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 26px; }
+  .lead { font-size: 24px; line-height: 1.4; margin-top: 26px; max-width: 760px; }
+  .quote { border-left: 5px solid var(--blue); padding: 4px 0 4px 22px; font-size: 26px; line-height: 1.34; font-weight: 700; margin-top: 30px; }
+  .line { font-size: 22px; line-height: 1.4; color: var(--muted); }
+  .note { font-size: 13px; color: var(--muted); margin-top: 14px; }
+  /* титул */
+  .cover { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 56px; align-items: center; }
+  .photo { width: 300px; height: 300px; object-fit: cover; border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); display: block; }
+  .site { display: flex; justify-content: space-between; margin-top: 22px; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); text-decoration: none; color: var(--ink); }
+  .site span { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700; padding: 13px 16px; }
+  .site i { display: flex; align-items: center; justify-content: center; width: 46px; background: var(--blue); color: #fff; font-style: normal; }
+  /* оглавление: четыре части утра */
+  .agenda { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 22px; }
+  .agenda a { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .agenda .card { flex: 1; transition: transform .12s; }
+  .agenda a:hover .card { transform: translate(-2px,-2px); }
+  .agenda .card p { font-size: 18px; }
+  .agenda .go { margin-top: 14px; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; color: var(--blue); }
+  /* карточки */
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+  .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 26px 26px 28px; background: var(--bg); }
+  .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
+  .card h3 { font-size: 26px; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 12px; }
+  .card p { font-size: 19px; line-height: 1.4; color: var(--muted); }
+  .cards.big .card { padding: 32px 30px 34px; } .cards.big .card h3 { font-size: 30px; } .cards.big .card p { font-size: 21px; }
+  .steps { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: stretch; }
+  .steps > .arr { display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: var(--blue); }
+  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 18px; }
+  .card.blue .tag { background: var(--blue); }
+  .card .k { display: block; font-size: 58px; line-height: 1; letter-spacing: -.045em; font-weight: 800; margin-bottom: 14px; }
+  .card .k.t { font-size: 40px; }
+  .card.blue .k { color: var(--blue); }
+  .steps.four { grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr; }
+  .steps.four .card { padding: 22px 20px 24px; } .steps.four .card .k { font-size: 44px; } .steps.four .card p { font-size: 17px; }
+  .after { font-size: 22px; line-height: 1.4; margin-top: 34px; font-weight: 700; }
+  /* формат: снимок слева, тезисы справа */
+  .duo { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 44px; flex: 1; min-height: 0; align-items: start; }
+  .duo .pic { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; cursor: zoom-in; aspect-ratio: 16 / 10; overflow: hidden; }
+  .duo .pic img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+  ul.pts { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+  ul.pts li { font-size: 23px; line-height: 1.32; display: grid; grid-template-columns: 34px 1fr; }
+  ul.pts li::before { content: "→"; color: var(--blue); font-weight: 800; }
+  .more { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+  .more a { font-size: 19px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 2px solid var(--blue); align-self: flex-start; padding-bottom: 2px; }
+  /* разборы: ссылки на другие колоды */
+  .links { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; }
+  .links a { text-decoration: none; color: inherit; }
+  .links .card { height: 100%; padding: 22px 24px; }
+  .links .card h3 { font-size: 24px; } .links .card p { font-size: 17px; }
+  .links .card .go { display: block; margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; color: var(--blue); }
+  /* галерея */
+  .gal { display: grid; grid-template-columns: minmax(0,1fr) 236px; gap: 26px; flex: 1; min-height: 0; }
+  .gmain { position: relative; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; overflow: hidden; cursor: zoom-in; display: flex; flex-direction: column; }
+  .gmain .gimg { flex: 1; min-height: 0; }
+  .gmain img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+  .gcap { background: var(--ink); color: #fff; padding: 12px 18px; display: flex; gap: 14px; align-items: baseline; }
+  .gcap span { font-family: "JetBrains Mono", monospace; font-size: 13px; color: #9fb0ff; }
+  .gcap b { font-size: 19px; } .gcap em { font-style: normal; font-size: 17px; opacity: .85; }
+  .glist { display: flex; flex-direction: column; gap: 4px; }
+  .glist button { font: inherit; text-align: left; background: none; border: 1px solid transparent; padding: 8px 12px; cursor: pointer; display: flex; gap: 12px; align-items: baseline; font-size: 17px; color: var(--muted); }
+  .glist button i { font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  .glist button.on { border-color: var(--blue); color: var(--ink); font-weight: 700; box-shadow: 4px 4px 0 var(--blue); background: #fff; }
+  .glist button.on i { color: var(--blue); }
+  .glist .glive { margin-top: auto; display: block; box-shadow: 4px 4px 0 var(--ink); font: inherit; font-size: 16px; font-weight: 700; background: var(--blue); color: #fff; border: 0; padding: 12px 14px; cursor: pointer; text-align: left; }
+  /* живое демо на весь экран */
+  .demo-loader { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); transition: opacity .25s; }
+  .demo-loader.done { opacity: 0; pointer-events: none; }
+  .spin { width: 28px; height: 28px; border: 3px solid #d9d8d0; border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* чат ИИ-аналитики */
+  .agentrow { display: grid; grid-template-columns: minmax(0,1fr) 380px; gap: 44px; align-items: start; }
+  .chatw { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; }
+  .cw-h { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #e3e1da; }
+  .cw-h b { font-size: 18px; } .cw-h span { font-size: 14px; background: #f0f3f7; padding: 4px 12px; border-radius: 14px; }
+  .cw-b { padding: 14px 20px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.4; }
+  .cw-m { align-self: flex-end; background: var(--ink); color: #fff; padding: 9px 14px; border-radius: 12px 12px 2px 12px; max-width: 86%; }
+  .cw-card { border: 1px solid #d5d3cc; border-radius: 10px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .cw-card > b { font-size: 15px; color: var(--blue); }
+  .cw-card q { quotes: none; font-size: 14px; color: var(--muted); background: #f4f3ef; border-left: 3px solid #c9c8c2; padding: 4px 10px; }
+  .cw-btns { display: flex; gap: 10px; margin-top: 4px; }
+  .cw-btns u { text-decoration: none; background: var(--ink); color: #fff; padding: 6px 14px; border-radius: 16px; font-weight: 700; font-size: 14px; }
+  .cw-btns s { text-decoration: none; background: #f0f3f7; padding: 6px 14px; border-radius: 16px; font-size: 14px; }
+  .cw-s { font-family: "JetBrains Mono", monospace; font-size: 13px; color: #1c8a3a; line-height: 1.6; } .cw-s b { color: var(--ink); }
+  .agentrow ul.pts li { font-size: 22px; }
+  /* hero разделов: стопка снимков */
+  .fact { display: grid; grid-template-columns: 500px minmax(0,1fr); gap: 40px; align-items: center; height: 100%; }
+  .fact h1 { font-size: 88px; line-height: .96; }
+  .fact h1.sm { font-size: 72px; }
+  .fan { position: relative; height: 430px; }
+  .fan img { position: absolute; width: 560px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border: 1px solid var(--ink); background: #fff; }
+  .fan .f1 { right: 0; top: 0; box-shadow: 6px 6px 0 var(--ink); }
+  .fan .f2 { right: 30px; top: 30px; box-shadow: 6px 6px 0 var(--ink); }
+  .fan .f3 { right: 60px; top: 60px; box-shadow: 10px 10px 0 var(--blue); }
+  /* C4 */
+  .c4 { width: 100%; height: auto; display: block; margin-top: -10px; }
+  .c4list { display: none; }
+  /* репозитории и финал */
+  .final { display: grid; grid-template-columns: minmax(0,1fr) 470px; gap: 50px; align-items: center; height: 100%; }
+  .final h1 { font-size: 84px; }
+  .repo { display: inline-block; margin-top: 30px; font-size: 22px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 3px solid var(--blue); padding-bottom: 4px; }
+  .term { background: var(--ink); color: #e9e8e2; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 19px; line-height: 1.9; padding: 26px 30px; box-shadow: 8px 8px 0 var(--blue); }
+  .term i { font-style: normal; color: #9fb0ff; }
+  .term span { color: #7d7c76; font-size: 15px; display: block; line-height: 1.4; margin-bottom: 10px; }
+  .term a { color: #9fb0ff; text-decoration: none; display: block; line-height: 1.35; padding: 7px 0; border-bottom: 1px solid #2a2a2a; }
+  .term a:last-child { border-bottom: 0; }
+  .term a small, .term p small { display: block; color: #a9a8a2; font-size: 14px; }
+  .term p { line-height: 1.35; padding: 7px 0; border-bottom: 1px solid #2a2a2a; }
+  /* навигация и оверлеи */
+  #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px; background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
+  #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
+  #nav .p { font-family: "JetBrains Mono", monospace; font-size: 12px; min-width: 46px; text-align: center; }
+  #bar { position: fixed; left: 0; top: 0; height: 3px; background: var(--blue); z-index: 41; transition: width .18s; }
+  #lb, #dfs { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: column; }
+  #lb.on, #dfs.on { display: flex; }
+  #lb { background: rgba(10,10,10,.95); } #dfs { background: #fff; }
+  .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
+  #lb .ov-top { color: #fff; } #dfs .ov-top { background: var(--ink); color: #fff; }
+  .ov-x { background: none; border: 1px solid currentColor; color: inherit; font: inherit; font-size: 12px; padding: 5px 11px; cursor: pointer; }
+  #lb .body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 0 22px 22px; }
+  #lb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .dfs-body { position: relative; flex: 1; display: flex; } .dfs-body iframe { flex: 1; border: 0; }
+
+  /* Телефон и узкий портрет: без масштаба, слайды идут лентой в одну колонку. */
+  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
+    html, body { height: auto; overflow: auto; display: block; background: var(--bg); }
+    #stage { position: static; width: auto; height: auto; transform: none !important; }
+    .slide { position: relative; inset: auto; display: flex !important; padding: 40px 18px 44px; border-bottom: 1px solid var(--line); }
+    .slide.center { padding-top: 40px; }
+    .slide[data-sec]::before { position: static; margin-bottom: 14px; font-size: 12px; }
+    #nav, #bar { display: none; }
+    h1, .final h1, .cover h1 { font-size: 40px; } .fact h1 { font-size: 52px; } .fact h1.sm { font-size: 42px; }
+    .cards.big .card { padding: 22px 20px 24px; } .cards.big .card h3 { font-size: 22px; } .cards.big .card p { font-size: 17px; }
+    h2 { font-size: 32px; margin-bottom: 22px; }
+    .lead { font-size: 18px; } .quote { font-size: 20px; } .line { font-size: 18px; } .after { font-size: 18px; }
+    h1 .nw { white-space: normal; }
+    .cover, .fact, .final, .agentrow, .duo { grid-template-columns: 1fr; gap: 26px; height: auto; }
+    .photo { width: 150px; height: 150px; } .site { max-width: 260px; }
+    .agenda, .links { grid-template-columns: 1fr; gap: 16px; }
+    .cards { grid-template-columns: 1fr; gap: 18px; }
+    .steps, .steps.four { grid-template-columns: 1fr; } .steps > .arr { height: 34px; transform: rotate(90deg); }
+    .card .k, .steps.four .card .k { font-size: 40px; } .card h3 { font-size: 22px; } .card p { font-size: 17px; }
+    ul.pts li, .agentrow ul.pts li { font-size: 18px; grid-template-columns: 28px 1fr; } ul.pts { gap: 12px; }
+    .more a { font-size: 16px; }
+    .gal { grid-template-columns: 1fr; } .gmain .gimg { aspect-ratio: 16 / 10; flex: none; }
+    .glist { flex-direction: row; overflow-x: auto; gap: 6px; } .glist button { flex: none; font-size: 15px; padding: 7px 10px; white-space: nowrap; }
+    .glist .glive { margin-top: 0; flex: none; white-space: nowrap; }
+    .gcap { flex-wrap: wrap; } .gcap em { font-size: 15px; }
+    .cw-b { font-size: 15px; } .cw-m { max-width: 100%; }
+    .fan { height: auto; } .fan img { position: static; width: 100%; } .fan .f1, .fan .f2 { display: none; }
+    .c4 { display: none; } .c4list { display: flex; flex-direction: column; gap: 14px; }
+    .term { font-size: 15px; padding: 20px; }
+  }
+
+  /* Газета продакта: списки в карточках, эскиз выпуска */
+  .cards.two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .card ul { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 4px; }
+  .card li { font-size: 18px; line-height: 1.32; color: var(--ink); display: grid; grid-template-columns: 24px 1fr; }
+  .card li::before { content: "✓"; color: var(--blue); font-weight: 800; }
+  .card ul.next li::before { content: "○"; }
+  .card h3 .sm2 { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: .08em; color: var(--blue); margin-left: 10px; vertical-align: middle; }
+  .mock { border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); background: #fff; padding: 20px 26px 22px; display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+  .mock .mh { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; border-bottom: 3px solid var(--ink); padding-bottom: 8px; font-size: 15px; color: var(--muted); }
+  .mock .mh b { font-size: 26px; letter-spacing: -.025em; color: var(--ink); }
+  .mock .mh i { font-style: normal; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--blue); }
+  .mock .main { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: #c62828; text-transform: uppercase; line-height: 1.4; }
+  .mock .cols { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 28px; }
+  .mock h4 { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: .08em; color: var(--blue); margin-bottom: 4px; }
+  .goal { display: grid; grid-template-columns: 46px minmax(0,1fr) auto; gap: 3px 12px; padding: 8px 0; border-top: 1px solid var(--line); align-items: center; }
+  .goal .id { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-weight: 800; font-size: 14px; }
+  .goal .t { font-size: 17px; font-weight: 700; line-height: 1.2; }
+  .goal .v { font-size: 15px; font-weight: 800; white-space: nowrap; }
+  .goal .v.bad { color: #c62828; } .goal .v.ok { color: #1b7a3e; } .goal .v.q { color: var(--muted); }
+  .goal .bar { grid-column: 2 / 4; height: 6px; background: var(--line); }
+  .goal .bar b { display: block; height: 100%; background: var(--ink); }
+  .goal .bar b.bad { background: #c62828; }
+  .goal .why { grid-column: 2 / 4; font-size: 14px; line-height: 1.3; color: var(--muted); }
+  .dk { padding: 8px 0; border-top: 1px solid var(--line); font-size: 16px; line-height: 1.3; }
+  .dk small { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .chip { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 800; background: var(--blue); color: #fff; padding: 2px 6px; margin-right: 6px; white-space: nowrap; }
+  .chip.r { background: #c62828; } .chip.g { background: var(--muted); }
+  .mock .team { font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 9px; }
+  .mock .team b { color: var(--ink); }
+  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
+    .cards.two { grid-template-columns: 1fr; }
+    .card li { font-size: 16px; }
+    .mock { padding: 16px 16px 18px; } .mock .mh b { font-size: 20px; } .mock .cols { grid-template-columns: 1fr; gap: 16px; }
+    .mock .mh { flex-direction: column; gap: 4px; } .goal .t { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+
+  <section class="slide center on" data-title="Новостная газета продакта">
+    <div class="cover">
+      <div>
+        <h1><span class="nw">Новостная газета</span><br><span class="accent">продакта</span></h1>
+        <p class="lead">Утром приходит выпуск: всё, что изменилось вокруг продакта, — с поправкой на цели квартала и вашу команду.</p>
+        <p class="quote">Читать три минуты,<br>а не обходить чаты.</p>
+      </div>
+      <div>
+        <img class="photo" id="coverPhoto" alt="Автор">
+        <a class="site" href="https://aleksishmanov.ru/" target="_blank" rel="noopener"><span>aleksishmanov.ru</span><i>↗</i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Ценность газеты">
+    <h2>Газета, которую читают<br><span class="accent">за три минуты</span></h2>
+    <div class="cards big">
+      <div class="card"><span class="k">1</span><h3>Одно место</h3><p>Утром — один выпуск вместо обхода мессенджера, Telegram, почты и Jira.</p></div>
+      <div class="card"><span class="k">2–4</span><h3>Истории, а не поток</h3><p>Редакция выбирает главное, остальное — одной строкой. Каждая фраза ссылается на сообщение.</p></div>
+      <div class="card blue"><span class="k">🎯</span><h3>По вашим целям</h3><p>Что из случившегося сдвигает цели квартала и касается вашей команды — выносится наверх.</p></div>
+    </div>
+    <p class="note">Люди, команды и задачи на всех снимках и в эскизе — вымышленные.</p>
+  </section>
+
+  <section class="slide" data-title="Лента и газета">
+    <h2>Лента даёт всё.<br><span class="accent">Газета — что с этим делать</span></h2>
+    <div class="steps">
+      <div class="card"><div class="tag">ЛЕНТА</div><span class="k t">всё</span><p>Три колонки: подписки, упоминания, остальное. Источник правды, но читать долго.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">ИИ-РЕДАКЦИЯ</div><span class="k t">отбор</span><p>Читает ленту за период, выбирает истории, находит тех, кто ждёт вашего ответа.</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><div class="tag">ГАЗЕТА</div><span class="k t">решения</span><p>Утренний выпуск: главное, «на вашем столе», истории и оценка.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Анатомия выпуска">
+    <h2>Что внутри <span class="accent">выпуска</span></h2>
+    <div class="duo">
+      <div class="pic" data-lb="Выпуск: заголовок, лид и пульс периода"><img src="img/feed-issue.webp" alt="Первый экран выпуска" loading="lazy"></div>
+      <ul class="pts">
+        <li><span><b>Главное за период</b> — одной строкой: что требует решения сегодня</span></li>
+        <li><span><b>Пульс периода</b> — когда и сколько писали, пик подсвечен</span></li>
+        <li><span><b>На вашем столе</b> — кто и сколько ждёт ответа</span></li>
+        <li><span><b>Истории</b> — 2–4, со шкалой времени и ссылками на сообщения</span></li>
+        <li><span><b>Остальное и оценка</b> — фон одной строкой, оценка 1–5</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Выпуск: галерея">
+    <h2>Выпуск: <span class="accent">5 экранов</span></h2>
+    <div class="gal"><div class="gmain"><div class="gimg"><img class="gpic" src="img/feed-issue.webp" alt="Выпуск" decoding="async" loading="lazy"></div><div class="gcap"><span class="gn">01 / 05</span><b class="gt">Выпуск</b><em class="gd">Заголовок, лид и пульс периода</em></div></div><div class="glist"><button data-src="img/feed-issue.webp" data-t="Выпуск" data-d="Заголовок, лид и пульс периода" class=on><i>01</i>Выпуск</button><button data-src="img/feed-desk.webp" data-t="На вашем столе" data-d="Кто ждёт ответа и сколько"><i>02</i>На вашем столе</button><button data-src="img/feed-sides.webp" data-t="Спор" data-d="Кто за что выступал и чем кончилось"><i>03</i>Спор</button><button data-src="img/feed-else.webp" data-t="Остальное" data-d="Фон — одной строкой"><i>04</i>Остальное</button><button data-src="img/feed-rate.webp" data-t="Оценка" data-d="1–5 и что лишнее — редакция учтёт"><i>05</i>Оценка</button></div></div>
+  </section>
+
+  <section class="slide" data-title="Редакция">
+    <h2>Выпуск пишет<br><span class="accent">редакция из агентов</span></h2>
+    <div class="steps four">
+      <div class="card"><div class="tag">РЕПОРТЁРЫ</div><span class="k t">по частям</span><p>читают ленту параллельно: каждый — свою часть периода</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">РЕДАКТОР</div><span class="k t">пишет</span><p>собирает 2–4 истории, «на вашем столе» и пересказ каждой темы</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">ПРОВЕРКА</div><span class="k t">2 роли</span><p>критик полноты — что пропущено; фактчекер — цитаты и числа против сообщений</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><div class="tag">ВЫПУСК</div><span class="k t">1 правка</span><p>редактор правит по замечаниям и публикует. Числа и графики считает код</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Ритм газеты">
+    <h2>Каждое утро —<br><span class="accent">и раз в неделю</span></h2>
+    <div class="steps four">
+      <div class="card"><div class="tag">08:30</div><span class="k t">Выпуск</span><p>по будням: редакция читает ленту с прошлого выпуска. Или по запросу: «!news 3d»</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">09:15</div><span class="k t">Сторож</span><p>вышел ли выпуск; нет — повтор, потом ❌ в чате. Без ИИ</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">ДНЁМ</div><span class="k t">1–5</span><p>оценка и строка «что лишнее» прямо в выпуске</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><div class="tag">ПН 09:30</div><span class="k t">Правила</span><p>агент разбирает оценки недели и предлагает правки правил редакции</p></div>
+    </div>
+    <p class="note">Выпуски нумеруются и лежат в виджете «Выпуски» рядом с лентой — можно вернуться к любому.</p>
+  </section>
+
+  <section class="slide" data-title="Что уже учитывается">
+    <h2>Газета уже<br><span class="accent">подстраивается под вас</span></h2>
+    <div class="cards big">
+      <div class="card"><span class="k t">Люди</span><h3>Подписки и «Мои люди»</h3><p>Что писали техлиды, PO и PM, попадает в пересказ, даже если тема не стала историей.</p></div>
+      <div class="card"><span class="k t">Оценки</span><h3>Правила редакции</h3><p>Оценка 1–5 с комментарием → раз в неделю предложение правил. Применяются только после вашего «да».</p></div>
+      <div class="card blue"><span class="k t">Фокус</span><h3>Выпуск по запросу</h3><p>«!news 3d» или «что было по релизам» — выпуск за любой период и с нужным акцентом.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="План: профиль продакта">
+    <div class="label">СЛЕДУЮЩИЙ ШАГ · ПЛАН</div>
+    <h2>Газета знает<br><span class="accent">ваш квартал и команду</span></h2>
+    <div class="cards">
+      <div class="card"><div class="tag">ЦЕЛИ КВАРТАЛА</div><span class="k t">KR</span><p>Цели и ключевые результаты из Confluence — как в бизнес-отчёте спринта. Редакция видит, что сдвинулось по каждой.</p></div>
+      <div class="card"><div class="tag">КОМАНДА</div><span class="k t">спринт</span><p>Состав, блокаторы и риски из утреннего снимка Jira. Новости о вашей команде идут выше.</p></div>
+      <div class="card blue"><div class="tag">ОБЕЩАНИЯ</div><span class="k t">сроки</span><p>Кто что обещал вам и вы — из Инбокса. «На вашем столе» ранжируется по цели и сроку.</p></div>
+    </div>
+    <p class="note">Все три источника утренний бриф уже собирает — осталось отдать их редакции как контекст профиля продакта.</p>
+  </section>
+
+  <section class="slide" data-title="Эскиз выпуска с целями">
+    <h2>Эскиз: выпуск <span class="accent">с целями квартала</span></h2>
+    <div class="mock">
+      <div class="mh"><b>Газета продакта · Выпуск № 8</b><span>вторник, 21 октября · 3 мин чтения</span><i>ЭСКИЗ · ВЫМЫШЛЕННЫЕ ДАННЫЕ</i></div>
+      <div class="main">Главное за период: конверсия оплаты упала до 2,9% — это цель KR1; решение по скидкам ждут от вас сегодня.</div>
+      <div class="cols">
+        <div>
+          <h4>ЦЕЛИ КВАРТАЛА · ЧТО СДВИНУЛОСЬ</h4>
+          <div class="goal"><span class="id">KR1</span><span class="t">Конверсия в оплату ≥ 3,5%</span><span class="v bad">2,9% ↓</span><span class="bar"><b class="bad" style="width:62%"></b></span><span class="why">Сбой платёжного шлюза в пятницу — история 1</span></div>
+          <div class="goal"><span class="id">KR2</span><span class="t">Сервис скидок в проде</span><span class="v ok">80% ↑</span><span class="bar"><b style="width:80%"></b></span><span class="why">Выкатили в понедельник, ждём метрики — история 2</span></div>
+          <div class="goal"><span class="id">KR3</span><span class="t">Ответ поддержки ≤ 4 ч</span><span class="v q">без движения</span><span class="bar"><b style="width:45%"></b></span><span class="why">За период ничего нового</span></div>
+        </div>
+        <div>
+          <h4>НА ВАШЕМ СТОЛЕ</h4>
+          <div class="dk"><span class="chip r">KR1</span>Решить, откатывать ли скидки на корзину<small>ждёт 16 ч · Аналитика</small></div>
+          <div class="dk"><span class="chip">KR2</span>Подтвердить дату раскатки на 100%<small>ждёт 9 ч · команда «Витрина»</small></div>
+          <div class="dk"><span class="chip g">команда</span>Ревью релиза в пятницу<small>ждёт 3 ч · техлид</small></div>
+        </div>
+      </div>
+      <div class="team"><b>Команда «Витрина»:</b> спринт 6 из 10 · 2 блокатора · релиз в пятницу</div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Связь с утренним брифом">
+    <h2>Газета — первая<br><span class="accent">страница утра</span></h2>
+    <div class="steps four">
+      <div class="card"><div class="tag">08:00</div><span class="k t">Инбокс</span><p>обещания разобраны: кто кому что должен</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><div class="tag">08:30</div><span class="k t">Газета</span><p>выпуск по ленте — что случилось и что ждёт вас</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">08:40</div><span class="k t">Команды</span><p>PDF по спринту каждой команды и «Дейли»</p></div>
+      <div class="arr">→</div>
+      <div class="card"><div class="tag">10:30</div><span class="k t">Дейли</span><p>только блокаторы и решения</p></div>
+    </div>
+    <p class="note">Сегодня газета читает только ленту. Следующий шаг — подмешать цели квартала, снимок спринта и обещания: они уже собираются в соседних частях утра.</p>
+    <div class="more"><a href="/po-morning-brief/#slide=3">Утренний бриф PO — часть 1: лента и выпуск →</a><a href="/po-news-feed/">Разбор: лента вместо 100500 чатов →</a></div>
+  </section>
+
+  <section class="slide" data-title="Статус и план">
+    <h2>Что уже работает —<br><span class="accent">и что дальше</span></h2>
+    <div class="cards two">
+      <div class="card"><h3>Работает</h3><ul>
+        <li>Лента чатов и Telegram, три колонки</li>
+        <li>Выпуск по будням в 08:30 и по запросу</li>
+        <li>Редакция: репортёры, критик, фактчекер</li>
+        <li>Номера выпусков и архив в виджете «Выпуски»</li>
+        <li>Оценка 1–5 → правила редакции</li>
+      </ul></div>
+      <div class="card blue"><h3>Дальше <span class="sm2">ПЛАН</span></h3><ul class="next">
+        <li>Профиль продакта: цели и команда в навыке редакции</li>
+        <li>Метки «→ KR1» у историй и «на вашем столе»</li>
+        <li>Блок «Цели квартала: что сдвинулось»</li>
+        <li>Строка по команде из снимка спринта</li>
+        <li>Недельный итог по целям</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section class="slide center" data-title="Ссылки">
+    <div class="final">
+      <div>
+        <div class="label">ССЫЛКИ</div>
+        <h1>Газета<br><span class="accent">у себя</span></h1>
+        <p class="lead">Лента и редакция собираются из открытых частей. Подробнее — в двух связанных разборах.</p>
+        <a class="repo" href="/po-news-feed/">Лента вместо 100500 чатов →</a><br>
+        <a class="repo" href="/po-morning-brief/">Утренний бриф PO →</a>
+      </div>
+      <div class="term"><span># из чего собрано</span><a href="https://github.com/po-helper-org/poh-feed-poc" target="_blank" rel="noopener">poh-feed-poc ↗<small>PoC ленты: мосты, лента, клиент</small></a><a href="https://gotosocial.org/" target="_blank" rel="noopener">GoToSocial ↗<small>лента с Mastodon API</small></a><a href="https://github.com/cheeaun/phanpy" target="_blank" rel="noopener">Phanpy ↗<small>клиент: три колонки</small></a><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">hermes-agent ↗<small>ИИ-редакция по расписанию</small></a><a href="https://github.com/po-helper-org/comunager-hub" target="_blank" rel="noopener" data-private-repo>comunager-hub 🔒<small>мост из чатов и выпуск — закрытый</small></a></div>
+    </div>
+  </section>
+
+</div>
+
+<div id="lb">
+  <div class="ov-top"><b id="lbTitle"></b><button class="ov-x" id="lbX">Esc</button></div>
+  <div class="body"><img id="lbImg" alt=""></div>
+</div>
+<div id="dfs">
+  <div class="ov-top"><b id="dfsTitle"></b><button class="ov-x" id="dfsX">Esc</button></div>
+  <div class="dfs-body"><div class="demo-loader" id="dfsLoader"><div class="spin"></div>Загружаем живое демо…</div><iframe id="dfsFrame" title="Демо на весь экран"></iframe></div>
+</div>
+<div id="nav">
+  <button id="prev" title="Назад">‹</button><span class="p mono" id="pos"></span><button id="next" title="Вперёд">›</button>
+</div>
+
+<script src="/components/private-repo.js" defer></script>
+
+<script>
+  var PHOTO = "/okr-quarter-planning/img/photo.webp";
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var cur = 0;
+  var narrow = window.matchMedia('(max-width: 700px), (orientation: portrait) and (max-width: 900px)');
+  function loaded(f) { try { return f.contentWindow.location.href !== 'about:blank'; } catch (e) { return true; } }
+  /* Снимки ленивые; после загрузки страницы догружаются в фоне, чтобы листание шло без пауз. */
+  window.addEventListener('load', function () {
+    setTimeout(function () { document.querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; }); }, 300);
+    if (narrow.matches && cur > 0) slides[cur].scrollIntoView();
+  });
+  function fit() {
+    var st = document.getElementById('stage');
+    if (narrow.matches) { st.style.transform = 'none'; st.style.left = st.style.top = ''; return; }
+    /* clientWidth/Height — видимая область без полосы прокрутки: слайд не съезжает вбок. */
+    var w = document.documentElement.clientWidth, h = document.documentElement.clientHeight;
+    var s = Math.min(w / 1280, h / 720);
+    st.style.left = Math.round((w - 1280 * s) / 2) + 'px';
+    st.style.top = Math.round((h - 720 * s) / 2) + 'px';
+    st.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+  function show(i, push) {
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
+    document.getElementById('pos').textContent = (cur + 1) + ' / ' + slides.length;
+    document.getElementById('bar').style.width = ((cur + 1) / slides.length * 100) + '%';
+    if (push !== false) history.replaceState(null, '', '#slide=' + (cur + 1));
+    else if (narrow.matches && cur > 0) slides[cur].scrollIntoView();
+  }
+  document.getElementById('prev').onclick = function () { show(cur - 1); };
+  document.getElementById('next').onclick = function () { show(cur + 1); };
+  document.getElementById('coverPhoto').src = PHOTO;
+
+  /* Оглавление: переход к началу раздела. */
+  document.querySelectorAll('[data-go]').forEach(function (a) {
+    a.onclick = function (e) {
+      e.preventDefault();
+      var i = slides.indexOf(document.getElementById(a.getAttribute('data-go')));
+      show(i);
+      if (narrow.matches) slides[i].scrollIntoView();
+    };
+  });
+
+  /* Галереи: пункт справа меняет снимок, клик по снимку — на весь экран. */
+  var lb = document.getElementById('lb');
+  function openLb(src, title) {
+    document.getElementById('lbImg').src = src;
+    document.getElementById('lbTitle').textContent = title;
+    lb.classList.add('on');
+  }
+  document.querySelectorAll('.gal').forEach(function (gal) {
+    var gb = [].slice.call(gal.querySelectorAll('.glist button[data-t]'));
+    var pic = gal.querySelector('.gpic');
+    gb.forEach(function (b, k) {
+      b.onclick = function () {
+        gb.forEach(function (x) { x.classList.toggle('on', x === b); });
+        pic.src = b.getAttribute('data-src'); pic.alt = b.getAttribute('data-t');
+        gal.querySelector('.gn').textContent = ('0' + (k + 1)).slice(-2) + ' / ' + ('0' + gb.length).slice(-2);
+        gal.querySelector('.gt').textContent = b.getAttribute('data-t');
+        gal.querySelector('.gd').textContent = b.getAttribute('data-d');
+      };
+    });
+    gal.querySelector('.gmain').onclick = function () { openLb(pic.src, pic.alt); };
+  });
+  document.querySelectorAll('.pic[data-lb]').forEach(function (p) {
+    p.onclick = function () { openLb(p.querySelector('img').src, p.getAttribute('data-lb')); };
+  });
+  function closeLb() { lb.classList.remove('on'); }
+  document.getElementById('lbX').onclick = closeLb;
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.className === 'body') closeLb(); });
+
+  /* Живой отчёт: грузится только по кнопке — и на десктопе, и на телефоне. */
+  var dfs = document.getElementById('dfs');
+  document.querySelectorAll('.fs-btn2').forEach(function (b) {
+    b.onclick = function (e) {
+      e.stopPropagation();
+      document.getElementById('dfsTitle').textContent = b.getAttribute('data-title');
+      var dl = document.getElementById('dfsLoader'); dl.classList.remove('done');
+      var df = document.getElementById('dfsFrame');
+      df.onload = function () { if (loaded(df)) dl.classList.add('done'); };
+      df.src = b.getAttribute('data-src');
+      dfs.classList.add('on');
+    };
+  });
+  function closeDfs() { dfs.classList.remove('on'); document.getElementById('dfsFrame').removeAttribute('src'); }
+  document.getElementById('dfsX').onclick = closeDfs;
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { if (dfs.classList.contains('on')) return closeDfs(); if (lb.classList.contains('on')) return closeLb(); }
+    if (lb.classList.contains('on') || dfs.classList.contains('on')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(cur - 1); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+  function fromHash() { var m = location.hash.match(/slide=(\d+)/); return m ? parseInt(m[1], 10) - 1 : 0; }
+  window.addEventListener('hashchange', function () { show(fromHash(), false); });
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  show(fromHash(), false);
+</script>
+</body>
+</html>

@@ -16,6 +16,7 @@
 - `po-news-feed` — Лента вместо 100500 чатов
 - `sprint-business-report` — Бизнес-отчёт спринта: ценность от целей квартала
 - `po-morning-brief` — Утренний бриф PO: лента, команды, спринт и обещания
+- `po-news-gazette` — Новостная газета продакта: утренний выпуск по вашим целям
 - `sprint-blockers-report` — Где и почему команда разработки была заблокирована
 - `cortex-second-brain` — Второй мозг руководителя
 - `sprint-daily-report` — Отчёт спринта: что техлиду сделать сегодня
@@ -142,6 +143,7 @@ docker run --rm -p 8080:8080 slides-catalog
 - `http://localhost:8080/okr-quarter-planning/`
 - `http://localhost:8080/po-news-feed/`
 - `http://localhost:8080/po-morning-brief/`
+- `http://localhost:8080/po-news-gazette/`
 
 ## Инструкции и компоненты практикума
 
