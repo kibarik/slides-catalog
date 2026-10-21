@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Штаб корпоративных агентов в кармане: Claude Code с телефона</title>
+<meta name="description" content="Ставлю задачу в Claude Code с телефона, а агенты Hermes внутри корпоративного контура делают её в Jira, Confluence и мессенджерах. Корпоративные данные и ключи остаются в контуре, в Claude Code приходит только результат.">
+<link rel="canonical" href="https://slides.aleksishmanov.ru/hermes-bridge-hq/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Каталог презентаций · Алексей Ишманов">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://slides.aleksishmanov.ru/hermes-bridge-hq/">
+<meta property="og:title" content="Штаб корпоративных агентов в кармане: Claude Code с телефона">
+<meta property="og:description" content="Ставлю задачу в Claude Code с телефона, а агенты Hermes внутри корпоративного контура делают её в Jira, Confluence и мессенджерах. Корпоративные данные и ключи остаются в контуре, в Claude Code приходит только результат.">
+<meta property="og:image" content="https://slides.aleksishmanov.ru/hermes-bridge-hq/cover.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Первый слайд презентации «Штаб корпоративных агентов в кармане: Claude Code с телефона»">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Штаб корпоративных агентов в кармане: Claude Code с телефона">
+<meta name="twitter:description" content="Ставлю задачу в Claude Code с телефона, а агенты Hermes внутри корпоративного контура делают её в Jira, Confluence и мессенджерах. Корпоративные данные и ключи остаются в контуре, в Claude Code приходит только результат.">
+<meta name="twitter:image" content="https://slides.aleksishmanov.ru/hermes-bridge-hq/cover.png">
+<meta name="twitter:image:alt" content="Первый слайд презентации «Штаб корпоративных агентов в кармане: Claude Code с телефона»">
+<style>
+
+  /* Айдентика каталога (как sprint-blockers-report): бежевый фон, чёрный и синий, моноширинные подписи,
+     карточки с жёсткой тенью. Колода написана руками, без генератора: стили только здесь. */
+  :root { --bg:#efeee8; --ink:#080808; --blue:#2437ed; --muted:#51514b; --line:#c9c8c2; --red:#d8302a; --amber:#d29b1f; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #d9d8d3; }
+  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); overflow: hidden; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+  #stage { position: fixed; left: 0; top: 0; width: 1280px; height: 720px; flex: none; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; padding: 76px 72px 60px; display: none; flex-direction: column; justify-content: flex-start; background: var(--bg); overflow: hidden; }
+  .slide.on { display: flex; }
+  .slide.center { justify-content: center; padding-top: 64px; }
+  .accent { color: var(--blue); }
+  h1 { font-size: 66px; line-height: 1.03; letter-spacing: -.045em; font-weight: 800; }
+  h2 { font-size: 50px; line-height: 1.06; letter-spacing: -.04em; font-weight: 800; margin-bottom: 30px; }
+  .label { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 22px; text-transform: uppercase; }
+  .lead { font-size: 24px; line-height: 1.4; margin-top: 26px; max-width: 780px; }
+  .quote { border-left: 5px solid var(--blue); padding: 4px 0 4px 22px; font-size: 26px; line-height: 1.34; font-weight: 700; margin-top: 30px; }
+  .line { font-size: 21px; line-height: 1.4; color: var(--muted); }
+  .note { font-size: 14px; color: var(--muted); margin-top: 16px; line-height: 1.4; }
+  .slide > .note { padding-right: 150px; }  /* справа внизу — навигация */
+  /* титул */
+  .cover { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 56px; align-items: center; }
+  .photo { width: 300px; height: 300px; object-fit: cover; border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--blue); display: block; }
+  .site { display: flex; justify-content: space-between; margin-top: 22px; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); text-decoration: none; color: var(--ink); }
+  .site span { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 700; padding: 13px 16px; }
+  .site i { display: flex; align-items: center; justify-content: center; width: 46px; background: var(--blue); color: #fff; font-style: normal; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 16px; font-weight: 700; letter-spacing: .06em; color: var(--muted); margin-bottom: 22px; }
+  /* реплики */
+  .talk { display: flex; flex-direction: column; gap: 18px; margin-top: 8px; max-width: 900px; }
+  .said { display: inline-block; align-self: flex-start; background: var(--ink); color: #fff; font-size: 24px; padding: 12px 18px; border-radius: 14px 14px 14px 2px; }
+  .said.r { align-self: flex-end; background: #fff; color: var(--ink); border: 1px solid var(--ink); border-radius: 14px 14px 2px 14px; }
+  .said small { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .06em; opacity: .7; margin-bottom: 4px; }
+  /* ответ */
+  .fact { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 56px; align-items: center; flex: 1; }
+  .big { font-size: 190px; line-height: .9; letter-spacing: -.06em; font-weight: 800; color: var(--blue); }
+  .big small { font-size: 60px; letter-spacing: -.03em; margin-left: 10px; }
+  .big + .line { font-size: 27px; color: var(--ink); margin-top: 26px; line-height: 1.35; }
+  .kpis { display: flex; flex-direction: column; gap: 18px; }
+  .kpi { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; padding: 16px 20px; }
+  .kpi.red { border-color: var(--red); box-shadow: 6px 6px 0 var(--red); }
+  .kpi b { display: block; font-size: 48px; line-height: 1; letter-spacing: -.04em; }
+  .kpi.red b { color: var(--red); }
+  .kpi span { display: block; font-size: 16px; color: var(--muted); margin-top: 6px; line-height: 1.3; }
+  /* снимки отчёта */
+  .shot { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--blue); background: #fff; }
+  .shotbox { flex: 1; min-height: 0; display: flex; align-items: flex-start; }
+  .shotbox.tight { flex: none; }
+  .pages { display: grid; grid-template-columns: 330px 330px minmax(0,1fr); gap: 34px; flex: 1; min-height: 0; align-items: start; }
+  .pages figure { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+  .pages figure img { width: 100%; height: auto; max-height: 440px; object-fit: contain; object-position: top left; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; }
+  .pages figcaption { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  /* карточки и шаги */
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+  .cards.four { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; margin-top: 26px; }
+  .card { border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px 24px 24px; background: var(--bg); }
+  .card.blue { border-color: var(--blue); box-shadow: 6px 6px 0 var(--blue); }
+  .card h3 { font-size: 24px; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 10px; }
+  .card p { font-size: 18px; line-height: 1.4; color: var(--muted); }
+  .cards.four .card { padding: 16px 18px 18px; }
+  .cards.four .card h3 { font-size: 19px; } .cards.four .card p { font-size: 15px; }
+  .steps { display: grid; grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr; align-items: stretch; }
+  .steps > .arr { display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: var(--blue); }
+  .steps .card { padding: 20px 18px; }
+  .steps .card h3 { font-size: 21px; } .steps .card p { font-size: 16px; }
+  .tag { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--bg); padding: 5px 10px; margin-bottom: 14px; }
+  .card.blue .tag { background: var(--blue); }
+  .split { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; flex: 1; min-height: 0; align-items: start; }
+  ul.lim { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  ul.lim li { font-size: 19px; line-height: 1.4; display: grid; grid-template-columns: 34px 1fr; }
+  ul.lim li::before { content: "→"; color: var(--blue); font-weight: 800; }
+  ul.lim li b { display: block; }
+  ul.lim li span { color: var(--muted); font-size: 16px; }
+  /* финал */
+  .final { display: grid; grid-template-columns: minmax(0,1fr) 590px; gap: 50px; align-items: center; height: 100%; }
+  .final h1 { font-size: 60px; }
+  .term { background: var(--ink); color: #e9e8e2; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 16px; line-height: 1.9; padding: 24px 28px; box-shadow: 8px 8px 0 var(--blue); white-space: pre-wrap; }
+  .term i { font-style: normal; color: #9fb0ff; }
+  .repo { display: inline-block; margin-top: 28px; font-size: 22px; font-weight: 700; color: var(--blue); text-decoration: none; border-bottom: 3px solid var(--blue); padding-bottom: 4px; }
+  .note .repo-s { color: var(--blue); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--blue); }
+  /* навигация */
+  #nav { position: fixed; right: 18px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 8px; background: rgba(239,238,232,.95); border: 1px solid var(--ink); padding: 5px 9px; }
+  #nav button { font: inherit; font-size: 16px; width: 26px; height: 24px; cursor: pointer; background: none; border: none; }
+  #nav .p { font-family: "JetBrains Mono", monospace; font-size: 12px; min-width: 46px; text-align: center; }
+  #bar { position: fixed; left: 0; top: 0; height: 3px; background: var(--blue); z-index: 41; transition: width .18s; }
+  #dfs { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: column; background: #fff; }
+  #dfs.on { display: flex; }
+  .ov-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--ink); color: #fff; }
+  .ov-top b { font-size: 16px; } .ov-top button { font: inherit; font-size: 15px; background: none; border: 1px solid currentColor; color: inherit; padding: 6px 12px; cursor: pointer; }
+  .dfs-body { position: relative; flex: 1; } .dfs-body iframe { width: 100%; height: 100%; border: 0; }
+  .cards.roomy .card { padding: 28px 30px 30px; } .cards.roomy .card h3 { font-size: 30px; margin-bottom: 14px; } .cards.roomy .card p { font-size: 21px; }
+  /* схема */
+  .flow { display: grid; grid-template-columns: minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1.3fr); align-items: stretch; flex: 1; min-height: 0; margin-top: 4px; }
+  .flow > .arr { display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: var(--blue); }
+  .zone { border: 2px dashed var(--blue); padding: 16px 18px 6px; background: rgba(36,55,237,.05); display: flex; flex-direction: column; }
+  .zone.out { border-color: var(--ink); background: transparent; }
+  .zone .zl { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  .zone.out .zl { color: var(--muted); }
+  .node { border: 1px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); background: #fff; padding: 11px 14px 12px; margin-bottom: 14px; font-size: 16px; line-height: 1.35; color: var(--muted); }
+  .node b { display: block; font-size: 19px; line-height: 1.2; color: var(--ink); margin-bottom: 3px; letter-spacing: -.02em; }
+  .node.blue { border-color: var(--blue); box-shadow: 4px 4px 0 var(--blue); }
+  /* сравнение режимов */
+  .cmp { display: grid; grid-template-columns: 170px minmax(0,1fr) minmax(0,1fr); border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; }
+  .cmp > div { padding: 16px 18px; border-bottom: 1px solid var(--line); font-size: 19px; line-height: 1.35; }
+  .cmp > div:nth-last-child(-n+3) { border-bottom: none; }
+  .cmp .h { background: var(--ink); color: #fff; font-weight: 800; font-size: 20px; border-bottom: none; }
+  .cmp .h.b { background: var(--blue); }
+  .cmp .k { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; }
+  .cmp .h.k { color: #fff; }
+  /* статус задачи */
+  .stat { display: flex; gap: 0; margin-top: 26px; border: 1px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; }
+  .stat span { flex: 1; padding: 12px 8px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 700; border-right: 1px solid var(--line); }
+  .stat span:last-child { border-right: none; }
+  .stat span.on { background: var(--blue); color: #fff; }
+  .three { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+  .three .card { padding: 20px 20px 22px; }
+  .three .card h3 { font-size: 22px; } .three .card p { font-size: 16px; }
+  .mono-s { font-family: "JetBrains Mono", monospace; font-size: .86em; }
+  /* Телефон: слайды лентой без масштаба. */
+  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
+    html, body { height: auto; overflow: auto; display: block; background: var(--bg); }
+    #stage { position: static; width: auto; height: auto; transform: none !important; }
+    .slide { position: relative; inset: auto; display: flex !important; padding: 40px 18px 44px; border-bottom: 1px solid var(--line); }
+    .slide.center { padding-top: 40px; }
+    #nav, #bar { display: none; }
+    .slide > .note { padding-right: 0; }
+    h1, .final h1 { font-size: 36px; } h2 { font-size: 30px; margin-bottom: 22px; }
+    .lead { font-size: 18px; } .quote { font-size: 20px; } .line { font-size: 17px; }
+    .cover, .fact, .final, .split { grid-template-columns: 1fr; gap: 26px; height: auto; }
+    .photo { width: 150px; height: 150px; } .site { max-width: 260px; }
+    .said { font-size: 18px; }
+    .big { font-size: 104px; } .big small { font-size: 34px; } .big + .line { font-size: 19px; }
+    .kpi b { font-size: 36px; }
+    .shotbox { flex: none; } .shot { width: 100%; max-height: none; }
+    .pages { grid-template-columns: 1fr; gap: 22px; } .pages figure img { max-height: none; }
+    .cards, .cards.four { grid-template-columns: 1fr; gap: 16px; }
+    .steps { grid-template-columns: 1fr; } .steps > .arr { height: 30px; transform: rotate(90deg); }
+    .demo { flex: none; height: 110px; } .demo iframe, .demo .demo-loader { display: none; }
+    .fs-btn { left: 16px; right: 16px; top: 50%; bottom: auto; transform: translateY(-50%); padding: 14px; }
+    .term { font-size: 14px; padding: 18px; }
+    .repo { font-size: 17px; word-break: break-all; }
+    ul.lim li { font-size: 16px; }
+      .flow { grid-template-columns: 1fr; } .flow > .arr { height: 30px; transform: rotate(90deg); }
+    .cmp { grid-template-columns: 1fr; } .cmp > div { border-bottom: 1px solid var(--line); } .cmp > div:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
+    .cmp .k { background: #f3f2ec; padding-top: 8px; padding-bottom: 8px; } .cmp .h.k { display: none; }
+    .three { grid-template-columns: 1fr; gap: 16px; }
+    .stat { flex-direction: column; } .stat span { border-right: none; border-bottom: 1px solid var(--line); } .stat span:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+  <section class="slide center on" data-title="Титул">
+    <div class="cover"><div>
+      <p class="kicker">POH-HERMES-BRIDGE · ШТАБ PO-АГЕНТОВ</p>
+      <h1>Штаб корпоративных<br>агентов <span class="accent">в кармане</span></h1>
+      <p class="lead">Ставлю задачу из Claude Code с телефона — агенты внутри корпоративного контура делают её в Jira, Confluence и мессенджерах. Мне возвращается только результат.</p>
+      <p class="quote">Claude Code — пульт и приёмка.<br>Работа и ключи остаются в контуре.</p>
+    </div><div><img class="photo" id="coverPhoto" alt="Автор"><a class="site" href="https://aleksishmanov.ru/" target="_blank" rel="noopener"><span>aleksishmanov.ru</span><i>↗</i></a></div></div>
+  </section>
+
+  <section class="slide" data-title="Проблема">
+    <p class="label">Проблема</p>
+    <h2>Штабом агентов нужно управлять <span class="accent">с телефона</span></h2>
+    <div class="talk">
+      <span class="said"><small>РУКОВОДИТЕЛЬ · В ДОРОГЕ</small>Что с эпиком и какие риски у команд в этом спринте?</span>
+      <span class="said r"><small>ОБЛАЧНЫЙ CLAUDE CODE</small>Корпоративных данных у меня нет. Они за VPN, в Jira и Confluence.</span>
+      <span class="said"><small>РУКОВОДИТЕЛЬ</small>А агенты внутри контура всё знают. Как до них дотянуться?</span>
+    </div>
+    <p class="note">Облачный Claude Code удобен: он есть на телефоне и считает на подписке. Но в корпоративный контур он не заходит, и так и должно быть. Нужен мост, который не выносит данные наружу.</p>
+  </section>
+
+  <section class="slide" data-title="Чего хочу">
+    <p class="label">Чего я хотел</p>
+    <h2>Выдал задачу — <span class="accent">получил результат</span></h2>
+    <div class="steps">
+      <div class="card"><span class="tag">ВХОД</span><h3>Задача словами</h3><p>Одно поручение из Claude Code: «подготовь сводку», «разбери риски», «обнови статусы».</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><span class="tag">КОНТУР</span><h3>Агенты работают</h3><p>Ходят в Jira, Confluence, мессенджеры. Сами выбирают шаги и сами вспоминают, как у нас принято.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">СТАТУС</span><h3>Доска задач</h3><p>Claude Code видит только статус: во входящих, в работе, ждёт ответа, на приёмке.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">ВЫХОД</span><h3>Качественный результат</h3><p>В Claude Code приходит итог, а не поток промежуточных шагов и чужих данных.</p></div>
+    </div>
+    <p class="note">Управлять надо уровнем «вход и выход», а не каждым действием: тогда одним оркестратором можно вести много задач сразу.</p>
+  </section>
+
+  <section class="slide" data-title="Ограничения">
+    <p class="label">Ограничения</p>
+    <h2>Два жёстких условия, <span class="accent">из-за которых всё непросто</span></h2>
+    <div class="cards roomy">
+      <div class="card"><span class="tag">1 · ДАННЫЕ</span><h3>Корпоративное — только из контура</h3><p>Содержимое Jira, Confluence и переписок не должно уходить во внешнее облако. Работать с ним можно только там, где оно лежит.</p></div>
+      <div class="card blue"><span class="tag">2 · КЛЮЧИ</span><h3>Три вида токенов LLM</h3><p>Где-то нужна корпоративная модель, где-то GLM, где-то внешние ключи. Смешивать их нельзя, а переключаться между ними — нужно.</p></div>
+    </div>
+    <p class="note">Отсюда выбор: исполнитель сидит внутри контура со своими ключами, а Claude Code остаётся снаружи и только ставит задачи.</p>
+  </section>
+
+  <section class="slide" data-title="Решение">
+    <p class="label">Решение</p>
+    <h2>Мост между <span class="accent">снаружи и контуром</span></h2>
+    <div class="flow">
+      <div class="zone out"><div class="zl">Снаружи</div>
+        <div class="node"><b>Телефон</b>приложение Claude, чат и Code</div>
+        <div class="node"><b>Claude Code</b>оркестратор: ставит задачи, принимает итог</div>
+      </div>
+      <div class="arr">⇄</div>
+      <div class="zone out"><div class="zl">Мост</div>
+        <div class="node blue"><b>Коннектор «Штаб»</b>MCP по HTTPS, вход владельца: логин, пароль, код</div>
+        <div class="node blue"><b>A2A</b>протокол «заказчик — исполнитель» между Claude и агентами</div>
+      </div>
+      <div class="arr">⇄</div>
+      <div class="zone"><div class="zl">Корпоративный контур</div>
+        <div class="node"><b>Hermes-агенты</b>PO-агенты команд, инженерный агент, календарь</div>
+        <div class="node"><b>Доска задач агентов</b>статусы, вопросы исполнителей, приёмка</div>
+        <div class="node"><b>Jira · Confluence · мессенджеры</b>доступы и ключи только здесь</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Что в контуре">
+    <p class="label">Что остаётся в контуре</p>
+    <h2>Всё ценное — <span class="accent">у агентов, не у Claude</span></h2>
+    <div class="cards">
+      <div class="card"><h3>Доступы и пароли</h3><p>Jira, Confluence, календарь, мессенджеры настроены в профилях агентов один раз. Claude Code их не видит и не хранит.</p></div>
+      <div class="card"><h3>Правила и промпты</h3><p>Как у нас принято делать отчёт, писать БФТ, говорить с людьми — записано в навыках агента.</p></div>
+      <div class="card blue"><h3>Накопленная память</h3><p>Агент помнит прошлые разговоры и решения. Следующее поручение не начинается с нуля.</p></div>
+      <div class="card"><h3>Ключи LLM</h3><p>Корпоративные модели и GLM-ключи лежат в профилях агентов. Какой ключ использовать — настройка агента, а не задачи.</p></div>
+    </div>
+    <p class="note">Внешняя подписка Claude остаётся только у Claude Code. Hermes к ней не подключается: условия использования этого не позволяют.</p>
+  </section>
+
+  <section class="slide" data-title="С телефона">
+    <p class="label">Как это выглядит</p>
+    <h2>Поручил с телефона — <span class="accent">смотрю только статус</span></h2>
+    <div class="talk">
+      <span class="said"><small>ВЛАДЕЛЕЦ · ТЕЛЕФОН</small>Собери сводку по рискам спринта трёх команд.</span>
+      <span class="said r"><small>CLAUDE CODE</small>Стратегия: через агентов — нужен корпоративный доступ. Сначала проверю, не делали ли уже.</span>
+      <span class="said r"><small>CLAUDE CODE</small>Поставил задачу на доску. Проверяю статус раз в 10 минут, напишу при изменении.</span>
+    </div>
+    <div class="stat"><span>ВХОДЯЩИЕ</span><span class="on">В РАБОТЕ</span><span>ЖДЁТ ОТВЕТА</span><span>НА ПРИЁМКЕ</span><span>ГОТОВО</span></div>
+    <p class="note">Это правило из инструкции репозитория: сначала посмотреть, что уже делали; задачу формулировать целиком; между проверками ничего не опрашивать и не писать код. В работу — только по слову владельца.</p>
+  </section>
+
+  <section class="slide" data-title="Два режима">
+    <p class="label">Два режима работы</p>
+    <h2>Выбираю режим <span class="accent">под задачу</span></h2>
+    <div class="cmp">
+      <div class="h k"></div><div class="h">A2A · заказчик и исполнитель</div><div class="h b">MCP · «Штаб» как набор инструментов</div>
+      <div class="k">Роли</div><div>Claude — заказчик и координатор, Hermes — исполнитель</div><div>Думает Claude, сервер выполняет его вызовы</div>
+      <div class="k">Чьи токены</div><div>Внутренние: корпоративная модель или GLM у агента</div><div>Подписка Claude, внешние ключи</div>
+      <div class="k">Что видит Claude</div><div>Итог и статус на доске</div><div>Всё, что вернули инструменты</div>
+      <div class="k">Когда</div><div>Корпоративные данные; нужно сэкономить токены Claude</div><div>Данные не корпоративные или внутренние токены закончились</div>
+    </div>
+    <p class="note">Переключение — выбор владельца на каждую задачу. Одна и та же доска и те же агенты в обоих режимах.</p>
+  </section>
+
+  <section class="slide" data-title="Экономия">
+    <p class="label">Дёшево управлять многим</p>
+    <h2>Claude читает <span class="accent">вход и выход</span></h2>
+    <div class="split">
+      <div>
+        <div class="big">16,6<small>тыс.</small></div>
+        <p class="line">Столько токенов занимает ответ по всей доске в обычном JSON. Мост отдаёт списки таблицей (формат TOON) и включает её, только если ответ короче минимум на 20 %.</p>
+      </div>
+      <ul class="lim">
+        <li><div><b>Сначала «что уже делали»</b><span>поиск по доске до нового поручения: не платить дважды</span></div></li>
+        <li><div><b>Редкие проверки статуса</b><span>раз в 10 минут, а не поток опросов</span></div></li>
+        <li><div><b>Тяжёлая работа у агента</b><span>чтение Jira и черновики считаются на его токенах</span></div></li>
+        <li><div><b>Результат вместо хода работ</b><span>в контекст попадает итог, а не промежуточные шаги</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Токены закончились">
+    <p class="label">Когда внутренние токены закончились</p>
+    <h2>Claude <span class="accent">доводит задачу сам</span></h2>
+    <div class="steps">
+      <div class="card"><span class="tag">1 · ВЗЯТЬ</span><h3>Перехват</h3><p>Задача уходит на стоянку, агент её не запустит. Claude получает тот же контекст, что получил бы агент.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">2 · ВЕСТИ</span><h3>Шаги в задаче</h3><p>После каждого шага комментарий. Работа переживает обрыв разговора.</p></div>
+      <div class="arr">→</div>
+      <div class="card blue"><span class="tag">3 · СДАТЬ</span><h3>На приёмку</h3><p>Файлы уходят во вложения задачи, человек принимает как обычно.</p></div>
+      <div class="arr">→</div>
+      <div class="card"><span class="tag">4 · ВЕРНУТЬ</span><h3>Обратно агенту</h3><p>Если нужно, задача возвращается в очередь агента.</p></div>
+    </div>
+    <p class="note">Перехват всегда начинает владелец словами «продолжи задачу». Автоматически переводить агента на подписку Claude нельзя. Помните: при перехвате данные задачи попадают к Claude, поэтому для корпоративных — см. «Границы».</p>
+  </section>
+
+  <section class="slide" data-title="Безопасность">
+    <p class="label">Границы</p>
+    <h2>Что защищает <span class="accent">и что остаётся на человеке</span></h2>
+    <div class="three">
+      <div class="card"><span class="tag">ВХОД</span><h3>Только владелец</h3><p>Логин, пароль и одноразовый код. Токены хранятся хешами, доступ живёт час, продление — 30 дней. Потерял телефон — одна команда выходит из всех клиентов.</p></div>
+      <div class="card blue"><span class="tag">ЗАПИСЬ</span><h3>Только после «да»</h3><p>Всё, что меняет Jira, Confluence или пишет людям, помечено. Claude просит разрешение. Удаления в Jira и Confluence закрыты совсем. Есть журнал действий.</p></div>
+      <div class="card"><span class="tag">ДАННЫЕ</span><h3>Режим решает человек</h3><p>В режиме MCP ответы инструментов попадают в контекст Claude. Поэтому корпоративные данные — через A2A, а MCP-режим — для всего остального.</p></div>
+    </div>
+    <p class="note">Это правило использования, а не техническая блокировка: инструменты Jira в режиме MCP доступны. Поэтому для них в клиенте стоит «спрашивать разрешение».</p>
+  </section>
+
+  <section class="slide" data-title="Честно о слабых местах">
+    <p class="label">Честно о слабых местах</p>
+    <h2>Что пока <span class="accent">не идеально</span></h2>
+    <div class="cards roomy">
+      <div class="card"><h3>Ответ не мгновенный</h3><p>Короткий ход агента занимает 12–40 секунд, потоковой передачи нет. Долгие поручения Claude проверяет по статусу.</p></div>
+      <div class="card"><h3>Исполнитель — один сервер</h3><p>Если штаб недоступен, поручить нечего. За этим следит агент-наблюдатель: проверяет интерфейсы и чинит безопасное сам.</p></div>
+      <div class="card blue"><h3>Качество — у агента</h3><p>Результат так хорош, как правила и память в профиле агента. Их приходится растить.</p></div>
+      <div class="card"><h3>Выбор режима — ручной</h3><p>Какой путь выбрать для задачи, решает владелец. Подсказка у Claude есть, но запрета нет.</p></div>
+    </div>
+  </section>
+
+  <section class="slide center" data-title="Как начать">
+    <div class="final">
+      <div>
+        <h1>Один раз подключил —<br><span class="accent">штаб с тобой</span></h1>
+        <p class="lead">Коннектор добавляется в настройках Claude и работает в приложении на телефоне, в облачных сессиях Claude Code и на любом ноутбуке.</p>
+        <a class="repo" href="https://github.com/po-helper-org/poh-hermes-bridge" target="_blank" rel="noopener" data-private-repo>github.com/po-helper-org/poh-hermes-bridge 🔒</a>
+      </div>
+      <div class="term"><i>1.</i> Customize → Connectors →
+    Add custom connector
+<i>2.</i> имя «Штаб», адрес вашего сервера
+<i>3.</i> Connect → логин, пароль, код
+<i>4.</i> в чате включить коннектор («+»)
+<i>?</i> «Какие риски у команды в спринте?»</div>
+    </div>
+  </section>
+</div>
+<div id="nav">
+  <button id="prev" title="Назад">‹</button><span class="p mono" id="pos"></span><button id="next" title="Вперёд">›</button>
+</div>
+<script>
+  var PHOTO = "/okr-quarter-planning/img/photo.webp";
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var cur = 0;
+  var narrow = window.matchMedia('(max-width: 700px), (orientation: portrait) and (max-width: 900px)');
+  function fit() {
+    var st = document.getElementById('stage');
+    if (narrow.matches) { st.style.transform = 'none'; st.style.left = st.style.top = ''; return; }
+    var w = document.documentElement.clientWidth, h = document.documentElement.clientHeight;
+    var s = Math.min(w / 1280, h / 720);
+    st.style.left = Math.round((w - 1280 * s) / 2) + 'px';
+    st.style.top = Math.round((h - 720 * s) / 2) + 'px';
+    st.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+  function show(i, push) {
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
+    document.getElementById('pos').textContent = (cur + 1) + ' / ' + slides.length;
+    document.getElementById('bar').style.width = ((cur + 1) / slides.length * 100) + '%';
+    if (push !== false) history.replaceState(null, '', '#slide=' + (cur + 1));
+    else if (narrow.matches && cur > 0) slides[cur].scrollIntoView();
+  }
+  window.addEventListener('load', function () { if (narrow.matches && cur > 0) slides[cur].scrollIntoView(); });
+  document.getElementById('prev').onclick = function () { show(cur - 1); };
+  document.getElementById('next').onclick = function () { show(cur + 1); };
+  var photo = document.getElementById('coverPhoto');
+  if (photo && PHOTO) photo.src = PHOTO;
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(cur - 1); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+  function fromHash() { var m = location.hash.match(/slide=(\d+)/); return m ? parseInt(m[1], 10) - 1 : 0; }
+  window.addEventListener('hashchange', function () { show(fromHash(), false); });
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  show(fromHash(), false);
+</script>
+<script src="/components/private-repo.js" defer></script>
+</body>
+</html>
