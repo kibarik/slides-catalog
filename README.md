@@ -9,6 +9,7 @@
 
 Опубликованные презентации:
 
+- `hermes-bridge-hq` — Штаб корпоративных агентов в кармане: Claude Code с телефона
 - `claude-desktop-zai-macos` — Claude Desktop с Китайскими моделями
 - `po-workspace-bft-plugin` — БФТ под управлением руководителя
 - `sprint-under-manager` — Спринты под управлением руководителя
